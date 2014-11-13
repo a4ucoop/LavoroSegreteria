@@ -4,8 +4,8 @@ a4_u_form_homepage:
 
 
 a4_u_form_hello:
-    path:     /hello/{name}
-    defaults: { _controller: A4UFormBundle:Default:index }
+    path:     /form/porte_aperte_estate
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate }
 
 random:
     path:     /random/{limit}

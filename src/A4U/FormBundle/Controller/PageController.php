@@ -10,4 +10,9 @@ class PageController extends Controller
 	{
 		return $this->render('A4UFormBundle:Default:homepage.html.twig');
 	}
+
+	public function porte_aperte_estate()
+	{
+		return $this->render('A4UFormBundle:Default:');
+	}
 }
