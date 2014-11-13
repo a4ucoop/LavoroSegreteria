@@ -1,0 +1,4 @@
+a4_u_form:
+    resource: "@A4UFormBundle/Resources/config/routing.yml"
+    prefix:   /
+

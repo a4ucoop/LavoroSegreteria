@@ -1,0 +1,12 @@
+a4_u_form_homepage:
+    path: /
+    defaults: { _controller: A4UFormBundle:Page:index }
+
+
+a4_u_form_hello:
+    path:     /hello/{name}
+    defaults: { _controller: A4UFormBundle:Default:index }
+
+random:
+    path:     /random/{limit}
+    defaults: { _controller: A4UFormBundle:Random:index }
