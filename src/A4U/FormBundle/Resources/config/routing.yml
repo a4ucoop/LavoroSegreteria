@@ -3,10 +3,10 @@ a4_u_form_homepage:
     defaults: { _controller: A4UFormBundle:Page:index }
 
 
-a4_u_form_hello:
+a4_u_form_porteAperteEstate:
     path:     /form/porte_aperte_estate
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate }
 
-random:
-    path:     /random/{limit}
-    defaults: { _controller: A4UFormBundle:Random:index }
+a4_u_form_success:
+    path:	/form/success
+    defaults: { _controller: A4UFormBundle:Page:success }

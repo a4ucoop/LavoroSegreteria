@@ -1,0 +1,4 @@
+A4U\FormBundle\Entity\porteAperteEstate:
+	properties:
+		name:
+			- NotBlank: ~
