@@ -52,7 +52,9 @@ class PageController extends Controller
         if ($form->isValid()) {
             // esegue alcune azioni, come ad esempio salvare il task nella base dati
         
-            $validator = $this->get('validator');
+        // I validatori lato server sono ancora da aggiustare per ora i campi sono validati in HTML5 (a quanto pare)
+
+        /*    $validator = $this->get('validator');
             $errori = $validator->validate($form);
             
             if (count($errori) > 0) {
@@ -61,13 +63,14 @@ class PageController extends Controller
                  * ConstraintViolationList. Questo fornisce una stringa adatta
                  * al debug
                  */
-                $errorsString = (string) $errori;
+         /*       $errorsString = (string) $errori;
 
                 return new Response($errorsString);
             }
 
             return new Response('Il nome è valido! Sì!');
-            //return $this->redirect($this->generateUrl('a4_u_form_success'));
+        */
+            return $this->redirect($this->generateUrl('a4_u_form_success'));
         }
 
         // Form non ancora inviato
