@@ -1,4 +1,41 @@
-A4U\FormBundle\Entity\porteAperteEstate:
-	properties:
-		name:
-			- NotBlank: ~
+#Validazione lato server, viene invocato ogni volta tramite il metodo isValid()
+
+A4U\FormBundle\Entity\PorteAperteEstate:
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+        phone:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        attendedSchool:
+            - NotBlank: ~
+        attendedSchoolCity:
+            - NotBlank: ~
+        hasAttendedToOtherActivities:
+            - Choice:
+                choices: [T, F]
+        activity:
+            - NotBlank: ~
+        otherActivity:
+            - NotBlank: ~
+        reference:
+            - NotBlank: ~
+        otherReference:
+            - NotBlank: ~
+        unicamCourse:
+            - NotBlank: ~
+        submissionDate:
+            - NotBlank: ~
