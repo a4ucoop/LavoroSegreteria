@@ -24,7 +24,7 @@ class PorteAperteEstateType extends AbstractType
             ->add('attendedSchool', 'text')
             ->add('attendedSchoolCity', 'text')
             ->add('hasAttendedtoOtherActivities', 'choice', array(
-                'choices'   => array('T' => 'Si', 'F' => 'No')
+                'choices'   => array( true => 'Si', false => 'No')
                 ))
             ->add('activity', 'text')
             ->add('otherActivity', 'text')

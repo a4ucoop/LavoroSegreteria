@@ -10,3 +10,11 @@ a4_u_form_porteAperteEstate:
 a4_u_form_success:
     path:	/form/success
     defaults: { _controller: A4UFormBundle:Page:success }
+
+a4_u_form_provadatabase:
+    path:	/form/provadatabase
+    defaults: { _controller: A4UFormBundle:Page:create }
+
+a4_u_form_show:
+    path: /form/show
+    defaults: { _controller: A4UFormBundle:Page:show }

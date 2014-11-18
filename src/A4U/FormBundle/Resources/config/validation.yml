@@ -26,7 +26,7 @@ A4U\FormBundle\Entity\PorteAperteEstate:
             - NotBlank: ~
         hasAttendedToOtherActivities:
             - Choice:
-                choices: [T, F]
+                choices: [1, 0]
         activity:
             - NotBlank: ~
         otherActivity:

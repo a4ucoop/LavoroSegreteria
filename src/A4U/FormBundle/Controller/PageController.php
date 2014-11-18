@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use A4U\FormBundle\Entity\PorteAperteEstate;
 use Symfony\Component\HttpFoundation\Request;
 use A4U\FormBundle\Form\Type\PorteAperteEstateType;
+use ArrayObject;
 
 class PageController extends Controller
 {
@@ -26,9 +27,14 @@ class PageController extends Controller
 
         //Form inviato, viene validato
         if ($form->isValid()) {
-            // esegue alcune azioni, come ad esempio salvare il task nella base dati
 
-            return $this->redirect($this->generateUrl('a4_u_form_success'));
+            //Salva il nuovo utente nella base dati
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($PorteAperteEstate);
+            $em->flush();
+
+            return new Response('Creato l\'utente con id '.$PorteAperteEstate->getId());
+            //return $this->redirect($this->generateUrl('a4_u_form_success'));
         }
 
         // Form non ancora inviato
@@ -40,5 +46,26 @@ class PageController extends Controller
     public function successAction()
     {
         return $this->render('A4UFormBundle:Default:success.html.twig');
+    }
+
+    public function showAction()
+    {
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteEstate')
+        ->findAll();
+
+        if (!$Users)
+        {
+            throw $this->createNotFoundException('Nessun utente trovato');
+        }
+
+        return $this->render('A4UFormBundle:Default:show.html.twig', array(
+            'users' => $Users));
+/*        $names = new ArrayObject();
+
+        foreach ($Users as $user) {
+            $names->append($user->getName());
+        }
+        return new Response('Utenti registrati: '. $names);*/
     }
 }
