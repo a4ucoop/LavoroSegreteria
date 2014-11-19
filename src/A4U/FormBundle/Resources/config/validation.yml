@@ -39,3 +39,46 @@ A4U\FormBundle\Entity\PorteAperteEstate:
             - NotBlank: ~
         submissionDate:
             - NotBlank: ~
+
+
+
+A4U\FormBundle\Entity\Stage:
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        fiscalCode:
+            - NotBlank: ~
+        attendedSchool:
+            - NotBlank: ~
+        schoolYear:
+            - NotBlank: ~
+            - Type:
+                type: integer
+                message: Il valore {{ value }} non è un {{ type }} valido.
+        email:
+            - NotBlank: ~
+        phone:
+            - NotBlank: ~
+        facebookContact:
+            - NotBlank: ~
+        stagePeriod:
+            - NotBlank: ~
+        studyField:
+            - NotBlank: ~
+        moneyPayed:
+            - NotBlank: ~
+
+
+

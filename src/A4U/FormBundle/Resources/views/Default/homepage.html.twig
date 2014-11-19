@@ -1,13 +1,78 @@
-benveuto nella homepage!
+<HTML>
 
-<p>
-	<a href="{{ path('a4_u_form_porteAperteEstate') }}">
-	  Compila Form
-	</a>
-</p>
+	<HEAD>
+		<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
+		<title>Homepage</title>
+	
+	</HEAD>
 
-<p>
-	<a href="{{ path('a4_u_form_show') }}">
-	  Mostra utenti
-	</a>
-</p>
+	<BODY>
+	
+		<div id="welcome" align="center">
+			<h2> Benveuto nella homepage </h2>
+		</div>
+
+		<div id="table" align="center">
+
+			<table>
+				
+				<tr>
+					<td><b>Forms</b></td>
+					<td><b>Azioni</b></td>
+				</tr>
+
+				<tr>
+					<td>Porte Aperte Estate</td>
+					<td>
+						<form action="{{ path('a4u_form_porteAperteEstate') }}"><input type="submit" value=" Compila" /></form>
+						<form action="#"><input type="submit" value="Modifica" /></form>
+						<form action="{{ path('a4u_form_showPAE') }}"><input type="submit" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Porte Aperte inverno</td>
+					<td>
+						<form action="#"><input type="submit" value=" Compila" /></form>
+						<form action="#"><input type="submit" value="Modifica" /></form>
+						<form action="#"><input type="submit" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Stage</td>
+					<td>
+						<form action="{{ path('a4u_form_stage') }}"><input type="submit" value=" Compila" /></form>
+						<form action="#"><input type="submit" value="Modifica" /></form>
+						<form action="{{ path('a4u_form_showStage') }}"><input type="submit" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Generico</td>
+					<td>
+						<form action="{{ path('a4u_form_porteAperteEstate') }}"><input type="submit" value=" Compila" /></form>
+						<form action="#"><input type="submit" value="Modifica" /></form>
+						<form action="{{ path('a4u_form_showPAE') }}"><input type="submit" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+				
+				<!--p>
+					<a href="{{ path('a4u_form_porteAperteEstate') }}">
+					  Compila Form
+					</a>
+				</p>
+
+				<p>
+					<a href="{{ path('a4u_form_showPAE') }}">
+					  Mostra utenti
+					</a>
+				</p-->
+
+			</table>
+
+		</div>
+	
+	</BODY>
+
+</HTML>

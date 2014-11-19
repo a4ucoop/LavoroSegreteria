@@ -1,0 +1,12 @@
+{# src/Blogger/BlogBundle/Resources/views/Page/stage.html.twig #}
+{# % extends 'A4UFormBundle::layout.html.twig' % #}
+
+{% block title %}<title>Stage</title>{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Stage</h1>
+    </header>
+    {# Rende il form inserendo dei controlli HTML5 per validarli lato client #}
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{% endblock %}
