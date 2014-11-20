@@ -9,6 +9,11 @@ services:
         tags:
             - { name: form.type, alias: stage }
 
+    A4U_Form.form.type.generico:
+        class: A4U\FormBundle\Form\Type\GenericoType
+        tags:
+            - { name: form.type, alias: generico }
+
 #    a4_u_form.example:
 #        class: A4U\FormBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

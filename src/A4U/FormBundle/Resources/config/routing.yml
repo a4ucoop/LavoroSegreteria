@@ -31,3 +31,13 @@ a4u_form_stage:
 a4u_form_showStage:
     path:   /form/show_stage
     defaults: { _controller: A4UFormBundle:Page:showstage }
+
+
+
+a4u_form_generico:
+    path:   /form/generico
+    defaults: { _controller: A4UFormBundle:Page:generico }
+
+a4u_form_showGenerico:
+    path:   /form/show_generico
+    defaults: { _controller: A4UFormBundle:Page:showgenerico }
