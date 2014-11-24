@@ -4,7 +4,7 @@
 	<td><b>Nome</b></td>
 	<td><b>Cognome</b></td>
 	<td><b>Luogo di nascita</b></td>
-	<!--td><b>Data di nascita</b></td-->
+	<td><b>Data di nascita</b></td>
 	<td><b>Indirizzo</b></td>
 	<td><b>CAP</b></td>
 	<td><b>Città</b></td>
@@ -17,13 +17,14 @@
 	<td><b>Periodo Stage</b></td>
 	<td><b>Campo di studi</b></td>
 	<td><b>Quota versata</b></td>
+	<td><b>data sottoscrizione</b></td>
 </tr>
 {% for user in users %}
 	<tr>
 	<td>{{user.name}}</td>
 	<td>{{user.surname}}</td>
 	<td>{{user.birthPlace}}</td>
-	<!--td>{# {user.birthDate} #}</td-->
+	<td>{{user.birthDate|date('d-m-Y')}}</td>
 	<td>{{user.address}}</td> 
 	<td>{{user.cap}}</td>
 	<td>{{user.city}}</td> 
@@ -35,7 +36,8 @@
 	<td>{{user.facebookContact}}</td> 
 	<td>{{user.stagePeriod}}</td> 
 	<td>{{user.studyField}}</td> 
-	<td>{{user.moneyPayed}}</td> 
+	<td>{{user.moneyPayed}}</td>
+	<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
 	</tr>
 {% endfor %}
 </table>

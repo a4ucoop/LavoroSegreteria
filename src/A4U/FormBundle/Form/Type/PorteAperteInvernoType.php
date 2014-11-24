@@ -7,7 +7,7 @@ namespace A4U\FormBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class PorteAperteEstateType extends AbstractType
+class PorteAperteInvernoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -38,7 +38,7 @@ class PorteAperteEstateType extends AbstractType
 
     public function getName()
     {
-    	return 'porteAperteEstate';
+    	return 'porteAperteInverno';
     }
 
 }

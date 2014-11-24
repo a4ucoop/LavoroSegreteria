@@ -37,8 +37,50 @@ A4U\FormBundle\Entity\PorteAperteEstate:
             - NotBlank: ~
         unicamCourse:
             - NotBlank: ~
-        submissionDate:
+        fiscalcode:
+            - NotBlank: ~ 
+
+
+
+A4U\FormBundle\Entity\PorteAperteInverno:
+    properties:
+        name:
             - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+        phone:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        attendedSchool:
+            - NotBlank: ~
+        attendedSchoolCity:
+            - NotBlank: ~
+        hasAttendedToOtherActivities:
+            - Choice:
+                choices: [1, 0]
+        activity:
+            - NotBlank: ~
+        otherActivity:
+            - NotBlank: ~
+        reference:
+            - NotBlank: ~
+        otherReference:
+            - NotBlank: ~
+        unicamCourse:
+            - NotBlank: ~
+        fiscalCode:
+            - NotBlank: ~ 
 
 
 
@@ -82,3 +124,23 @@ A4U\FormBundle\Entity\Stage:
 
 
 
+A4U\FormBundle\Entity\Generico:
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        fiscalCode:
+            - NotBlank: ~ 

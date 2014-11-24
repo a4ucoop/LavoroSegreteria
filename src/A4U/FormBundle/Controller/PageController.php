@@ -7,10 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use A4U\FormBundle\Entity\PorteAperteEstate;
+use A4U\FormBundle\Entity\PorteAperteInverno;
 use A4U\FormBundle\Entity\Stage;
 use A4U\FormBundle\Entity\Generico;
 
 use A4U\FormBundle\Form\Type\PorteAperteEstateType;
+use A4U\FormBundle\Form\Type\PorteAperteInvernoType;
 use A4U\FormBundle\Form\Type\StageType;
 use A4U\FormBundle\Form\Type\GenericoType;
 
@@ -71,12 +73,43 @@ class PageController extends Controller
 
     public function porte_aperte_invernoAction(Request $request)
     {
-        // TBD
+        $PorteAperteInverno = new PorteAperteInverno();
+
+        $form = $this->createForm('porteAperteInverno', $PorteAperteInverno);
+
+        $form->handleRequest($request);
+
+        //Form inviato, viene validato
+        if ($form->isValid()) {
+
+            //Salva il nuovo utente nella base dati
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($PorteAperteInverno);
+            $em->flush();
+
+            return new Response('Creato l\'utente con id '.$PorteAperteInverno->getId().' in PorteAperteInverno');
+            //return $this->redirect($this->generateUrl('a4_u_form_success'));
+        }
+
+        // Form non ancora inviato
+        return $this->render('A4UFormBundle:Forms:porte_aperte_Inverno.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     public function showPAIAction()
     {
-        // TBD
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteInverno')
+        ->findAll();
+
+        if (!$Users)
+        {
+            throw $this->createNotFoundException('Nessun utente trovato');
+        }
+
+        return $this->render('A4UFormBundle:Forms:show_porte_aperte_inverno.html.twig', array(
+            'users' => $Users));
     }
 
 // ---------------------------------------STAGE--------------------------------------------

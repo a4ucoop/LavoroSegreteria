@@ -17,6 +17,7 @@
 	<td><b>Periodo Stage</b></td>
 	<td><b>Campo di studi</b></td>
 	<td><b>Quota versata</b></td>
+	<td><b>data sottoscrizione</b></td>
 </tr>
 {% for user in users %}
 	<tr>
@@ -35,7 +36,8 @@
 	<td>{{user.facebookContact}}</td> 
 	<td>{{user.stagePeriod}}</td> 
 	<td>{{user.studyField}}</td> 
-	<td>{{user.moneyPayed}}</td> 
+	<td>{{user.moneyPayed}}</td>
+	<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
 	</tr>
 {% endfor %}
 </table>

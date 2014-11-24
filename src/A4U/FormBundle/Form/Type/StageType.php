@@ -16,7 +16,7 @@ class StageType extends AbstractType
             ->add('name', 'text')
             ->add('surname', 'text')
             ->add('birthPlace', 'text')
-            ->add('birthDate', 'birthday')
+            ->add('birthDate', 'birthday', array('format' => 'dd MM yyyy'))
             ->add('address', 'text')
             ->add('cap', 'text')
             ->add('city', 'text')

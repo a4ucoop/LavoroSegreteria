@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class PorteAperteEstate
+class PorteAperteInverno
 {
     /**
      * @var integer
@@ -47,7 +47,7 @@ class PorteAperteEstate
     /**
      * @var string
      *
-     * @ORM\Column(name="cap", type="string", length=32)
+     * @ORM\Column(name="cap", type="string", length=128)
      */
     private $cap;
 
@@ -82,7 +82,7 @@ class PorteAperteEstate
     /**
      * @var string
      *
-     * @ORM\Column(name="birthplace", type="string", length=128)
+     * @ORM\Column(name="birthPlace", type="string", length=128)
      */
     private $birthPlace;
 
@@ -145,9 +145,9 @@ class PorteAperteEstate
     /**
      * @var string
      *
-     * @ORM\Column(name="fiscalcode", type="string", length=128)
+     * @ORM\Column(name="fiscalCode", type="string", length=128)
      */
-    private $fiscalcode;
+    private $fiscalCode;
 
     /**
      * @var \DateTime
@@ -172,12 +172,12 @@ class PorteAperteEstate
      * Set name
      *
      * @param string $name
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setName($name)
     {
         $this->name = $name;
-
+    
         return $this;
     }
 
@@ -195,12 +195,12 @@ class PorteAperteEstate
      * Set surname
      *
      * @param string $surname
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setSurname($surname)
     {
         $this->surname = $surname;
-
+    
         return $this;
     }
 
@@ -218,12 +218,12 @@ class PorteAperteEstate
      * Set address
      *
      * @param string $address
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setAddress($address)
     {
         $this->address = $address;
-
+    
         return $this;
     }
 
@@ -241,12 +241,12 @@ class PorteAperteEstate
      * Set cap
      *
      * @param string $cap
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setCap($cap)
     {
         $this->cap = $cap;
-
+    
         return $this;
     }
 
@@ -264,12 +264,12 @@ class PorteAperteEstate
      * Set city
      *
      * @param string $city
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setCity($city)
     {
         $this->city = $city;
-
+    
         return $this;
     }
 
@@ -287,12 +287,12 @@ class PorteAperteEstate
      * Set email
      *
      * @param string $email
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setEmail($email)
     {
         $this->email = $email;
-
+    
         return $this;
     }
 
@@ -310,12 +310,12 @@ class PorteAperteEstate
      * Set phone
      *
      * @param string $phone
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
-
+    
         return $this;
     }
 
@@ -333,12 +333,12 @@ class PorteAperteEstate
      * Set birthDate
      *
      * @param \DateTime $birthDate
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
-
+    
         return $this;
     }
 
@@ -356,12 +356,12 @@ class PorteAperteEstate
      * Set birthPlace
      *
      * @param string $birthPlace
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setBirthPlace($birthPlace)
     {
         $this->birthPlace = $birthPlace;
-
+    
         return $this;
     }
 
@@ -379,12 +379,12 @@ class PorteAperteEstate
      * Set attendedSchool
      *
      * @param string $attendedSchool
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setAttendedSchool($attendedSchool)
     {
         $this->attendedSchool = $attendedSchool;
-
+    
         return $this;
     }
 
@@ -402,12 +402,12 @@ class PorteAperteEstate
      * Set attendedSchoolCity
      *
      * @param string $attendedSchoolCity
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setAttendedSchoolCity($attendedSchoolCity)
     {
         $this->attendedSchoolCity = $attendedSchoolCity;
-
+    
         return $this;
     }
 
@@ -425,12 +425,12 @@ class PorteAperteEstate
      * Set hasAttendedToOtherActivities
      *
      * @param boolean $hasAttendedToOtherActivities
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setHasAttendedToOtherActivities($hasAttendedToOtherActivities)
     {
         $this->hasAttendedToOtherActivities = $hasAttendedToOtherActivities;
-
+    
         return $this;
     }
 
@@ -447,20 +447,20 @@ class PorteAperteEstate
     /**
      * Set activity
      *
-     * @param \stdClass $activity
-     * @return PorteAperteEstate
+     * @param string $activity
+     * @return PorteAperteInverno
      */
     public function setActivity($activity)
     {
         $this->activity = $activity;
-
+    
         return $this;
     }
 
     /**
      * Get activity
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getActivity()
     {
@@ -471,12 +471,12 @@ class PorteAperteEstate
      * Set otherActivity
      *
      * @param string $otherActivity
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setOtherActivity($otherActivity)
     {
         $this->otherActivity = $otherActivity;
-
+    
         return $this;
     }
 
@@ -493,20 +493,20 @@ class PorteAperteEstate
     /**
      * Set reference
      *
-     * @param \stdClass $reference
-     * @return PorteAperteEstate
+     * @param string $reference
+     * @return PorteAperteInverno
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
-
+    
         return $this;
     }
 
     /**
      * Get reference
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getReference()
     {
@@ -517,12 +517,12 @@ class PorteAperteEstate
      * Set otherReference
      *
      * @param string $otherReference
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setOtherReference($otherReference)
     {
         $this->otherReference = $otherReference;
-
+    
         return $this;
     }
 
@@ -539,20 +539,20 @@ class PorteAperteEstate
     /**
      * Set unicamCourse
      *
-     * @param \stdClass $unicamCourse
-     * @return PorteAperteEstate
+     * @param string $unicamCourse
+     * @return PorteAperteInverno
      */
     public function setUnicamCourse($unicamCourse)
     {
         $this->unicamCourse = $unicamCourse;
-
+    
         return $this;
     }
 
     /**
      * Get unicamCourse
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getUnicamCourse()
     {
@@ -560,38 +560,38 @@ class PorteAperteEstate
     }
 
     /**
-     * Set fiscalcode
+     * Set fiscalCode
      *
-     * @param string $fiscalcode
-     * @return Generico
+     * @param string $fiscalCode
+     * @return PorteAperteInverno
      */
-    public function setFiscalcode($fiscalcode)
+    public function setFiscalCode($fiscalCode)
     {
-        $this->fiscalcode = $fiscalcode;
+        $this->fiscalCode = $fiscalCode;
     
         return $this;
     }
 
     /**
-     * Get fiscalcode
+     * Get fiscalCode
      *
      * @return string 
      */
-    public function getFiscalcode()
+    public function getFiscalCode()
     {
-        return $this->fiscalcode;
+        return $this->fiscalCode;
     }
 
     /**
      * Set submissionDate
      *
      * @param \DateTime $submissionDate
-     * @return PorteAperteEstate
+     * @return PorteAperteInverno
      */
     public function setSubmissionDate($submissionDate)
     {
         $this->submissionDate = $submissionDate;
-
+    
         return $this;
     }
 

@@ -19,7 +19,7 @@ class GenericoType extends AbstractType
             ->add('cap', 'text')
             ->add('city', 'text')
             ->add('email', 'text')
-            ->add('birthDate', 'birthday')
+            ->add('birthDate', 'birthday', array('format' => 'dd MM yyyy'))
             ->add('birthPlace', 'text')
             ->add('fiscalCode', 'text')
             
