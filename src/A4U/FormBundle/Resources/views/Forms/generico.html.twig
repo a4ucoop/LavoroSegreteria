@@ -1,12 +1,27 @@
-{# src/Blogger/BlogBundle/Resources/views/Page/stage.html.twig #}
-{# % extends 'A4UFormBundle::layout.html.twig' % #}
+<HTML>
 
-{% block title %}<title>Generico</title>{% endblock%}
+	<HEAD>
 
-{% block body %}
-    <header>
-        <h1>Form Generico</h1>
-    </header>
-    {# Rende il form inserendo dei controlli HTML5 per validarli lato client #}
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
-{% endblock %}
+		<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
+		{% block title %}<title>Porte Aperte Estate</title>{% endblock %}
+	
+	</HEAD>
+
+	<BODY>
+
+		{# src/Blogger/BlogBundle/Resources/views/Page/stage.html.twig #}
+		{# % extends 'A4UFormBundle::layout.html.twig' % #}
+
+		{% block title %}<title>Generico</title>{% endblock%}
+
+		{% block body %}
+		    <header>
+		        <h1>Form Generico</h1>
+		    </header>
+		    {# Rende il form inserendo dei controlli HTML5 per validarli lato client #}
+		    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+		{% endblock %}
+
+	</BODY>
+
+</HTML>

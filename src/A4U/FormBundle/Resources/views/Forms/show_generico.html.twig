@@ -1,43 +1,57 @@
-<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
-<table>
-<tr>
-	<td><b>Nome</b></td>
-	<td><b>Cognome</b></td>
-	<td><b>Luogo di nascita</b></td>
-	<!--td><b>Data di nascita</b></td-->
-	<td><b>Indirizzo</b></td>
-	<td><b>CAP</b></td>
-	<td><b>Città</b></td>
-	<td><b>Codice Fiscale</b></td>
-	<td><b>Scuola di provenienza</b></td>
-	<td><b>Anno</b></td>
-	<td><b>Email</b></td>
-	<td><b>Tel.</b></td>
-	<td><b>Contatto Facebook</b></td>
-	<td><b>Periodo Stage</b></td>
-	<td><b>Campo di studi</b></td>
-	<td><b>Quota versata</b></td>
-	<td><b>data sottoscrizione</b></td>
-</tr>
-{% for user in users %}
-	<tr>
-	<td>{{user.name}}</td>
-	<td>{{user.surname}}</td>
-	<td>{{user.birthPlace}}</td>
-	<!--td>{# {user.birthDate} #}</td-->
-	<td>{{user.address}}</td> 
-	<td>{{user.cap}}</td>
-	<td>{{user.city}}</td> 
-	<td>{{user.fiscalCode}}</td> 
-	<td>{{user.attendedSchool}}</td> 
-	<td>{{user.schoolYear}}</td> 
-	<td>{{user.email}}</td> 
-	<td>{{user.phone}}</td> 
-	<td>{{user.facebookContact}}</td> 
-	<td>{{user.stagePeriod}}</td> 
-	<td>{{user.studyField}}</td> 
-	<td>{{user.moneyPayed}}</td>
-	<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
-	</tr>
-{% endfor %}
-</table>
+<HTML>
+
+	<HEAD>
+
+		<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
+		<title>Form Generico</title>
+	
+	</HEAD>
+
+	<BODY>
+	
+		<table>
+		<tr>
+			<td><b>Nome</b></td>
+			<td><b>Cognome</b></td>
+			<td><b>Luogo di nascita</b></td>
+			<td><b>Data di nascita</b></td>
+			<td><b>Indirizzo</b></td>
+			<td><b>CAP</b></td>
+			<td><b>Città</b></td>
+			<td><b>Codice Fiscale</b></td>
+			<td><b>Scuola di provenienza</b></td>
+			<td><b>Anno</b></td>
+			<td><b>Email</b></td>
+			<td><b>Tel.</b></td>
+			<td><b>Contatto Facebook</b></td>
+			<td><b>Periodo Stage</b></td>
+			<td><b>Campo di studi</b></td>
+			<td><b>Quota versata</b></td>
+			<td><b>data sottoscrizione</b></td>
+		</tr>
+		{% for user in users %}
+			<tr>
+			<td>{{user.name}}</td>
+			<td>{{user.surname}}</td>
+			<td>{{user.birthPlace}}</td>
+			<td>{{user.birthDate|date('d-m-Y')}}</td>
+			<td>{{user.address}}</td> 
+			<td>{{user.cap}}</td>
+			<td>{{user.city}}</td> 
+			<td>{{user.fiscalCode}}</td> 
+			<td>{{user.attendedSchool}}</td> 
+			<td>{{user.schoolYear}}</td> 
+			<td>{{user.email}}</td> 
+			<td>{{user.phone}}</td> 
+			<td>{{user.facebookContact}}</td> 
+			<td>{{user.stagePeriod}}</td> 
+			<td>{{user.studyField}}</td> 
+			<td>{{user.moneyPayed}}</td>
+			<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+
+	</BODY>
+
+</HTML>

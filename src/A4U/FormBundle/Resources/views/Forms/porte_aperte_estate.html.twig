@@ -1,12 +1,24 @@
-{# src/Blogger/BlogBundle/Resources/views/Page/porte_aperte_estate.html.twig #}
-{# % extends 'A4UFormBundle::layout.html.twig' % #}
+<HTML>
 
-{% block title %}<title>porte aperte estate</title>{% endblock%}
+	<HEAD>
 
-{% block body %}
-    <header>
-        <h1>Porte aperte estate</h1>
-    </header>
-    {# Rende il form inserendo dei controlli HTML5 per validarli lato client #}
-    {{ form(form) }}
-{% endblock %}
+		<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
+		{% block title %}<title>Form Porte Aperte Estate</title>{% endblock%}
+	
+	</HEAD>
+
+	<BODY>
+
+		{# src/Blogger/BlogBundle/Resources/views/Page/stage.html.twig #}
+		{# % extends 'A4UFormBundle::layout.html.twig' % #}
+
+		
+	    <h1>Porte Aperte Estate</h1>
+	    
+	    {# Rende il form inserendo dei controlli HTML5 per validarli lato client #}
+	    {{ form(form) }}
+		
+
+	</BODY>
+
+</HTML>
