@@ -1,15 +1,20 @@
-<HTML>
+{% extends '::base.html.twig' %}
 
-	<HEAD>
-
-		<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
-		<title>Porte Aperte Estate</title>
+{% block head %}
 	
-	</HEAD>
+	{{parent()}}
+	<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
 
-	<BODY>
-		
-		<table>
+{% endblock %}
+
+{% block title %}Porte Aperte Estate{% endblock %}
+
+
+{% block content %}
+
+	{% block contentTitle %}<h3> Porte Aperte Estate </h3>{% endblock %}
+
+	<table>
 		<tr>
 			<td><b>Nome</b></td>
 			<td><b>Cognome</b></td>
@@ -33,29 +38,27 @@
 		</tr>
 		{% for user in users %}
 			<tr>
-			<td>{{user.name}}</td>
-			<td>{{user.surname}}</td>
-			<td>{{user.address}}</td>
-			<td>{{user.cap}}</td>
-			<td>{{user.city}}</td> 
-			<td>{{user.email}}</td>
-			<td>{{user.phone}}</td> 
-			<td>{{user.birthDate|date('d-m-Y')}}</td> 
-			<td>{{user.birthPlace}}</td> 
-			<td>{{user.attendedSchool}}</td> 
-			<td>{{user.attendedSchoolCity}}</td> 
-			<td>{{user.hasAttendedToOtherActivities}}</td> 
-			<td>{{user.activity}}</td> 
-			<td>{{user.otherActivity}}</td> 
-			<td>{{user.reference}}</td> 
-			<td>{{user.otherReference}}</td> 
-			<td>{{user.unicamCourse}}</td> 
-			<td>{{user.fiscalCode}}</td>
-			<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.surname}}</td>
+				<td>{{user.address}}</td>
+				<td>{{user.cap}}</td>
+				<td>{{user.city}}</td> 
+				<td>{{user.email}}</td>
+				<td>{{user.phone}}</td> 
+				<td>{{user.birthDate|date('d-m-Y')}}</td> 
+				<td>{{user.birthPlace}}</td> 
+				<td>{{user.attendedSchool}}</td> 
+				<td>{{user.attendedSchoolCity}}</td> 
+				<td>{{user.hasAttendedToOtherActivities}}</td> 
+				<td>{{user.activity}}</td> 
+				<td>{{user.otherActivity}}</td> 
+				<td>{{user.reference}}</td> 
+				<td>{{user.otherReference}}</td> 
+				<td>{{user.unicamCourse}}</td> 
+				<td>{{user.fiscalCode}}</td>
+				<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
 			</tr>
 		{% endfor %}
-		</table>
+	</table>
 
-	</BODY>
-
-</HTML>
+{% endblock %}

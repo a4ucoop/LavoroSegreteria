@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>{% block head %}
+    <meta charset="utf-8" />
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <title>{% block title %}A4U Segreteria{% endblock %}</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{{ asset('css/style2.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}</head>
+
+<body>
+
+<div class="wrapper">
+
+    <header class="header">{% block header %}
+        <strong><a href="{{ path('a4u_form_homepage') }}">Homepage</a></strong> 
+    {% endblock %}</header><!-- .header-->
+
+    <div class="middle">
+
+        <div class="container">
+            <main class="content">{% block content %}
+                <h3>{% block contentTitle %} Titolo: {% endblock %}</h3>
+                <strong>Content:</strong>
+            {% endblock %}</main><!-- .content -->
+        </div><!-- .container-->
+
+        <aside class="left-sidebar">
+            <strong>Left Sidebar:</strong>
+        </aside><!-- .left-sidebar -->
+
+    </div><!-- .middle-->
+
+    <footer class="footer">{% block footer %}
+        <div id="footerContent" align="center" ><strong> Piattaforma realizzata da <a href="http://www.a4u.it/">A4U</a> società cooperativa </strong></div>
+    {% endblock %}</footer><!-- .footer -->
+
+</div><!-- .wrapper -->
+
+</body>
 </html>

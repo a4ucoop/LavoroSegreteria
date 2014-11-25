@@ -1,24 +1,12 @@
-<HTML>
+{% extends '::base.html.twig' %}
 
-	<HEAD>
+{% block title %}Stage{% endblock %}
 
-		<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
-		{% block title %}<title>Stage</title>{% endblock%}
-	
-	</HEAD>
 
-	<BODY>
+{% block content %}
 
-		{# src/Blogger/BlogBundle/Resources/views/Page/stage.html.twig #}
-		{# % extends 'A4UFormBundle::layout.html.twig' % #}
+	{% block contentTitle %}<h3> Stage </h3>{% endblock %}
 
-		
-	    <h1>Stage</h1>
-	    
-	    {# Rende il form inserendo dei controlli HTML5 per validarli lato client #}
-	    {{ form(form) }}
-		
+	{{ form(form) }}
 
-	</BODY>
-
-</HTML>
+{% endblock %}
