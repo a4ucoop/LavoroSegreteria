@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new A4U\FormBundle\A4UFormBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

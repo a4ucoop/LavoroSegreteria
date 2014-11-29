@@ -110,28 +110,28 @@ class PorteAperteEstate
     /**
      * @var string
      *
-     * @ORM\Column(name="activity", type="string", length=128)
+     * @ORM\Column(name="activity", type="string", length=128, nullable=true)
      */
     private $activity;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="otherActivity", type="string", length=128)
+     * @ORM\Column(name="otherActivity", type="string", length=128, nullable=true)
      */
     private $otherActivity;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reference", type="string", length=128)
+     * @ORM\Column(name="reference", type="string", length=128, nullable=true)
      */
     private $reference;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="otherReference", type="string", length=128)
+     * @ORM\Column(name="otherReference", type="string", length=128, nullable=true)
      */
     private $otherReference;
 

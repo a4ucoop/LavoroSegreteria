@@ -2,11 +2,138 @@
 
 {% block title %}Porte Aperte Inverno{% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/form.css') }}" type="text/css" rel="stylesheet">
+	{{ form_stylesheet(form) }}
+{% endblock %}
 
-{% block content %}
+{% block body %}
 
-	{% block contentTitle %}<h3> Porte Aperte Inverno </h3>{% endblock %}
-	{# { form(form, {'attr': {'novalidate': 'novalidate'}}) } #}
-	{{ form(form) }}
+	<div class="form-container" >
+
+		{{ form_start(form) }} 
+
+		    {{ form_errors(form) }}
+
+		    <div class="form-group">
+		        {{ form_label(form.name) }}
+		        {{ form_errors(form.name) }}
+		        {{ form_widget(form.name) }}
+			</div>
+
+			<div class="form-group">
+		        {{ form_label(form.surname) }}
+		        {{ form_errors(form.surname) }}
+		        {{ form_widget(form.surname) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.fiscalcode) }}
+		        {{ form_errors(form.fiscalcode) }}
+		        {{ form_widget(form.fiscalcode) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.cap) }}
+		        {{ form_errors(form.cap) }}
+		        {{ form_widget(form.cap) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.city) }}
+		        {{ form_errors(form.city) }}
+		        {{ form_widget(form.city) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.address) }}
+		        {{ form_errors(form.address) }}
+		        {{ form_widget(form.address) }}
+		    </div>
+		    
+		    <div class="form-group">
+		        {{ form_label(form.email) }}
+		        {{ form_errors(form.email) }}
+		        {{ form_widget(form.email) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.phone) }}
+		        {{ form_errors(form.phone) }}
+		        {{ form_widget(form.phone) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.birthDate) }}
+		        {{ form_errors(form.birthDate) }}
+		        {{ form_widget(form.birthDate) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.birthPlace) }}
+		        {{ form_errors(form.birthPlace) }}
+		        {{ form_widget(form.birthPlace) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.attendedSchool) }}
+		        {{ form_errors(form.attendedSchool) }}
+		        {{ form_widget(form.attendedSchool) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.attendedSchoolCity) }}
+		        {{ form_errors(form.attendedSchoolCity) }}
+		        {{ form_widget(form.attendedSchoolCity) }}
+		    </div>
+
+		    <div id="hasAttendedtoOtherActivities" class="form-group">
+		        {{ form_label(form.hasAttendedtoOtherActivities) }}
+		        {{ form_errors(form.hasAttendedtoOtherActivities) }}
+		        {{ form_widget(form.hasAttendedtoOtherActivities) }}
+		    </div>
+
+		    <div id="attendedActivity" class="form-group">
+		        {{ form_label(form.activity) }}
+		        {{ form_errors(form.activity) }}
+		        {{ form_widget(form.activity) }}
+		    </div>
+
+		    <div id="otherAttendedActivity" class="form-group">
+		        {{ form_label(form.otherActivity) }}
+		        {{ form_errors(form.otherActivity) }}
+		        {{ form_widget(form.otherActivity) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.reference) }}
+		        {{ form_errors(form.reference) }}
+		        {{ form_widget(form.reference) }}
+		    </div>
+
+		    <div id="otherReference" class="form-group">
+		        {{ form_label(form.otherReference) }}
+		        {{ form_errors(form.otherReference) }}
+		        {{ form_widget(form.otherReference) }}
+		    </div>
+
+		    <div class="form-group">
+		        {{ form_label(form.unicamCourse) }}
+		        {{ form_errors(form.unicamCourse) }}
+		        {{ form_widget(form.unicamCourse) }}
+		    </div>
+
+		{{ form_end(form) }}
+
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	
+	{{ parent() }}
+	{{ form_javascript(form) }}
+	<script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/form_porteAperteInverno.js') }}"></script>
 
 {% endblock %}

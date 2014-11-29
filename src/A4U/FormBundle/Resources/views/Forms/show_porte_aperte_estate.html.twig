@@ -1,64 +1,67 @@
 {% extends '::base.html.twig' %}
 
-{% block head %}
+{% block title %}Porte Aperte Estate{% endblock %}
+
+{% block stylesheets %}
 	
 	{{parent()}}
-	<link href="{{ asset('css/show.css') }}" type="text/css" rel="stylesheet" />
+	<link href="{{ asset('bundles/a4uform/css/show.css') }}" type="text/css" rel="stylesheet" />
 
 {% endblock %}
 
-{% block title %}Porte Aperte Estate{% endblock %}
 
+{% block body %}
 
-{% block content %}
-
-	{% block contentTitle %}<h3> Porte Aperte Estate </h3>{% endblock %}
-
-	<table>
-		<tr>
-			<td><b>Nome</b></td>
-			<td><b>Cognome</b></td>
-			<td><b>Indirizzo</b></td>
-			<td><b>CAP</b></td>
-			<td><b>Città</b></td>
-			<td><b>Email</b></td>
-			<td><b>Tel.</b></td>
-			<td><b>Data di nascita</b></td>
-			<td><b>Luogo di nascita</b></td>
-			<td><b>Scuola di provenienza</b></td>
-			<td><b>Città Scuola</b></td>
-			<td><b>Partecipato altre attività</b></td>
-			<td><b>Attività</b></td>
-			<td><b>Altra attività</b></td>
-			<td><b>Referenze</b></td>
-			<td><b>Altra referenza</b></td>
-			<td><b>Corso di laurea</b></td>
-			<td><b>Codice Fiscale</b></td>
-			<td><b>data sottoscrizione</b></td>
-		</tr>
-		{% for user in users %}
+    <div class="container">
+    <div style="margin-top:20px;">
+    <h3><p>Tabella iscritti Porte Aperte Unicam Estate</p></h3>
+		<table class="table table-hover">
 			<tr>
-				<td>{{user.name}}</td>
-				<td>{{user.surname}}</td>
-				<td>{{user.address}}</td>
-				<td>{{user.cap}}</td>
-				<td>{{user.city}}</td> 
-				<td>{{user.email}}</td>
-				<td>{{user.phone}}</td> 
-				<td>{{user.birthDate|date('d-m-Y')}}</td> 
-				<td>{{user.birthPlace}}</td> 
-				<td>{{user.attendedSchool}}</td> 
-				<td>{{user.attendedSchoolCity}}</td> 
-				<td>{{user.hasAttendedToOtherActivities}}</td> 
-				<td>{{user.activity}}</td> 
-				<td>{{user.otherActivity}}</td> 
-				<td>{{user.reference}}</td> 
-				<td>{{user.otherReference}}</td> 
-				<td>{{user.unicamCourse}}</td> 
-				<td>{{user.fiscalCode}}</td>
-				<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
+				<td><b>Nome</b></td>
+				<td><b>Cognome</b></td>
+				<td><b>Indirizzo</b></td>
+				<td><b>CAP</b></td>
+				<td><b>Città</b></td>
+				<td><b>Email</b></td>
+				<td><b>Tel.</b></td>
+				<td><b>Data di nascita</b></td>
+				<td><b>Luogo di nascita</b></td>
+				<td><b>Scuola di provenienza</b></td>
+				<td><b>Città Scuola</b></td>
+				<td><b>Partecipato altre attività</b></td>
+				<td><b>Attività</b></td>
+				<td><b>Altra attività</b></td>
+				<td><b>Referenze</b></td>
+				<td><b>Altra referenza</b></td>
+				<td><b>Corso di laurea</b></td>
+				<td><b>Codice Fiscale</b></td>
+				<td><b>data sottoscrizione</b></td>
 			</tr>
-		{% endfor %}
-	</table>
+			{% for user in users %}
+				<tr>
+					<td>{{user.name}}</td>
+					<td>{{user.surname}}</td>
+					<td>{{user.address}}</td>
+					<td>{{user.cap}}</td>
+					<td>{{user.city}}</td> 
+					<td>{{user.email}}</td>
+					<td>{{user.phone}}</td> 
+					<td>{{user.birthDate|date('d-m-Y')}}</td> 
+					<td>{{user.birthPlace}}</td> 
+					<td>{{user.attendedSchool}}</td> 
+					<td>{{user.attendedSchoolCity}}</td> 
+					<td>{{user.hasAttendedToOtherActivities}}</td> 
+					<td>{{user.activity}}</td> 
+					<td>{{user.otherActivity}}</td> 
+					<td>{{user.reference}}</td> 
+					<td>{{user.otherReference}}</td> 
+					<td>{{user.unicamCourse}}</td> 
+					<td>{{user.fiscalCode}}</td>
+					<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+	</div>
 
 {% endblock %}

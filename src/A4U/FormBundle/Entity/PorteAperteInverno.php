@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PorteAperteEstate
+ * PorteAperteInverno
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -47,7 +47,7 @@ class PorteAperteInverno
     /**
      * @var string
      *
-     * @ORM\Column(name="cap", type="string", length=128)
+     * @ORM\Column(name="cap", type="string", length=32)
      */
     private $cap;
 
@@ -82,7 +82,7 @@ class PorteAperteInverno
     /**
      * @var string
      *
-     * @ORM\Column(name="birthPlace", type="string", length=128)
+     * @ORM\Column(name="birthplace", type="string", length=128)
      */
     private $birthPlace;
 
@@ -110,28 +110,28 @@ class PorteAperteInverno
     /**
      * @var string
      *
-     * @ORM\Column(name="activity", type="string", length=128)
+     * @ORM\Column(name="activity", type="string", length=128, nullable=true)
      */
     private $activity;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="otherActivity", type="string", length=128)
+     * @ORM\Column(name="otherActivity", type="string", length=128, nullable=true)
      */
     private $otherActivity;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reference", type="string", length=128)
+     * @ORM\Column(name="reference", type="string", length=128, nullable=true)
      */
     private $reference;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="otherReference", type="string", length=128)
+     * @ORM\Column(name="otherReference", type="string", length=128, nullable=true)
      */
     private $otherReference;
 
@@ -145,9 +145,9 @@ class PorteAperteInverno
     /**
      * @var string
      *
-     * @ORM\Column(name="fiscalCode", type="string", length=128)
+     * @ORM\Column(name="fiscalcode", type="string", length=128)
      */
-    private $fiscalCode;
+    private $fiscalcode;
 
     /**
      * @var \DateTime
@@ -177,7 +177,7 @@ class PorteAperteInverno
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -200,7 +200,7 @@ class PorteAperteInverno
     public function setSurname($surname)
     {
         $this->surname = $surname;
-    
+
         return $this;
     }
 
@@ -223,7 +223,7 @@ class PorteAperteInverno
     public function setAddress($address)
     {
         $this->address = $address;
-    
+
         return $this;
     }
 
@@ -246,7 +246,7 @@ class PorteAperteInverno
     public function setCap($cap)
     {
         $this->cap = $cap;
-    
+
         return $this;
     }
 
@@ -269,7 +269,7 @@ class PorteAperteInverno
     public function setCity($city)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
@@ -292,7 +292,7 @@ class PorteAperteInverno
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
@@ -315,7 +315,7 @@ class PorteAperteInverno
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    
+
         return $this;
     }
 
@@ -338,7 +338,7 @@ class PorteAperteInverno
     public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
-    
+
         return $this;
     }
 
@@ -361,7 +361,7 @@ class PorteAperteInverno
     public function setBirthPlace($birthPlace)
     {
         $this->birthPlace = $birthPlace;
-    
+
         return $this;
     }
 
@@ -384,7 +384,7 @@ class PorteAperteInverno
     public function setAttendedSchool($attendedSchool)
     {
         $this->attendedSchool = $attendedSchool;
-    
+
         return $this;
     }
 
@@ -407,7 +407,7 @@ class PorteAperteInverno
     public function setAttendedSchoolCity($attendedSchoolCity)
     {
         $this->attendedSchoolCity = $attendedSchoolCity;
-    
+
         return $this;
     }
 
@@ -430,7 +430,7 @@ class PorteAperteInverno
     public function setHasAttendedToOtherActivities($hasAttendedToOtherActivities)
     {
         $this->hasAttendedToOtherActivities = $hasAttendedToOtherActivities;
-    
+
         return $this;
     }
 
@@ -447,20 +447,20 @@ class PorteAperteInverno
     /**
      * Set activity
      *
-     * @param string $activity
+     * @param \stdClass $activity
      * @return PorteAperteInverno
      */
     public function setActivity($activity)
     {
         $this->activity = $activity;
-    
+
         return $this;
     }
 
     /**
      * Get activity
      *
-     * @return string 
+     * @return \stdClass 
      */
     public function getActivity()
     {
@@ -476,7 +476,7 @@ class PorteAperteInverno
     public function setOtherActivity($otherActivity)
     {
         $this->otherActivity = $otherActivity;
-    
+
         return $this;
     }
 
@@ -493,20 +493,20 @@ class PorteAperteInverno
     /**
      * Set reference
      *
-     * @param string $reference
+     * @param \stdClass $reference
      * @return PorteAperteInverno
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
-    
+
         return $this;
     }
 
     /**
      * Get reference
      *
-     * @return string 
+     * @return \stdClass 
      */
     public function getReference()
     {
@@ -522,7 +522,7 @@ class PorteAperteInverno
     public function setOtherReference($otherReference)
     {
         $this->otherReference = $otherReference;
-    
+
         return $this;
     }
 
@@ -539,20 +539,20 @@ class PorteAperteInverno
     /**
      * Set unicamCourse
      *
-     * @param string $unicamCourse
+     * @param \stdClass $unicamCourse
      * @return PorteAperteInverno
      */
     public function setUnicamCourse($unicamCourse)
     {
         $this->unicamCourse = $unicamCourse;
-    
+
         return $this;
     }
 
     /**
      * Get unicamCourse
      *
-     * @return string 
+     * @return \stdClass 
      */
     public function getUnicamCourse()
     {
@@ -560,26 +560,26 @@ class PorteAperteInverno
     }
 
     /**
-     * Set fiscalCode
+     * Set fiscalcode
      *
-     * @param string $fiscalCode
-     * @return PorteAperteInverno
+     * @param string $fiscalcode
+     * @return Generico
      */
-    public function setFiscalCode($fiscalCode)
+    public function setFiscalcode($fiscalcode)
     {
-        $this->fiscalCode = $fiscalCode;
+        $this->fiscalcode = $fiscalcode;
     
         return $this;
     }
 
     /**
-     * Get fiscalCode
+     * Get fiscalcode
      *
      * @return string 
      */
-    public function getFiscalCode()
+    public function getFiscalcode()
     {
-        return $this->fiscalCode;
+        return $this->fiscalcode;
     }
 
     /**
@@ -591,7 +591,7 @@ class PorteAperteInverno
     public function setSubmissionDate($submissionDate)
     {
         $this->submissionDate = $submissionDate;
-    
+
         return $this;
     }
 

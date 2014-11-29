@@ -13,7 +13,9 @@ A4U\FormBundle\Entity\PorteAperteEstate:
         city:
             - NotBlank: ~
         email:
-            - NotBlank: ~
+            - Email:
+                message: The email {{ value }} is not a valid email.
+                checkMX: true
         phone:
             - NotBlank: ~
         birthDate:
@@ -28,13 +30,9 @@ A4U\FormBundle\Entity\PorteAperteEstate:
             - Choice:
                 choices: [1, 0]
         activity:
-            - NotBlank: ~
         otherActivity:
-            - NotBlank: ~
         reference:
-            - NotBlank: ~
         otherReference:
-            - NotBlank: ~
         unicamCourse:
             - NotBlank: ~
         fiscalcode:
@@ -55,7 +53,9 @@ A4U\FormBundle\Entity\PorteAperteInverno:
         city:
             - NotBlank: ~
         email:
-            - NotBlank: ~
+            - Email:
+                message: The email {{ value }} is not a valid email.
+                checkMX: true
         phone:
             - NotBlank: ~
         birthDate:
@@ -70,16 +70,12 @@ A4U\FormBundle\Entity\PorteAperteInverno:
             - Choice:
                 choices: [1, 0]
         activity:
-            - NotBlank: ~
         otherActivity:
-            - NotBlank: ~
         reference:
-            - NotBlank: ~
         otherReference:
-            - NotBlank: ~
         unicamCourse:
             - NotBlank: ~
-        fiscalCode:
+        fiscalcode:
             - NotBlank: ~ 
 
 
