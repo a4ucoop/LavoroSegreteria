@@ -200,4 +200,9 @@ class PageController extends Controller
             'users' => $Users));
     }
 
+    public function provaAction()
+    {
+        return $this->render('A4UFormBundle:Default:prova.html.twig');
+    }
+
 }
