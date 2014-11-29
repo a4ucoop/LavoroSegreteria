@@ -135,5 +135,23 @@
 	{{ parent() }}
 	{{ form_javascript(form) }}
 	<script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/form_porteAperteInverno.js') }}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	
+	<script type="text/javascript">
+		var city=document.getElementById('porteAperteInverno_city');
+		var address=document.getElementById('porteAperteInverno_address');
+		var birthPlace=document.getElementById('porteAperteInverno_birthPlace');
+		var attendedSchoolCity=document.getElementById('porteAperteInverno_attendedSchoolCity');
+		var CAP=document.getElementById('porteAperteInverno_cap');
+		var attendedSchool=document.getElementById('porteAperteInverno_attendedSchool');
+
+		var autocompleteCity = new google.maps.places.Autocomplete(city);
+		var autocompleteAddress = new google.maps.places.Autocomplete(address);
+		var autocompleteBirthPlace = new google.maps.places.Autocomplete(birthPlace);
+		var autocompleteAttendedSchoolCity = new google.maps.places.Autocomplete(attendedSchoolCity);
+		var autocompleteCAP = new google.maps.places.Autocomplete(CAP);
+		var autocompleteAttendedSchool = new google.maps.places.Autocomplete(attendedSchool);
+
+	</script>
 
 {% endblock %}

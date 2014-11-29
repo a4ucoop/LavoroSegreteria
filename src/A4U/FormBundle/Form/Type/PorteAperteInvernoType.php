@@ -116,7 +116,7 @@ class PorteAperteInvernoType extends AbstractType
                         'Stage in Unicam' => 'Stage in Unicam',
                         'Viaggi nella Conoscenza' => 'Viaggi nella Conoscenza',
                         'Visite Guidate in Ateneo' => 'Visite Guidate in Ateneo',
-                        'altro' => 'altro...'
+                        'altro' => 'Altro...'
                     ),
                 'attr' => array(
                     'class' => 'form-control',

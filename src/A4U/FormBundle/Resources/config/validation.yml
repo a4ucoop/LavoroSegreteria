@@ -1,6 +1,11 @@
 #Validazione lato server, viene invocato ogni volta tramite il metodo isValid()
 
 A4U\FormBundle\Entity\PorteAperteEstate:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: fiscalcode
+            message: 'Il codice fiscale inserito è già presente nei nostri Database'
+
     properties:
         name:
             - NotBlank: ~
@@ -41,6 +46,11 @@ A4U\FormBundle\Entity\PorteAperteEstate:
 
 
 A4U\FormBundle\Entity\PorteAperteInverno:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: fiscalcode
+            message: 'Il codice fiscale inserito è già presente nei nostri Database'
+
     properties:
         name:
             - NotBlank: ~

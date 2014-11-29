@@ -2,17 +2,8 @@
 
 {% block title %}Porte Aperte Inverno{% endblock %}
 
-{% block stylesheets %}
-	
-	{{parent()}}
-	<link href="{{ asset('bundles/a4uform/css/show.css') }}" type="text/css" rel="stylesheet" />
-
-{% endblock %}
-
-
 {% block body %}
 
-    <div class="container">
     <div style="margin-top:20px;">
     <h3><p>Tabella iscritti Porte Aperte Unicam Inverno</p></h3>
 		<table class="table table-hover">
@@ -61,7 +52,6 @@
 				</tr>
 			{% endfor %}
 		</table>
-	</div>
 	</div>
 
 {% endblock %}
