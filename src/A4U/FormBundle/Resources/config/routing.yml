@@ -1,12 +1,62 @@
-a4_u_form_homepage:
+a4u_form_homepage:
     path: /
     defaults: { _controller: A4UFormBundle:Page:index }
 
 
-a4_u_form_hello:
+
+login:
+    path:     /login
+    defaults: { _controller: A4UFormBundle:Security:login }
+login_check:
+    path: /login_check
+
+
+
+logout:
+    path:   /logout
+
+
+
+admin:
+    path:   /admin/prova
+    defaults:   { _controller: A4UFormBundle:Page:prova }
+
+
+
+a4u_form_porteAperteEstate:
     path:     /form/porte_aperte_estate
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate }
 
-random:
-    path:     /random/{limit}
-    defaults: { _controller: A4UFormBundle:Random:index }
+a4u_form_showPAE:
+    path: /admin/form/show_pae
+    defaults: { _controller: A4UFormBundle:Page:showPAE }
+
+
+
+a4u_form_porteAperteInverno:
+    path:     /form/porte_aperte_inverno
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_inverno }
+
+a4u_form_showPAI:
+    path: /admin/form/show_pai
+    defaults: { _controller: A4UFormBundle:Page:showPAI }
+
+
+
+a4u_form_stage:
+    path:   /form/stage
+    defaults: { _controller: A4UFormBundle:Page:stage }
+
+a4u_form_showStage:
+    path:   /admin/form/show_stage
+    defaults: { _controller: A4UFormBundle:Page:showstage }
+
+
+
+a4u_form_generico:
+    path:   /form/generico
+    defaults: { _controller: A4UFormBundle:Page:generico }
+
+a4u_form_showGenerico:
+    path:   /admin/form/show_generico
+    defaults: { _controller: A4UFormBundle:Page:showgenerico }

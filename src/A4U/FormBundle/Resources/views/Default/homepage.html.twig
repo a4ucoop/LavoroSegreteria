@@ -1,1 +1,52 @@
-benveuto nella homepage!
+{% extends'::base.html.twig' %}
+
+{% block title %} HomePage {% endblock %}
+
+{% block body %}
+
+			<table class="table table-hover">
+				
+				<tr>
+					<td><b>Forms</b></td>
+					<td><b>Azioni</b></td>
+				</tr>
+
+				<tr>
+					<td>Porte Aperte Estate</td>
+					<td>
+						<form style="display:inline;" action="{{ path('a4u_form_porteAperteEstate') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value=" Compila" /></form>
+						<!--form action="#"><input type="submit" value="Modifica" /></form-->
+						<form style="display:inline;" action="{{ path('a4u_form_showPAE') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Porte Aperte inverno</td>
+					<td>
+						<form style="display:inline;" action="{{ path('a4u_form_porteAperteInverno') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value=" Compila" /></form>
+						<!--form action="#"><input type="submit" class="btn btn-default" aria-label="Left Align" value="Modifica" /></form-->
+						<form style="display:inline;" action="{{ path('a4u_form_showPAI') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Stage</td>
+					<td>
+						<form style="display:inline;" action="{{ path('a4u_form_stage') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value=" Compila" /></form>
+						<!--form action="#"><input type="submit" value="Modifica" /></form-->
+						<form style="display:inline;" action="{{ path('a4u_form_showStage') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Generico</td>
+					<td>
+						<form style="display:inline;" action="{{ path('a4u_form_generico') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value=" Compila" /></form>
+						<!--form action="#"><input type="submit" value="Modifica" /></form-->
+						<form style="display:inline;" action="{{ path('a4u_form_showGenerico') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="Visualizza Iscritti" /></form>
+					</td>
+				</tr>
+
+			</table>
+
+{% endblock %}

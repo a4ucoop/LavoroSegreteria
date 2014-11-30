@@ -1,0 +1,152 @@
+#Validazione lato server, viene invocato ogni volta tramite il metodo isValid()
+
+A4U\FormBundle\Entity\PorteAperteEstate:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: fiscalcode
+            message: 'Il codice fiscale inserito è già presente nei nostri Database'
+
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        email:
+            - Email:
+                message: The email {{ value }} is not a valid email.
+                checkMX: true
+        phone:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        attendedSchool:
+            - NotBlank: ~
+        attendedSchoolCity:
+            - NotBlank: ~
+        hasAttendedToOtherActivities:
+            - Choice:
+                choices: [1, 0]
+        activity:
+        otherActivity:
+        reference:
+        otherReference:
+        unicamCourse:
+            - NotBlank: ~
+        fiscalcode:
+            - NotBlank: ~ 
+
+
+
+A4U\FormBundle\Entity\PorteAperteInverno:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: fiscalcode
+            message: 'Il codice fiscale inserito è già presente nei nostri Database'
+
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        email:
+            - Email:
+                message: The email {{ value }} is not a valid email.
+                checkMX: true
+        phone:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        attendedSchool:
+            - NotBlank: ~
+        attendedSchoolCity:
+            - NotBlank: ~
+        hasAttendedToOtherActivities:
+            - Choice:
+                choices: [1, 0]
+        activity:
+        otherActivity:
+        reference:
+        otherReference:
+        unicamCourse:
+            - NotBlank: ~
+        fiscalcode:
+            - NotBlank: ~ 
+
+
+
+A4U\FormBundle\Entity\Stage:
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        fiscalCode:
+            - NotBlank: ~
+        attendedSchool:
+            - NotBlank: ~
+        schoolYear:
+            - NotBlank: ~
+            - Type:
+                type: integer
+                message: Il valore {{ value }} non è un {{ type }} valido.
+        email:
+            - NotBlank: ~
+        phone:
+            - NotBlank: ~
+        facebookContact:
+            - NotBlank: ~
+        stagePeriod:
+            - NotBlank: ~
+        studyField:
+            - NotBlank: ~
+        moneyPayed:
+            - NotBlank: ~
+
+
+
+A4U\FormBundle\Entity\Generico:
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+        birthDate:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        fiscalCode:
+            - NotBlank: ~ 

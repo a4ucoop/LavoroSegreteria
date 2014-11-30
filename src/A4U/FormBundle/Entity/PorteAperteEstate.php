@@ -2,105 +2,158 @@
 
 namespace A4U\FormBundle\Entity;
 
+use Gedmo\Timestampable;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity 
+ * PorteAperteEstate
+ *
+ * @ORM\Table()
+ * @ORM\Entity
  */
 class PorteAperteEstate
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=128)
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=128)
      */
     private $surname;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="cap", type="string", length=32)
      */
     private $cap;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=128)
      */
     private $city;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=128)
      */
     private $email;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=128)
      */
     private $phone;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="birthdate", type="datetimetz")
      */
     private $birthDate;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="birthplace", type="string", length=128)
      */
     private $birthPlace;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="attendedSchool", type="string", length=128)
      */
     private $attendedSchool;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="attendedSchoolCity", type="string", length=128)
      */
     private $attendedSchoolCity;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="hasAttendedToOtherActivities", type="boolean")
      */
     private $hasAttendedToOtherActivities;
 
     /**
-     * @var \stdClass
+     * @var string
+     *
+     * @ORM\Column(name="activity", type="string", length=128, nullable=true)
      */
     private $activity;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="otherActivity", type="string", length=128, nullable=true)
      */
     private $otherActivity;
 
     /**
-     * @var \stdClass
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=128, nullable=true)
      */
     private $reference;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="otherReference", type="string", length=128, nullable=true)
      */
     private $otherReference;
 
     /**
-     * @var \stdClass
+     * @var string
+     *
+     * @ORM\Column(name="unicamCourse", type="string", length=128)
      */
     private $unicamCourse;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="fiscalcode", type="string", length=128)
+     */
+    private $fiscalcode;
+
+    /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="submissiondate", type="datetimetz")
+     * @Gedmo\Timestampable(on="create")
      */
     private $submissionDate;
 
@@ -504,6 +557,29 @@ class PorteAperteEstate
     public function getUnicamCourse()
     {
         return $this->unicamCourse;
+    }
+
+    /**
+     * Set fiscalcode
+     *
+     * @param string $fiscalcode
+     * @return Generico
+     */
+    public function setFiscalcode($fiscalcode)
+    {
+        $this->fiscalcode = $fiscalcode;
+    
+        return $this;
+    }
+
+    /**
+     * Get fiscalcode
+     *
+     * @return string 
+     */
+    public function getFiscalcode()
+    {
+        return $this->fiscalcode;
     }
 
     /**
