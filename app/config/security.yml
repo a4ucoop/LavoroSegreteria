@@ -6,6 +6,11 @@ security:
             http_basic:
                 realm: "Area demo protetta"
             form_login: ~
+            remember_me:
+                key:      "%secret%"
+                lifetime: 86400 # 365 giorni in secondi
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
             
             logout: ~
 

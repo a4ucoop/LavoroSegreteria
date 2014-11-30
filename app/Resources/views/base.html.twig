@@ -38,11 +38,11 @@
           </ul>
             <ul class="nav navbar-nav navbar-right">
             {% if not app.user %}
-              <li><a href="{{ path('login') }}">Sign In</a></li>
-              <li><a href="#">Sign Up</a></li>
+                <li><form style="display:inline;" action="{{ path('login') }}"><button style="margin-top:8px;margin-right:3px;" class="btn btn-primary" type="submit">Accedi</button></form></li>
+                <li><form style="display:inline;" action="#"><button style="margin-top:8px;" class="btn btn-success" type="submit">Registrati</button></form></li>
             {% elseif app.user %}
-              <li><a href="#"> {{ app.user.username }} </a></li>
-              <li><a href="{{ path('logout') }}">logout</a></li>
+                <li><form style="display:inline;" action="#"><button style="margin-top:8px;margin-right:3px;" class="btn btn-primary" type="submit">{{ app.user.username }}</button></form></li>
+                <li><form style="display:inline;" action="{{ path('logout') }}"><button style="margin-top:8px;" class="btn btn-danger" type="submit">Esci</button></form></li>
             {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
