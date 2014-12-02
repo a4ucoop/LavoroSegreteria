@@ -70,14 +70,14 @@ class Generico
      *
      * @ORM\Column(name="birthdate", type="datetimetz")
      */
-    private $birthdate;
+    private $birthDate;
 
     /**
      * @var string
      *
      * @ORM\Column(name="birthplace", type="string", length=255)
      */
-    private $birthplace;
+    private $birthPlace;
 
     /**
      * @var string
@@ -92,7 +92,9 @@ class Generico
      * @ORM\Column(name="submissiondate", type="datetimetz")
      * @Gedmo\Timestampable(on="create")
      */
-    private $submissiondate;
+    private $submissionDate;
+
+
 
 
     /**
@@ -244,49 +246,49 @@ class Generico
     }
 
     /**
-     * Set birthdate
+     * Set birthDate
      *
-     * @param string $birthdate
+     * @param \DateTime $birthDate
      * @return Generico
      */
-    public function setBirthdate($birthdate)
+    public function setBirthDate($birthDate)
     {
-        $this->birthdate = $birthdate;
+        $this->birthDate = $birthDate;
     
         return $this;
     }
 
     /**
-     * Get birthdate
+     * Get birthDate
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getBirthdate()
+    public function getBirthDate()
     {
-        return $this->birthdate;
+        return $this->birthDate;
     }
 
     /**
-     * Set birthplace
+     * Set birthPlace
      *
-     * @param string $birthplace
+     * @param string $birthPlace
      * @return Generico
      */
-    public function setBirthplace($birthplace)
+    public function setBirthPlace($birthPlace)
     {
-        $this->birthplace = $birthplace;
+        $this->birthPlace = $birthPlace;
     
         return $this;
     }
 
     /**
-     * Get birthplace
+     * Get birthPlace
      *
      * @return string 
      */
-    public function getBirthplace()
+    public function getBirthPlace()
     {
-        return $this->birthplace;
+        return $this->birthPlace;
     }
 
     /**
@@ -313,26 +315,25 @@ class Generico
     }
 
     /**
-     * Set submissiondate
+     * Set submissionDate
      *
-     * @param \DateTime $submissiondate
+     * @param \DateTime $submissionDate
      * @return Generico
      */
-    public function setSubmissiondate($submissiondate)
+    public function setSubmissionDate($submissionDate)
     {
-        $this->submissiondate = $submissiondate;
+        $this->submissionDate = $submissionDate;
     
         return $this;
     }
 
     /**
-     * Get submissiondate
+     * Get submissionDate
      *
      * @return \DateTime 
      */
-    public function getSubmissiondate()
+    public function getSubmissionDate()
     {
-        return $this->submissiondate;
+        return $this->submissionDate;
     }
-
 }
