@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new A4U\FormBundle\A4UFormBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
+            new A4U\UserBundle\A4UUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

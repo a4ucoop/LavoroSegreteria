@@ -188,7 +188,7 @@ class PageController extends Controller
     public function showgenericoAction()
     {
         $Users = $this->getDoctrine()
-        ->getRepository('A4UFormBundle:Stage')
+        ->getRepository('A4UFormBundle:Generico')
         ->findAll();
 
         if (!$Users)
@@ -196,7 +196,7 @@ class PageController extends Controller
             throw $this->createNotFoundException('Nessun utente trovato');
         }
 
-        return $this->render('A4UFormBundle:Forms:show_stage.html.twig', array(
+        return $this->render('A4UFormBundle:Forms:show_generico.html.twig', array(
             'users' => $Users));
     }
 

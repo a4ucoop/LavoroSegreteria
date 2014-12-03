@@ -93,6 +93,7 @@ doctrine:
             default:
                 mappings:
                     A4UFormBundle: annotation
+                    A4UUserBundle: annotation
 
                     gedmo_translatable:
                         type: annotation

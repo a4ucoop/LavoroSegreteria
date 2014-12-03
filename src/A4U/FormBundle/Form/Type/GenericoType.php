@@ -13,17 +13,82 @@ class GenericoType extends AbstractType
     {
         $builder
         
-            ->add('name', 'text')
-            ->add('surname', 'text')
-            ->add('address', 'text')
-            ->add('cap', 'text')
-            ->add('city', 'text')
-            ->add('email', 'text')
-            ->add('birthDate', 'birthday', array('format' => 'dd MM yyyy'))
-            ->add('birthPlace', 'text')
-            ->add('fiscalCode', 'text')
+            ->add('name', 'text', array(
+                'label' => 'Nome*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Nome'
+                    )
+                ))
+            ->add('surname', 'text', array(
+                'label' => 'Cognome*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Cognome'
+                    )
+                ))
+            ->add('address', 'text', array(
+                'label' => 'Indirizzo*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Indirizzo'
+                    )
+                ))
+            ->add('cap', 'text', array(
+                'label' => 'CAP*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Codice aviazione postale'
+                    )
+                ))
+            ->add('city', 'text', array(
+                'label' => 'Città*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Città di residenza'
+                    )
+                ))
+            ->add('email', 'text', array(
+                'label' => 'Email*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Email'
+                    )
+                ))
+            ->add('birthDate', 'collot_datetime', array( 
+                'label' => 'Data di nascita*',
+                'attr' => array(
+                    'class' => 'form-control'),
+                'pickerOptions' => array(
+                        'minView' => 'month',
+                        'format' => 'dd/mm/yyyy',
+                        'autoclose' => true,
+                        'language' => 'it',
+                    )
+                ))
+
+            ->add('birthPlace', 'text', array(
+                'label' => 'Luogo di nascita*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Luogo di nascita'
+                    )
+                ))
             
-            ->add('save', 'submit', array('label' => 'Iscriviti'));
+            ->add('fiscalcode', 'text', array(
+                'label' => 'Codice fiscale*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Codice fiscale'
+                    )
+                ))
+
+            ->add('save', 'submit', array(
+                'label' => 'Iscriviti',
+                'attr' => array(
+                    'class' => 'btn btn-primary btn-success'
+                    )
+                ));
     }
 
     public function getName()

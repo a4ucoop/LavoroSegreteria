@@ -1,3 +1,7 @@
+a4_u_user:
+    resource: "@A4UUserBundle/Resources/config/routing.php"
+    prefix:   /
+
 a4_u_form:
     resource: "@A4UFormBundle/Resources/config/routing.yml"
     prefix:   /
