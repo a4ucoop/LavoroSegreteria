@@ -143,7 +143,9 @@ A4U\FormBundle\Entity\Generico:
         city:
             - NotBlank: ~
         email:
-            - NotBlank: ~
+            - Email:
+                message: The email {{ value }} is not a valid email.
+                checkMX: true
         birthDate:
             - NotBlank: ~
         birthPlace:

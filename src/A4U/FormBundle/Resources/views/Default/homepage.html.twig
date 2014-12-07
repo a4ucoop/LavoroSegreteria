@@ -4,6 +4,16 @@
 
 {% block body %}
 
+    <div class="container">
+
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div id="prova" class="alert alert-success" role="alert" style="margin-top: 10px;">
+                {{ flashMessage }}
+            </div>
+            {# bisogna rimetterci il flashMessage perchè la get lo elimina #}
+            {{ app.session.flashbag.add('notice', flashMessage) }}
+        {% endfor %}
+
 			<table class="table table-hover">
 				
 				<tr>
@@ -32,9 +42,9 @@
 				<tr>
 					<td>Stage</td>
 					<td>
-						<form style="display:inline;" action="{{ path('a4u_form_stage') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value=" Compila" /></form>
+						<form style="display:inline;" action="{{ path('a4u_form_stage') }}"><input type="submit" class="btn btn-default disabled" aria-label="Left Align" value=" Compila" /></form>
 						<!--form action="#"><input type="submit" value="Modifica" /></form-->
-						<form style="display:inline;" action="{{ path('a4u_form_showStage') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="Visualizza Iscritti" /></form>
+						<form style="display:inline;" action="{{ path('a4u_form_showStage') }}"><input type="submit" class="btn btn-default disabled" aria-label="Left Align" value="Visualizza Iscritti" /></form>
 					</td>
 				</tr>
 
@@ -48,5 +58,19 @@
 				</tr>
 
 			</table>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <script>
+            $( document ).ready(function() {
+                $( "#prova" ).delay( 2500 ).fadeOut( "slow");
+            });
+        </script>
+    {% endfor %}
 
 {% endblock %}

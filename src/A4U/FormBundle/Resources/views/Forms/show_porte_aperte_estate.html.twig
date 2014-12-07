@@ -4,9 +4,25 @@
 
 {% block body %}
 
-    <div class="container">
     <div style="margin-top:20px;">
-    <h3><p>Tabella iscritti Porte Aperte Unicam Estate</p></h3>
+
+        <form role="search" action="{{ path('a4u_form_searchPAE') }}">
+            <label for="inputEmail3" class="col-sm-3 control-label"><h4><b>Tabella Porte Aperte Unicam Estate</b></h4></label>
+            <div class="input-group" style="max-width:300px;">
+                <!-- se è gia stata fatta una ricerca viene mostrata l'ultima keyword -->
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"{% if lastSearch is defined %} value="{{ lastSearch }}" {% endif %}>
+                <!-- se è gia stata fatta una ricerca viene mostrato il glyph elimina -->
+                {% if lastSearch is defined and lastSearch != "" %}
+                    <div id="removeLastSearch" style="display:inline-block; margin-left:-20px; cursor:pointer;">
+                        <span class=" glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                    </div>
+                {% endif %}
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> </button>
+                </div>
+            </div>
+        </form>
+
 		<table class="table table-hover">
 			<tr>
 				<td><b>Nome</b></td>
@@ -54,6 +70,16 @@
 			{% endfor %}
 		</table>
 	</div>
-	</div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAE
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showPAE') }}");
+        })
+    </script>
 {% endblock %}

@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="container">
 	<div class="form-container" >
 
 		{{ form_start(form) }} 
@@ -127,16 +127,17 @@
 		{{ form_end(form) }}
 
 	</div>
-
+</div>
 {% endblock %}
 
 {% block javascripts %}
 	
 	{{ parent() }}
 	{{ form_javascript(form) }}
+
 	<script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/form_porteAperteEstate.js') }}"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
-	
+
 	<script type="text/javascript">
 		var city=document.getElementById('porteAperteEstate_city');
 		var address=document.getElementById('porteAperteEstate_address');
@@ -151,6 +152,6 @@
 		var autocompleteAttendedSchoolCity = new google.maps.places.Autocomplete(attendedSchoolCity);
 		var autocompleteCAP = new google.maps.places.Autocomplete(CAP);
 		var autocompleteAttendedSchool = new google.maps.places.Autocomplete(attendedSchool);
-
 	</script>
+
 {% endblock %}

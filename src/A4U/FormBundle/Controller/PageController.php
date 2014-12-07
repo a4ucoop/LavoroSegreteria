@@ -43,8 +43,12 @@ class PageController extends Controller
             $em->persist($PorteAperteEstate);
             $em->flush();
 
-            return new Response('Creato l\'utente con id '.$PorteAperteEstate->getId().' in PorteAperteEstate');
-            //return $this->redirect($this->generateUrl('a4_u_form_success'));
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente registrato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
         }
 
         // Form non ancora inviato
@@ -87,8 +91,12 @@ class PageController extends Controller
             $em->persist($PorteAperteInverno);
             $em->flush();
 
-            return new Response('Creato l\'utente con id '.$PorteAperteInverno->getId().' in PorteAperteInverno');
-            //return $this->redirect($this->generateUrl('a4_u_form_success'));
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente registrato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
         }
 
         // Form non ancora inviato
@@ -130,8 +138,12 @@ class PageController extends Controller
             $em->persist($Stage);
             $em->flush();
 
-            return new Response('Creato l\'utente con id '.$Stage->getId(). ' in Stage');
-            //return $this->redirect($this->generateUrl('a4_u_form_success'));
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente registrato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
         }
 
         // Form non ancora inviato
@@ -174,8 +186,12 @@ class PageController extends Controller
             $em->persist($Generico);
             $em->flush();
 
-            return new Response('Creato l\'utente con id '.$Generico->getId(). ' in Generico');
-            //return $this->redirect($this->generateUrl('a4_u_form_success'));
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente registrato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
         }
 
         // Form non ancora inviato
@@ -198,11 +214,6 @@ class PageController extends Controller
 
         return $this->render('A4UFormBundle:Forms:show_generico.html.twig', array(
             'users' => $Users));
-    }
-
-    public function provaAction()
-    {
-        return $this->render('A4UFormBundle:Default:prova.html.twig');
     }
 
 }

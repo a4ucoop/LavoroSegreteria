@@ -1,7 +1,6 @@
 <?php
 
-// src/Acme/SecurityBundle/Controller/SecurityController.php;
-namespace A4U\FormBundle\Controller;
+namespace A4U\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +28,7 @@ class SecurityController extends Controller
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
 
         return $this->render(
-            'A4UFormBundle:Security:login.html.twig',
+            'A4UUserBundle:Security:login.html.twig',
             array(
                 // ultimo nome utente inserito
                 'last_username' => $lastUsername,
