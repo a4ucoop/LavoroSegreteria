@@ -3,76 +3,89 @@
 {% block title %}Form Generico{% endblock %}
 
 {% block stylesheets %}
+
 	{{ parent() }}
 	<link href="{{ asset('bundles/a4uform/css/form.css') }}" type="text/css" rel="stylesheet">
 	{{ form_stylesheet(form) }}
+
 {% endblock %}
 
 {% block body %}
+
 <div class="container">
-	<div class="form-container" >
 
-		{{ form_start(form) }} 
+    <div align="center">
 
-		    {{ form_errors(form) }}
+        <div align="left" class="form-container" >
 
-		    <div class="form-group">
-		        {{ form_label(form.name) }}
-		        {{ form_errors(form.name) }}
-		        {{ form_widget(form.name) }}
-			</div>
+            {{ form_start(form) }}
 
-			<div class="form-group">
-		        {{ form_label(form.surname) }}
-		        {{ form_errors(form.surname) }}
-		        {{ form_widget(form.surname) }}
-		    </div>
+                {{ form_errors(form) }}
 
-		    <div class="form-group">
-		        {{ form_label(form.fiscalcode) }}
-		        {{ form_errors(form.fiscalcode) }}
-		        {{ form_widget(form.fiscalcode) }}
-		    </div>
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
 
-		    <div class="form-group">
-		        {{ form_label(form.cap) }}
-		        {{ form_errors(form.cap) }}
-		        {{ form_widget(form.cap) }}
-		    </div>
+                <div class="form-group">
+                    {{ form_label(form.surname) }}
+                    {{ form_errors(form.surname) }}
+                    {{ form_widget(form.surname) }}
+                </div>
 
-		    <div class="form-group">
-		        {{ form_label(form.city) }}
-		        {{ form_errors(form.city) }}
-		        {{ form_widget(form.city) }}
-		    </div>
+                <div class="form-group">
+                    {{ form_label(form.fiscalcode) }}
+                    {{ form_errors(form.fiscalcode) }}
+                    {{ form_widget(form.fiscalcode) }}
+                </div>
 
-		    <div class="form-group">
-		        {{ form_label(form.address) }}
-		        {{ form_errors(form.address) }}
-		        {{ form_widget(form.address) }}
-		    </div>
-		    
-		    <div class="form-group">
-		        {{ form_label(form.email) }}
-		        {{ form_errors(form.email) }}
-		        {{ form_widget(form.email) }}
-		    </div>
+                <div class="form-group">
+                    {{ form_label(form.cap) }}
+                    {{ form_errors(form.cap) }}
+                    {{ form_widget(form.cap) }}
+                </div>
 
-		    <div class="form-group">
-		        {{ form_label(form.birthDate) }}
-		        {{ form_errors(form.birthDate) }}
-		        {{ form_widget(form.birthDate) }}
-		    </div>
+                <div class="form-group">
+                    {{ form_label(form.city) }}
+                    {{ form_errors(form.city) }}
+                    {{ form_widget(form.city) }}
+                </div>
 
-		    <div class="form-group">
-		        {{ form_label(form.birthPlace) }}
-		        {{ form_errors(form.birthPlace) }}
-		        {{ form_widget(form.birthPlace) }}
-		    </div>
+                <div class="form-group">
+                    {{ form_label(form.address) }}
+                    {{ form_errors(form.address) }}
+                    {{ form_widget(form.address) }}
+                </div>
 
-		{{ form_end(form) }}
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
 
-	</div>
+                <div class="form-group">
+                    {{ form_label(form.birthDate) }}
+                    {{ form_errors(form.birthDate) }}
+                    {{ form_widget(form.birthDate) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.birthPlace) }}
+                    {{ form_errors(form.birthPlace) }}
+                    {{ form_widget(form.birthPlace) }}
+                </div>
+
+                <div align="center" class="form-group">
+                    {{ form_widget(form.save) }}
+                </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
 </div>
 {% endblock %}
 
