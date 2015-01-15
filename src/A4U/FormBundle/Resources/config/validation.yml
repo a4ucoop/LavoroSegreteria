@@ -131,6 +131,10 @@ A4U\FormBundle\Entity\Stage:
 
 
 A4U\FormBundle\Entity\Generico:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: fiscalcode
+            message: 'Il codice fiscale inserito è già presente nei nostri Database'
     properties:
         name:
             - NotBlank: ~
@@ -149,6 +153,8 @@ A4U\FormBundle\Entity\Generico:
         birthDate:
             - NotBlank: ~
         birthPlace:
+            - NotBlank: ~
+        attendedActivity:
             - NotBlank: ~
         fiscalcode:
             - NotBlank: ~ 

@@ -36,7 +36,15 @@
 
                 <div class="form-group">
                     {{ form_label(form.fiscalcode) }}
-                    {{ form_errors(form.fiscalcode) }}
+                    {% if not form.fiscalcode.vars.valid %}
+
+                        <div class="alert alert-danger" role="alert">
+                            <span class="sr-only">Error:</span>
+
+                            {{ form_errors(form.fiscalcode) }}
+                        </div>
+
+                    {% endif %}
                     {{ form_widget(form.fiscalcode) }}
                 </div>
 

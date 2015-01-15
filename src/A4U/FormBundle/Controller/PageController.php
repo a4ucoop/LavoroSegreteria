@@ -65,7 +65,7 @@ class PageController extends Controller
 
         if (!$Users)
         {
-            throw $this->createNotFoundException('Nessun utente trovato');
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
         return $this->render('A4UFormBundle:Forms:show_porte_aperte_estate.html.twig', array(
@@ -113,7 +113,7 @@ class PageController extends Controller
 
         if (!$Users)
         {
-            throw $this->createNotFoundException('Nessun utente trovato');
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
         return $this->render('A4UFormBundle:Forms:show_porte_aperte_inverno.html.twig', array(
@@ -161,7 +161,7 @@ class PageController extends Controller
 
         if (!$Users)
         {
-            throw $this->createNotFoundException('Nessun utente trovato');
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
         return $this->render('A4UFormBundle:Forms:show_stage.html.twig', array(
@@ -209,7 +209,7 @@ class PageController extends Controller
 
         if (!$Users)
         {
-            throw $this->createNotFoundException('Nessun utente trovato');
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
         return $this->render('A4UFormBundle:Forms:show_generico.html.twig', array(

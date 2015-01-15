@@ -83,6 +83,14 @@ class GenericoType extends AbstractType
                     )
                 ))
 
+            ->add('attendedActivity', 'text', array(
+                'label' => 'Attivita Frequentata*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Attivita Frequentata'
+                    )
+                ))
+
             ->add('save', 'submit', array(
                 'label' => 'Iscriviti',
                 'attr' => array(

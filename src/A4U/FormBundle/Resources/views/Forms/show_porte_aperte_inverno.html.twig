@@ -4,10 +4,24 @@
 
 {% block body %}
 
-    <div style="margin-top:20px;">
+{% block stylesheets %}
 
-        <form role="search" action="{{ path('a4u_form_searchPAI') }}">
-            <label for="inputEmail3" class="col-sm-3 control-label"><h4><b>Tabella Porte Aperte Unicam Inverno</b></h4></label>
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+{% endblock %}
+
+<div class="container">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" >
+	        Porte aperte Unicam Inverno
+	      </a>
+	    </div>
+		<form class="navbar-form navbar-left" role="search" action="{{ path('a4u_form_searchPAI') }}">
+		  <div class="form-group">
             <div class="input-group" style="max-width:300px;">
                 <!-- se è gia stata fatta una ricerca viene mostrata l'ultima keyword -->
                 <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"{% if lastSearch is defined %} value="{{ lastSearch }}" {% endif %}>
@@ -21,8 +35,12 @@
                     <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> </button>
                 </div>
             </div>
-        </form>
+		  </div>
+		</form>
+	  </div>
+	</nav>
 
+	<div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
 		<table class="table table-hover">
 			<tr>
 				<td><b>Nome</b></td>
@@ -76,7 +94,10 @@
 {% endblock %}
 
 {% block javascripts %}
+
     {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
 
     <script type="text/javascript">
         // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAI
@@ -84,4 +105,13 @@
             window.location.replace("{{ path('a4u_form_showPAI') }}");
         })
     </script>
+
+    <script type="text/javascript">
+
+		jQuery(document).ready(function(){
+		    jQuery('.scrollbar-inner').scrollbar();
+		});
+    
+    </script>
+
 {% endblock %}

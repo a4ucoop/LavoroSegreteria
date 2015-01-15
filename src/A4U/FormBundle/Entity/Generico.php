@@ -87,6 +87,13 @@ class Generico
     private $fiscalcode;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="attendedactivity", type="string", length=255)
+     */
+    private $attendedActivity;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="submissiondate", type="datetimetz")
@@ -335,5 +342,28 @@ class Generico
     public function getSubmissionDate()
     {
         return $this->submissionDate;
+    }
+
+    /**
+     * Set attendedActivity
+     *
+     * @param string $attendedActivity
+     * @return Generico
+     */
+    public function setAttendedActivity($attendedActivity)
+    {
+        $this->attendedActivity = $attendedActivity;
+
+        return $this;
+    }
+
+    /**
+     * Get attendedActivity
+     *
+     * @return string 
+     */
+    public function getAttendedActivity()
+    {
+        return $this->attendedActivity;
     }
 }
