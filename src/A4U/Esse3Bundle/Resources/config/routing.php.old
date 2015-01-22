@@ -1,0 +1,12 @@
+<?php
+
+use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\Route;
+
+$collection = new RouteCollection();
+
+$collection->add('a4_u_esse3_homepage', new Route('/hello/{name}', array(
+    '_controller' => 'A4UEsse3Bundle:Default:index',
+)));
+
+return $collection;
