@@ -22,7 +22,8 @@
         "leafo/lessphp": "~0.4.0",
         "twitter/bootstrap": "3.0.0",
         "components/jquery": "dev-master",
-        "stephanecollot/datetimepicker-bundle": "dev-master"
+        "stephanecollot/datetimepicker-bundle": "dev-master",
+        "ircmaxell/password-compat": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -55,7 +56,8 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "keep-outdated": true
         },
         "branch-alias": {
             "dev-master": "2.5-dev"
