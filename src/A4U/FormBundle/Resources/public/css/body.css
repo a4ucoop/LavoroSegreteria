@@ -1,7 +1,13 @@
 body {
-  padding-top: 50px;
+  padding-top: 70px;
 }
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+}
+/* Previene l'effetto hover sul logo della nav-bar */
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+    background-color: transparent;
+    color: #999999;
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * PorteAperteInverno
- *
+ * @ORM\Entity(repositoryClass="A4U\FormBundle\Entity\PorteAperteInvernoRepository")
  * @ORM\Table()
  * @ORM\Entity
  */

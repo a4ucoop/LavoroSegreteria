@@ -2,11 +2,45 @@
 
 {% block title %}Porte Aperte Estate{% endblock %}
 
+{% block stylesheets %}
+
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+{% endblock %}
+
 {% block body %}
 
-    <div class="container">
-    <div style="margin-top:20px;">
-    <h3><p>Tabella iscritti Porte Aperte Unicam Estate</p></h3>
+<div class="container">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" >
+	        Porte aperte Unicam Estate
+	      </a>
+	    </div>
+		<form class="navbar-form navbar-left" role="search" action="{{ path('a4u_form_searchPAE') }}">
+		  <div class="form-group">
+            <div class="input-group" style="max-width:300px;">
+                <!-- se è gia stata fatta una ricerca viene mostrata l'ultima keyword -->
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"{% if lastSearch is defined %} value="{{ lastSearch }}" {% endif %}>
+                <!-- se è gia stata fatta una ricerca viene mostrato il glyph elimina -->
+                {% if lastSearch is defined and lastSearch != "" %}
+                    <div id="removeLastSearch" style="display:inline-block; margin-left:-20px; cursor:pointer;">
+                        <span class=" glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                    </div>
+                {% endif %}
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> </button>
+                </div>
+            </div>
+		  </div>
+		</form>
+	  </div>
+	</nav>
+
+    <div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
 		<table class="table table-hover">
 			<tr>
 				<td><b>Nome</b></td>
@@ -38,7 +72,7 @@
 					<td>{{user.city}}</td> 
 					<td>{{user.email}}</td>
 					<td>{{user.phone}}</td> 
-					<td>{{user.birthDate|date('d-m-Y')}}</td> 
+					<td>{{user.birthDate|date('d-m-Y')}}</td>
 					<td>{{user.birthPlace}}</td> 
 					<td>{{user.attendedSchool}}</td> 
 					<td>{{user.attendedSchoolCity}}</td> 
@@ -53,7 +87,29 @@
 				</tr>
 			{% endfor %}
 		</table>
+		</div>
 	</div>
-	</div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAE
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showPAE') }}");
+        })
+    </script>
+
+    <script type="text/javascript">
+
+		jQuery(document).ready(function(){
+		    jQuery('.scrollbar-inner').scrollbar();
+		});
+    
+    </script>
 
 {% endblock %}

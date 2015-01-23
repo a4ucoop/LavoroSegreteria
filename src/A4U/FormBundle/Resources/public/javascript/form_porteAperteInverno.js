@@ -25,6 +25,8 @@ $(document).ready(function(){
 			else $("#otherAttendedActivity").hide("drop");
 		}
 		else {
+            $("#attendedActivity option:selected").removeAttr("selected");
+            $("#porteAperteInverno_otherActivity").val('');
 			$("#attendedActivity").hide("drop");
 			$("#otherAttendedActivity").hide("drop");
 		}       
@@ -33,14 +35,20 @@ $(document).ready(function(){
 	//Handler case -> Altro...
 	$(document).on('change', '#porteAperteInverno_activity' , function() {
 		if ($(this).val()=="altro") $("#otherAttendedActivity").show("drop");
-		else $("#otherAttendedActivity").hide("drop");
+		else{
+            $("#porteAperteInverno_otherActivity").val('');
+            $("#otherAttendedActivity").hide("drop");
+        }
 
 	})
 
 	//Handler evento change "referente"
 	$(document).on('change', '#porteAperteInverno_reference' , function() {
 		if ($("#porteAperteInverno_reference").val()=="altro") $("#otherReference").show("drop");
-		else $("#otherReference").hide("drop");
+		else{
+            $("#porteAperteInverno_otherReference").val('');
+            $("#otherReference").hide("drop");
+        }
 
 	})
 });
