@@ -55,6 +55,13 @@ class GenericoType extends AbstractType
                     'placeholder' => 'Email'
                     )
                 ))
+            ->add('phone', 'text', array(
+                'label' => 'Telefono*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Numero di telefono'
+                    )
+                ))
             ->add('birthDate', 'collot_datetime', array( 
                 'label' => 'Data di nascita*',
                 'attr' => array(

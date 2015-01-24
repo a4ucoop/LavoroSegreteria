@@ -1,3 +1,7 @@
+a4_u_esse3:
+    resource: "@A4UEsse3Bundle/Resources/config/routing.yml"
+    prefix:   /
+
 a4_u_user:
     resource: "@A4UUserBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,323 @@
+From ad5dc7e73a499ad026609e37ec4a97c7efbabc66 Mon Sep 17 00:00:00 2001
+From: matteo88 <kingletti88@gmail.com>
+Date: Thu, 22 Jan 2015 10:53:02 +0100
+Subject: [PATCH] [Esse3] Aggiunto il bundle per la connessione a Esse3.
+
+Da testare
+---
+ app/config/routing.yml                             |    6 +++-
+ src/A4U/Esse3Bundle/A4UEsse3Bundle.php             |    9 ++++++
+ .../Controller/.DefaultController.php.swp          |  Bin 0 -> 12288 bytes
+ .../Esse3Bundle/Controller/DefaultController.php   |   29 ++++++++++++++++++++
+ .../DependencyInjection/A4UEsse3Extension.php      |   28 +++++++++++++++++++
+ .../DependencyInjection/Configuration.php          |   29 ++++++++++++++++++++
+ .../Esse3Bundle/Resources/config/.routing.yml.swp  |  Bin 0 -> 12288 bytes
+ .../Esse3Bundle/Resources/config/routing.php.old   |   12 ++++++++
+ src/A4U/Esse3Bundle/Resources/config/routing.yml   |    4 +++
+ src/A4U/Esse3Bundle/Resources/config/services.php  |   21 ++++++++++++++
+ .../Resources/views/Default/index.html.twig        |    1 +
+ .../Resources/views/Default/show_esse3.html.twig   |   13 +++++++++
+ .../Tests/Controller/DefaultControllerTest.php     |   17 ++++++++++++
+ 13 files changed, 168 insertions(+), 1 deletion(-)
+ create mode 100644 src/A4U/Esse3Bundle/A4UEsse3Bundle.php
+ create mode 100644 src/A4U/Esse3Bundle/Controller/.DefaultController.php.swp
+ create mode 100644 src/A4U/Esse3Bundle/Controller/DefaultController.php
+ create mode 100644 src/A4U/Esse3Bundle/DependencyInjection/A4UEsse3Extension.php
+ create mode 100644 src/A4U/Esse3Bundle/DependencyInjection/Configuration.php
+ create mode 100644 src/A4U/Esse3Bundle/Resources/config/.routing.yml.swp
+ create mode 100644 src/A4U/Esse3Bundle/Resources/config/routing.php.old
+ create mode 100644 src/A4U/Esse3Bundle/Resources/config/routing.yml
+ create mode 100644 src/A4U/Esse3Bundle/Resources/config/services.php
+ create mode 100644 src/A4U/Esse3Bundle/Resources/views/Default/index.html.twig
+ create mode 100644 src/A4U/Esse3Bundle/Resources/views/Default/show_esse3.html.twig
+ create mode 100644 src/A4U/Esse3Bundle/Tests/Controller/DefaultControllerTest.php
+
+diff --git a/app/config/routing.yml b/app/config/routing.yml
+index b2ef541..b3ccf19 100644
+--- a/app/config/routing.yml
++++ b/app/config/routing.yml
+@@ -1,7 +1,11 @@
++a4_u_esse3:
++    resource: "@A4UEsse3Bundle/Resources/config/routing.yml"
++    prefix:   /
++
+ a4_u_user:
+     resource: "@A4UUserBundle/Resources/config/routing.yml"
+     prefix:   /
+ 
+ a4_u_form:
+     resource: "@A4UFormBundle/Resources/config/routing.yml"
+-    prefix:   /
+\ No newline at end of file
++    prefix:   /
+diff --git a/src/A4U/Esse3Bundle/A4UEsse3Bundle.php b/src/A4U/Esse3Bundle/A4UEsse3Bundle.php
+new file mode 100644
+index 0000000..56e816b
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/A4UEsse3Bundle.php
+@@ -0,0 +1,9 @@
++<?php
++
++namespace A4U\Esse3Bundle;
++
++use Symfony\Component\HttpKernel\Bundle\Bundle;
++
++class A4UEsse3Bundle extends Bundle
++{
++}
+diff --git a/src/A4U/Esse3Bundle/Controller/.DefaultController.php.swp b/src/A4U/Esse3Bundle/Controller/.DefaultController.php.swp
+new file mode 100644
+index 0000000000000000000000000000000000000000..c5ec0c2403d8850d974955b4d15f6142f23ddbe4
+GIT binary patch
+literal 12288
+zcmeI2&u`pB6vwArIFy#EoDf2KNw>0B?2ooVqH3Cen>uJkvK#F>rI8}7CidH`8?R?I
+z9%mC(g<d&RsT>ej#EA=s{vAbv6Mq0_P9P3E+xsiDRm6=dZ=|n19>0C_<}>qFTJ77r
+zcCWDsAJvuwwM#-gTlmTQ;QPzs@s<z~8WU#Yr?lLzy0vzSnfM|%tS8#9NAgf<)%BGc
+zqLwB+l-&gPH5$~R%q^S`x9e__;L@Em4kE0tsn}>0MX2j{u_x2W%tmU%{_wQP`8^Xj
+z%LG!>tKPgImTp|XmSMQExB%~5-agAjc<oGp2`~XBzyz286JP>N;LH&)!*k+GTJ;;_
+zmA^l}pZnK+{Kz*Zzyz286JP>NfC(@GCcp%k025#WOyD&nAOj)3Ixob#Z&C2{|NrFo
+z|6gwl@h9nL(sR-`q^G2a^nkQRS|R;*QHWnjzmR?;{XjY({e3}*Z%LO(Z<78X|G$&I
+zBRwH~P5OkiKzfgq&EKLpxG@1Hzyz286JP>NfC(^x|2=_6vnGJrqx_onvStO+NDEe0
+zp>&se<?^z~$LT@^uc?lqWcp!JUDX%|sBMc%U*{@cZ;i`cZzX*->S9(BTkD%aR5PP+
+z->QJrS{~bC>ht8}rmxj#GJ&sA8f+@FuBfQiJ@RpALKWLqlia2;qy}SyKy|i<vT$?K
+z+3UFyqpUgP52v8Q9@q=TmQ2T{oqQZtpyaDKuCDgb_<bje?8O8l^bL5<oej6!bT-`z
+zv_5aTZRlw=fX+^*=4@<q^Vc01^-<%TEkxk~f_2qvv|Cp#P@47|_Kph=l{v%Z#kr8L
+zl!k$-uHq5;_F|*iaoZj=nqCVAv~6-96FUqlU_ujNWinQVd(OtT+X4G}1+4rXofT{R
+z39I}{|7&g6@!TR5XskoC<$-&@(eXMH*9p*kSpe>*wCt^RW7BExz-R8xI0o?C``$E=
+z{OQDWInoSmaq9Qc*jAu?qr(_$!Jdq2`5~v`@Hi&abU-KjSM1#|-HSpWdTE@$gjrrV
+z`G8$6l3{js|5KWUl!Qkw$uKLH11!=w>rK-5<uT<>#^IE5bMa94kxUYJp?V$gi1IE-
+zU{=sBM4BLUjt4yzAMX|w@Vo1prX4ALFn*qy@6Ni*LS)k=L+K;X7s;+WtD!$>cKhS3
+GYW^Q)m$mNz
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/A4U/Esse3Bundle/Controller/DefaultController.php b/src/A4U/Esse3Bundle/Controller/DefaultController.php
+new file mode 100644
+index 0000000..ce5b50c
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/Controller/DefaultController.php
+@@ -0,0 +1,29 @@
++<?php
++
++namespace A4U\Esse3Bundle\Controller;
++
++use Symfony\Bundle\FrameworkBundle\Controller\Controller;
++
++class DefaultController extends Controller
++{
++    public function indexAction($name)
++    {
++        return $this->render('A4UEsse3Bundle:Default:index.html.twig', array('name' => $name));
++    }
++
++    public function show_esse3Action()
++    {
++        $conn = $this->get('doctrine.dbal.esse3_connection');
++        #$pdo->exec("CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, title TEXT, message TEXT)");
++        #$pdo->exec("INSERT INTO messages(id, title, message) VALUES (1, 'title', 'message')");
++        $Data = $conn->fetchAll("select TABLE_NAME, OWNER from SYS.ALL_TABLES where TABLE_NAME like '%TIRO%' order by OWNER, TABLE_NAME;");
++        
++        if (!$Data)
++        {
++            throw $this->createNotFoundException('Nessun utente trovato');
++        }
++
++        return $this->render('A4UEsse3Bundle:Default:show_esse3.html.twig', array(
++            'data' => $Data));
++    }
++}
+diff --git a/src/A4U/Esse3Bundle/DependencyInjection/A4UEsse3Extension.php b/src/A4U/Esse3Bundle/DependencyInjection/A4UEsse3Extension.php
+new file mode 100644
+index 0000000..b166b0e
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/DependencyInjection/A4UEsse3Extension.php
+@@ -0,0 +1,28 @@
++<?php
++
++namespace A4U\Esse3Bundle\DependencyInjection;
++
++use Symfony\Component\DependencyInjection\ContainerBuilder;
++use Symfony\Component\Config\FileLocator;
++use Symfony\Component\HttpKernel\DependencyInjection\Extension;
++use Symfony\Component\DependencyInjection\Loader;
++
++/**
++ * This is the class that loads and manages your bundle configuration
++ *
++ * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
++ */
++class A4UEsse3Extension extends Extension
++{
++    /**
++     * {@inheritdoc}
++     */
++    public function load(array $configs, ContainerBuilder $container)
++    {
++        $configuration = new Configuration();
++        $config = $this->processConfiguration($configuration, $configs);
++
++        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
++        $loader->load('services.php');
++    }
++}
+diff --git a/src/A4U/Esse3Bundle/DependencyInjection/Configuration.php b/src/A4U/Esse3Bundle/DependencyInjection/Configuration.php
+new file mode 100644
+index 0000000..5aafeb9
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/DependencyInjection/Configuration.php
+@@ -0,0 +1,29 @@
++<?php
++
++namespace A4U\Esse3Bundle\DependencyInjection;
++
++use Symfony\Component\Config\Definition\Builder\TreeBuilder;
++use Symfony\Component\Config\Definition\ConfigurationInterface;
++
++/**
++ * This is the class that validates and merges configuration from your app/config files
++ *
++ * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
++ */
++class Configuration implements ConfigurationInterface
++{
++    /**
++     * {@inheritdoc}
++     */
++    public function getConfigTreeBuilder()
++    {
++        $treeBuilder = new TreeBuilder();
++        $rootNode = $treeBuilder->root('a4_u_esse3');
++
++        // Here you should define the parameters that are allowed to
++        // configure your bundle. See the documentation linked above for
++        // more information on that topic.
++
++        return $treeBuilder;
++    }
++}
+diff --git a/src/A4U/Esse3Bundle/Resources/config/.routing.yml.swp b/src/A4U/Esse3Bundle/Resources/config/.routing.yml.swp
+new file mode 100644
+index 0000000000000000000000000000000000000000..d450ade0af7b25eaeb8d0e5127f807bc2fbed0c2
+GIT binary patch
+literal 12288
+zcmeI&%}T>S5C`z7con6-K-6=)tt}|I`BA}xP{n!;Yr1U%F<W*w6%jvPz>jATJbUm-
+zd=6j2NlYPlDIT@|g<(6{?QHjV3!U@E+2N75Rc{fG6{457_tS&dD&2R9V&z<vJ)bf1
+zeYNi1jBRwAZxq&qB9;?vbP#GiRz|vLA_J?2Mmc37neW(X_e959)!I#yeyqfavN|=P
+zvLe*UAQ}pzQx_$}`qf1|>tL)yVBQ5%H>hndQERi=$S5|}*SytgZ{AgKe+WPT0uX=z
+z1Rwwb2+Wm$8&~L#Z@f_4da;-*KjtFE1OW&@00Izz00bZa0SG_<0uX?}9~6*%qHvk$
+zi6i^}fBOFa$@vGzbFucw^8?2*M~9=yAviD~009U<00Izz00bZa0SG_<0{=z8<H4`V
+z#mF-?kZJ6!?_GP`#7?DW<<Hag#2FpO%J?34wU?UO{r&Gcz8&eyKv_PaROz?h=3aU4
+fCND6SZscc`JfX4{dXd#9*-rTkPJ=AXe}+$AZJK^m
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/A4U/Esse3Bundle/Resources/config/routing.php.old b/src/A4U/Esse3Bundle/Resources/config/routing.php.old
+new file mode 100644
+index 0000000..2a74194
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/Resources/config/routing.php.old
+@@ -0,0 +1,12 @@
++<?php
++
++use Symfony\Component\Routing\RouteCollection;
++use Symfony\Component\Routing\Route;
++
++$collection = new RouteCollection();
++
++$collection->add('a4_u_esse3_homepage', new Route('/hello/{name}', array(
++    '_controller' => 'A4UEsse3Bundle:Default:index',
++)));
++
++return $collection;
+diff --git a/src/A4U/Esse3Bundle/Resources/config/routing.yml b/src/A4U/Esse3Bundle/Resources/config/routing.yml
+new file mode 100644
+index 0000000..f86eaef
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/Resources/config/routing.yml
+@@ -0,0 +1,4 @@
++a4u_esse3_showEsse3:
++    path:     /esse3/show
++    defaults: { _controller: A4UEsse3Bundle:Default:show_esse3 }
++
+diff --git a/src/A4U/Esse3Bundle/Resources/config/services.php b/src/A4U/Esse3Bundle/Resources/config/services.php
+new file mode 100644
+index 0000000..473ce59
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/Resources/config/services.php
+@@ -0,0 +1,21 @@
++<?php
++
++use Symfony\Component\DependencyInjection\Definition;
++use Symfony\Component\DependencyInjection\Reference;
++use Symfony\Component\DependencyInjection\Parameter;
++
++/*
++
++$container->setDefinition(
++    'a4_u_esse3.example',
++    new Definition(
++        'A4U\Esse3Bundle\Example',
++        array(
++            new Reference('service_id'),
++            "plain_value",
++            new Parameter('parameter_name'),
++        )
++    )
++);
++
++*/
+\ No newline at end of file
+diff --git a/src/A4U/Esse3Bundle/Resources/views/Default/index.html.twig b/src/A4U/Esse3Bundle/Resources/views/Default/index.html.twig
+new file mode 100644
+index 0000000..4ce626e
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/Resources/views/Default/index.html.twig
+@@ -0,0 +1 @@
++Hello {{ name }}!
+diff --git a/src/A4U/Esse3Bundle/Resources/views/Default/show_esse3.html.twig b/src/A4U/Esse3Bundle/Resources/views/Default/show_esse3.html.twig
+new file mode 100644
+index 0000000..804d1c6
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/Resources/views/Default/show_esse3.html.twig
+@@ -0,0 +1,13 @@
++{% extends '::base.html.twig' %}
++
++{% block title %}Esse3 Unicam{% endblock %}
++
++{% block body %}
++
++    <div style="margin-top:20px;">
++
++            {{ Data }}
++	</div>
++
++{% endblock %}
++
+diff --git a/src/A4U/Esse3Bundle/Tests/Controller/DefaultControllerTest.php b/src/A4U/Esse3Bundle/Tests/Controller/DefaultControllerTest.php
+new file mode 100644
+index 0000000..46ccc9e
+--- /dev/null
++++ b/src/A4U/Esse3Bundle/Tests/Controller/DefaultControllerTest.php
+@@ -0,0 +1,17 @@
++<?php
++
++namespace A4U\Esse3Bundle\Tests\Controller;
++
++use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
++
++class DefaultControllerTest extends WebTestCase
++{
++    public function testIndex()
++    {
++        $client = static::createClient();
++
++        $crawler = $client->request('GET', '/hello/Fabien');
++
++        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
++    }
++}
+-- 
+1.7.10.4
+

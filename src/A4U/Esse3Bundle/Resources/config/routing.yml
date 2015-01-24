@@ -1,0 +1,4 @@
+a4u_esse3_showEsse3:
+    path:     /esse3/show
+    defaults: { _controller: A4UEsse3Bundle:Default:show_esse3 }
+
