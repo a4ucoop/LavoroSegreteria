@@ -11,6 +11,7 @@
 
 {% block body %}
 
+
 <div class="container">
 
 	<nav class="navbar navbar-default">
@@ -43,6 +44,7 @@
     <div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
 		<table class="table table-hover">
 			<tr>
+                <td></td>
 				<td><b>Nome</b></td>
 				<td><b>Cognome</b></td>
 				<td><b>Indirizzo</b></td>
@@ -64,7 +66,60 @@
 				<td><b>data sottoscrizione</b></td>
 			</tr>
 			{% for user in users %}
-				<tr>
+                <tr>
+                    <td>
+                         <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" >
+                            <option value="" selected>Compila una form...</option>
+                            <option value="{{ path('a4u_form_porteAperteEstate',  { 
+                                'name': user.name,
+                                'surname' : user.surname,
+                                'fiscal_code' : user.fiscalCode,
+                                'address' : user.address,
+                                'cap' : user.cap,
+                                'city' : user.city,
+                                'email' : user.email,
+                                'phone' :user.phone,
+                                'birth_date' : user.birthDate|date('d-m-Y'),
+                                'birth_place' : user.birthPlace,}) 
+                            }}"> Porte Aperte Estate</option>
+                            <option value="{{ path('a4u_form_porteAperteInverno',  { 
+                                'name': user.name,
+                                'surname' : user.surname,
+                                'fiscal_code' : user.fiscalCode,
+                                'address' : user.address,
+                                'cap' : user.cap,
+                                'city' : user.city,
+                                'email' : user.email,
+                                'phone' :user.phone,
+                                'birth_date' : user.birthDate|date('d-m-Y'),
+                                'birth_place' : user.birthPlace,}) 
+                            }}"> Porte Aperte Inverno</option>
+                            <option value="{{ path('a4u_form_stage',  { 
+                                'name': user.name,
+                                'surname' : user.surname,
+                                'fiscal_code' : user.fiscalCode,
+                                'address' : user.address,
+                                'cap' : user.cap,
+                                'city' : user.city,
+                                'email' : user.email,
+                                'phone' :user.phone,
+                                'birth_date' : user.birthDate|date('d-m-Y'),
+                                'birth_place' : user.birthPlace,}) 
+                            }}"> Stage</option>
+                            <option value="{{ path('a4u_form_generico',  { 
+                                'name': user.name,
+                                'surname' : user.surname,
+                                'fiscal_code' : user.fiscalCode,
+                                'address' : user.address,
+                                'cap' : user.cap,
+                                'city' : user.city,
+                                'email' : user.email,
+                                'phone' :user.phone,
+                                'birth_date' : user.birthDate|date('d-m-Y'),
+                                'birth_place' : user.birthPlace,}) 
+                            }}"> Generico</option>
+                        </select>
+                    </td>
 					<td>{{user.name}}</td>
 					<td>{{user.surname}}</td>
 					<td>{{user.address}}</td>

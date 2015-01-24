@@ -28,6 +28,19 @@ class PageController extends Controller
 
 	public function porte_aperte_estateAction(Request $request)
 	{
+        $context = array(
+            'name' => $request->get('name',''),
+            'surname' => $request->get('surname',''),
+            'fiscal_code' => $request->get('fiscal_code',''),
+            'cap' => $request->get('cap',''),
+            'city' => $request->get('city',''),
+            'address' => $request->get('address',''),
+            'email' => $request->get('email',''),
+            'phone' => $request->get('phone',''),
+            'birth_date' => $request->get('birth_date',''),
+            'birth_place' => $request->get('birth_place',''),
+        );
+
 
         $PorteAperteEstate = new PorteAperteEstate();
 
@@ -54,6 +67,7 @@ class PageController extends Controller
         // Form non ancora inviato
         return $this->render('A4UFormBundle:Forms:porte_aperte_estate.html.twig', array(
             'form' => $form->createView(),
+            'context' => $context,
         ));
 	}
 
@@ -77,6 +91,19 @@ class PageController extends Controller
 
     public function porte_aperte_invernoAction(Request $request)
     {
+        $context = array(
+            'name' => $request->get('name',''),
+            'surname' => $request->get('surname',''),
+            'fiscal_code' => $request->get('fiscal_code',''),
+            'cap' => $request->get('cap',''),
+            'city' => $request->get('city',''),
+            'address' => $request->get('address',''),
+            'email' => $request->get('email',''),
+            'phone' => $request->get('phone',''),
+            'birth_date' => $request->get('birth_date',''),
+            'birth_place' => $request->get('birth_place',''),
+        );
+
         $PorteAperteInverno = new PorteAperteInverno();
 
         $form = $this->createForm('porteAperteInverno', $PorteAperteInverno);
@@ -100,8 +127,9 @@ class PageController extends Controller
         }
 
         // Form non ancora inviato
-        return $this->render('A4UFormBundle:Forms:porte_aperte_Inverno.html.twig', array(
+        return $this->render('A4UFormBundle:Forms:porte_aperte_inverno.html.twig', array(
             'form' => $form->createView(),
+            'context' => $context,
         ));
     }
 
@@ -124,6 +152,19 @@ class PageController extends Controller
 
     public function stageAction(Request $request)
     {
+        $context = array(
+            'name' => $request->get('name',''),
+            'surname' => $request->get('surname',''),
+            'fiscal_code' => $request->get('fiscal_code',''),
+            'cap' => $request->get('cap',''),
+            'city' => $request->get('city',''),
+            'address' => $request->get('address',''),
+            'email' => $request->get('email',''),
+            'phone' => $request->get('phone',''),
+            'birth_date' => $request->get('birth_date',''),
+            'birth_place' => $request->get('birth_place',''),
+        );
+
         $Stage = new Stage();
 
         $form = $this->createForm('stage', $Stage);
@@ -149,6 +190,7 @@ class PageController extends Controller
         // Form non ancora inviato
         return $this->render('A4UFormBundle:Forms:stage.html.twig', array(
             'form' => $form->createView(),
+            'context' => $context,
         )); 
 
     }
@@ -172,6 +214,19 @@ class PageController extends Controller
 
     public function genericoAction(Request $request)
     {
+        $context = array(
+            'name' => $request->get('name',''),
+            'surname' => $request->get('surname',''),
+            'fiscal_code' => $request->get('fiscal_code',''),
+            'cap' => $request->get('cap',''),
+            'city' => $request->get('city',''),
+            'address' => $request->get('address',''),
+            'email' => $request->get('email',''),
+            'phone' => $request->get('phone',''),
+            'birth_date' => $request->get('birth_date',''),
+            'birth_place' => $request->get('birth_place',''),
+        );
+
         $Generico = new Generico();
 
         $form = $this->createForm('generico', $Generico);
@@ -197,6 +252,7 @@ class PageController extends Controller
         // Form non ancora inviato
         return $this->render('A4UFormBundle:Forms:generico.html.twig', array(
             'form' => $form->createView(),
+            'context' => $context,
         )); 
 
     }
