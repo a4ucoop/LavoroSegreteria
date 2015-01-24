@@ -67,59 +67,7 @@
 			</tr>
 			{% for user in users %}
                 <tr>
-                    <td>
-                         <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" >
-                            <option value="" selected>Compila una form...</option>
-                            <option value="{{ path('a4u_form_porteAperteEstate',  { 
-                                'name': user.name,
-                                'surname' : user.surname,
-                                'fiscal_code' : user.fiscalCode,
-                                'address' : user.address,
-                                'cap' : user.cap,
-                                'city' : user.city,
-                                'email' : user.email,
-                                'phone' :user.phone,
-                                'birth_date' : user.birthDate|date('d-m-Y'),
-                                'birth_place' : user.birthPlace,}) 
-                            }}"> Porte Aperte Estate</option>
-                            <option value="{{ path('a4u_form_porteAperteInverno',  { 
-                                'name': user.name,
-                                'surname' : user.surname,
-                                'fiscal_code' : user.fiscalCode,
-                                'address' : user.address,
-                                'cap' : user.cap,
-                                'city' : user.city,
-                                'email' : user.email,
-                                'phone' :user.phone,
-                                'birth_date' : user.birthDate|date('d-m-Y'),
-                                'birth_place' : user.birthPlace,}) 
-                            }}"> Porte Aperte Inverno</option>
-                            <option value="{{ path('a4u_form_stage',  { 
-                                'name': user.name,
-                                'surname' : user.surname,
-                                'fiscal_code' : user.fiscalCode,
-                                'address' : user.address,
-                                'cap' : user.cap,
-                                'city' : user.city,
-                                'email' : user.email,
-                                'phone' :user.phone,
-                                'birth_date' : user.birthDate|date('d-m-Y'),
-                                'birth_place' : user.birthPlace,}) 
-                            }}"> Stage</option>
-                            <option value="{{ path('a4u_form_generico',  { 
-                                'name': user.name,
-                                'surname' : user.surname,
-                                'fiscal_code' : user.fiscalCode,
-                                'address' : user.address,
-                                'cap' : user.cap,
-                                'city' : user.city,
-                                'email' : user.email,
-                                'phone' :user.phone,
-                                'birth_date' : user.birthDate|date('d-m-Y'),
-                                'birth_place' : user.birthPlace,}) 
-                            }}"> Generico</option>
-                        </select>
-                    </td>
+                    {% include 'A4UFormBundle::Forms/base_show_select.html.twig'  %}
 					<td>{{user.name}}</td>
 					<td>{{user.surname}}</td>
 					<td>{{user.address}}</td>

@@ -66,6 +66,13 @@ class Generico
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=128)
+     */
+    private $phone;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="datetimetz")
@@ -250,6 +257,29 @@ class Generico
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return PorteAperteEstate
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 
     /**

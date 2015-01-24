@@ -44,12 +44,14 @@
 		<table class="table table-hover">
 			<thead>
             <tr>
+                <td></td>
 				<th class="col-sm-1"><b>Nome</b></th>
 				<th class="col-sm-2"><b>Cognome</b></th>
 				<th class="col-sm-3"><b>Indirizzo</b></th>
 				<th class="col-sm-4"><b>CAP</b></th>
 				<th class="col-sm-5"><b>Città</b></th>
 				<th class="col-sm-6"><b>Email</b></th>
+				<th class="col-sm-7"><b>Tel.</b></th>
 				<th style="min-width: 100px;"><b>Data di nascita</b></th>
 				<th class="col-sm-8"><b>Luogo di nascita</b></th>
                 <th class="col-sm-9"><b>Attività frequentata</b></th>
@@ -59,12 +61,14 @@
             <tbody>
 			{% for user in users %}
 				<tr>
+                    {% include 'A4UFormBundle::Forms/base_show_select.html.twig'  %}
 					<td>{{user.name}}</td>
 					<td>{{user.surname}}</td>
 					<td>{{user.address}}</td>
 					<td>{{user.cap}}</td>
 					<td>{{user.city}}</td> 
 					<td>{{user.email}}</td>
+					<td>{{user.phone}}</td> 
 					<td>{{user.birthDate|date('d-m-Y')}}</td> 
 					<td>{{user.birthPlace}}</td> 
                     <td>{{user.attendedActivity}}</td> 
