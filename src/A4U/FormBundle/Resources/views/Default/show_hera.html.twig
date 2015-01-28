@@ -1,13 +1,69 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Hera Orientamento{% endblock %}
+{% block title %}Scuole MIUR{% endblock %}
 
 {% block body %}
 
-    <div style="margin-top:20px;">
+{% block stylesheets %}
 
-            {{ data }}
-	</div>
+    {{ parent() }}
+    <link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
 
 {% endblock %}
 
+<div class="container">
+
+
+
+    <div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
+		<table class="table table-hover">
+			<thead>
+            <tr>
+				<th class="col-sm-1"><b>id</b></th>
+				<th class="col-sm-2"><b>denominazione</b></th>
+				<th class="col-sm-3"><b>cap</b></th>
+				<th class="col-sm-4"><b>citta</b></th>
+				<th class="col-sm-5"><b>provincia</b></th>
+				<th class="col-sm-6"><b>Regione</b></th>
+			</tr>
+            </thead>
+            <tbody>
+			{% for scuola in scuole %}
+				<tr>
+					<td>{{scuola.IdRecord}}</td>
+					<td>{{scuola.Denominazione}}</td>
+					<td>{{scuola.Cap}}</td>
+					<td>{{scuola.Citta}}</td>
+					<td>{{scuola.Provincia}}</td> 
+					<td>{{scuola.Regione}}</td>
+				</tr>
+			{% endfor %}
+            </tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAE
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showGenerico') }}");
+        })
+    </script>
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+    
+    </script>
+
+{% endblock %}

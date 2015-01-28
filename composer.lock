@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e335711dba40cbc0a44534a44e7120d5",
+    "hash": "7752be57a3e890616a4a7b5649ad770e",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -973,44 +973,6 @@
             "time": "2015-01-09 18:38:25"
         },
         {
-            "name": "isoft/mssql-bundle",
-            "version": "dev-master",
-            "target-dir": "Realestate/MssqlBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/intellectsoft-uk/MssqlBundle.git",
-                "reference": "19df6bfe9020145c73bab9fe0adb3c595bdd293f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/intellectsoft-uk/MssqlBundle/zipball/19df6bfe9020145c73bab9fe0adb3c595bdd293f",
-                "reference": "19df6bfe9020145c73bab9fe0adb3c595bdd293f",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Realestate\\MssqlBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Realestate"
-                },
-                {
-                    "name": "Vitaly Zhloba",
-                    "email": "vitaly.zhloba@gmail.com"
-                },
-                {
-                    "name": "Emanuele Panzeri - ThePanz",
-                    "email": "thepanz@gmail.com"
-                }
-            ],
-            "description": "Driver for work with MsSQL server",
-            "time": "2014-06-25 09:13:42"
-        },
-        {
             "name": "jdorn/sql-formatter",
             "version": "v1.2.17",
             "source": {
@@ -1284,6 +1246,56 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "realestateconz/mssql-bundle",
+            "version": "dev-master",
+            "target-dir": "Realestate/MssqlBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/realestateconz/MssqlBundle.git",
+                "reference": "def7ba7eabd3791944afae445364d042c2dbd8f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/realestateconz/MssqlBundle/zipball/def7ba7eabd3791944afae445364d042c2dbd8f4",
+                "reference": "def7ba7eabd3791944afae445364d042c2dbd8f4",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2,>=2.2.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Realestate\\MssqlBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ken Golovin",
+                    "homepage": "https://github.com/pasinter"
+                },
+                {
+                    "name": "Realestate.co.nz",
+                    "homepage": "http://www.realestate.co.nz"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/realestateconz/MssqlBundle/contributors"
+                }
+            ],
+            "description": "Microsoft SQL Server Bundle for Symfony 2",
+            "keywords": [
+                "driver",
+                "mssql",
+                "sql server"
+            ],
+            "time": "2013-12-08 21:55:16"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2056,7 +2068,7 @@
         "components/jquery": 20,
         "stephanecollot/datetimepicker-bundle": 20,
         "ircmaxell/password-compat": 20,
-        "isoft/mssql-bundle": 20
+        "realestateconz/mssql-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -283,18 +283,18 @@ class PageController extends Controller
         #$pdo->exec("select * from Orientamento");
         #$Data = $conn->fetchAll();
         
-        $statement = $conn->prepare('SELECT * FROM "Attivita"');
+        $statement = $conn->prepare('SELECT * FROM STU_ANAG_SCUOLE');
         $statement->execute();
-        $Data = $statement->fetchAll();
+        $Scuole = $statement->fetchAll();
 
 
-        if (!$Data)
+        if (!$Scuole)
         {
             throw $this->createNotFoundException('Nessun utente trovato');
         }
 
         return $this->render('A4UFormBundle:Default:show_hera.html.twig', array(
-            'data' => $Data));
+            'scuole' => $Scuole));
     }
 }
 

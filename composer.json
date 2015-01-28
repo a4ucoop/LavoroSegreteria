@@ -24,7 +24,7 @@
         "components/jquery": "dev-master",
         "stephanecollot/datetimepicker-bundle": "dev-master",
         "ircmaxell/password-compat": "dev-master",
-        "isoft/mssql-bundle": "master-dev"
+        "realestateconz/mssql-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

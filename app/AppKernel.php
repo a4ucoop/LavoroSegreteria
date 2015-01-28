@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
             new A4U\UserBundle\A4UUserBundle(),
             new A4U\Esse3Bundle\A4UEsse3Bundle(),
+            new Realestate\MssqlBundle\RealestateMssqlBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

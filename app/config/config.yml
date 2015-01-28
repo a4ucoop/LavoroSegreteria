@@ -109,7 +109,6 @@ doctrine:
             hera:
                 driver_class:   \Realestate\MssqlBundle\Driver\PDODblib\Driver
                 host:     "%database_host3%"
-                port:     "%database_port3%"
                 dbname:   "%database_name3%"
                 user:     "%database_user3%"
                 password: "%database_password3%"
