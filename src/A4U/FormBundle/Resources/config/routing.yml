@@ -50,3 +50,11 @@ a4u_form_showGenerico:
 a4u_form_searchGenerico:
     path: /admin/form/search_generico
     defaults: { _controller: A4UFormBundle:Form:searchGenerico }
+
+
+
+
+
+a4u_form_provaHera:
+    path:   /prova/showhera
+    defaults:   { _controller: A4UFormBundle:Page:show_Hera }

@@ -88,6 +88,31 @@ doctrine:
                 user:     "%database_user2%"
                 password: "%database_password2%"
                 charset:  "%database_charset2%"
+            # hera:
+            #     driver:   "%database_driver3%"                             
+            #     host:     "%database_host3%"                               
+            #     port:     "%database_port3%"                               
+            #     dbname:   "%database_name3%"                               
+            #     user:     "%database_user3%"
+            #     password: "%database_password3%"                           
+            #     charset:  UTF8
+
+            # # Doctrine Configuration
+            # driver:   %database_driver3%
+            # driver_class: Doctrine\DBAL\Driver\PDODblib\Driver
+            # host:     %database_host3%
+            # port:     %database_port3%
+            # dbname:   %database_name3%
+            # user:     %database_user3%
+            # password: %database_password3%
+            # #charset:  UTF8
+            hera:
+                driver_class:   \Realestate\MssqlBundle\Driver\PDODblib\Driver
+                host:     "%database_host3%"
+                port:     "%database_port3%"
+                dbname:   "%database_name3%"
+                user:     "%database_user3%"
+                password: "%database_password3%"
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"

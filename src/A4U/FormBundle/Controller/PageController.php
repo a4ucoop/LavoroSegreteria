@@ -272,4 +272,29 @@ class PageController extends Controller
             'users' => $Users));
     }
 
+// ---------------------------------------Prova Hera\Internet--------------------------------------------
+
+    public function show_HeraAction()
+    {
+        $conn = $this->get('doctrine.dbal.hera_connection');
+        #$pdo->exec("CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, title TEXT, message TEXT)");
+        #$pdo->exec("INSERT INTO messages(id, title, message) VALUES (1, 'title', 'message')");
+        
+        #$pdo->exec("select * from Orientamento");
+        #$Data = $conn->fetchAll();
+        
+        $statement = $conn->prepare('SELECT * FROM "Attivita"');
+        $statement->execute();
+        $Data = $statement->fetchAll();
+
+
+        if (!$Data)
+        {
+            throw $this->createNotFoundException('Nessun utente trovato');
+        }
+
+        return $this->render('A4UFormBundle:Default:show_hera.html.twig', array(
+            'data' => $Data));
+    }
 }
+

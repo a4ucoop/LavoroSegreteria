@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "70f5d15c369ddc53f57f9c0129c4928c",
+    "hash": "e335711dba40cbc0a44534a44e7120d5",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -802,16 +802,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.3.10",
+            "version": "v2.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0"
+                "reference": "5e19886a64ef7e3540bb362eacfdf7d60c5608e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0",
-                "reference": "4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/5e19886a64ef7e3540bb362eacfdf7d60c5608e6",
+                "reference": "5e19886a64ef7e3540bb362eacfdf7d60c5608e6",
                 "shasum": ""
             },
             "require": {
@@ -876,7 +876,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-01-21 20:55:10"
+            "time": "2015-01-28 09:12:46"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -971,6 +971,44 @@
                 "password"
             ],
             "time": "2015-01-09 18:38:25"
+        },
+        {
+            "name": "isoft/mssql-bundle",
+            "version": "dev-master",
+            "target-dir": "Realestate/MssqlBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intellectsoft-uk/MssqlBundle.git",
+                "reference": "19df6bfe9020145c73bab9fe0adb3c595bdd293f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intellectsoft-uk/MssqlBundle/zipball/19df6bfe9020145c73bab9fe0adb3c595bdd293f",
+                "reference": "19df6bfe9020145c73bab9fe0adb3c595bdd293f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Realestate\\MssqlBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Realestate"
+                },
+                {
+                    "name": "Vitaly Zhloba",
+                    "email": "vitaly.zhloba@gmail.com"
+                },
+                {
+                    "name": "Emanuele Panzeri - ThePanz",
+                    "email": "thepanz@gmail.com"
+                }
+            ],
+            "description": "Driver for work with MsSQL server",
+            "time": "2014-06-25 09:13:42"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1522,32 +1560,33 @@
         },
         {
             "name": "symfony/assetic-bundle",
-            "version": "v2.5.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle.git",
-                "reference": "90ea7fb66d6d5245fd4afc16e4c8070214254fec"
+                "reference": "422b0add2110f0cf9bc7a873a386ea053f4a89f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/90ea7fb66d6d5245fd4afc16e4c8070214254fec",
-                "reference": "90ea7fb66d6d5245fd4afc16e4c8070214254fec",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/422b0add2110f0cf9bc7a873a386ea053f4a89f0",
+                "reference": "422b0add2110f0cf9bc7a873a386ea053f4a89f0",
                 "shasum": ""
             },
             "require": {
                 "kriswallsmith/assetic": "~1.2",
                 "php": ">=5.3.0",
-                "symfony/console": "~2.1",
-                "symfony/framework-bundle": "~2.1",
-                "symfony/yaml": "~2.1"
+                "symfony/console": "~2.3",
+                "symfony/dependency-injection": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/yaml": "~2.3"
             },
             "require-dev": {
                 "kriswallsmith/spork": "~0.2",
                 "patchwork/jsqueeze": "~1.0",
-                "symfony/class-loader": "~2.1",
-                "symfony/css-selector": "~2.1",
-                "symfony/dom-crawler": "~2.1",
-                "symfony/twig-bundle": "~2.1"
+                "symfony/class-loader": "~2.3",
+                "symfony/css-selector": "~2.3",
+                "symfony/dom-crawler": "~2.3",
+                "symfony/twig-bundle": "~2.3"
             },
             "suggest": {
                 "kriswallsmith/spork": "to be able to dump assets in parallel",
@@ -1582,7 +1621,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2014-10-15 12:03:38"
+            "time": "2015-01-27 12:45:16"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -1867,16 +1906,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.17.0",
+            "version": "v1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608"
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
-                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4cf7464348e7f9893a93f7096a90b73722be99cf",
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf",
                 "shasum": ""
             },
             "require": {
@@ -1885,7 +1924,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17-dev"
+                    "dev-master": "1.18-dev"
                 }
             },
             "autoload": {
@@ -1920,7 +1959,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-01-14 10:15:49"
+            "time": "2015-01-25 17:32:08"
         },
         {
             "name": "twitter/bootstrap",
@@ -2016,7 +2055,8 @@
         "stof/doctrine-extensions-bundle": 20,
         "components/jquery": 20,
         "stephanecollot/datetimepicker-bundle": 20,
-        "ircmaxell/password-compat": 20
+        "ircmaxell/password-compat": 20,
+        "isoft/mssql-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
