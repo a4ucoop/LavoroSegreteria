@@ -167,7 +167,10 @@ class PageController extends Controller
 
         $Stage = new Stage();
 
-        $form = $this->createForm('stage', $Stage);
+        $form = $this->createForm('stage', $Stage, array(//'sqtname'=>2,'question_type'=>2));
+            'periodo1'=>'3-4-5 novembre 2014',
+            'periodo2'=>'18-19-20 febbraio 2015',
+            'periodo3'=>'25-26-27 febbraio 2015'));
 
         $form->handleRequest($request);
 

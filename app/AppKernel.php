@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new A4U\UserBundle\A4UUserBundle(),
             new A4U\Esse3Bundle\A4UEsse3Bundle(),
             new Realestate\MssqlBundle\RealestateMssqlBundle(),
+            new A4U\DataBundle\A4UDataBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -36,28 +36,15 @@ class Stage
      * @ORM\Column(name="surname", type="string", length=128)
      */
     private $surname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="birthPlace", type="string", length=128)
-     */
-    private $birthPlace;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="birthDate", type="datetimetz")
-     */
-    private $birthDate;
-
+ 
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=128)
      */
     private $address;
-
+ 
+ 
     /**
      * @var string
      *
@@ -75,27 +62,6 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="fiscalCode", type="string", length=128)
-     */
-    private $fiscalCode;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchool", type="string", length=128)
-     */
-    private $attendedSchool;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="schoolYear", type="integer")
-     */
-    private $schoolYear;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="email", type="string", length=128)
      */
     private $email;
@@ -106,6 +72,62 @@ class Stage
      * @ORM\Column(name="phone", type="string", length=128)
      */
     private $phone;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="birthDate", type="datetimetz")
+     */
+    private $birthDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="birthPlace", type="string", length=128)
+     */
+    private $birthPlace;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attendedSchoolRegion", type="string", length=128)
+     */
+    private $attendedSchoolRegion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attendedSchoolDistrict", type="string", length=128)
+     */
+    private $attendedSchoolDistrict;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attendedSchoolCity", type="string", length=128)
+     */
+    private $attendedSchoolCity;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attendedSchool", type="string", length=128)
+     */
+    private $attendedSchool;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fiscalcode", type="string", length=128)
+     */
+    private $fiscalcode;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="schoolYear", type="integer")
+     */
+    private $schoolYear;
 
     /**
      * @var string
@@ -143,7 +165,6 @@ class Stage
      */
     private $submissiondate;
 
-
     /**
      * Get id
      *
@@ -163,7 +184,7 @@ class Stage
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -186,7 +207,7 @@ class Stage
     public function setSurname($surname)
     {
         $this->surname = $surname;
-    
+
         return $this;
     }
 
@@ -201,52 +222,6 @@ class Stage
     }
 
     /**
-     * Set birthPlace
-     *
-     * @param string $birthPlace
-     * @return Stage
-     */
-    public function setBirthPlace($birthPlace)
-    {
-        $this->birthPlace = $birthPlace;
-    
-        return $this;
-    }
-
-    /**
-     * Get birthPlace
-     *
-     * @return string 
-     */
-    public function getBirthPlace()
-    {
-        return $this->birthPlace;
-    }
-
-    /**
-     * Set birthDate
-     *
-     * @param \DateTime $birthDate
-     * @return Stage
-     */
-    public function setBirthDate($birthDate)
-    {
-        $this->birthDate = $birthDate;
-    
-        return $this;
-    }
-
-    /**
-     * Get birthDate
-     *
-     * @return \DateTime 
-     */
-    public function getBirthDate()
-    {
-        return $this->birthDate;
-    }
-
-    /**
      * Set address
      *
      * @param string $address
@@ -255,7 +230,7 @@ class Stage
     public function setAddress($address)
     {
         $this->address = $address;
-    
+
         return $this;
     }
 
@@ -278,7 +253,7 @@ class Stage
     public function setCap($cap)
     {
         $this->cap = $cap;
-    
+
         return $this;
     }
 
@@ -301,7 +276,7 @@ class Stage
     public function setCity($city)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
@@ -316,75 +291,6 @@ class Stage
     }
 
     /**
-     * Set fiscalCode
-     *
-     * @param string $fiscalCode
-     * @return Stage
-     */
-    public function setFiscalCode($fiscalCode)
-    {
-        $this->fiscalCode = $fiscalCode;
-    
-        return $this;
-    }
-
-    /**
-     * Get fiscalCode
-     *
-     * @return string 
-     */
-    public function getFiscalCode()
-    {
-        return $this->fiscalCode;
-    }
-
-    /**
-     * Set attendedSchool
-     *
-     * @param string $attendedSchool
-     * @return Stage
-     */
-    public function setAttendedSchool($attendedSchool)
-    {
-        $this->attendedSchool = $attendedSchool;
-    
-        return $this;
-    }
-
-    /**
-     * Get attendedSchool
-     *
-     * @return string 
-     */
-    public function getAttendedSchool()
-    {
-        return $this->attendedSchool;
-    }
-
-    /**
-     * Set schoolYear
-     *
-     * @param integer $schoolYear
-     * @return Stage
-     */
-    public function setSchoolYear($schoolYear)
-    {
-        $this->schoolYear = $schoolYear;
-    
-        return $this;
-    }
-
-    /**
-     * Get schoolYear
-     *
-     * @return integer 
-     */
-    public function getSchoolYear()
-    {
-        return $this->schoolYear;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -393,7 +299,7 @@ class Stage
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
@@ -416,7 +322,7 @@ class Stage
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    
+
         return $this;
     }
 
@@ -431,6 +337,190 @@ class Stage
     }
 
     /**
+     * Set birthDate
+     *
+     * @param \DateTime $birthDate
+     * @return Stage
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthDate
+     *
+     * @return \DateTime 
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * Set birthPlace
+     *
+     * @param string $birthPlace
+     * @return Stage
+     */
+    public function setBirthPlace($birthPlace)
+    {
+        $this->birthPlace = $birthPlace;
+
+        return $this;
+    }
+
+    /**
+     * Get birthPlace
+     *
+     * @return string 
+     */
+    public function getBirthPlace()
+    {
+        return $this->birthPlace;
+    }
+
+    /**
+     * Set attendedSchoolRegion
+     *
+     * @param string $attendedSchoolRegion
+     * @return Stage
+     */
+    public function setAttendedSchoolRegion($attendedSchoolRegion)
+    {
+        $this->attendedSchoolRegion = $attendedSchoolRegion;
+
+        return $this;
+    }
+
+    /**
+     * Get attendedSchoolRegion
+     *
+     * @return string 
+     */
+    public function getAttendedSchoolRegion()
+    {
+        return $this->attendedSchoolRegion;
+    }
+
+    /**
+     * Set attendedSchoolDistrict
+     *
+     * @param string $attendedSchoolDistrict
+     * @return Stage
+     */
+    public function setAttendedSchoolDistrict($attendedSchoolDistrict)
+    {
+        $this->attendedSchoolDistrict = $attendedSchoolDistrict;
+
+        return $this;
+    }
+
+    /**
+     * Get attendedSchoolDistrict
+     *
+     * @return string 
+     */
+    public function getAttendedSchoolDistrict()
+    {
+        return $this->attendedSchoolDistrict;
+    }
+
+    /**
+     * Set attendedSchoolCity
+     *
+     * @param string $attendedSchoolCity
+     * @return Stage
+     */
+    public function setAttendedSchoolCity($attendedSchoolCity)
+    {
+        $this->attendedSchoolCity = $attendedSchoolCity;
+
+        return $this;
+    }
+
+    /**
+     * Get attendedSchoolCity
+     *
+     * @return string 
+     */
+    public function getAttendedSchoolCity()
+    {
+        return $this->attendedSchoolCity;
+    }
+
+    /**
+     * Set attendedSchool
+     *
+     * @param string $attendedSchool
+     * @return Stage
+     */
+    public function setAttendedSchool($attendedSchool)
+    {
+        $this->attendedSchool = $attendedSchool;
+
+        return $this;
+    }
+
+    /**
+     * Get attendedSchool
+     *
+     * @return string 
+     */
+    public function getAttendedSchool()
+    {
+        return $this->attendedSchool;
+    }
+
+    /**
+     * Set fiscalcode
+     *
+     * @param string $fiscalcode
+     * @return Stage
+     */
+    public function setFiscalcode($fiscalcode)
+    {
+        $this->fiscalcode = $fiscalcode;
+
+        return $this;
+    }
+
+    /**
+     * Get fiscalcode
+     *
+     * @return string 
+     */
+    public function getFiscalcode()
+    {
+        return $this->fiscalcode;
+    }
+
+    /**
+     * Set schoolYear
+     *
+     * @param integer $schoolYear
+     * @return Stage
+     */
+    public function setSchoolYear($schoolYear)
+    {
+        $this->schoolYear = $schoolYear;
+
+        return $this;
+    }
+
+    /**
+     * Get schoolYear
+     *
+     * @return integer 
+     */
+    public function getSchoolYear()
+    {
+        return $this->schoolYear;
+    }
+
+    /**
      * Set facebookContact
      *
      * @param string $facebookContact
@@ -439,7 +529,7 @@ class Stage
     public function setFacebookContact($facebookContact)
     {
         $this->facebookContact = $facebookContact;
-    
+
         return $this;
     }
 
@@ -462,7 +552,7 @@ class Stage
     public function setStagePeriod($stagePeriod)
     {
         $this->stagePeriod = $stagePeriod;
-    
+
         return $this;
     }
 
@@ -485,7 +575,7 @@ class Stage
     public function setStudyField($studyField)
     {
         $this->studyField = $studyField;
-    
+
         return $this;
     }
 
@@ -508,7 +598,7 @@ class Stage
     public function setMoneyPayed($moneyPayed)
     {
         $this->moneyPayed = $moneyPayed;
-    
+
         return $this;
     }
 
@@ -526,12 +616,12 @@ class Stage
      * Set submissiondate
      *
      * @param \DateTime $submissiondate
-     * @return Generico
+     * @return Stage
      */
     public function setSubmissiondate($submissiondate)
     {
         $this->submissiondate = $submissiondate;
-    
+
         return $this;
     }
 
