@@ -5,102 +5,80 @@ namespace A4U\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Attivita_date
- *
+ * AttivitaDate
  * @ORM\Table()
  * @ORM\Entity
  */
-class Attivita_date
+class AttivitaDate
 {
-
-
     /**
      * @var integer
-     *
-     * @ORM\Column(name="IdRecord", type="integer")
+     * @ORM\Column(name="idRecord", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idRecord;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="IdAttivita", type="integer")
+     * @ORM\Column(name="idAttivita", type="integer")
      */
     private $idAttivita;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="Data_ini", type="datetime")
+     * @ORM\Column(name="dataIni", type="datetime")
      */
     private $dataIni;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="Data_fine", type="datetime")
+     * @ORM\Column(name="dataFine", type="datetime")
      */
     private $dataFine;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="Periodo", type="integer")
+     * @ORM\Column(name="periodo", type="integer")
      */
     private $periodo;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="periodo_desc", type="string", length=150)
+     * @ORM\Column(name="periodoDesc", type="string", length=150)
      */
     private $periodoDesc;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Periodo_Desc_Supp", type="string", length=255)
+     * @ORM\Column(name="periodoDescSupp", type="string", length=255)
      */
     private $periodoDescSupp;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="SEDE", type="string", length=50)
      */
-    private $sEDE;
+    private $SEDE;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="Attivo", type="integer")
+     * @ORM\Column(name="attivo", type="integer")
      */
     private $attivo;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Periodo_note", type="string", length=150)
+     * @ORM\Column(name="periodoNote", type="string", length=150)
      */
     private $periodoNote;
 
 
     /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set idRecord
      *
      * @param integer $idRecord
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setIdRecord($idRecord)
     {
@@ -123,7 +101,7 @@ class Attivita_date
      * Set idAttivita
      *
      * @param integer $idAttivita
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setIdAttivita($idAttivita)
     {
@@ -146,7 +124,7 @@ class Attivita_date
      * Set dataIni
      *
      * @param \DateTime $dataIni
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setDataIni($dataIni)
     {
@@ -169,7 +147,7 @@ class Attivita_date
      * Set dataFine
      *
      * @param \DateTime $dataFine
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setDataFine($dataFine)
     {
@@ -192,7 +170,7 @@ class Attivita_date
      * Set periodo
      *
      * @param integer $periodo
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setPeriodo($periodo)
     {
@@ -215,7 +193,7 @@ class Attivita_date
      * Set periodoDesc
      *
      * @param string $periodoDesc
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setPeriodoDesc($periodoDesc)
     {
@@ -238,7 +216,7 @@ class Attivita_date
      * Set periodoDescSupp
      *
      * @param string $periodoDescSupp
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setPeriodoDescSupp($periodoDescSupp)
     {
@@ -258,33 +236,33 @@ class Attivita_date
     }
 
     /**
-     * Set sEDE
+     * Set SEDE
      *
-     * @param string $sEDE
-     * @return Attivita_date
+     * @param string $SEDE
+     * @return AttivitaDate
      */
-    public function setSEDE($sEDE)
+    public function setSEDE($SEDE)
     {
-        $this->sEDE = $sEDE;
+        $this->SEDE = $SEDE;
 
         return $this;
     }
 
     /**
-     * Get sEDE
+     * Get SEDE
      *
      * @return string 
      */
     public function getSEDE()
     {
-        return $this->sEDE;
+        return $this->SEDE;
     }
 
     /**
      * Set attivo
      *
      * @param integer $attivo
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setAttivo($attivo)
     {
@@ -307,7 +285,7 @@ class Attivita_date
      * Set periodoNote
      *
      * @param string $periodoNote
-     * @return Attivita_date
+     * @return AttivitaDate
      */
     public function setPeriodoNote($periodoNote)
     {

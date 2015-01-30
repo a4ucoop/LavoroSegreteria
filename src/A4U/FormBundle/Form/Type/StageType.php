@@ -6,21 +6,18 @@ namespace A4U\FormBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+use Doctrine\ORM\EntityRepository;
+
+use A4U\DataBundle\Entity\Attivita;
+use A4U\DataBundle\Entity\AttivitaDate;
+use A4U\DataBundle\Entity\OpzioniStage;
+use A4U\DataBundle\Entity\OpzioniStageDett;
+use A4U\DataBundle\Entity\StuAnagScuole;
 
 class StageType extends AbstractType
 {
     
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-     {
-       $resolver->setDefaults(array(
-         'periodo1' => '',
-         'periodo2' =>'',
-         'periodo3' =>''
-       ));
-     }
-
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
@@ -140,20 +137,35 @@ class StageType extends AbstractType
                     )
                 ))
 
-            ->add('stagePeriod', 'choice', array(
+            /*  
+                invoca il query builder per interrogare la repo e farsi
+                restituire le date disponibili che appartengono all'attivita
+                con id 37, che non esiste ma vabbè... è cosi che lo fa il sito ufficiale!
+
+                poi tramite property seleziona solo la descrizione del periodo
+            */
+            ->add('stagePeriod', 'entity', array(
                 'label' => 'Periodo dello stage',
-                'choices'   => array(
-                    "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)",
-                    "€ 35 ( Iscrizione + 5 pasti )",
-                    "€ 25 ( Iscrizione + 3 pasti )",
-                    "€ 10 Iscrizione"),
+                'class' => 'A4UDataBundle:AttivitaDate',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('AD')
+                                ->where('AD.attivo=1')
+                                ->andWhere('AD.idAttivita=37');
+                    },
+                'property' => 'periodoDesc',
                 'attr' => array(
                     'class' => 'form-control'
                     )
                 ))
 
-            ->add('studyField', 'text', array(
+            ->add('studyField', 'entity', array(
                 'label' => 'Campo di studi*',
+                'class' => 'A4UDataBundle:OpzioniStage',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('OS')
+                                ->where('OS.attivo=1');
+                    },
+                'property' => 'Descrizione',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'

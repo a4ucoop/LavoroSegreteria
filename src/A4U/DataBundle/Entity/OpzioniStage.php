@@ -5,66 +5,50 @@ namespace A4U\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Opzioni_stage
- *
+ * OpzioniStage
  * @ORM\Table()
  * @ORM\Entity
  */
-class Opzioni_stage
+class OpzioniStage
 {
-
     /**
      * @var integer
-     *
      * @ORM\Column(name="idrecord", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idrecord;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Descrizione", type="string", length=250)
+     * @ORM\Column(name="descrizione", type="string", length=250)
      */
     private $descrizione;
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="ordinevis", type="integer")
      */
     private $ordinevis;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="Anno", type="integer")
+     * @ORM\Column(name="anno", type="integer")
      */
     private $anno;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="Attivo", type="integer")
+     * @ORM\Column(name="attivo", type="integer")
      */
     private $attivo;
 
 
     /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set idrecord
      *
      * @param integer $idrecord
-     * @return Opzioni_stage
+     * @return OpzioniStage
      */
     public function setIdrecord($idrecord)
     {
@@ -87,7 +71,7 @@ class Opzioni_stage
      * Set descrizione
      *
      * @param string $descrizione
-     * @return Opzioni_stage
+     * @return OpzioniStage
      */
     public function setDescrizione($descrizione)
     {
@@ -110,7 +94,7 @@ class Opzioni_stage
      * Set ordinevis
      *
      * @param integer $ordinevis
-     * @return Opzioni_stage
+     * @return OpzioniStage
      */
     public function setOrdinevis($ordinevis)
     {
@@ -133,7 +117,7 @@ class Opzioni_stage
      * Set anno
      *
      * @param integer $anno
-     * @return Opzioni_stage
+     * @return OpzioniStage
      */
     public function setAnno($anno)
     {
@@ -156,7 +140,7 @@ class Opzioni_stage
      * Set attivo
      *
      * @param integer $attivo
-     * @return Opzioni_stage
+     * @return OpzioniStage
      */
     public function setAttivo($attivo)
     {

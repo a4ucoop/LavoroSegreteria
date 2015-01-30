@@ -11,10 +11,18 @@ use A4U\FormBundle\Entity\PorteAperteInverno;
 use A4U\FormBundle\Entity\Stage;
 use A4U\FormBundle\Entity\Generico;
 
+use A4U\DataBundle\Entity\Attivita;
+use A4U\DataBundle\Entity\AttivitaDate;
+use A4U\DataBundle\Entity\OpzioniStage;
+use A4U\DataBundle\Entity\OpzioniStageDett;
+use A4U\DataBundle\Entity\StuAnagScuole;
+
+
 use A4U\FormBundle\Form\Type\PorteAperteEstateType;
 use A4U\FormBundle\Form\Type\PorteAperteInvernoType;
 use A4U\FormBundle\Form\Type\StageType;
 use A4U\FormBundle\Form\Type\GenericoType;
+
 
 class PageController extends Controller
 {
@@ -165,12 +173,23 @@ class PageController extends Controller
             'birth_place' => $request->get('birth_place',''),
         );
 
-        $Stage = new Stage();
+        $Stage = new Stage();; 
+        $repository = $this->getDoctrine()->getRepository('A4UDataBundle:AttivitaDate');
 
-        $form = $this->createForm('stage', $Stage, array(//'sqtname'=>2,'question_type'=>2));
-            'periodo1'=>'3-4-5 novembre 2014',
-            'periodo2'=>'18-19-20 febbraio 2015',
-            'periodo3'=>'25-26-27 febbraio 2015'));
+/*        $query = $repository->createQueryBuilder('AD')
+                    ->select('AD.periodoDesc')
+                    ->where('AD.attivo=1')
+                    ->andWhere('AD.idAttivita=37')
+                    ->getQuery();
+
+        $dates = $query->getResult();*/
+
+        // -----------> PROVA DA RIMUOVERE!!! <-------------
+/*        return $this->render('A4UFormBundle:Default:printObj.html.twig', array(
+            'date' => $dates,
+        ));  */       
+
+        $form = $this->createForm('stage', $Stage);
 
         $form->handleRequest($request);
 

@@ -46,13 +46,13 @@ class Attivita
 
 
     /**
-     * Get IDRecord
+     * Get iDRecord
      *
      * @return integer 
      */
     public function getIDRecord()
     {
-        return $this->IDRecord;
+        return $this->iDRecord;
     }
 
     /**

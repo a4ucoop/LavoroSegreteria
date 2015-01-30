@@ -5,186 +5,152 @@ namespace A4U\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * STU_ANAG_SCUOLE
- *
+ * StuAnagScuole
  * @ORM\Table()
  * @ORM\Entity
  */
-class STU_ANAG_SCUOLE
+class StuAnagScuole
 {
-
-
     /**
      * @var integer
-     *
-     * @ORM\Column(name="IdRecord", type="integer")
+     * @ORM\Column(name="idRecord", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idRecord;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Denominazione", type="string", length=255)
+     * @ORM\Column(name="denominazione", type="string", length=255)
      */
     private $denominazione;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Indirizzo", type="string", length=100)
+     * @ORM\Column(name="indirizzo", type="string", length=100)
      */
     private $indirizzo;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Telefono", type="string", length=50)
+     * @ORM\Column(name="telefono", type="string", length=50)
      */
     private $telefono;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Fax", type="string", length=50)
+     * @ORM\Column(name="fax", type="string", length=50)
      */
     private $fax;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="E_mail", type="string", length=50)
+     * @ORM\Column(name="eMail", type="string", length=50)
      */
     private $eMail;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Sito", type="string", length=50)
+     * @ORM\Column(name="sito", type="string", length=50)
      */
     private $sito;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Cap", type="string", length=5)
+     * @ORM\Column(name="cap", type="string", length=5)
      */
     private $cap;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Citta", type="string", length=255)
+     * @ORM\Column(name="citta", type="string", length=255)
      */
     private $citta;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Provincia", type="string", length=255)
+     * @ORM\Column(name="provincia", type="string", length=255)
      */
     private $provincia;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Note", type="text")
+     * @ORM\Column(name="note", type="string", length=255)
      */
     private $note;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Presi", type="string", length=120)
+     * @ORM\Column(name="presi", type="string", length=120)
      */
     private $presi;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Id_Docente_Unicam", type="string", length=6)
+     * @ORM\Column(name="idDocenteUnicam", type="string", length=6)
      */
     private $idDocenteUnicam;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Anno", type="string", length=10)
+     * @ORM\Column(name="anno", type="string", length=10)
      */
     private $anno;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Regione", type="string", length=40)
+     * @ORM\Column(name="regione", type="string", length=40)
      */
     private $regione;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Diploma", type="string", length=255)
+     * @ORM\Column(name="diploma", type="string", length=255)
      */
     private $diploma;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="CODMIN", type="string", length=20)
      */
-    private $cODMIN;
+    private $CODMIN;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="ID_SCUOLA", type="integer")
+     * @ORM\Column(name="IdScuola", type="integer")
      */
-    private $iDSCUOLA;
+    private $IdScuola;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="COD_SCUOLA", type="string", length=10)
+     * @ORM\Column(name="CODSCUOLA", type="string", length=10)
      */
-    private $cODSCUOLA;
+    private $CODSCUOLA;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="TIPO_SCUOLA_MIUR_COD", type="string", length=2)
+     * @ORM\Column(name="TipoScuolaMiurCod", type="string", length=2)
      */
-    private $tIPOSCUOLAMIURCOD;
+    private $TipoScuolaMiurCod;
+
+     /**
+     * @var string
+     * @ORM\Column(name="Tipologia", type="string", length=255)
+     */
+    private $Tipologia;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="TIPOLOGIA", type="string", length=255)
+     * @ORM\Column(name="Sigla", type="string", length=5)
      */
-    private $tIPOLOGIA;
+    private $Sigla;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="SIGLA", type="string", length=5)
-     */
-    private $sIGLA;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idRecord
      *
      * @param integer $idRecord
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setIdRecord($idRecord)
     {
@@ -207,7 +173,7 @@ class STU_ANAG_SCUOLE
      * Set denominazione
      *
      * @param string $denominazione
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setDenominazione($denominazione)
     {
@@ -230,7 +196,7 @@ class STU_ANAG_SCUOLE
      * Set indirizzo
      *
      * @param string $indirizzo
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setIndirizzo($indirizzo)
     {
@@ -253,7 +219,7 @@ class STU_ANAG_SCUOLE
      * Set telefono
      *
      * @param string $telefono
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setTelefono($telefono)
     {
@@ -276,7 +242,7 @@ class STU_ANAG_SCUOLE
      * Set fax
      *
      * @param string $fax
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setFax($fax)
     {
@@ -299,7 +265,7 @@ class STU_ANAG_SCUOLE
      * Set eMail
      *
      * @param string $eMail
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setEMail($eMail)
     {
@@ -322,7 +288,7 @@ class STU_ANAG_SCUOLE
      * Set sito
      *
      * @param string $sito
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setSito($sito)
     {
@@ -345,7 +311,7 @@ class STU_ANAG_SCUOLE
      * Set cap
      *
      * @param string $cap
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setCap($cap)
     {
@@ -368,7 +334,7 @@ class STU_ANAG_SCUOLE
      * Set citta
      *
      * @param string $citta
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setCitta($citta)
     {
@@ -391,7 +357,7 @@ class STU_ANAG_SCUOLE
      * Set provincia
      *
      * @param string $provincia
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setProvincia($provincia)
     {
@@ -414,7 +380,7 @@ class STU_ANAG_SCUOLE
      * Set note
      *
      * @param string $note
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setNote($note)
     {
@@ -437,7 +403,7 @@ class STU_ANAG_SCUOLE
      * Set presi
      *
      * @param string $presi
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setPresi($presi)
     {
@@ -460,7 +426,7 @@ class STU_ANAG_SCUOLE
      * Set idDocenteUnicam
      *
      * @param string $idDocenteUnicam
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setIdDocenteUnicam($idDocenteUnicam)
     {
@@ -483,7 +449,7 @@ class STU_ANAG_SCUOLE
      * Set anno
      *
      * @param string $anno
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setAnno($anno)
     {
@@ -506,7 +472,7 @@ class STU_ANAG_SCUOLE
      * Set regione
      *
      * @param string $regione
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setRegione($regione)
     {
@@ -529,7 +495,7 @@ class STU_ANAG_SCUOLE
      * Set diploma
      *
      * @param string $diploma
-     * @return STU_ANAG_SCUOLE
+     * @return StuAnagScuole
      */
     public function setDiploma($diploma)
     {
@@ -549,140 +515,140 @@ class STU_ANAG_SCUOLE
     }
 
     /**
-     * Set cODMIN
+     * Set CODMIN
      *
-     * @param string $cODMIN
-     * @return STU_ANAG_SCUOLE
+     * @param string $CODMIN
+     * @return StuAnagScuole
      */
-    public function setCODMIN($cODMIN)
+    public function setCODMIN($CODMIN)
     {
-        $this->cODMIN = $cODMIN;
+        $this->CODMIN = $CODMIN;
 
         return $this;
     }
 
     /**
-     * Get cODMIN
+     * Get CODMIN
      *
      * @return string 
      */
     public function getCODMIN()
     {
-        return $this->cODMIN;
+        return $this->CODMIN;
     }
 
     /**
-     * Set iDSCUOLA
+     * Set IdScuola
      *
-     * @param integer $iDSCUOLA
-     * @return STU_ANAG_SCUOLE
+     * @param integer $IdScuola
+     * @return StuAnagScuole
      */
-    public function setIDSCUOLA($iDSCUOLA)
+    public function setIdScuola($IdScuola)
     {
-        $this->iDSCUOLA = $iDSCUOLA;
+        $this->IdScuola = $IdScuola;
 
         return $this;
     }
 
     /**
-     * Get iDSCUOLA
+     * Get IdScuola
      *
      * @return integer 
      */
-    public function getIDSCUOLA()
+    public function getIdScuola()
     {
-        return $this->iDSCUOLA;
+        return $this->IdScuola;
     }
 
     /**
-     * Set cODSCUOLA
+     * Set CODSCUOLA
      *
-     * @param string $cODSCUOLA
-     * @return STU_ANAG_SCUOLE
+     * @param string $CODSCUOLA
+     * @return StuAnagScuole
      */
-    public function setCODSCUOLA($cODSCUOLA)
+    public function setCODSCUOLA($CODSCUOLA)
     {
-        $this->cODSCUOLA = $cODSCUOLA;
+        $this->CODSCUOLA = $CODSCUOLA;
 
         return $this;
     }
 
     /**
-     * Get cODSCUOLA
+     * Get CODSCUOLA
      *
      * @return string 
      */
     public function getCODSCUOLA()
     {
-        return $this->cODSCUOLA;
+        return $this->CODSCUOLA;
     }
 
     /**
-     * Set tIPOSCUOLAMIURCOD
+     * Set TipoScuolaMiurCod
      *
-     * @param string $tIPOSCUOLAMIURCOD
-     * @return STU_ANAG_SCUOLE
+     * @param string $TipoScuolaMiurCod
+     * @return StuAnagScuole
      */
-    public function setTIPOSCUOLAMIURCOD($tIPOSCUOLAMIURCOD)
+    public function setTipoScuolaMiurCod($TipoScuolaMiurCod)
     {
-        $this->tIPOSCUOLAMIURCOD = $tIPOSCUOLAMIURCOD;
+        $this->TipoScuolaMiurCod = $TipoScuolaMiurCod;
 
         return $this;
     }
 
     /**
-     * Get tIPOSCUOLAMIURCOD
+     * Get TipoScuolaMiurCod
      *
      * @return string 
      */
-    public function getTIPOSCUOLAMIURCOD()
+    public function getTipoScuolaMiurCod()
     {
-        return $this->tIPOSCUOLAMIURCOD;
+        return $this->TipoScuolaMiurCod;
     }
 
     /**
-     * Set tIPOLOGIA
+     * Set Tipologia
      *
-     * @param string $tIPOLOGIA
-     * @return STU_ANAG_SCUOLE
+     * @param string $Tipologia
+     * @return StuAnagScuole
      */
-    public function setTIPOLOGIA($tIPOLOGIA)
+    public function setTipologia($Tipologia)
     {
-        $this->tIPOLOGIA = $tIPOLOGIA;
+        $this->Tipologia = $Tipologia;
 
         return $this;
     }
 
     /**
-     * Get tIPOLOGIA
+     * Get Tipologia
      *
      * @return string 
      */
-    public function getTIPOLOGIA()
+    public function getTipologia()
     {
-        return $this->tIPOLOGIA;
+        return $this->Tipologia;
     }
 
     /**
-     * Set sIGLA
+     * Set Sigla
      *
-     * @param string $sIGLA
-     * @return STU_ANAG_SCUOLE
+     * @param string $Sigla
+     * @return StuAnagScuole
      */
-    public function setSIGLA($sIGLA)
+    public function setSigla($Sigla)
     {
-        $this->sIGLA = $sIGLA;
+        $this->Sigla = $Sigla;
 
         return $this;
     }
 
     /**
-     * Get sIGLA
+     * Get Sigla
      *
      * @return string 
      */
-    public function getSIGLA()
+    public function getSigla()
     {
-        return $this->sIGLA;
+        return $this->Sigla;
     }
 }

@@ -5,80 +5,62 @@ namespace A4U\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Opzioni_stage_dett
- *
+ * OpzioniStageDett
  * @ORM\Table()
  * @ORM\Entity
  */
-class Opzioni_stage_dett
+class OpzioniStageDett
 {
-
     /**
      * @var integer
-     *
      * @ORM\Column(name="idRecord", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idRecord;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="IdOpzione", type="integer")
+     * @ORM\Column(name="idOpzione", type="integer")
      */
     private $idOpzione;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Cod_stage", type="string", length=10)
+     * @ORM\Column(name="codStage", type="string", length=10)
      */
     private $codStage;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="Desc_stage", type="string", length=250)
+     * @ORM\Column(name="descStage", type="string", length=250)
      */
     private $descStage;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="Attivo", type="integer")
+     * @ORM\Column(name="attivo", type="integer")
      */
     private $attivo;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="idperiodo_bloccato", type="integer")
+     * @ORM\Column(name="idperiodoBloccato", type="integer")
      */
     private $idperiodoBloccato;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="desc_opzione_bloccata", type="string", length=50)
+     * @ORM\Column(name="descOpzioneBloccata", type="string", length=50)
      */
     private $descOpzioneBloccata;
 
 
     /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set idRecord
      *
      * @param integer $idRecord
-     * @return Opzioni_stage_dett
+     * @return OpzioniStageDett
      */
     public function setIdRecord($idRecord)
     {
@@ -101,7 +83,7 @@ class Opzioni_stage_dett
      * Set idOpzione
      *
      * @param integer $idOpzione
-     * @return Opzioni_stage_dett
+     * @return OpzioniStageDett
      */
     public function setIdOpzione($idOpzione)
     {
@@ -124,7 +106,7 @@ class Opzioni_stage_dett
      * Set codStage
      *
      * @param string $codStage
-     * @return Opzioni_stage_dett
+     * @return OpzioniStageDett
      */
     public function setCodStage($codStage)
     {
@@ -147,7 +129,7 @@ class Opzioni_stage_dett
      * Set descStage
      *
      * @param string $descStage
-     * @return Opzioni_stage_dett
+     * @return OpzioniStageDett
      */
     public function setDescStage($descStage)
     {
@@ -170,7 +152,7 @@ class Opzioni_stage_dett
      * Set attivo
      *
      * @param integer $attivo
-     * @return Opzioni_stage_dett
+     * @return OpzioniStageDett
      */
     public function setAttivo($attivo)
     {
@@ -193,7 +175,7 @@ class Opzioni_stage_dett
      * Set idperiodoBloccato
      *
      * @param integer $idperiodoBloccato
-     * @return Opzioni_stage_dett
+     * @return OpzioniStageDett
      */
     public function setIdperiodoBloccato($idperiodoBloccato)
     {
@@ -216,7 +198,7 @@ class Opzioni_stage_dett
      * Set descOpzioneBloccata
      *
      * @param string $descOpzioneBloccata
-     * @return Opzioni_stage_dett
+     * @return OpzioniStageDett
      */
     public function setDescOpzioneBloccata($descOpzioneBloccata)
     {

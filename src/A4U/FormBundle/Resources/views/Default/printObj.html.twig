@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Scuole MIUR{% endblock %}
+
+{% block body %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+{% endblock %}
+
+<div class="container">
+	
+	{% for data in date %}
+	<ul>
+		<li>{{data.periodoDesc}}</li>
+	</ul>
+	{% endfor %}
+
+</div>
+
+{% endblock %}
+
+
