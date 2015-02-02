@@ -5,7 +5,10 @@
 namespace A4U\FormBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -172,8 +175,17 @@ class StageType extends AbstractType
                     )
                 ))
 
+
+            ->add('secondChoice', 'choice', array(
+                'label' => 'Seconda scelta*',
+                'choices'   => array(3 =>'III', 4 => 'IV', 5 => 'V'),
+                'attr' => array(
+                    'class' => 'form-control'
+                    )
+                ))
+
             ->add('moneyPayed', 'choice', array(
-                'label' => 'A quale anno sei iscritto?',
+                'label' => 'Quota versata*',
                 'choices'   => array(
                     "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)",
                     "€ 35 ( Iscrizione + 5 pasti )",
@@ -190,6 +202,53 @@ class StageType extends AbstractType
                     'class' => 'btn btn-primary btn-success'
                     )
                 ));
+
+
+        $formModifier = function (FormInterface $form, OpzioniStage $studyField = null)
+        {
+            $availableChoices = null === $studyField ? array() : $studyField->getAvailableChoices($studyField);
+
+            $form->add('firstChoice', 'entity', array(
+            'label' => 'Prima scelta*',
+            'class' => 'A4UDataBundle:OpzioniStageDett',
+            'choices'     => $availableChoices,
+            'property' => 'codStage',
+            'expanded' => true,
+            'multiple' => true,
+            'attr' => array(
+                'class' => 'form-control',
+                )
+            ));
+
+        };
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($formModifier) {
+    
+                // this would be your entity, i.e. SportMeetup
+                $data = $event->getData();
+
+                $formModifier($event->getForm(), $data->getstudyField());
+
+            }
+        );
+    
+
+        $builder->get('studyField')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                // It's important here to fetch $event->getForm()->getData(), as
+                // $event->getData() will get you the client data (that is, the ID)
+                $studyField = $event->getForm()->getData();
+
+                // since we've added the listener to the child, we'll have to pass on
+                // the parent to the callback functions!
+                $formModifier($event->getForm()->getParent(), $studyField);
+            }
+        );
+
+
     }
 
     public function getName()

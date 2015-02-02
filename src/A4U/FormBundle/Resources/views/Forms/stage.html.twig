@@ -52,6 +52,19 @@
                     {{ form_errors(form.studyField) }}
                     {{ form_widget(form.studyField) }}
                 </div>
+
+                <div class="form-group">
+                    {{ form_label(form.firstChoice) }}
+                    {{ form_errors(form.firstChoice) }}
+                    {{ form_widget(form.firstChoice) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.secondChoice) }}
+                    {{ form_errors(form.secondChoice) }}
+                    {{ form_widget(form.secondChoice) }}
+                </div>
+
                 <div class="form-group">
                     {{ form_label(form.moneyPayed) }}
                     {{ form_errors(form.moneyPayed) }}
@@ -73,3 +86,36 @@
 </div>
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+    var $studyField = $('#stage_studyField');
+    // When sport gets selected ...
+    $studyField.change(function() {
+      // ... retrieve the corresponding form.
+      var $form = $(this).closest('form');
+      // Simulate form data, but only include the selected sport value.
+      var data = {};
+      data[$studyField.attr('name')] = $studyField.val();
+      // Submit data via AJAX to the form's action path.
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          // Replace current position field ...
+          $('#stage_firstChoice').replaceWith(
+            // ... with the returned one from the AJAX response.
+            $(html).find('#stage_firstChoice')
+          );
+          // Position field now displays the appropriate positions.
+        }
+      });
+    });
+
+    </script>
+        
+
+{% endblock %}

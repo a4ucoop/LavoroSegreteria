@@ -153,6 +153,20 @@ class Stage
     /**
      * @var string
      *
+     * @ORM\Column(name="firstChoice", type="string", length=10)
+     */
+    private $firstChoice;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="secondChoice", type="string", length=10)
+     */
+    private $secondChoice;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="moneyPayed", type="string", length=128)
      */
     private $moneyPayed;
@@ -633,5 +647,51 @@ class Stage
     public function getSubmissiondate()
     {
         return $this->submissiondate;
+    }
+
+    /**
+     * Set firstChoice
+     *
+     * @param string $firstChoice
+     * @return Stage
+     */
+    public function setFirstChoice($firstChoice)
+    {
+        $this->firstChoice = $firstChoice;
+
+        return $this;
+    }
+
+    /**
+     * Get firstChoice
+     *
+     * @return string 
+     */
+    public function getFirstChoice()
+    {
+        return $this->firstChoice;
+    }
+
+    /**
+     * Set secondChoice
+     *
+     * @param string $secondChoice
+     * @return Stage
+     */
+    public function setSecondChoice($secondChoice)
+    {
+        $this->secondChoice = $secondChoice;
+
+        return $this;
+    }
+
+    /**
+     * Get secondChoice
+     *
+     * @return string 
+     */
+    public function getSecondChoice()
+    {
+        return $this->secondChoice;
     }
 }

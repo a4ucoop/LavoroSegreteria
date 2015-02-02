@@ -216,4 +216,22 @@ class OpzioniStageDett
     {
         return $this->descOpzioneBloccata;
     }
+
+
+
+//-------------------------METODI MICHELANGELO----------------------------
+    
+
+    /**
+     * Get AvailableChoices
+     *
+     * @return array 
+     */
+
+    public function getAvailableChoices($studyField)
+    {
+        return array(0, 1, 2);
+    }
+
+
 }
