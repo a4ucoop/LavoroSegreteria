@@ -158,4 +158,22 @@ class OpzioniStage
     {
         return $this->attivo;
     }
+
+########################################
+
+
+    /**
+     * Get AvailableChoices
+     *
+     * @return array 
+     */
+
+    public function getAvailableChoices($studyField)
+    {
+        return array(0, 1, 2);
+    }
+    public function __toString()
+    {
+        return $this->descrizione;
+    }
 }

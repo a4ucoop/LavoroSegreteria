@@ -168,7 +168,7 @@ class StageType extends AbstractType
                     return $er->createQueryBuilder('OS')
                                 ->where('OS.attivo=1');
                     },
-                'property' => 'Descrizione',
+                //'property' => 'Descrizione',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'
@@ -208,13 +208,13 @@ class StageType extends AbstractType
         {
             $availableChoices = null === $studyField ? array() : $studyField->getAvailableChoices($studyField);
 
-            $form->add('firstChoice', 'entity', array(
+            $form->add('firstChoice', 'choice', array(
             'label' => 'Prima scelta*',
-            'class' => 'A4UDataBundle:OpzioniStageDett',
+            //'class' => 'A4UDataBundle:OpzioniStageDett',
             'choices'     => $availableChoices,
-            'property' => 'codStage',
-            'expanded' => true,
-            'multiple' => true,
+            //'property' => 'codStage',
+            //'expanded' => true,
+            //'multiple' => true,
             'attr' => array(
                 'class' => 'form-control',
                 )
