@@ -24,9 +24,9 @@ class StageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-    $em = $this->getDoctrine()->getManager();
-    $regioni = $em->getRepository('A4UDataBundle:StuAnagScuole')
-        ->getRegioni();
+    #$em = $this->getDoctrine()->getManager();
+    #$regioni = $em->getRepository('A4UDataBundle:StuAnagScuole')
+    #    ->getRegioni();
 
 /*        $Regione = new StuAnagScuole;
         $Regioni = $Regione->getRegioni();*/
@@ -125,11 +125,16 @@ class StageType extends AbstractType
                     )
                 ))*/
 
-            ->add('attendedSchoolRegion', 'choice', array(
+            ->add('attendedSchoolRegion', 'entity', array(
                'label' => 'Regione della scuola*',
-                'choices'   => $Regione,
+                'class' => 'A4UDataBundle:StuAnagScuole',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->getRegioni();
+                    },
+                //'property' => 'Descrizione',
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'Campo di studi'
                     )
                 ))
 
