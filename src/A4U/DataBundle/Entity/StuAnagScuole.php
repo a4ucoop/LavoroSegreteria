@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * StuAnagScuole
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="A4U\DataBundle\Entity\StuAnagScuoleRepository")
  */
 class StuAnagScuole
 {
@@ -651,4 +651,5 @@ class StuAnagScuole
     {
         return $this->Sigla;
     }
+
 }

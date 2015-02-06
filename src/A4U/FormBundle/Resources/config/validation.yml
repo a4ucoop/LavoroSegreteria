@@ -106,7 +106,7 @@ A4U\FormBundle\Entity\Stage:
             - NotBlank: ~
         city:
             - NotBlank: ~
-        fiscalCode:
+        fiscalcode:
             - NotBlank: ~
         attendedSchool:
             - NotBlank: ~

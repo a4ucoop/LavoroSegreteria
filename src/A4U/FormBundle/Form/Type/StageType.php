@@ -24,6 +24,14 @@ class StageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+    $em = $this->getDoctrine()->getManager();
+    $regioni = $em->getRepository('A4UDataBundle:StuAnagScuole')
+        ->getRegioni();
+
+/*        $Regione = new StuAnagScuole;
+        $Regioni = $Regione->getRegioni();*/
+
+
         $builder
             ->add('name', 'text', array(
                 'label' => 'Nome*',
@@ -109,13 +117,22 @@ class StageType extends AbstractType
                     )
                 ))
 
-             ->add('attendedSchool', 'text', array(
+/*             ->add('attendedSchool', 'text', array(
                 'label' => 'Scuola di provenienza*',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Scuola di provenienza'
                     )
+                ))*/
+
+            ->add('attendedSchoolRegion', 'choice', array(
+               'label' => 'Regione della scuola*',
+                'choices'   => $Regione,
+                'attr' => array(
+                    'class' => 'form-control'
+                    )
                 ))
+
             ->add('attendedSchoolCity', 'text', array(
                 'label' => 'Città della scuola*',
                 'attr' => array(
@@ -206,19 +223,32 @@ class StageType extends AbstractType
 
         $formModifier = function (FormInterface $form, OpzioniStage $studyField = null)
         {
-            $availableChoices = null === $studyField ? array() : $studyField->getAvailableChoices($studyField);
-
-            $form->add('firstChoice', 'choice', array(
-            'label' => 'Prima scelta*',
-            //'class' => 'A4UDataBundle:OpzioniStageDett',
-            'choices'     => $availableChoices,
-            //'property' => 'codStage',
-            //'expanded' => true,
-            //'multiple' => true,
-            'attr' => array(
-                'class' => 'form-control',
-                )
-            ));
+            $availableChoices = null === $studyField ? array("scegli un campo di studi...") : $studyField->getAvailableChoices($studyField);
+            
+            if ( !$availableChoices[0] == "scegli un campo di studi..." )
+            {
+                $form->add('firstChoice', 'choice', array(
+                'label' => 'Prima scelta*',
+                //'class' => 'A4UDataBundle:OpzioniStageDett',
+                'choices'     => $availableChoices,
+                //'property' => 'codStage',
+                //'expanded' => true,
+                //'multiple' => true,
+                'attr' => array(
+                    'class' => 'form-control',
+                    )
+                ));
+            }
+            else
+            {
+                $form->add('firstChoice', 'text', array(
+                'label' => 'Prima scelta*',
+                'attr' => array(
+                    'class' => 'form-control disabled',
+                    'placeholder' => 'Scegli un campo di studi...'
+                    )
+                ));
+            }
 
         };
 
@@ -247,6 +277,24 @@ class StageType extends AbstractType
                 $formModifier($event->getForm()->getParent(), $studyField);
             }
         );
+
+        
+
+/*        $formModifierRegione = function (FormInterface $form, StuAnagScuole $regione = null)
+        {
+
+            ->add('attendedSchoolRegion', 'choice', array(
+                'label' => 'Regione della scuola di appartenenza',
+                'class' => 'A4UDataBundle:StuAnagScuole',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('ASR')->distinct();
+                    },
+                'property' => 'regione',
+                'attr' => array(
+                    'class' => 'form-control'
+                    )
+                ))
+        }*/
 
 
     }
