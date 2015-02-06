@@ -20,13 +20,11 @@ class StuAnagScuoleRepository extends EntityRepository
     public function getRegioni()
     {
     	$qb = $this->getEntityManager()->createQueryBuilder();
+        
+        $qb->select('s0')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->groupBy('s0.regione');
 
-        $regioni = $qb->select('s0_.Regione AS regione0')
-           ->distinct()
-           ->from('StuAnagScuole', 's0_');
-
-        #$regioni = $query->getResult();
-
-        return $regioni;
+        return $qb;
     }
 }

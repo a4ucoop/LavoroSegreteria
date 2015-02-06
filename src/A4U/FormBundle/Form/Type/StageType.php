@@ -131,7 +131,7 @@ class StageType extends AbstractType
                 'query_builder' => function(EntityRepository $er) {
                     return $er->getRegioni();
                     },
-                //'property' => 'Descrizione',
+                'property' => 'regione',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'
