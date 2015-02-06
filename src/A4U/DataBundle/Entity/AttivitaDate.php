@@ -303,4 +303,9 @@ class AttivitaDate
     {
         return $this->periodoNote;
     }
+
+    public function __toString()
+    {
+        return $this->periodoDesc;
+    }
 }

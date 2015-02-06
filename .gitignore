@@ -11,3 +11,4 @@
 /composer.phar
 /.idea
 symfony.sql
+*.swp

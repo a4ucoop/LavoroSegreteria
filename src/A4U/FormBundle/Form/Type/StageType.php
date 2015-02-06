@@ -117,13 +117,29 @@ class StageType extends AbstractType
                     )
                 ))
 
-/*             ->add('attendedSchool', 'text', array(
+             ->add('attendedSchool', 'text', array(
                 'label' => 'Scuola di provenienza*',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Scuola di provenienza'
                     )
-                ))*/
+                ))
+
+             ->add('attendedSchoolCity', 'text', array(
+                'label' => 'Città della scuola di provenienza*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Città della scuola di provenienza'
+                    )
+                ))
+
+             ->add('attendedSchoolDistrict', 'text', array(
+                'label' => 'Provincia della scuola di provenienza*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Provincia della scuola di provenienza'
+                    )
+                ))
 
             ->add('attendedSchoolRegion', 'entity', array(
                'label' => 'Regione della scuola*',

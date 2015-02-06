@@ -37,6 +37,10 @@ a4u_form_showStage:
     path:   /admin/form/show_stage
     defaults: { _controller: A4UFormBundle:Page:showstage }
 
+a4u_form_searchPAI:
+    path: /admin/form/search_stage
+    defaults: { _controller: A4UFormBundle:Form:searchStage }
+
 
 
 a4u_form_generico:

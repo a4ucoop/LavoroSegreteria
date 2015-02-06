@@ -652,4 +652,9 @@ class StuAnagScuole
         return $this->Sigla;
     }
 
+    public function __toString()
+    {
+        return $this->regione;
+    }
+
 }
