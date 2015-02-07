@@ -176,20 +176,9 @@ class PageController extends Controller
         $Stage = new Stage();; 
         $repository = $this->getDoctrine()->getRepository('A4UDataBundle:AttivitaDate');
 
-/*        $query = $repository->createQueryBuilder('AD')
-                    ->select('AD.periodoDesc')
-                    ->where('AD.attivo=1')
-                    ->andWhere('AD.idAttivita=37')
-                    ->getQuery();
-
-        $dates = $query->getResult();*/
-
-        // -----------> PROVA DA RIMUOVERE!!! <-------------
-/*        return $this->render('A4UFormBundle:Default:printObj.html.twig', array(
-            'date' => $dates,
-        ));  */       
-
-        $form = $this->createForm('stage', $Stage);
+        $form = $this->createForm('stage', $Stage, array(
+            'em' => $this->getDoctrine()->getManager(),
+        ));
 
         $form->handleRequest($request);
 

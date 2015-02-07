@@ -18,19 +18,18 @@ use A4U\DataBundle\Entity\OpzioniStage;
 use A4U\DataBundle\Entity\OpzioniStageDett;
 use A4U\DataBundle\Entity\StuAnagScuole;
 
+use A4U\FormBundle\Form\DataTransformer\regObjToStringTransformer;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
 class StageType extends AbstractType
 {
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-    #$em = $this->getDoctrine()->getManager();
-    #$regioni = $em->getRepository('A4UDataBundle:StuAnagScuole')
-    #    ->getRegioni();
-
-/*        $Regione = new StuAnagScuole;
-        $Regioni = $Regione->getRegioni();*/
-
+        // this assumes that the entity manager was passed in as an option
+        $entityManager = $options['em'];
+        $transformer = new regObjToStringTransformer($entityManager);
 
         $builder
             ->add('name', 'text', array(
@@ -151,7 +150,8 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'
-                    )
+                    ),
+                $builder->addModelTransformer($transformer)
                 ))
 
             ->add('attendedSchoolCity', 'text', array(
@@ -206,7 +206,6 @@ class StageType extends AbstractType
                     return $er->createQueryBuilder('OS')
                                 ->where('OS.attivo=1');
                     },
-                //'property' => 'Descrizione',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'
@@ -250,11 +249,7 @@ class StageType extends AbstractType
             {
                 $form->add('firstChoice', 'choice', array(
                 'label' => 'Prima scelta*',
-                //'class' => 'A4UDataBundle:OpzioniStageDett',
                 'choices'     => $availableChoices,
-                //'property' => 'codStage',
-                //'expanded' => true,
-                //'multiple' => true,
                 'attr' => array(
                     'class' => 'form-control',
                     )
@@ -299,25 +294,22 @@ class StageType extends AbstractType
             }
         );
 
-        
+    }
 
-/*        $formModifierRegione = function (FormInterface $form, StuAnagScuole $regione = null)
-        {
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver
+            ->setDefaults(array(
+                'data_class' => 'A4U\FormBundle\Entity\Stage',
+            ))
+            ->setRequired(array(
+                'em',
+            ))
+            ->setAllowedTypes(array(
+                'em' => 'Doctrine\Common\Persistence\ObjectManager',
+            ));
 
-            ->add('attendedSchoolRegion', 'choice', array(
-                'label' => 'Regione della scuola di appartenenza',
-                'class' => 'A4UDataBundle:StuAnagScuole',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('ASR')->distinct();
-                    },
-                'property' => 'regione',
-                'attr' => array(
-                    'class' => 'form-control'
-                    )
-                ))
-        }*/
-
-
+        // ...
     }
 
     public function getName()
