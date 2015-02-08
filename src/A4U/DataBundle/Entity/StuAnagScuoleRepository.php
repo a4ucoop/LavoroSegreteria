@@ -19,11 +19,57 @@ class StuAnagScuoleRepository extends EntityRepository
      */
     public function getRegioni()
     {
-    	$qb = $this->getEntityManager()->createQueryBuilder();
+        $qb = $this->getEntityManager()->createQueryBuilder();
         
         $qb->select('s0')
         ->from('A4UDataBundle:StuAnagScuole', 's0')
         ->groupBy('s0.regione');
+
+        return $qb;
+    }
+
+    /**
+     * Get Provincie
+     * @param StuAnagScuole
+     * @return array 
+     */
+    public function getProvincie(StuAnagScuole $scuola)
+    {
+        
+        $regione = $scuola->getRegione();
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        
+        $qb->select('s0')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.regione = :regione')
+        ->groupBy('s0.provincia')
+        ->setParameters(array(
+            'regione' => ($regione)
+        ));
+
+        return $qb;
+    }    
+
+    /**
+     * Get Citta
+     * @param StuAnagScuole
+     * @return array 
+     */
+    public function getCitta(StuAnagScuole $scuola)
+    {
+    	
+        $provincia = $scuola->getProvincia();
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        
+        $qb->select('s0')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.provincia = :provincia')
+        ->groupBy('s0.citta')
+        ->setParameters(array(
+            'provincia' => ($provincia)
+        ));
 
         return $qb;
     }

@@ -24,14 +24,6 @@ class StageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-    #$em = $this->getDoctrine()->getManager();
-    #$regioni = $em->getRepository('A4UDataBundle:StuAnagScuole')
-    #    ->getRegioni();
-
-/*        $Regione = new StuAnagScuole;
-        $Regioni = $Regione->getRegioni();*/
-
-
         $builder
             ->add('name', 'text', array(
                 'label' => 'Nome*',
@@ -117,32 +109,13 @@ class StageType extends AbstractType
                     )
                 ))
 
-             ->add('attendedSchool', 'text', array(
-                'label' => 'Scuola di provenienza*',
-                'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Scuola di provenienza'
-                    )
-                ))
-
-             ->add('attendedSchoolCity', 'text', array(
-                'label' => 'Città della scuola di provenienza*',
-                'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Città della scuola di provenienza'
-                    )
-                ))
-
-             ->add('attendedSchoolDistrict', 'text', array(
-                'label' => 'Provincia della scuola di provenienza*',
-                'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Provincia della scuola di provenienza'
-                    )
-                ))
-
             ->add('attendedSchoolRegion', 'entity', array(
-               'label' => 'Regione della scuola*',
+                /*
+                    usando mapped false si dice a simfony che il campo non deve essere scritto
+                    nell'entità
+                */
+                'mapped' => false,
+                'label' => 'Regione della scuola*',
                 'class' => 'A4UDataBundle:StuAnagScuole',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->getRegioni();
@@ -154,11 +127,30 @@ class StageType extends AbstractType
                     )
                 ))
 
-            ->add('attendedSchoolCity', 'text', array(
-                'label' => 'Città della scuola*',
+            ->add('attendedSchoolDistrict', 'choice', array(
+                'mapped' => false,
+                'label' => 'Provincia della scuola di provenienza*',
+                'choices' => array("Scegli una provincia..."),
                 'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => 'Città della scuola di provenienza'
+                    )
+                ))
+
+             ->add('attendedSchoolCity', 'choice', array(
+                'mapped' => false,
+                'label' => 'Città della scuola di provenienza*',
+                'choices' => array("Scegli una città..."),
+                'attr' => array(
+                    'class' => 'form-control',
+                    )
+                ))
+
+             ->add('attendedSchool', 'choice', array(
+                'mapped' => false,
+                'label' => 'Scuola di provenienza*',
+                'choices' => array("Scegli una scuola..."),
+                'attr' => array(
+                    'class' => 'form-control',
                     )
                 ))
 
@@ -299,26 +291,67 @@ class StageType extends AbstractType
             }
         );
 
-        
 
-/*        $formModifierRegione = function (FormInterface $form, StuAnagScuole $regione = null)
+#--------------------------------Riempie la lista delle provincie--------------------------
+
+        $addDistrict = function (FormInterface $form, StuAnagScuole $attendedSchoolRegion)
         {
-
-            ->add('attendedSchoolRegion', 'choice', array(
-                'label' => 'Regione della scuola di appartenenza',
+            //$districts = $attendedSchoolRegion->getProvincie($attendedSchoolRegion);
+                $form->add('attendedSchoolDistrict', 'entity', array(
+                'mapped' => false,
+                'label' => 'Provincia della scuola di provenienza*',
                 'class' => 'A4UDataBundle:StuAnagScuole',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('ASR')->distinct();
+                'query_builder' => function(EntityRepository $er) use($attendedSchoolRegion) {
+                    return $er->getProvincie($attendedSchoolRegion);
                     },
-                'property' => 'regione',
+                'property' => 'provincia',
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                     )
-                ))
-        }*/
+                ));
+            
+        };
 
+        $builder->get('attendedSchoolRegion')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($addDistrict){
+                $attendedSchoolRegion = $event->getForm()->getData();
+                $addDistrict($event->getForm()->getParent(), $attendedSchoolRegion);
+            }
+        );
+
+#--------------------------------Riempie la lista delle Città--------------------------
+
+        $addCity = function (FormInterface $form, StuAnagScuole $attendedSchoolDistrict)
+        {
+            //$districts = $attendedSchoolRegion->getProvincie($attendedSchoolRegion);
+                $form->add('attendedSchoolCity', 'entity', array(
+                'mapped' => false,
+                'label' => 'Città della scuola di provenienza*',
+                'class' => 'A4UDataBundle:StuAnagScuole',
+                'query_builder' => function(EntityRepository $er) use($attendedSchoolDistrict) {
+                    return $er->getCitta($attendedSchoolDistrict);
+                    },
+                'property' => 'citta',
+                'attr' => array(
+                    'class' => 'form-control',
+                    )
+                ));
+            
+        };
+
+        $builder->get('attendedSchoolDistrict')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($addCity){
+                $attendedSchoolDistrict = $event->getForm()->getData();
+                $addCity($event->getForm()->getParent(), $attendedSchoolDistrict);
+            }
+        );
+
+    
 
     }
+
 
     public function getName()
     {

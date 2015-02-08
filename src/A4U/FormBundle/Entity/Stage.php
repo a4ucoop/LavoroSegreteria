@@ -88,32 +88,10 @@ class Stage
     private $birthPlace;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchoolRegion", type="string", length=128)
+     * @ORM\ManyToOne(targetEntity="A4U\DataBundle\Entity\StuAnagScuole", inversedBy="stages")
+     * @ORM\JoinColumn(name="attendedSchool_id", referencedColumnName="idRecord")
      */
-    private $attendedSchoolRegion;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchoolDistrict", type="string", length=128)
-     */
-    private $attendedSchoolDistrict;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchoolCity", type="string", length=128)
-     */
-    private $attendedSchoolCity;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchool", type="string", length=128)
-     */
-    private $attendedSchool;
+    protected $attendedSchool;
 
     /**
      * @var string
@@ -178,6 +156,8 @@ class Stage
      * @Gedmo\Timestampable(on="create")
      */
     private $submissiondate;
+
+
 
     /**
      * Get id
@@ -397,98 +377,6 @@ class Stage
     }
 
     /**
-     * Set attendedSchoolRegion
-     *
-     * @param string $attendedSchoolRegion
-     * @return Stage
-     */
-    public function setAttendedSchoolRegion($attendedSchoolRegion)
-    {
-        $this->attendedSchoolRegion = $attendedSchoolRegion;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchoolRegion
-     *
-     * @return string 
-     */
-    public function getAttendedSchoolRegion()
-    {
-        return $this->attendedSchoolRegion;
-    }
-
-    /**
-     * Set attendedSchoolDistrict
-     *
-     * @param string $attendedSchoolDistrict
-     * @return Stage
-     */
-    public function setAttendedSchoolDistrict($attendedSchoolDistrict)
-    {
-        $this->attendedSchoolDistrict = $attendedSchoolDistrict;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchoolDistrict
-     *
-     * @return string 
-     */
-    public function getAttendedSchoolDistrict()
-    {
-        return $this->attendedSchoolDistrict;
-    }
-
-    /**
-     * Set attendedSchoolCity
-     *
-     * @param string $attendedSchoolCity
-     * @return Stage
-     */
-    public function setAttendedSchoolCity($attendedSchoolCity)
-    {
-        $this->attendedSchoolCity = $attendedSchoolCity;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchoolCity
-     *
-     * @return string 
-     */
-    public function getAttendedSchoolCity()
-    {
-        return $this->attendedSchoolCity;
-    }
-
-    /**
-     * Set attendedSchool
-     *
-     * @param string $attendedSchool
-     * @return Stage
-     */
-    public function setAttendedSchool($attendedSchool)
-    {
-        $this->attendedSchool = $attendedSchool;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchool
-     *
-     * @return string 
-     */
-    public function getAttendedSchool()
-    {
-        return $this->attendedSchool;
-    }
-
-    /**
      * Set fiscalcode
      *
      * @param string $fiscalcode
@@ -604,6 +492,52 @@ class Stage
     }
 
     /**
+     * Set firstChoice
+     *
+     * @param string $firstChoice
+     * @return Stage
+     */
+    public function setFirstChoice($firstChoice)
+    {
+        $this->firstChoice = $firstChoice;
+
+        return $this;
+    }
+
+    /**
+     * Get firstChoice
+     *
+     * @return string 
+     */
+    public function getFirstChoice()
+    {
+        return $this->firstChoice;
+    }
+
+    /**
+     * Set secondChoice
+     *
+     * @param string $secondChoice
+     * @return Stage
+     */
+    public function setSecondChoice($secondChoice)
+    {
+        $this->secondChoice = $secondChoice;
+
+        return $this;
+    }
+
+    /**
+     * Get secondChoice
+     *
+     * @return string 
+     */
+    public function getSecondChoice()
+    {
+        return $this->secondChoice;
+    }
+
+    /**
      * Set moneyPayed
      *
      * @param string $moneyPayed
@@ -650,48 +584,25 @@ class Stage
     }
 
     /**
-     * Set firstChoice
+     * Set attendedSchool
      *
-     * @param string $firstChoice
+     * @param \A4U\DataBundle\Entity\StuAnagScuole $attendedSchool
      * @return Stage
      */
-    public function setFirstChoice($firstChoice)
+    public function setAttendedSchool(\A4U\DataBundle\Entity\StuAnagScuole $attendedSchool = null)
     {
-        $this->firstChoice = $firstChoice;
+        $this->attendedSchool = $attendedSchool;
 
         return $this;
     }
 
     /**
-     * Get firstChoice
+     * Get attendedSchool
      *
-     * @return string 
+     * @return \A4U\DataBundle\Entity\StuAnagScuole 
      */
-    public function getFirstChoice()
+    public function getAttendedSchool()
     {
-        return $this->firstChoice;
-    }
-
-    /**
-     * Set secondChoice
-     *
-     * @param string $secondChoice
-     * @return Stage
-     */
-    public function setSecondChoice($secondChoice)
-    {
-        $this->secondChoice = $secondChoice;
-
-        return $this;
-    }
-
-    /**
-     * Get secondChoice
-     *
-     * @return string 
-     */
-    public function getSecondChoice()
-    {
-        return $this->secondChoice;
+        return $this->attendedSchool;
     }
 }

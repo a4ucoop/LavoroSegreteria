@@ -3,6 +3,7 @@
 namespace A4U\DataBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * StuAnagScuole
@@ -147,17 +148,17 @@ class StuAnagScuole
 
 
     /**
-     * Set idRecord
-     *
-     * @param integer $idRecord
-     * @return StuAnagScuole
+     * @ORM\OneToMany(targetEntity="A4U\FormBundle\Entity\Stage", mappedBy="attendedSchool")
      */
-    public function setIdRecord($idRecord)
-    {
-        $this->idRecord = $idRecord;
+    protected $stages;
 
-        return $this;
+    public function __construct()
+    {
+        $this->stages = new ArrayCollection();
     }
+
+
+    
 
     /**
      * Get idRecord
@@ -517,12 +518,12 @@ class StuAnagScuole
     /**
      * Set CODMIN
      *
-     * @param string $CODMIN
+     * @param string $cODMIN
      * @return StuAnagScuole
      */
-    public function setCODMIN($CODMIN)
+    public function setCODMIN($cODMIN)
     {
-        $this->CODMIN = $CODMIN;
+        $this->CODMIN = $cODMIN;
 
         return $this;
     }
@@ -540,12 +541,12 @@ class StuAnagScuole
     /**
      * Set IdScuola
      *
-     * @param integer $IdScuola
+     * @param integer $idScuola
      * @return StuAnagScuole
      */
-    public function setIdScuola($IdScuola)
+    public function setIdScuola($idScuola)
     {
-        $this->IdScuola = $IdScuola;
+        $this->IdScuola = $idScuola;
 
         return $this;
     }
@@ -563,12 +564,12 @@ class StuAnagScuole
     /**
      * Set CODSCUOLA
      *
-     * @param string $CODSCUOLA
+     * @param string $cODSCUOLA
      * @return StuAnagScuole
      */
-    public function setCODSCUOLA($CODSCUOLA)
+    public function setCODSCUOLA($cODSCUOLA)
     {
-        $this->CODSCUOLA = $CODSCUOLA;
+        $this->CODSCUOLA = $cODSCUOLA;
 
         return $this;
     }
@@ -586,12 +587,12 @@ class StuAnagScuole
     /**
      * Set TipoScuolaMiurCod
      *
-     * @param string $TipoScuolaMiurCod
+     * @param string $tipoScuolaMiurCod
      * @return StuAnagScuole
      */
-    public function setTipoScuolaMiurCod($TipoScuolaMiurCod)
+    public function setTipoScuolaMiurCod($tipoScuolaMiurCod)
     {
-        $this->TipoScuolaMiurCod = $TipoScuolaMiurCod;
+        $this->TipoScuolaMiurCod = $tipoScuolaMiurCod;
 
         return $this;
     }
@@ -609,12 +610,12 @@ class StuAnagScuole
     /**
      * Set Tipologia
      *
-     * @param string $Tipologia
+     * @param string $tipologia
      * @return StuAnagScuole
      */
-    public function setTipologia($Tipologia)
+    public function setTipologia($tipologia)
     {
-        $this->Tipologia = $Tipologia;
+        $this->Tipologia = $tipologia;
 
         return $this;
     }
@@ -632,12 +633,12 @@ class StuAnagScuole
     /**
      * Set Sigla
      *
-     * @param string $Sigla
+     * @param string $sigla
      * @return StuAnagScuole
      */
-    public function setSigla($Sigla)
+    public function setSigla($sigla)
     {
-        $this->Sigla = $Sigla;
+        $this->Sigla = $sigla;
 
         return $this;
     }
@@ -652,9 +653,36 @@ class StuAnagScuole
         return $this->Sigla;
     }
 
-    public function __toString()
+    /**
+     * Add stages
+     *
+     * @param \A4U\FormBundle\Entity\Stage $stages
+     * @return StuAnagScuole
+     */
+    public function addStage(\A4U\FormBundle\Entity\Stage $stages)
     {
-        return $this->regione;
+        $this->stages[] = $stages;
+
+        return $this;
     }
 
+    /**
+     * Remove stages
+     *
+     * @param \A4U\FormBundle\Entity\Stage $stages
+     */
+    public function removeStage(\A4U\FormBundle\Entity\Stage $stages)
+    {
+        $this->stages->removeElement($stages);
+    }
+
+    /**
+     * Get stages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStages()
+    {
+        return $this->stages;
+    }
 }
