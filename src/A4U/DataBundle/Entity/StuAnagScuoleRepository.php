@@ -30,7 +30,7 @@ class StuAnagScuoleRepository extends EntityRepository
 
     /**
      * Get Provincie
-     * @param StuAnagScuole
+     * @param StuAnagScuole|null
      * @return array 
      */
     public function getProvincie(StuAnagScuole $scuola)
@@ -58,7 +58,7 @@ class StuAnagScuoleRepository extends EntityRepository
      */
     public function getCitta(StuAnagScuole $scuola)
     {
-    	
+        
         $provincia = $scuola->getProvincia();
 
         $qb = $this->getEntityManager()->createQueryBuilder();
@@ -69,6 +69,27 @@ class StuAnagScuoleRepository extends EntityRepository
         ->groupBy('s0.citta')
         ->setParameters(array(
             'provincia' => ($provincia)
+        ));
+
+        return $qb;
+    }
+    /**
+     * Get School
+     * @param StuAnagScuole
+     * @return array 
+     */
+    public function getSchool(StuAnagScuole $scuola)
+    {
+    	
+        $citta = $scuola->getCitta();
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        
+        $qb->select('s0')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.citta = :citta')
+        ->setParameters(array(
+            'citta' => ($citta)
         ));
 
         return $qb;

@@ -130,7 +130,8 @@
     <script>
 
     var $schoolRegion = $('#stage_attendedSchoolRegion');
-    $schoolRegion.change(function() {
+    //$schoolRegion.change(function() {
+    $(document).on('change', '#stage_attendedSchoolRegion', function() {
       var $form = $(this).closest('form');
       var data = {};
       data[$schoolRegion.attr('name')] = $schoolRegion.val();
@@ -139,6 +140,7 @@
         type: $form.attr('method'),
         data : data,
         success: function(html) {
+        //alert(($(html).find('#stage_attendedSchoolCity').value));
           $('#stage_attendedSchoolDistrict').replaceWith(
             $(html).find('#stage_attendedSchoolDistrict')
           );
@@ -146,20 +148,21 @@
       });
     });
 
-    </script>
-    
-    <script>
 
     var $schoolDistrict = $('#stage_attendedSchoolDistrict');
-    $schoolDistrict.on.change(function() {
+    //$schoolDistrict.change(function() {
+    $(document).on('change', '#stage_attendedSchoolDistrict', function() {
+      //alert("dai cazzo funziona!");
       var $form = $(this).closest('form');
       var data = {};
       data[$schoolDistrict.attr('name')] = $schoolDistrict.val();
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
         success: function(html) {
+          //alert(($(html).find('#stage_attendedSchoolCity').html));
           $('#stage_attendedSchoolCity').replaceWith(
             $(html).find('#stage_attendedSchoolCity')
           );
@@ -167,7 +170,31 @@
       });
     });
 
+
+    var $schoolCity = $('#stage_attendedSchoolCity');
+    //$schoolDistrict.change(function() {
+    $(document).on('change', '#stage_attendedSchoolCity', function() {
+      //alert("dai cazzo funziona!");
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
+      data[$schoolDistrict.attr('name')] = $schoolDistrict.val();
+      data[$schoolCity.attr('name')] = $schoolCity.val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          //alert(($(html).find('#stage_attendedSchoolCity').html));
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
+        }
+      });
+    });
+
     </script>
+
         
 
 {% endblock %}
