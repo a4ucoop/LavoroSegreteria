@@ -135,6 +135,7 @@
       var $form = $(this).closest('form');
       var data = {};
       data[$schoolRegion.attr('name')] = $schoolRegion.val();
+
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
@@ -144,6 +145,12 @@
           $('#stage_attendedSchoolDistrict').replaceWith(
             $(html).find('#stage_attendedSchoolDistrict')
           );
+          $('#stage_attendedSchoolCity').replaceWith(
+            $(html).find('#stage_attendedSchoolCity')
+          );
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
         }
       });
     });
@@ -152,19 +159,22 @@
     var $schoolDistrict = $('#stage_attendedSchoolDistrict');
     //$schoolDistrict.change(function() {
     $(document).on('change', '#stage_attendedSchoolDistrict', function() {
-      //alert("dai cazzo funziona!");
+      alert($('#stage_attendedSchoolDistrict').val());
       var $form = $(this).closest('form');
       var data = {};
-      data[$schoolDistrict.attr('name')] = $schoolDistrict.val();
+      data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
       data[$schoolRegion.attr('name')] = $schoolRegion.val();
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
         success: function(html) {
-          //alert(($(html).find('#stage_attendedSchoolCity').html));
+          alert($(html).find('#stage_attendedSchoolCity').html());
           $('#stage_attendedSchoolCity').replaceWith(
             $(html).find('#stage_attendedSchoolCity')
+          );
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
           );
         }
       });
@@ -174,18 +184,19 @@
     var $schoolCity = $('#stage_attendedSchoolCity');
     //$schoolDistrict.change(function() {
     $(document).on('change', '#stage_attendedSchoolCity', function() {
-      //alert("dai cazzo funziona!");
+      alert($('#stage_attendedSchoolCity').val());
+      var $form = $(this).closest('form');
       var $form = $(this).closest('form');
       var data = {};
       data[$schoolRegion.attr('name')] = $schoolRegion.val();
-      data[$schoolDistrict.attr('name')] = $schoolDistrict.val();
-      data[$schoolCity.attr('name')] = $schoolCity.val();
+      data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
+      data[$schoolCity.attr('name')] = $('#stage_attendedSchoolCity').val();
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
         success: function(html) {
-          //alert(($(html).find('#stage_attendedSchoolCity').html));
+          alert($(html).find('#stage_attendedSchool').html());
           $('#stage_attendedSchool').replaceWith(
             $(html).find('#stage_attendedSchool')
           );
