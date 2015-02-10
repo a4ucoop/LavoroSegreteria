@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7752be57a3e890616a4a7b5649ad770e",
+    "hash": "eb8cef3a442d75d17c12f1feed95461b",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -936,12 +936,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ircmaxell/password_compat.git",
-                "reference": "de01fa521702990ed066446f2931914272336444"
+                "reference": "c859f7c11ef51f3a7bc5527b3df3f3830b620b0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/de01fa521702990ed066446f2931914272336444",
-                "reference": "de01fa521702990ed066446f2931914272336444",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/c859f7c11ef51f3a7bc5527b3df3f3830b620b0d",
+                "reference": "c859f7c11ef51f3a7bc5527b3df3f3830b620b0d",
                 "shasum": ""
             },
             "require-dev": {
@@ -970,7 +970,7 @@
                 "hashing",
                 "password"
             ],
-            "time": "2015-01-09 18:38:25"
+            "time": "2015-02-04 19:29:18"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1753,16 +1753,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.5.9",
+            "version": "v2.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "e082a9f28edfd5a081b60e009889b30c04979924"
+                "reference": "6ffe6437a9e734eabd6d092387f065bebfefcd24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/e082a9f28edfd5a081b60e009889b30c04979924",
-                "reference": "e082a9f28edfd5a081b60e009889b30c04979924",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/6ffe6437a9e734eabd6d092387f065bebfefcd24",
+                "reference": "6ffe6437a9e734eabd6d092387f065bebfefcd24",
                 "shasum": ""
             },
             "require": {
@@ -1862,7 +1862,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-01-07 12:32:08"
+            "time": "2015-02-02 09:26:53"
         },
         {
             "name": "twig/extensions",

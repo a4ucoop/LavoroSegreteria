@@ -124,9 +124,16 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="studyField", type="string", length=128)
+     * @ORM\Column(name="firstStudyField", type="string", length=128)
      */
-    private $studyField;
+    private $firstStudyField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="secondStudyField", type="string", length=128)
+     */
+    private $secondStudyField;
 
     /**
      * @var string
