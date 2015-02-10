@@ -157,4 +157,5 @@ A4U\FormBundle\Entity\Generico:
         attendedActivity:
             - NotBlank: ~
         fiscalcode:
-            - NotBlank: ~ 
+            - NotBlank: ~
+

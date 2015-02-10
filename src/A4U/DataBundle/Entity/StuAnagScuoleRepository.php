@@ -52,6 +52,37 @@ class StuAnagScuoleRepository extends EntityRepository
     }    
 
     /**
+     * Get Provincie
+     * @param string|null
+     * @return array 
+     */
+    public function getProvincieStringa($scuola)
+    {
+        
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        
+        $qb->select('s0.regione')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.idRecord = :scuola')
+        ->setParameters(array(
+            'scuola' => ($scuola)
+        ));
+        $query = $qb->getQuery();
+        $regione = $query->getResult();
+        
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('s0')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.regione = :regione')
+        ->groupBy('s0.provincia')
+        ->setParameters(array(
+            'regione' => ($regione)
+        ));
+
+        return $qb;
+    }    
+
+    /**
      * Get Citta
      * @param StuAnagScuole
      * @return array 
@@ -73,6 +104,38 @@ class StuAnagScuoleRepository extends EntityRepository
 
         return $qb;
     }
+
+    /**
+     * Get Citta
+     * @param string|null
+     * @return array 
+     */
+    public function getCittaStringa($scuola)
+    {
+        
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        
+        $qb->select('s0.provincia')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.idRecord = :scuola')
+        ->setParameters(array(
+            'scuola' => ($scuola)
+        ));
+        $query = $qb->getQuery();
+        $provincia = $query->getResult();
+        
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('s0')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.provincia = :provincia')
+        ->groupBy('s0.citta')
+        ->setParameters(array(
+            'provincia' => ($provincia)
+        ));
+
+        return $qb;
+    }
+
     /**
      * Get School
      * @param StuAnagScuole
@@ -94,4 +157,36 @@ class StuAnagScuoleRepository extends EntityRepository
 
         return $qb;
     }
+
+    /*
+     * Get School
+     * @param string|null
+     * @return array 
+     */
+    public function getSchoolString($scuola)
+    {
+    	
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        
+        $qb->select('s0.citta')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.idRecord = :scuola')
+        ->setParameters(array(
+            'scuola' => ($scuola)
+        ));
+        $query = $qb->getQuery();
+        $citta = $query->getResult();
+        
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('s0')
+        ->from('A4UDataBundle:StuAnagScuole', 's0')
+        ->where('s0.citta = :citta')
+        ->orderBy('s0.Tipologia','ASC')
+        ->setParameters(array(
+            'citta' => ($citta)
+        ));
+
+        return $qb;
+    }
+
 }

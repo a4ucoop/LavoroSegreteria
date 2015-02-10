@@ -685,4 +685,12 @@ class StuAnagScuole
     {
         return $this->stages;
     }
+
+    public function __toString()
+    {
+        $tipologia = $this->getTipologia();
+        $denominazione = $this->getDenominazione();
+        $diploma = $this->getDiploma();
+        return ($tipologia . ' - '  .  $denominazione . ' - ' .  $diploma);
+    }
 }
