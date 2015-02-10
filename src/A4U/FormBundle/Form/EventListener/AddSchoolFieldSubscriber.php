@@ -31,7 +31,7 @@ class AddSchoolFieldSubscriber implements EventSubscriberInterface
         if($attendedSchoolCity){
             $formOptions = array(
                 'class'         => 'A4UDataBundle:StuAnagScuole',
-                'mapped' => false,
+                #'mapped' => false,
                 'empty_value'   => 'Scegli la scuola....',
                 'label'         => 'Scuola di provenienza',
                 'query_builder' => function(EntityRepository $er) use($attendedSchoolCity) {
