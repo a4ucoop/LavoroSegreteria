@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * OpzioniStageDett
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="A4U\DataBundle\Entity\OpzioniStageDettRepository")
  */
 class OpzioniStageDett
 {

@@ -21,6 +21,7 @@ use A4U\DataBundle\Entity\StuAnagScuole;
 use A4U\FormBundle\Form\EventListener\AddCityFieldSubscriber;
 use A4U\FormBundle\Form\EventListener\AddDistrictFieldSubscriber;
 use A4U\FormBundle\Form\EventListener\AddSchoolFieldSubscriber;
+use A4U\FormBundle\Form\EventListener\AddFirstChoiceFieldSubscriber;
 
 class StageType extends AbstractType
 {
@@ -182,6 +183,7 @@ class StageType extends AbstractType
                     'placeholder' => 'Campo di studi'
                     )
                 ))
+              ->addEventSubscriber(new AddFirstChoiceFieldSubscriber('firstChoice'))
 
 
             ->add('secondChoice', 'choice', array(
@@ -212,58 +214,58 @@ class StageType extends AbstractType
                 ));
 
 
-        $formModifier = function (FormInterface $form, OpzioniStage $studyField = null)
-        {
-            $availableChoices = null === $studyField ? array("scegli un campo di studi...") : $studyField->getAvailableChoices($studyField);
-            
-            if ( !$availableChoices[0] == "scegli un campo di studi..." )
-            {
-                $form->add('firstChoice', 'choice', array(
-                'label' => 'Prima scelta*',
-                'choices'     => $availableChoices,
-                'attr' => array(
-                    'class' => 'form-control',
-                    )
-                ));
-            }
-            else
-            {
-                $form->add('firstChoice', 'text', array(
-                'label' => 'Prima scelta*',
-                'attr' => array(
-                    'class' => 'form-control disabled',
-                    'placeholder' => 'Scegli un campo di studi...'
-                    )
-                ));
-            }
+        #$formModifier = function (FormInterface $form, OpzioniStage $studyField = null)
+        #{
+        #    $availableChoices = null === $studyField ? array("scegli un campo di studi...") : $studyField->getAvailableChoices($studyField);
+        #    
+        #    if ( !$availableChoices[0] == "scegli un campo di studi..." )
+        #    {
+        #        $form->add('firstChoice', 'choice', array(
+        #        'label' => 'Prima scelta*',
+        #        'choices'     => $availableChoices,
+        #        'attr' => array(
+        #            'class' => 'form-control',
+        #            )
+        #        ));
+        #    }
+        #    else
+        #    {
+        #        $form->add('firstChoice', 'text', array(
+        #        'label' => 'Prima scelta*',
+        #        'attr' => array(
+        #            'class' => 'form-control disabled',
+        #            'placeholder' => 'Scegli un campo di studi...'
+        #            )
+        #        ));
+        #    }
 
-        };
+        #};
 
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($formModifier) {
+        #$builder->addEventListener(
+        #    FormEvents::PRE_SET_DATA,
+        #    function (FormEvent $event) use ($formModifier) {
     
-                // this would be your entity, i.e. SportMeetup
-                $data = $event->getData();
+        #        // this would be your entity, i.e. SportMeetup
+        #        $data = $event->getData();
 
-                $formModifier($event->getForm(), $data->getstudyField());
+        #        $formModifier($event->getForm(), $data->getstudyField());
 
-            }
-        );
+        #    }
+        #);
     
 
-        $builder->get('studyField')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier) {
-                // It's important here to fetch $event->getForm()->getData(), as
-                // $event->getData() will get you the client data (that is, the ID)
-                $studyField = $event->getForm()->getData();
+        #$builder->get('studyField')->addEventListener(
+        #    FormEvents::POST_SUBMIT,
+        #    function (FormEvent $event) use ($formModifier) {
+        #        // It's important here to fetch $event->getForm()->getData(), as
+        #        // $event->getData() will get you the client data (that is, the ID)
+        #        $studyField = $event->getForm()->getData();
 
-                // since we've added the listener to the child, we'll have to pass on
-                // the parent to the callback functions!
-                $formModifier($event->getForm()->getParent(), $studyField);
-            }
-        );
+        #        // since we've added the listener to the child, we'll have to pass on
+        #        // the parent to the callback functions!
+        #        $formModifier($event->getForm()->getParent(), $studyField);
+        #    }
+        #);
 
     }
 

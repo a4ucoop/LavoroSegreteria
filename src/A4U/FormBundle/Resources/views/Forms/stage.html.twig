@@ -125,9 +125,6 @@
       });
     });
 
-    </script>
-
-    <script>
 
     var $schoolRegion = $('#stage_attendedSchoolRegion');
     //$schoolRegion.change(function() {
@@ -214,8 +211,24 @@
       //  }
       //});
     });
-    </script>
 
+    var $studyField = $('#stage_studyField');
+    $(document).on('change', '#stage_studyField', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$studyField.attr('name')] = $('#stage_studyField').val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_firstChoice').replaceWith(
+            $(html).find('#stage_firstChoice')
+          );
+        }
+      });
+    });
+    </script>
         
 
 {% endblock %}
