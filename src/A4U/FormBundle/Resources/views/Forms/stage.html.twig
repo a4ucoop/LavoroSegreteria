@@ -58,15 +58,21 @@
                     {{ form_widget(form.stagePeriod) }}
                 </div>
                 <div class="form-group">
-                    {{ form_label(form.studyField) }}
-                    {{ form_errors(form.studyField) }}
-                    {{ form_widget(form.studyField) }}
+                    {{ form_label(form.firstStudyField) }}
+                    {{ form_errors(form.firstStudyField) }}
+                    {{ form_widget(form.firstStudyField) }}
                 </div>
 
                 <div class="form-group">
                     {{ form_label(form.firstChoice) }}
                     {{ form_errors(form.firstChoice) }}
                     {{ form_widget(form.firstChoice) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.secondStudyField) }}
+                    {{ form_errors(form.secondStudyField) }}
+                    {{ form_widget(form.secondStudyField) }}
                 </div>
 
                 <div class="form-group">
@@ -101,29 +107,29 @@
 
     <script>
 
-    var $studyField = $('#stage_studyField');
-    // When sport gets selected ...
-    $studyField.change(function() {
-      // ... retrieve the corresponding form.
-      var $form = $(this).closest('form');
-      // Simulate form data, but only include the selected sport value.
-      var data = {};
-      data[$studyField.attr('name')] = $studyField.val();
-      // Submit data via AJAX to the form's action path.
-      $.ajax({
-        url : $form.attr('action'),
-        type: $form.attr('method'),
-        data : data,
-        success: function(html) {
-          // Replace current position field ...
-          $('#stage_firstChoice').replaceWith(
-            // ... with the returned one from the AJAX response.
-            $(html).find('#stage_firstChoice')
-          );
-          // Position field now displays the appropriate positions.
-        }
-      });
-    });
+    //var $firstStudyField = $('#stage_firstStudyField');
+    //// When sport gets selected ...
+    //$firstStudyField.change(function() {
+    //  // ... retrieve the corresponding form.
+    //  var $form = $(this).closest('form');
+    //  // Simulate form data, but only include the selected sport value.
+    //  var data = {};
+    //  data[$firstStudyField.attr('name')] = $firstStudyField.val();
+    //  // Submit data via AJAX to the form's action path.
+    //  $.ajax({
+    //    url : $form.attr('action'),
+    //    type: $form.attr('method'),
+    //    data : data,
+    //    success: function(html) {
+    //      // Replace current position field ...
+    //      $('#stage_firstChoice').replaceWith(
+    //        // ... with the returned one from the AJAX response.
+    //        $(html).find('#stage_firstChoice')
+    //      );
+    //      // Position field now displays the appropriate positions.
+    //    }
+    //  });
+    //});
 
 
     var $schoolRegion = $('#stage_attendedSchoolRegion');
@@ -212,11 +218,11 @@
       //});
     });
 
-    var $studyField = $('#stage_studyField');
-    $(document).on('change', '#stage_studyField', function() {
+    var $firstStudyField = $('#stage_firstStudyField');
+    $(document).on('change', '#stage_firstStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$studyField.attr('name')] = $('#stage_studyField').val();
+      data[$firstStudyField.attr('name')] = $('#stage_firstStudyField').val();
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
@@ -228,7 +234,23 @@
         }
       });
     });
-    </script>
         
+    var $secondStudyField = $('#stage_secondStudyField');
+    $(document).on('change', '#stage_secondStudyField', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$secondStudyField.attr('name')] = $('#stage_secondStudyField').val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_secondChoice').replaceWith(
+            $(html).find('#stage_secondChoice')
+          );
+        }
+      });
+    });
+    </script>
 
 {% endblock %}

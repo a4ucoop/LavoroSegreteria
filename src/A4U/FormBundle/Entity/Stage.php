@@ -612,4 +612,50 @@ class Stage
     {
         return $this->attendedSchool;
     }
+
+    /**
+     * Set firstStudyField
+     *
+     * @param string $firstStudyField
+     * @return Stage
+     */
+    public function setFirstStudyField($firstStudyField)
+    {
+        $this->firstStudyField = $firstStudyField;
+
+        return $this;
+    }
+
+    /**
+     * Get firstStudyField
+     *
+     * @return string 
+     */
+    public function getFirstStudyField()
+    {
+        return $this->firstStudyField;
+    }
+
+    /**
+     * Set secondStudyField
+     *
+     * @param string $secondStudyField
+     * @return Stage
+     */
+    public function setSecondStudyField($secondStudyField)
+    {
+        $this->secondStudyField = $secondStudyField;
+
+        return $this;
+    }
+
+    /**
+     * Get secondStudyField
+     *
+     * @return string 
+     */
+    public function getSecondStudyField()
+    {
+        return $this->secondStudyField;
+    }
 }

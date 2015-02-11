@@ -9,7 +9,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Doctrine\ORM\EntityRepository;
 use A4U\DataBundle\Entity\OpzioniStageDett;
 
-class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
+class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
 {
     private $propertyPathToChoice;
 
@@ -31,8 +31,8 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         if($studyField){
             $formOptions = array(
                 'class'         => 'A4UDataBundle:OpzioniStageDett',
-                'empty_value'   => 'Prima scelta ...',
-                'label'         => 'Prima scelta per lo stage*',
+                'empty_value'   => 'Seconda scelta ...',
+                'label'         => 'Seconda scelta per lo stage*',
                 'query_builder' => function(EntityRepository $er) use($studyField) {
                     return $er->getChoices($studyField);
                     },
@@ -46,8 +46,8 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         else {
             $formOptions = array(
                'mapped' => false,
-               'label'  => 'Prima scelta per lo stage*',
-               'choices' => array("Prima scelta..."),
+               'label'  => 'Seconda scelta per lo stage*',
+               'choices' => array("Seconda scelta..."),
                'attr' => array(
                    'class' => 'form-control',
                    )
@@ -59,7 +59,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
 
     public function preSetData(FormEvent $event)
     {
-        $data = $event->getForm()->get('firstStudyField')->getData();
+        $data = $event->getForm()->get('secondStudyField')->getData();
         $form = $event->getForm();
 
         $this->addSchoolForm($form, $data);
@@ -70,7 +70,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        $studyField = array_key_exists('firstStudyField', $data) ? $data['firstStudyField'] : null;
+        $studyField = array_key_exists('secondStudyField', $data) ? $data['secondStudyField'] : null;
 
         $this->addSchoolForm($form, $studyField);
     }
