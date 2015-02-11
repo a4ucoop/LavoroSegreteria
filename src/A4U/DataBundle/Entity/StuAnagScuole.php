@@ -152,9 +152,21 @@ class StuAnagScuole
      */
     protected $stages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="A4U\FormBundle\Entity\PorteAperteEstate", mappedBy="attendedSchool")
+     */
+    protected $porteAperteEstate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="A4U\FormBundle\Entity\PorteAperteInverno", mappedBy="attendedSchool")
+     */
+    protected $porteAperteInverno;
+    
     public function __construct()
     {
         $this->stages = new ArrayCollection();
+        $this->porteAperteEstate = new ArrayCollection();
+        $this->porteAperteInverno = new ArrayCollection();
     }
 
 
@@ -692,5 +704,71 @@ class StuAnagScuole
         $denominazione = $this->getDenominazione();
         $diploma = $this->getDiploma();
         return ($tipologia . ' - '  .  $denominazione . ' - ' .  $diploma);
+    }
+
+    /**
+     * Add porteAperteEstate
+     *
+     * @param \A4U\FormBundle\Entity\PorteAperteEstate $porteAperteEstate
+     * @return StuAnagScuole
+     */
+    public function addPorteAperteEstate(\A4U\FormBundle\Entity\PorteAperteEstate $porteAperteEstate)
+    {
+        $this->porteAperteEstate[] = $porteAperteEstate;
+
+        return $this;
+    }
+
+    /**
+     * Remove porteAperteEstate
+     *
+     * @param \A4U\FormBundle\Entity\PorteAperteEstate $porteAperteEstate
+     */
+    public function removePorteAperteEstate(\A4U\FormBundle\Entity\PorteAperteEstate $porteAperteEstate)
+    {
+        $this->porteAperteEstate->removeElement($porteAperteEstate);
+    }
+
+    /**
+     * Get porteAperteEstate
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPorteAperteEstate()
+    {
+        return $this->porteAperteEstate;
+    }
+
+    /**
+     * Add porteAperteInverno
+     *
+     * @param \A4U\FormBundle\Entity\PorteAperteInverno $porteAperteInverno
+     * @return StuAnagScuole
+     */
+    public function addPorteAperteInverno(\A4U\FormBundle\Entity\PorteAperteInverno $porteAperteInverno)
+    {
+        $this->porteAperteInverno[] = $porteAperteInverno;
+
+        return $this;
+    }
+
+    /**
+     * Remove porteAperteInverno
+     *
+     * @param \A4U\FormBundle\Entity\PorteAperteInverno $porteAperteInverno
+     */
+    public function removePorteAperteInverno(\A4U\FormBundle\Entity\PorteAperteInverno $porteAperteInverno)
+    {
+        $this->porteAperteInverno->removeElement($porteAperteInverno);
+    }
+
+    /**
+     * Get porteAperteInverno
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPorteAperteInverno()
+    {
+        return $this->porteAperteInverno;
     }
 }

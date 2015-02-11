@@ -87,18 +87,10 @@ class PorteAperteInverno
     private $birthPlace;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchool", type="string", length=128)
+     * @ORM\ManyToOne(targetEntity="A4U\DataBundle\Entity\StuAnagScuole", inversedBy="stages")
+     * @ORM\JoinColumn(name="attendedSchool_id", referencedColumnName="idRecord")
      */
-    private $attendedSchool;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchoolCity", type="string", length=128)
-     */
-    private $attendedSchoolCity;
+    protected $attendedSchool;
 
     /**
      * @var boolean
@@ -157,6 +149,8 @@ class PorteAperteInverno
      */
     private $submissionDate;
 
+
+  
 
     /**
      * Get id
@@ -376,52 +370,6 @@ class PorteAperteInverno
     }
 
     /**
-     * Set attendedSchool
-     *
-     * @param string $attendedSchool
-     * @return PorteAperteInverno
-     */
-    public function setAttendedSchool($attendedSchool)
-    {
-        $this->attendedSchool = $attendedSchool;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchool
-     *
-     * @return string 
-     */
-    public function getAttendedSchool()
-    {
-        return $this->attendedSchool;
-    }
-
-    /**
-     * Set attendedSchoolCity
-     *
-     * @param string $attendedSchoolCity
-     * @return PorteAperteInverno
-     */
-    public function setAttendedSchoolCity($attendedSchoolCity)
-    {
-        $this->attendedSchoolCity = $attendedSchoolCity;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchoolCity
-     *
-     * @return string 
-     */
-    public function getAttendedSchoolCity()
-    {
-        return $this->attendedSchoolCity;
-    }
-
-    /**
      * Set hasAttendedToOtherActivities
      *
      * @param boolean $hasAttendedToOtherActivities
@@ -447,7 +395,7 @@ class PorteAperteInverno
     /**
      * Set activity
      *
-     * @param \stdClass $activity
+     * @param string $activity
      * @return PorteAperteInverno
      */
     public function setActivity($activity)
@@ -460,7 +408,7 @@ class PorteAperteInverno
     /**
      * Get activity
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getActivity()
     {
@@ -493,7 +441,7 @@ class PorteAperteInverno
     /**
      * Set reference
      *
-     * @param \stdClass $reference
+     * @param string $reference
      * @return PorteAperteInverno
      */
     public function setReference($reference)
@@ -506,7 +454,7 @@ class PorteAperteInverno
     /**
      * Get reference
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getReference()
     {
@@ -539,7 +487,7 @@ class PorteAperteInverno
     /**
      * Set unicamCourse
      *
-     * @param \stdClass $unicamCourse
+     * @param string $unicamCourse
      * @return PorteAperteInverno
      */
     public function setUnicamCourse($unicamCourse)
@@ -552,7 +500,7 @@ class PorteAperteInverno
     /**
      * Get unicamCourse
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getUnicamCourse()
     {
@@ -563,12 +511,12 @@ class PorteAperteInverno
      * Set fiscalcode
      *
      * @param string $fiscalcode
-     * @return Generico
+     * @return PorteAperteInverno
      */
     public function setFiscalcode($fiscalcode)
     {
         $this->fiscalcode = $fiscalcode;
-    
+
         return $this;
     }
 
@@ -603,5 +551,28 @@ class PorteAperteInverno
     public function getSubmissionDate()
     {
         return $this->submissionDate;
+    }
+
+    /**
+     * Set attendedSchool
+     *
+     * @param \A4U\DataBundle\Entity\StuAnagScuole $attendedSchool
+     * @return PorteAperteInverno
+     */
+    public function setAttendedSchool(\A4U\DataBundle\Entity\StuAnagScuole $attendedSchool = null)
+    {
+        $this->attendedSchool = $attendedSchool;
+
+        return $this;
+    }
+
+    /**
+     * Get attendedSchool
+     *
+     * @return \A4U\DataBundle\Entity\StuAnagScuole 
+     */
+    public function getAttendedSchool()
+    {
+        return $this->attendedSchool;
     }
 }

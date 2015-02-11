@@ -87,18 +87,10 @@ class PorteAperteEstate
     private $birthPlace;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchool", type="string", length=128)
+     * @ORM\ManyToOne(targetEntity="A4U\DataBundle\Entity\StuAnagScuole", inversedBy="stages")
+     * @ORM\JoinColumn(name="attendedSchool_id", referencedColumnName="idRecord")
      */
-    private $attendedSchool;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="attendedSchoolCity", type="string", length=128)
-     */
-    private $attendedSchoolCity;
+    protected $attendedSchool;
 
     /**
      * @var boolean
