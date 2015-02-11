@@ -5,7 +5,20 @@
 namespace A4U\FormBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
+use Doctrine\ORM\EntityRepository;
+
+use A4U\DataBundle\Entity\StuAnagScuole;
+
+use A4U\FormBundle\Form\EventListener\AddCityFieldSubscriber;
+use A4U\FormBundle\Form\EventListener\AddDistrictFieldSubscriber;
+use A4U\FormBundle\Form\EventListener\AddSchoolFieldSubscriber;
+use A4U\FormBundle\Form\EventListener\AddFirstChoiceFieldSubscriber;
+use A4U\FormBundle\Form\EventListener\AddSecondChoiceFieldSubscriber;
 
 class PorteAperteInvernoType extends AbstractType
 {
@@ -81,20 +94,25 @@ class PorteAperteInvernoType extends AbstractType
                     'placeholder' => 'Luogo di nascita'
                     )
                 ))
-            ->add('attendedSchool', 'text', array(
-                'label' => 'Scuola di provenienza*',
+            ->add('attendedSchoolRegion', 'entity', array(
+                'mapped' => false,
+                'label' => 'Regione della scuola*',
+                'class' => 'A4UDataBundle:StuAnagScuole',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->getRegioni();
+                    },
+                'property' => 'regione',
                 'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => 'Scuola di provenienza'
+                    'placeholder' => 'Campo di studi'
                     )
                 ))
-            ->add('attendedSchoolCity', 'text', array(
-                'label' => 'Città della scuola*',
-                'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Città della scuola di provenienza'
-                    )
-                ))
+
+               ->addEventSubscriber(new AddDistrictFieldSubscriber('attendedSchoolDistrict'))
+
+              ->addEventSubscriber(new AddCityFieldSubscriber('attendedSchoolCity'))
+
+              ->addEventSubscriber(new AddSchoolFieldSubscriber('attendedSchool'))
             ->add('hasAttendedtoOtherActivities', 'choice', array(
                 'label' => 'Hai frequentato altre attività di orientamento?',
                 'choices'   => array( false => 'No', true => 'Si'),

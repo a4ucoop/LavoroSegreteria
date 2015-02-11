@@ -127,33 +127,7 @@
 
     <script>
 
-    //var $firstStudyField = $('#stage_firstStudyField');
-    //// When sport gets selected ...
-    //$firstStudyField.change(function() {
-    //  // ... retrieve the corresponding form.
-    //  var $form = $(this).closest('form');
-    //  // Simulate form data, but only include the selected sport value.
-    //  var data = {};
-    //  data[$firstStudyField.attr('name')] = $firstStudyField.val();
-    //  // Submit data via AJAX to the form's action path.
-    //  $.ajax({
-    //    url : $form.attr('action'),
-    //    type: $form.attr('method'),
-    //    data : data,
-    //    success: function(html) {
-    //      // Replace current position field ...
-    //      $('#stage_firstChoice').replaceWith(
-    //        // ... with the returned one from the AJAX response.
-    //        $(html).find('#stage_firstChoice')
-    //      );
-    //      // Position field now displays the appropriate positions.
-    //    }
-    //  });
-    //});
-
-
     var $schoolRegion = $('#stage_attendedSchoolRegion');
-    //$schoolRegion.change(function() {
     $(document).on('change', '#stage_attendedSchoolRegion', function() {
       var $form = $(this).closest('form');
       var data = {};
@@ -179,7 +153,6 @@
 
 
     var $schoolDistrict = $('#stage_attendedSchoolDistrict');
-    //$schoolDistrict.change(function() {
     $(document).on('change', '#stage_attendedSchoolDistrict', function() {
       var $form = $(this).closest('form');
       var data = {};
@@ -202,7 +175,6 @@
 
 
     var $schoolCity = $('#stage_attendedSchoolCity');
-    //$schoolDistrict.change(function() {
     $(document).on('change', '#stage_attendedSchoolCity', function() {
       var $form = $(this).closest('form');
       var data = {};
@@ -226,16 +198,6 @@
       var $form = $(this).closest('form');
       var data = {};
       data[$school.attr('name')] = $('#stage_attendedSchool').val();
-      //$.ajax({
-      //  url : $form.attr('action'),
-      //  type: $form.attr('method'),
-      //  data : data,
-      //  success: function(html) {
-      //    $('#stage_attendedSchool').replaceWith(
-      //      $(html).find('#stage_attendedSchool')
-      //    );
-      //  }
-      //});
     });
 
     var $firstStudyField = $('#stage_select_firstStudyField');

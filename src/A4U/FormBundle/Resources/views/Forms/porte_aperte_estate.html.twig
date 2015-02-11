@@ -26,16 +26,84 @@
 		var city=document.getElementById('porteAperteEstate_city');
 		var address=document.getElementById('porteAperteEstate_address');
 		var birthPlace=document.getElementById('porteAperteEstate_birthPlace');
-		var attendedSchoolCity=document.getElementById('porteAperteEstate_attendedSchoolCity');
 		var CAP=document.getElementById('porteAperteEstate_cap');
-		var attendedSchool=document.getElementById('porteAperteEstate_attendedSchool');
 
 		var autocompleteCity = new google.maps.places.Autocomplete(city);
 		var autocompleteAddress = new google.maps.places.Autocomplete(address);
 		var autocompleteBirthPlace = new google.maps.places.Autocomplete(birthPlace);
-		var autocompleteAttendedSchoolCity = new google.maps.places.Autocomplete(attendedSchoolCity);
 		var autocompleteCAP = new google.maps.places.Autocomplete(CAP);
-		var autocompleteAttendedSchool = new google.maps.places.Autocomplete(attendedSchool);
+    var $schoolRegion = $('#stage_attendedSchoolRegion');
+    $(document).on('change', '#stage_attendedSchoolRegion', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
+
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_attendedSchoolDistrict').replaceWith(
+            $(html).find('#stage_attendedSchoolDistrict')
+          );
+          $('#stage_attendedSchoolCity').replaceWith(
+            $(html).find('#stage_attendedSchoolCity')
+          );
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
+        }
+      });
+    });
+
+
+    var $schoolDistrict = $('#stage_attendedSchoolDistrict');
+    $(document).on('change', '#stage_attendedSchoolDistrict', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_attendedSchoolCity').replaceWith(
+            $(html).find('#stage_attendedSchoolCity')
+          );
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
+        }
+      });
+    });
+
+
+    var $schoolCity = $('#stage_attendedSchoolCity');
+    $(document).on('change', '#stage_attendedSchoolCity', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
+      data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
+      data[$schoolCity.attr('name')] = $('#stage_attendedSchoolCity').val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
+        }
+      });
+    });
+
+    var $school = $('#stage_attendedSchool');
+    $(document).on('change', '#stage_attendedSchool', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$school.attr('name')] = $('#stage_attendedSchool').val();
+    });
 	</script>
 
 {% endblock %}
