@@ -23,7 +23,11 @@ class StuAnagScuoleRepository extends EntityRepository
         
         $qb->select('s0')
         ->from('A4UDataBundle:StuAnagScuole', 's0')
-        ->groupBy('s0.regione');
+        ->where('s0.regione != :blank')
+        ->groupBy('s0.regione')
+        ->setParameters(array(
+            'blank' => (' ')
+        ));
 
         return $qb;
     }

@@ -29,8 +29,6 @@ A4U\FormBundle\Entity\PorteAperteEstate:
             - NotBlank: ~
         attendedSchool:
             - NotBlank: ~
-        attendedSchoolCity:
-            - NotBlank: ~
         hasAttendedToOtherActivities:
             - Choice:
                 choices: [1, 0]
@@ -73,8 +71,6 @@ A4U\FormBundle\Entity\PorteAperteInverno:
         birthPlace:
             - NotBlank: ~
         attendedSchool:
-            - NotBlank: ~
-        attendedSchoolCity:
             - NotBlank: ~
         hasAttendedToOtherActivities:
             - Choice:

@@ -150,6 +150,7 @@ class PorteAperteEstate
     private $submissionDate;
 
 
+
     /**
      * Get id
      *
@@ -368,52 +369,6 @@ class PorteAperteEstate
     }
 
     /**
-     * Set attendedSchool
-     *
-     * @param string $attendedSchool
-     * @return PorteAperteEstate
-     */
-    public function setAttendedSchool($attendedSchool)
-    {
-        $this->attendedSchool = $attendedSchool;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchool
-     *
-     * @return string 
-     */
-    public function getAttendedSchool()
-    {
-        return $this->attendedSchool;
-    }
-
-    /**
-     * Set attendedSchoolCity
-     *
-     * @param string $attendedSchoolCity
-     * @return PorteAperteEstate
-     */
-    public function setAttendedSchoolCity($attendedSchoolCity)
-    {
-        $this->attendedSchoolCity = $attendedSchoolCity;
-
-        return $this;
-    }
-
-    /**
-     * Get attendedSchoolCity
-     *
-     * @return string 
-     */
-    public function getAttendedSchoolCity()
-    {
-        return $this->attendedSchoolCity;
-    }
-
-    /**
      * Set hasAttendedToOtherActivities
      *
      * @param boolean $hasAttendedToOtherActivities
@@ -439,7 +394,7 @@ class PorteAperteEstate
     /**
      * Set activity
      *
-     * @param \stdClass $activity
+     * @param string $activity
      * @return PorteAperteEstate
      */
     public function setActivity($activity)
@@ -452,7 +407,7 @@ class PorteAperteEstate
     /**
      * Get activity
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getActivity()
     {
@@ -485,7 +440,7 @@ class PorteAperteEstate
     /**
      * Set reference
      *
-     * @param \stdClass $reference
+     * @param string $reference
      * @return PorteAperteEstate
      */
     public function setReference($reference)
@@ -498,7 +453,7 @@ class PorteAperteEstate
     /**
      * Get reference
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getReference()
     {
@@ -531,7 +486,7 @@ class PorteAperteEstate
     /**
      * Set unicamCourse
      *
-     * @param \stdClass $unicamCourse
+     * @param string $unicamCourse
      * @return PorteAperteEstate
      */
     public function setUnicamCourse($unicamCourse)
@@ -544,7 +499,7 @@ class PorteAperteEstate
     /**
      * Get unicamCourse
      *
-     * @return \stdClass 
+     * @return string 
      */
     public function getUnicamCourse()
     {
@@ -555,12 +510,12 @@ class PorteAperteEstate
      * Set fiscalcode
      *
      * @param string $fiscalcode
-     * @return Generico
+     * @return PorteAperteEstate
      */
     public function setFiscalcode($fiscalcode)
     {
         $this->fiscalcode = $fiscalcode;
-    
+
         return $this;
     }
 
@@ -595,5 +550,28 @@ class PorteAperteEstate
     public function getSubmissionDate()
     {
         return $this->submissionDate;
+    }
+
+    /**
+     * Set attendedSchool
+     *
+     * @param \A4U\DataBundle\Entity\StuAnagScuole $attendedSchool
+     * @return PorteAperteEstate
+     */
+    public function setAttendedSchool(\A4U\DataBundle\Entity\StuAnagScuole $attendedSchool = null)
+    {
+        $this->attendedSchool = $attendedSchool;
+
+        return $this;
+    }
+
+    /**
+     * Get attendedSchool
+     *
+     * @return \A4U\DataBundle\Entity\StuAnagScuole 
+     */
+    public function getAttendedSchool()
+    {
+        return $this->attendedSchool;
     }
 }

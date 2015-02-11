@@ -10,15 +10,27 @@
                 {{ form_errors(form) }}
                 {% include 'A4UFormBundle::Forms/base_form_personal_records.html.twig'  %}
                 <div class="form-group">
-                    {{ form_label(form.attendedSchool) }}
-                    {{ form_errors(form.attendedSchool) }}
-                    {{ form_widget(form.attendedSchool) }}
+                    {{ form_label(form.attendedSchoolRegion) }}
+                    {{ form_errors(form.attendedSchoolRegion) }}
+                    {{ form_widget(form.attendedSchoolRegion) }}
                 </div>
 
                 <div class="form-group">
+                    {{ form_label(form.attendedSchoolDistrict) }}
+                    {{ form_errors(form.attendedSchoolDistrict) }}
+                    {{ form_widget(form.attendedSchoolDistrict) }}
+                </div>
+
+                 <div class="form-group">
                     {{ form_label(form.attendedSchoolCity) }}
                     {{ form_errors(form.attendedSchoolCity) }}
                     {{ form_widget(form.attendedSchoolCity) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.attendedSchool) }}
+                    {{ form_errors(form.attendedSchool) }}
+                    {{ form_widget(form.attendedSchool) }}
                 </div>
 
                 <div id="hasAttendedtoOtherActivities" class="form-group">

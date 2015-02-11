@@ -10,6 +10,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
+use Doctrine\ORM\EntityRepository;
+
 use A4U\DataBundle\Entity\StuAnagScuole;
 
 use A4U\FormBundle\Form\EventListener\AddCityFieldSubscriber;
@@ -93,6 +95,7 @@ class PorteAperteEstateType extends AbstractType
             ->add('attendedSchoolRegion', 'entity', array(
                 'mapped' => false,
                 'label' => 'Regione della scuola*',
+                'empty_value' => 'Scegli una regione...',
                 'class' => 'A4UDataBundle:StuAnagScuole',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->getRegioni();

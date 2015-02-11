@@ -47,7 +47,7 @@ class AddSchoolFieldSubscriber implements EventSubscriberInterface
         else {
             $formOptions = array(
                'mapped' => false,
-               'label' => 'Città della scuola di provenienza*',
+               'label' => 'Scuola di provenienza*',
                'choices' => array("Scegli una scuola..."),
                'attr' => array(
                    'class' => 'form-control',

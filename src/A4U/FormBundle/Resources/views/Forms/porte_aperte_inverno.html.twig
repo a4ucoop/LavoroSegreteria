@@ -31,8 +31,8 @@
 		var autocompleteAddress = new google.maps.places.Autocomplete(address);
 		var autocompleteBirthPlace = new google.maps.places.Autocomplete(birthPlace);
 		var autocompleteCAP = new google.maps.places.Autocomplete(CAP);
-        var $schoolRegion = $('#stage_attendedSchoolRegion');
-        $(document).on('change', '#stage_attendedSchoolRegion', function() {
+        var $schoolRegion = $('#porteAperteInverno_attendedSchoolRegion');
+        $(document).on('change', '#porteAperteInverno_attendedSchoolRegion', function() {
           var $form = $(this).closest('form');
           var data = {};
           data[$schoolRegion.attr('name')] = $schoolRegion.val();
@@ -42,66 +42,66 @@
             type: $form.attr('method'),
             data : data,
             success: function(html) {
-              $('#stage_attendedSchoolDistrict').replaceWith(
-                $(html).find('#stage_attendedSchoolDistrict')
+              $('#porteAperteInverno_attendedSchoolDistrict').replaceWith(
+                $(html).find('#porteAperteInverno_attendedSchoolDistrict')
               );
-              $('#stage_attendedSchoolCity').replaceWith(
-                $(html).find('#stage_attendedSchoolCity')
+              $('#porteAperteInverno_attendedSchoolCity').replaceWith(
+                $(html).find('#porteAperteInverno_attendedSchoolCity')
               );
-              $('#stage_attendedSchool').replaceWith(
-                $(html).find('#stage_attendedSchool')
+              $('#porteAperteInverno_attendedSchool').replaceWith(
+                $(html).find('#porteAperteInverno_attendedSchool')
               );
             }
           });
         });
 
 
-        var $schoolDistrict = $('#stage_attendedSchoolDistrict');
-        $(document).on('change', '#stage_attendedSchoolDistrict', function() {
+        var $schoolDistrict = $('#porteAperteInverno_attendedSchoolDistrict');
+        $(document).on('change', '#porteAperteInverno_attendedSchoolDistrict', function() {
           var $form = $(this).closest('form');
           var data = {};
-          data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
+          data[$schoolDistrict.attr('name')] = $('#porteAperteInverno_attendedSchoolDistrict').val();
           data[$schoolRegion.attr('name')] = $schoolRegion.val();
           $.ajax({
             url : $form.attr('action'),
             type: $form.attr('method'),
             data : data,
             success: function(html) {
-              $('#stage_attendedSchoolCity').replaceWith(
-                $(html).find('#stage_attendedSchoolCity')
+              $('#porteAperteInverno_attendedSchoolCity').replaceWith(
+                $(html).find('#porteAperteInverno_attendedSchoolCity')
               );
-              $('#stage_attendedSchool').replaceWith(
-                $(html).find('#stage_attendedSchool')
+              $('#porteAperteInverno_attendedSchool').replaceWith(
+                $(html).find('#porteAperteInverno_attendedSchool')
               );
             }
           });
         });
 
 
-        var $schoolCity = $('#stage_attendedSchoolCity');
-        $(document).on('change', '#stage_attendedSchoolCity', function() {
+        var $schoolCity = $('#porteAperteInverno_attendedSchoolCity');
+        $(document).on('change', '#porteAperteInverno_attendedSchoolCity', function() {
           var $form = $(this).closest('form');
           var data = {};
           data[$schoolRegion.attr('name')] = $schoolRegion.val();
-          data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
-          data[$schoolCity.attr('name')] = $('#stage_attendedSchoolCity').val();
+          data[$schoolDistrict.attr('name')] = $('#porteAperteInverno_attendedSchoolDistrict').val();
+          data[$schoolCity.attr('name')] = $('#porteAperteInverno_attendedSchoolCity').val();
           $.ajax({
             url : $form.attr('action'),
             type: $form.attr('method'),
             data : data,
             success: function(html) {
-              $('#stage_attendedSchool').replaceWith(
-                $(html).find('#stage_attendedSchool')
+              $('#porteAperteInverno_attendedSchool').replaceWith(
+                $(html).find('#porteAperteInverno_attendedSchool')
               );
             }
           });
         });
 
-        var $school = $('#stage_attendedSchool');
-        $(document).on('change', '#stage_attendedSchool', function() {
+        var $school = $('#porteAperteInverno_attendedSchool');
+        $(document).on('change', '#porteAperteInverno_attendedSchool', function() {
           var $form = $(this).closest('form');
           var data = {};
-          data[$school.attr('name')] = $('#stage_attendedSchool').val();
+          data[$school.attr('name')] = $('#porteAperteInverno_attendedSchool').val();
         });
 	</script>
 

@@ -118,6 +118,7 @@ class StageType extends AbstractType
             ->add('attendedSchoolRegion', 'entity', array(
                 'mapped' => false,
                 'label' => 'Regione della scuola*',
+                'empty_value'   => 'Scegli la regione....',
                 'class' => 'A4UDataBundle:StuAnagScuole',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->getRegioni();
