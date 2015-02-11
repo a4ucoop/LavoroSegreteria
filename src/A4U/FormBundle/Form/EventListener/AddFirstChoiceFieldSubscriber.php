@@ -30,6 +30,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
     {
         if($studyField){
             $formOptions = array(
+                'mapped' => false,
                 'class'         => 'A4UDataBundle:OpzioniStageDett',
                 'empty_value'   => 'Prima scelta ...',
                 'label'         => 'Prima scelta per lo stage*',
@@ -59,7 +60,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
 
     public function preSetData(FormEvent $event)
     {
-        $data = $event->getForm()->get('firstStudyField')->getData();
+        $data = $event->getForm()->get('select_firstStudyField')->getData();
         $form = $event->getForm();
 
         $this->addSchoolForm($form, $data);
@@ -70,7 +71,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        $studyField = array_key_exists('firstStudyField', $data) ? $data['firstStudyField'] : null;
+        $studyField = array_key_exists('select_firstStudyField', $data) ? $data['select_firstStudyField'] : null;
 
         $this->addSchoolForm($form, $studyField);
     }

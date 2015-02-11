@@ -171,7 +171,8 @@ class StageType extends AbstractType
                     )
                 ))
 
-            ->add('firstStudyField', 'entity', array(
+            ->add('select_firstStudyField', 'entity', array(
+                'mapped' => false,
                 'label' => 'Campo di studi*',
                 'class' => 'A4UDataBundle:OpzioniStage',
                 'query_builder' => function(EntityRepository $er) {
@@ -184,9 +185,25 @@ class StageType extends AbstractType
                     'placeholder' => 'Campo di studi'
                     )
                 ))
-              ->addEventSubscriber(new AddFirstChoiceFieldSubscriber('firstChoice'))
 
-            ->add('secondStudyField', 'entity', array(
+            ->add('firstStudyField', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'firstStudyField'
+                    )
+                ))            
+
+            ->addEventSubscriber(new AddFirstChoiceFieldSubscriber('select_firstChoice'))
+
+            ->add('firstChoice', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'firstChoice'
+                    )
+                ))  
+
+            ->add('select_secondStudyField', 'entity', array(
+                'mapped' => false,
                 'label' => 'Campo di studi*',
                 'class' => 'A4UDataBundle:OpzioniStage',
                 'query_builder' => function(EntityRepository $er) {
@@ -199,23 +216,30 @@ class StageType extends AbstractType
                     'placeholder' => 'Campo di studi'
                     )
                 ))
-              ->addEventSubscriber(new AddSecondChoiceFieldSubscriber('secondChoice'))
 
-            ->add('secondChoice', 'choice', array(
-                'label' => 'Seconda scelta*',
-                'choices'   => array(3 =>'III', 4 => 'IV', 5 => 'V'),
+            ->add('secondStudyField', 'text', array(
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'secondStudyField'
                     )
-                ))
+                ))  
+
+            ->addEventSubscriber(new AddSecondChoiceFieldSubscriber('select_secondChoice'))
+
+            ->add('secondChoice', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'secondChoice'
+                    )
+                ))  
 
             ->add('moneyPayed', 'choice', array(
                 'label' => 'Quota versata*',
                 'choices'   => array(
-                    "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)",
-                    "€ 35 ( Iscrizione + 5 pasti )",
-                    "€ 25 ( Iscrizione + 3 pasti )",
-                    "€ 10 Iscrizione"),
+                    "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)" => "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)",
+                    "€ 35 ( Iscrizione + 5 pasti )" => "€ 35 ( Iscrizione + 5 pasti )",
+                    "€ 25 ( Iscrizione + 3 pasti )" => "€ 25 ( Iscrizione + 3 pasti )",
+                    "€ 10 Iscrizione" => "€ 10 Iscrizione"),
                 'attr' => array(
                     'class' => 'form-control'
                     )

@@ -58,24 +58,44 @@
                     {{ form_widget(form.stagePeriod) }}
                 </div>
                 <div class="form-group">
+                    {{ form_label(form.select_firstStudyField) }}
+                    {{ form_errors(form.select_firstStudyField) }}
+                    {{ form_widget(form.select_firstStudyField) }}
+                </div>
+                <div class="form-group" style="display: none;">
                     {{ form_label(form.firstStudyField) }}
                     {{ form_errors(form.firstStudyField) }}
                     {{ form_widget(form.firstStudyField) }}
                 </div>
 
                 <div class="form-group">
+                    {{ form_label(form.select_firstChoice) }}
+                    {{ form_errors(form.select_firstChoice) }}
+                    {{ form_widget(form.select_firstChoice) }}
+                </div>
+                <div class="form-group" style="display: none;">
                     {{ form_label(form.firstChoice) }}
                     {{ form_errors(form.firstChoice) }}
                     {{ form_widget(form.firstChoice) }}
                 </div>
 
                 <div class="form-group">
+                    {{ form_label(form.select_secondStudyField) }}
+                    {{ form_errors(form.select_secondStudyField) }}
+                    {{ form_widget(form.select_secondStudyField) }}
+                </div>
+                <div class="form-group" style="display: none;">
                     {{ form_label(form.secondStudyField) }}
                     {{ form_errors(form.secondStudyField) }}
                     {{ form_widget(form.secondStudyField) }}
                 </div>
 
                 <div class="form-group">
+                    {{ form_label(form.select_secondChoice) }}
+                    {{ form_errors(form.select_secondChoice) }}
+                    {{ form_widget(form.select_secondChoice) }}
+                </div>
+                <div class="form-group" style="display: none;">
                     {{ form_label(form.secondChoice) }}
                     {{ form_errors(form.secondChoice) }}
                     {{ form_widget(form.secondChoice) }}
@@ -218,39 +238,53 @@
       //});
     });
 
-    var $firstStudyField = $('#stage_firstStudyField');
-    $(document).on('change', '#stage_firstStudyField', function() {
+    var $firstStudyField = $('#stage_select_firstStudyField');
+    $(document).on('change', '#stage_select_firstStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$firstStudyField.attr('name')] = $('#stage_firstStudyField').val();
+      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
         success: function(html) {
-          $('#stage_firstChoice').replaceWith(
-            $(html).find('#stage_firstChoice')
+          $('#stage_select_firstChoice').replaceWith(
+            $(html).find('#stage_select_firstChoice')
           );
         }
       });
     });
         
-    var $secondStudyField = $('#stage_secondStudyField');
-    $(document).on('change', '#stage_secondStudyField', function() {
+    var $secondStudyField = $('#stage_select_secondStudyField');
+    $(document).on('change', '#stage_select_secondStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$secondStudyField.attr('name')] = $('#stage_secondStudyField').val();
+      data[$secondStudyField.attr('name')] = $('#stage_select_secondStudyField').val();
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
         success: function(html) {
-          $('#stage_secondChoice').replaceWith(
-            $(html).find('#stage_secondChoice')
+          $('#stage_select_secondChoice').replaceWith(
+            $(html).find('#stage_select_secondChoice')
           );
         }
       });
     });
+
+    $(document).on('change', '#stage_select_firstChoice', function() {
+      $('#stage_firstChoice').val($('#stage_select_firstChoice option:selected').text());
+    });
+    $(document).on('change', '#stage_select_secondChoice', function() {
+      $('#stage_secondChoice').val($('#stage_select_secondChoice option:selected').text());
+    });
+    $(document).on('change', '#stage_select_firstStudyField', function() {
+      $('#stage_firstStudyField').val($('#stage_select_firstStudyField option:selected').text());
+    });
+    $(document).on('change', '#stage_select_secondStudyField', function() {
+      $('#stage_secondStudyField').val($('#stage_select_secondStudyField option:selected').text());
+    });
+
     </script>
 
 {% endblock %}

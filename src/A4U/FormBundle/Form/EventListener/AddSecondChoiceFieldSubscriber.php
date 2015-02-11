@@ -30,6 +30,7 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
     {
         if($studyField){
             $formOptions = array(
+                'mapped' => false,
                 'class'         => 'A4UDataBundle:OpzioniStageDett',
                 'empty_value'   => 'Seconda scelta ...',
                 'label'         => 'Seconda scelta per lo stage*',
@@ -59,7 +60,7 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
 
     public function preSetData(FormEvent $event)
     {
-        $data = $event->getForm()->get('secondStudyField')->getData();
+        $data = $event->getForm()->get('select_secondStudyField')->getData();
         $form = $event->getForm();
 
         $this->addSchoolForm($form, $data);
@@ -70,7 +71,7 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        $studyField = array_key_exists('secondStudyField', $data) ? $data['secondStudyField'] : null;
+        $studyField = array_key_exists('select_secondStudyField', $data) ? $data['select_secondStudyField'] : null;
 
         $this->addSchoolForm($form, $studyField);
     }
