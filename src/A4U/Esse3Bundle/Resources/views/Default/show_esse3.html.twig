@@ -4,9 +4,19 @@
 
 {% block body %}
 
+    <p>Subscribed </p>
     <div style="margin-top:20px;">
-
-            {{ Data }}
+            
+            {% for row in subscribed%}
+                <li>{{ row.fiscalcode }}</li>
+             {% endfor %}
+	</div>
+    <p>Not Subscribed </p>
+    <div style="margin-top:20px;">
+            
+            {% for row in not_subscribed%}
+                <li>{{ row.fiscalcode }}</li>
+             {% endfor %}
 	</div>
 
 {% endblock %}
