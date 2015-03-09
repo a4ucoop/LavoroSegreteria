@@ -116,9 +116,7 @@ A4U\FormBundle\Entity\Stage:
         phone:
             - NotBlank: ~
         facebookContact:
-            - NotBlank: ~
         stagePeriod:
-            - NotBlank: ~
         firstStudyField:
             - NotBlank: ~
         secondStudyField:

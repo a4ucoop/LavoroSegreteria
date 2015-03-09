@@ -110,14 +110,14 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="facebookContact", type="string", length=128)
+     * @ORM\Column(name="facebookContact", type="string", length=128, nullable=true)
      */
     private $facebookContact;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="stagePeriod", type="string", length=128)
+     * @ORM\Column(name="stagePeriod", type="string", length=128, nullable=true)
      */
     private $stagePeriod;
 

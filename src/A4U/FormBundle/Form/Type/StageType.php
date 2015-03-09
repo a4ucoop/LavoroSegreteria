@@ -144,12 +144,12 @@ class StageType extends AbstractType
                 ))
 
             ->add('facebookContact', 'text', array(
-                'label' => 'Contatto Facebook*',
+                'label' => 'Contatto Facebook',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Contatto Facebook'
-                    )
-                ))
+                    ),
+                'required' => false))
 
             /*  
                 invoca il query builder per interrogare la repo e farsi
@@ -169,7 +169,8 @@ class StageType extends AbstractType
                 'property' => 'periodoDesc',
                 'attr' => array(
                     'class' => 'form-control'
-                    )
+                    ),
+                'required' => false
                 ))
 
             ->add('select_firstStudyField', 'entity', array(
