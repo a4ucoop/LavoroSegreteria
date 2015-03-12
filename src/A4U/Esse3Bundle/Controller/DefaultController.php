@@ -28,8 +28,8 @@ class DefaultController extends Controller
             (CONNECT_DATA=(SID=UGOVPROD))
         )";
         $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
-        $data = oci_parse($conn,"select COD_FIS from V_STAT_ANAGRAFICA");
-        oci_execute($data);
+        $statement = oci_parse($conn,"select COD_FIS from V_STAT_ANAGRAFICA");
+        oci_execute($statement);
 
         $repository = $this->getDoctrine()
                 ->getRepository('A4UFormBundle:PorteAperteInverno')
@@ -38,25 +38,21 @@ class DefaultController extends Controller
         $pai = $repository->getResult();
 
 
+        $esse3_data = [];
         $subscribed = [];
         $not_subscribed = [];
-        $found = False;
+
+        while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
+            array_push($esse3_data,strtolower($row['COD_FIS']));
+        } 
 
         foreach ($pai as $item) {
 
-            while ($row = oci_fetch_array($data, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                if (strtolower($row['COD_FIS']) == strtolower($item->getFiscalcode())) {
-                    $found = True;
-                    break;
-                }
-            } 
-
-            if ($found){
+            if(array_search(strtolower($item->getFiscalcode()),$esse3_data)!=False){
                 array_push($subscribed,$item);
             } else {
                 array_push($not_subscribed,$item);
             }
-            $found = False;
 
         }
 
