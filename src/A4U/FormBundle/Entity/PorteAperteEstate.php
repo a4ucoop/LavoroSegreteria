@@ -346,6 +346,15 @@ class PorteAperteEstate
     }
 
     /**
+     * Get birthDate as string
+     *
+     * @return string 
+     */
+    public function getBirthDateAsString()
+    {
+        return $this->birthDate->format('m/d/Y');
+    }
+    /**
      * Set birthPlace
      *
      * @param string $birthPlace
@@ -389,6 +398,16 @@ class PorteAperteEstate
     public function getHasAttendedToOtherActivities()
     {
         return $this->hasAttendedToOtherActivities;
+    }
+
+    /**
+     * Get hasAttendedToOtherActivities
+     *
+     * @return string 
+     */
+    public function getHasAttendedToOtherActivitiesAsString()
+    {
+        return var_export($this->hasAttendedToOtherActivities, True);
     }
 
     /**

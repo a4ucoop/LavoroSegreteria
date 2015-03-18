@@ -6,6 +6,11 @@ a4u_form_homepage:
 a4u_form_porteAperteEstate:
     path:     /form/porte_aperte_estate
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate }
+a4u_form_edit_porteAperteEstate:
+    path:     /form/porte_aperte_estate/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate_edit }
+    requirements:
+        id: \d+
 
 a4u_form_showPAE:
     path: /admin/form/show_pae

@@ -79,6 +79,63 @@ class PageController extends Controller
         ));
 	}
 
+    public function porte_aperte_estate_editAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $paes = $em->getRepository('A4UFormBundle:PorteAperteEstate')->find($id);
+        if (!$paes) {
+          throw $this->createNotFoundException(
+                  'No porte aperte estate found for id ' . $id
+          );
+        }
+
+        $context = array(
+            'name' => $paes->getName(),
+            'surname' => $paes->getSurname(),
+            'fiscal_code' => $paes->getFiscalCode(),
+            'cap' => $paes->getCap(),
+            'city' => $paes->getCity(),
+            'address' => $paes->getAddress(),
+            'email' => $paes->getEmail(),
+            'phone' => $paes->getPhone(),
+            'birth_date' => $paes->getBirthDateAsString(),
+            'birth_place' => $paes->getBirthPlace(),
+            'has_attended_to_other_activities' => $paes->getHasAttendedToOtherActivitiesAsString(),
+            'activity' => $paes->getActivity(), 
+            'other_activity' => $paes->getOtherActivity(),
+            'reference' => $paes->getReference(),
+            'other_reference' => $paes->getOtherReference(),
+            'unicam_course' => $paes->getUnicamCourse(),
+            'attended_school' => $paes->getAttendedSchool()
+        );
+    
+        $form = $this->createForm('porteAperteEstate', $paes);
+
+        $form->handleRequest($request);
+
+        //Form inviato, viene validato
+        if ($form->isValid()) {
+
+            //Salva il nuovo utente nella base dati
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($paes);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente modificato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+        }
+
+        // Form non ancora inviato
+        return $this->render('A4UFormBundle:Forms:porte_aperte_estate_edit.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context,
+        ));
+    }
+
     public function showPAEAction()
     {
         $Users = $this->getDoctrine()
