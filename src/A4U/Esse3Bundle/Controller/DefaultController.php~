@@ -49,9 +49,9 @@ class DefaultController extends Controller
         foreach ($pai as $item) {
 
             if(array_search(strtolower($item->getFiscalcode()),$esse3_data)!=False){
-                array_push($subscribed,$item->getFiscalcode());
+                array_push($subscribed,$item);
             } else {
-                array_push($not_subscribed,$item->getFiscalcode());
+                array_push($not_subscribed,$item);
             }
 
         }

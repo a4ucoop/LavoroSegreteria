@@ -9,6 +9,12 @@
     {{ parent() }}
     <link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
 
+    <style>
+    .filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+    .fitler-table .quick:hover { text-decoration: underline; }
+    td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+    </style> <!-- or put the styling in your stylesheet -->
+
 {% endblock %}
 
 <div class="container">
@@ -17,34 +23,26 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" >
-            Generico
+            Unicam Attività Generica
           </a>
-        </div>
-        <form class="navbar-form navbar-left" role="search" action="{{ path('a4u_form_searchGenerico') }}">
-          <div class="form-group">
+        </div>        
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
             <div class="input-group" style="max-width:300px;">
-                <!-- se è gia stata fatta una ricerca viene mostrata l'ultima keyword -->
-                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"{% if lastSearch is defined %} value="{{ lastSearch }}" {% endif %}>
-                <!-- se è gia stata fatta una ricerca viene mostrato il glyph elimina -->
-                {% if lastSearch is defined and lastSearch != "" %}
-                    <div id="removeLastSearch" style="display:inline-block; margin-left:-20px; cursor:pointer;">
-                        <span class=" glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-                    </div>
-                {% endif %}
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> </button>
-                </div>
+                <input type="text" class="form-control" id="input-filter" placeholder="cerca">
+                <span class="input-group-addon glyphicon glyphicon-search"> </span>
             </div>
           </div>
         </form>
       </div>
     </nav>
 
-    <div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
+    <div style="overflow-y: auto; overflow-x: auto;">
 		<table class="table table-hover">
 			<thead>
             <tr>
-                <td></td>
+                <th></th>
+                <th><b>iscritto</b></th>
 				<th class="col-sm-1"><b>Nome</b></th>
 				<th class="col-sm-2"><b>Cognome</b></th>
 				<th class="col-sm-3"><b>Indirizzo</b></th>
@@ -62,6 +60,10 @@
 			{% for user in users %}
 				<tr>
                     {% include 'A4UFormBundle::Forms/base_show_select.html.twig'  %}
+                    <td><div style="text-align: center;">{% if user.fiscalCode in subscribed %}<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                        {% else %}<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                        {% endif %}
+                    </div></td>
 					<td>{{user.name}}</td>
 					<td>{{user.surname}}</td>
 					<td>{{user.address}}</td>
@@ -87,6 +89,16 @@
     {{ parent() }}
 
     <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/searchTable/jquery.filtertable.js') }}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('table').filterTable({ // apply filterTable to all tables on this page
+            inputSelector: '#input-filter' // use the existing input instead of creating a new one
+        });
+    });
+    </script>
 
     <script type="text/javascript">
         // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAE

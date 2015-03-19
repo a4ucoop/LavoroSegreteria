@@ -1,0 +1,139 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Porte Aperte Inverno{% endblock %}
+
+{% block body %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+	<style>
+	.filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+	.fitler-table .quick:hover { text-decoration: underline; }
+	td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+	</style> <!-- or put the styling in your stylesheet -->
+
+{% endblock %}
+
+<div class="container">
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" >
+	        Porte aperte Unicam Inverno
+	      </a>
+	    </div>
+		<form class="navbar-form navbar-left" role="search" action="{{ path('a4u_form_searchPAI') }}">
+		  <div class="form-group">
+            <div class="input-group" style="max-width:300px;">
+                <!-- se è gia stata fatta una ricerca viene mostrata l'ultima keyword -->
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"{% if lastSearch is defined %} value="{{ lastSearch }}" {% endif %}>
+                <!-- se è gia stata fatta una ricerca viene mostrato il glyph elimina -->
+                {% if lastSearch is defined and lastSearch != "" %}
+                    <div id="removeLastSearch" style="display:inline-block; margin-left:-20px; cursor:pointer;">
+                        <span class=" glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                    </div>
+                {% endif %}
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> </button>
+                </div>
+            </div>
+		  </div>
+		</form>
+	  </div>
+	</nav>
+
+<p class="filter-table">Filter: <input placeholder="search this table" name="" type="search"></p>
+
+	<div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
+		<table class="table table-hover">
+			<tr>
+				<td></td>
+				<td><b>iscritto</b></td>
+				<td><b>Nome</b></td>
+				<td><b>Cognome</b></td>
+				<td><b>Indirizzo</b></td>
+				<td><b>CAP</b></td>
+				<td><b>Città</b></td>
+				<td><b>Email</b></td>
+				<td><b>Tel.</b></td>
+				<td><b>Data di nascita</b></td>
+				<td><b>Luogo di nascita</b></td>
+				<td><b>Scuola di provenienza</b></td>
+				<td><b>Partecipato altre attività</b></td>
+				<td><b>Attività</b></td>
+				<td><b>Altra attività</b></td>
+				<td><b>Referenze</b></td>
+				<td><b>Altra referenza</b></td>
+				<td><b>Corso di laurea</b></td>
+				<td><b>Codice Fiscale</b></td>
+				<td><b>data sottoscrizione</b></td>
+			</tr>
+			{% for user in users %}
+				<tr>
+                    {% include 'A4UFormBundle::Forms/base_show_select.html.twig'  %}
+					<td>{% if user.fiscalCode in subscribed %}<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					    {% else %}<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					    {% endif %}
+					</td>
+					<td>{{user.name}}</td>
+					<td>{{user.surname}}</td>
+					<td>{{user.address}}</td>
+					<td>{{user.cap}}</td>
+					<td>{{user.city}}</td> 
+					<td>{{user.email}}</td>
+					<td>{{user.phone}}</td> 
+					<td>{{user.birthDate|date('d-m-Y')}}</td> 
+					<td>{{user.birthPlace}}</td> 
+					<td>{{user.attendedSchool}}</td> 
+					<td>{{user.hasAttendedToOtherActivities}}</td> 
+					<td>{{user.activity}}</td> 
+					<td>{{user.otherActivity}}</td> 
+					<td>{{user.reference}}</td> 
+					<td>{{user.otherReference}}</td> 
+					<td>{{user.unicamCourse}}</td> 
+					<td>{{user.fiscalCode}}</td>
+					<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
+				</tr>
+			{% endfor %}
+
+		</table>
+
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/searchTable/bindWithDelay.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/searchTable/jquery.filtertable.js') }}"></script>
+
+	<script>
+	$('table').filterTable(); //if this code appears after your tables; otherwise, include it in your document.ready() code.
+	</script>
+
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAI
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showPAI') }}");
+        })
+    </script>
+
+    <script type="text/javascript">
+
+		jQuery(document).ready(function(){
+		    jQuery('.scrollbar-inner').scrollbar();
+		});
+    
+    </script>
+
+{% endblock %}

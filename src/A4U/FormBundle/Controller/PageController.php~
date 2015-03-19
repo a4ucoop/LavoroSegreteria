@@ -89,12 +89,9 @@ class PageController extends Controller
         {
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
-        
-        $subscribed = $this->matchEsse3Action('A4UFormBundle:PorteAperteEstate');
 
         return $this->render('A4UFormBundle:Forms:show_porte_aperte_estate.html.twig', array(
-            'users' => $Users,
-            'subscribed' => $subscribed));
+            'users' => $Users));
     }
 
 
@@ -155,12 +152,68 @@ class PageController extends Controller
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 	
-	   $subscribed = $this->matchEsse3Action('A4UFormBundle:PorteAperteInverno');
+	$subscribed = $this->show_esse3Action();
 
         return $this->render('A4UFormBundle:Forms:show_porte_aperte_inverno.html.twig', array(
             'users' => $Users,
-	        'subscribed' => $subscribed));
+	    'subscribed' => $subscribed));
     }
+
+
+
+    public function show_esse3Action()
+    {
+        #$conn = $this->get('doctrine.dbal.esse3_connection');
+        #$pdo->exec("CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, title TEXT, message TEXT)");
+        #$pdo->exec("INSERT INTO messages(id, title, message) VALUES (1, 'title', 'message')");
+
+        $db="(DESCRIPTION=
+            (ADDRESS_LIST=
+            (ADDRESS=(PROTOCOL=TCP)
+                (HOST=oracle11.unicam.it)(PORT=1521)
+            )
+            )
+            (CONNECT_DATA=(SID=UGOVPROD))
+        )";
+        $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
+        $statement = oci_parse($conn,"select COD_FIS from V_STAT_ANAGRAFICA");
+        oci_execute($statement);
+
+        $repository = $this->getDoctrine()
+                ->getRepository('A4UFormBundle:PorteAperteInverno')
+                ->createQueryBuilder('u')
+                ->getQuery();
+        $pai = $repository->getResult();
+
+
+        $esse3_data = [];
+        $subscribed = [];
+        $not_subscribed = [];
+	$fc = "";
+
+        while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
+            array_push($esse3_data,strtolower($row['COD_FIS']));
+        } 
+
+        foreach ($pai as $item) {
+
+            if(array_search(strtolower($item->getFiscalcode()),$esse3_data)!=False){
+		$fc = $item->getFiscalcode();                
+		array_push($subscribed,$fc);
+            } else {
+		$fc = $item->getFiscalcode(); 
+                array_push($not_subscribed,$fc);
+            }
+
+        }
+
+        return $subscribed;
+    }
+
+
+
+
+
 
 // ---------------------------------------STAGE--------------------------------------------
 
@@ -220,11 +273,8 @@ class PageController extends Controller
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
-        $subscribed = $this->matchEsse3Action('A4UFormBundle:Stage');
-
         return $this->render('A4UFormBundle:Forms:show_stage.html.twig', array(
-            'users' => $Users,
-            'subscribed' => $subscribed));
+            'users' => $Users));
     }
 
 // ---------------------------------------GENERICO--------------------------------------------
@@ -285,11 +335,8 @@ class PageController extends Controller
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
-        $subscribed = $this->matchEsse3Action('A4UFormBundle:Generico');
-
         return $this->render('A4UFormBundle:Forms:show_generico.html.twig', array(
-            'users' => $Users,
-            'subscribed' => $subscribed));
+            'users' => $Users));
     }
 
 // ---------------------------------------Prova Hera\Internet--------------------------------------------
@@ -315,52 +362,6 @@ class PageController extends Controller
 
         return $this->render('A4UFormBundle:Default:show_hera.html.twig', array(
             'scuole' => $Scuole));
-    }
-
-
-// ---------------------------------------MATCH ESSE3--------------------------------------------
-    
-    public function matchEsse3Action($repository)
-    {
-
-        $db="(DESCRIPTION=
-            (ADDRESS_LIST=
-            (ADDRESS=(PROTOCOL=TCP)
-                (HOST=oracle11.unicam.it)(PORT=1521)
-            )
-            )
-            (CONNECT_DATA=(SID=UGOVPROD))
-        )";
-        $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
-        $statement = oci_parse($conn,"select COD_FIS from V_STAT_ANAGRAFICA");
-        oci_execute($statement);
-
-        $repository = $this->getDoctrine()
-                ->getRepository($repository)
-                ->createQueryBuilder('u')
-                ->getQuery();
-        $pai = $repository->getResult();
-
-
-        $esse3_data = [];
-        $subscribed = [];
-        $not_subscribed = [];
-
-        while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
-            array_push($esse3_data,strtolower($row['COD_FIS']));
-        } 
-
-        foreach ($pai as $item) {
-
-            if(array_search(strtolower($item->getFiscalcode()),$esse3_data)!=False){
-                array_push($subscribed,$item->getFiscalcode());
-            } else {
-                array_push($not_subscribed,$item->getFiscalcode());
-            }
-
-        }
-
-        return $subscribed;
     }
 }
 
