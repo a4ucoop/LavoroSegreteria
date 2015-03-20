@@ -362,5 +362,74 @@ class PageController extends Controller
 
         return $subscribed;
     }
+
+// ---------------------------------------SHOW STUDENT ESSE3--------------------------------------------
+    
+    public function showStudentAction($fc)
+    {
+
+        $db="(DESCRIPTION=
+            (ADDRESS_LIST=
+            (ADDRESS=(PROTOCOL=TCP)
+                (HOST=oracle11.unicam.it)(PORT=1521)
+            )
+            )
+            (CONNECT_DATA=(SID=UGOVPROD))
+        )";
+
+        $query="select * from V_STAT_ANAGRAFICA where LOWER(COD_FIS)='".$fc."'";//"DMNMHL94A06I324Q"
+
+        $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
+        $statement = oci_parse($conn,$query);
+        oci_execute($statement);
+
+        $student = new studente();
+        $studenti = [];
+
+        while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
+            $student->matricola = $row['MATRICOLA'];
+            $student->nome = $row['NOME'];
+            $student->cognome = $row['COGNOME'];
+            $student->sesso = $row['SESSO'];
+            $student->codiceFiscale = $row['COD_FIS'];
+            array_push($studenti,$student);
+        }
+        return $this->render('A4UFormBundle:Forms:show_student.html.twig', array(
+            'studenti' => $studenti));
+    }
+
+}
+
+class studente{
+    public $matricola;
+    public $nome;
+    public $cognome;
+    public $sesso;
+    public $codiceFiscale;
+        
+//  public $dataDiNascita;
+//  
+//  public $regioneCittaDiNascita;
+//  public $provinciaCittaDiNascita;
+//  public $cittaDiNascita;
+//  
+//  public $nazioneCittaDiResidenza;
+//  public $regioneCittaDiResidenza;
+//  public $provinciaCittaDiResidenza;
+//  public $cittaDiResidenza;
+//  public $viaCittaDiResidenza;
+//  public $numeroViacittaDiResidenza;
+
+//  public $email;
+//  public $cellulare;
+
+//  public $titoloDiStudio;
+//  public $attivo;
+//  public $dataImmatricolazione;
+//  public $ateneo;
+//  public $nome;
+//  public $nome;
+//  public $nome;
+
 }
 

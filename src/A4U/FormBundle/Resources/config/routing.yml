@@ -56,7 +56,9 @@ a4u_form_searchGenerico:
     defaults: { _controller: A4UFormBundle:Form:searchGenerico }
 
 
-
+a4u_show_student:
+    path: /admin/esse3/show_student/{fc}
+    defaults: { _controller: A4UFormBundle:Page:showStudent, fc: null }
 
 
 a4u_form_provaHera:

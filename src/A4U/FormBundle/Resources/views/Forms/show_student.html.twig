@@ -1,0 +1,101 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Studente{% endblock %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+	<style>
+	.filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+	.fitler-table .quick:hover { text-decoration: underline; }
+	td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+	</style> <!-- or put the styling in your stylesheet -->
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" >
+            Situazione Studente
+          </a>
+        </div>        
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <div class="input-group" style="max-width:300px;">
+                <input type="text" class="form-control" id="input-filter" placeholder="cerca">
+                <span class="input-group-addon glyphicon glyphicon-search"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+	<div style="overflow-y: auto; overflow-x: auto;">
+    
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><b>matricola</b></th>
+                    <th><b>Nome</b></th>
+                    <th><b>Cognome</b></th>
+                    <th><b>Sesso</b></th>
+                    <th><b>Codice Fiscale</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for studente in studenti %}
+                    <tr>
+                        <td>{{studente.matricola}}</td>
+                        <td>{{studente.nome}}</td>
+                        <td>{{studente.cognome}}</td>
+                        <td>{{studente.sesso}}</td>
+                        <td>{{studente.codiceFiscale}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/searchTable/jquery.filtertable.js') }}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('table').filterTable({ // apply filterTable to all tables on this page
+            inputSelector: '#input-filter' // use the existing input instead of creating a new one
+        });
+    });
+    </script>
+
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAI
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showPAI') }}");
+        })
+    </script>
+
+    <script type="text/javascript">
+
+		jQuery(document).ready(function(){
+		    jQuery('.scrollbar-inner').scrollbar();
+		});
+    
+    </script>
+
+{% endblock %}
