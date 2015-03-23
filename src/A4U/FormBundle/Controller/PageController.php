@@ -201,6 +201,63 @@ class PageController extends Controller
         ));
     }
 
+    public function porte_aperte_inverno_editAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $pais = $em->getRepository('A4UFormBundle:PorteAperteInverno')->find($id);
+        if (!$pais) {
+          throw $this->createNotFoundException(
+                  'No porte aperte inverno found for id ' . $id
+          );
+        }
+
+        $context = array(
+            'name' => $pais->getName(),
+            'surname' => $pais->getSurname(),
+            'fiscal_code' => $pais->getFiscalCode(),
+            'cap' => $pais->getCap(),
+            'city' => $pais->getCity(),
+            'address' => $pais->getAddress(),
+            'email' => $pais->getEmail(),
+            'phone' => $pais->getPhone(),
+            'birth_date' => $pais->getBirthDateAsString(),
+            'birth_place' => $pais->getBirthPlace(),
+            'has_attended_to_other_activities' => $pais->getHasAttendedToOtherActivitiesAsString(),
+            'activity' => $pais->getActivity(), 
+            'other_activity' => $pais->getOtherActivity(),
+            'reference' => $pais->getReference(),
+            'other_reference' => $pais->getOtherReference(),
+            'unicam_course' => $pais->getUnicamCourse(),
+            'attended_school' => $pais->getAttendedSchool()
+        );
+    
+        $form = $this->createForm('porteAperteInverno', $pais);
+
+        $form->handleRequest($request);
+
+        //Form inviato, viene validato
+        if ($form->isValid()) {
+
+            //Salva il nuovo utente nella base dati
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($pais);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente modificato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+        }
+
+        // Form non ancora inviato
+        return $this->render('A4UFormBundle:Forms:porte_aperte_inverno_edit.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context,
+        ));
+    }
+
     public function showPAIAction()
     {
         $Users = $this->getDoctrine()
@@ -266,6 +323,56 @@ class PageController extends Controller
 
     }
 
+    public function stage_editAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $stages = $em->getRepository('A4UFormBundle:Stage')->find($id);
+        if (!$stages) {
+          throw $this->createNotFoundException(
+                  'No stage found for id ' . $id
+          );
+        }
+
+        $context = array(
+            'name' => $stages->getName(),
+            'surname' => $stages->getSurname(),
+            'fiscal_code' => $stages->getFiscalCode(),
+            'cap' => $stages->getCap(),
+            'city' => $stages->getCity(),
+            'address' => $stages->getAddress(),
+            'email' => $stages->getEmail(),
+            'phone' => $stages->getPhone(),
+            'birth_date' => $stages->getBirthDateAsString(),
+            'birth_place' => $stages->getBirthPlace(),
+        );
+    
+        $form = $this->createForm('stage', $stages);
+
+        $form->handleRequest($request);
+
+        //Form inviato, viene validato
+        if ($form->isValid()) {
+
+            //Salva il nuovo utente nella base dati
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($pais);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente modificato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+        }
+
+        // Form non ancora inviato
+        return $this->render('A4UFormBundle:Forms:stage_edit.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context,
+        ));
+    }
+
     public function showstageAction()
     {
         $Users = $this->getDoctrine()
@@ -329,6 +436,56 @@ class PageController extends Controller
             'context' => $context,
         )); 
 
+    }
+
+    public function generico_editAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $genericos = $em->getRepository('A4UFormBundle:Generico')->find($id);
+        if (!$genericos) {
+          throw $this->createNotFoundException(
+                  'No generico found for id ' . $id
+          );
+        }
+
+        $context = array(
+            'name' => $genericos->getName(),
+            'surname' => $genericos->getSurname(),
+            'fiscal_code' => $genericos->getFiscalCode(),
+            'cap' => $genericos->getCap(),
+            'city' => $genericos->getCity(),
+            'address' => $genericos->getAddress(),
+            'email' => $genericos->getEmail(),
+            'phone' => $genericos->getPhone(),
+            'birth_date' => $genericos->getBirthDateAsString(),
+            'birth_place' => $genericos->getBirthPlace(),
+        );
+    
+        $form = $this->createForm('generico', $genericos);
+
+        $form->handleRequest($request);
+
+        //Form inviato, viene validato
+        if ($form->isValid()) {
+
+            //Salva il nuovo utente nella base dati
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($pais);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente modificato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+        }
+
+        // Form non ancora inviato
+        return $this->render('A4UFormBundle:Forms:generico_edit.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context,
+        ));
     }
 
     public function showgenericoAction()

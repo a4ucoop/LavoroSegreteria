@@ -354,6 +354,7 @@ class PorteAperteEstate
     {
         return $this->birthDate->format('m/d/Y');
     }
+
     /**
      * Set birthPlace
      *

@@ -2,7 +2,6 @@ a4u_form_homepage:
     path: /
     defaults: { _controller: A4UFormBundle:Page:index }
 
-
 a4u_form_porteAperteEstate:
     path:     /form/porte_aperte_estate
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate }
@@ -20,10 +19,14 @@ a4u_form_searchPAE:
     path: /admin/form/search_pae
     defaults: { _controller: A4UFormBundle:Form:searchPAE }
 
-
 a4u_form_porteAperteInverno:
     path:     /form/porte_aperte_inverno
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_inverno }
+a4u_form_edit_porteAperteInverno:
+    path:     /form/porte_aperte_inverno/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_inverno_edit }
+    requirements:
+        id: \d+
 
 a4u_form_showPAI:
     path: /admin/form/show_pai
@@ -37,6 +40,11 @@ a4u_form_searchPAI:
 a4u_form_stage:
     path:   /form/stage
     defaults: { _controller: A4UFormBundle:Page:stage }
+a4u_form_edit_stage:
+    path:     /form/stage/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:stage_edit }
+    requirements:
+        id: \d+
 
 a4u_form_showStage:
     path:   /admin/form/show_stage
@@ -51,6 +59,11 @@ a4u_form_searchStage:
 a4u_form_generico:
     path:   /form/generico
     defaults: { _controller: A4UFormBundle:Page:generico }
+a4u_generico_edit_stage:
+    path:     /form/generico/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:generico_edit }
+    requirements:
+        id: \d+
 
 a4u_form_showGenerico:
     path:   /admin/form/show_generico
