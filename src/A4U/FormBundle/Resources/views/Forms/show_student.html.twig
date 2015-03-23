@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Studente{% endblock %}
+{% block title %}{{studenti[0].nome}} {{studenti[0].cognome}}{% endblock %}
 
 {% block stylesheets %}
 
@@ -23,45 +23,22 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" >
-            Situazione Studente
+            Situazione Studente: {{studenti[0].nome}} {{studenti[0].cognome}}
           </a>
         </div>        
-        <form class="navbar-form navbar-left">
-          <div class="input-group">
-            <div class="input-group" style="max-width:300px;">
-                <input type="text" class="form-control" id="input-filter" placeholder="cerca">
-                <span class="input-group-addon glyphicon glyphicon-search"></span>
-            </div>
-          </div>
-        </form>
-      </div>
     </nav>
 
-	<div style="overflow-y: auto; overflow-x: auto;">
-    
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th><b>matricola</b></th>
-                    <th><b>Nome</b></th>
-                    <th><b>Cognome</b></th>
-                    <th><b>Sesso</b></th>
-                    <th><b>Codice Fiscale</b></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for studente in studenti %}
-                    <tr>
-                        <td>{{studente.matricola}}</td>
-                        <td>{{studente.nome}}</td>
-                        <td>{{studente.cognome}}</td>
-                        <td>{{studente.sesso}}</td>
-                        <td>{{studente.codiceFiscale}}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-	</div>
+    {% for studente in studenti %}
+        <ul style="font-size: 16px;">
+            <li><b>matricola: </b>{{studente.matricola}}</li>
+            <li><b>Nome: </b>{{studente.nome}}</li>
+            <li><b>Cognome: </b>{{studente.cognome}}</li>
+            <li><b>Sesso: </b>{{studente.sesso}}</li>
+            <li><b>Codice Fiscale: </b>{{studente.codiceFiscale}}</li>
+        </ul>
+        <hr>
+    {% endfor %}
+
 
 {% endblock %}
 

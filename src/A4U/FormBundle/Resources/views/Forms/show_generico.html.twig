@@ -42,7 +42,7 @@
 			<thead>
             <tr>
                 <th></th>
-                <th><b>iscritto</b></th>
+                <th><b>ESSE3</b></th>
 				<th class="col-sm-1"><b>Nome</b></th>
 				<th class="col-sm-2"><b>Cognome</b></th>
 				<th class="col-sm-3"><b>Indirizzo</b></th>
@@ -64,11 +64,11 @@
                         <div style="text-align: center;">
                             {% if user.fiscalCode in subscribed %}
                                 <form action="{{ path('a4u_show_student', {'fc': user.fiscalCode }) }}">
-                                    <button type="submit" class="btn btn-default" aria-label="Left Align">
-                                        <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> 
+                                    <button type="submit" class="btn btn-default" style="color:green" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-ok-circle" style="color:green" aria-hidden="true"></span> 
                                     </button> 
                                 </form>
-                            {% else %}<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                            {% else %}<span class="glyphicon glyphicon-remove-circle" style="color:red" aria-hidden="true"></span>
                             {% endif %}
                         </div>
                     </td>
