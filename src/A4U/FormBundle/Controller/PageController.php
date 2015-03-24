@@ -292,6 +292,7 @@ class PageController extends Controller
             'subscribed' => $subscribed));
     }
 
+
 // ---------------------------------------Prova Hera\Internet--------------------------------------------
 
     public function show_HeraAction()
@@ -317,6 +318,156 @@ class PageController extends Controller
             'scuole' => $Scuole));
     }
 
+
+    public function reportAction(){
+
+    //  // $repositories = array('A4UFormBundle:PorteAperteEstate',
+    //  //                       'A4UFormBundle:PorteAperteInverno',
+    //  //                       'A4UFormBundle:Stage',
+    //  //                       'A4UFormBundle:Generico');
+
+      $iscritti = [];         //studenti iscritti alle attività (form)
+      $fciscritti = [];         //Codici Fiscali degli studenti iscritti alle attività (form)
+        
+        //devo creare un vettore contenente tutti gli studenti iscritti alle attivita (form)
+        //senza ripetizioni di codici fiscali (ottimizzazione)
+
+//----------------DA RIFATTORIZZARE ASSOLUTAMENTE!--------------------------
+
+        //prendo i dati da una repository
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteInverno')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $pai = $repository->getResult();
+
+        //pusho tutti i dati sul vettore
+        foreach ($pai as $item) {
+            array_push($iscritti, $item);
+            array_push($fciscritti, $item->getFiscalcode());
+        }
+
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteEstate')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $pae = $repository->getResult();
+
+        //le volte successive controllo che i codici che sto inserendo non siano gia presenti
+        foreach ($pae as $item) {
+            if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
+                array_push($iscritti,$item);
+                array_push($fciscritti, $item->getFiscalcode());
+        }
+
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:Stage')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $stage = $repository->getResult();
+
+        //le volte successive controllo che i codici che sto inserendo non siano gia presenti
+        foreach ($stage as $item) {
+            if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
+                array_push($iscritti,$item);
+                array_push($fciscritti, $item->getFiscalcode());
+        }
+
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:Generico')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $generico = $repository->getResult();
+
+        //le volte successive controllo che i codici che sto inserendo non siano gia presenti
+        foreach ($generico as $item) {
+            if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
+                array_push($iscritti,$item);
+                array_push($fciscritti, $item->getFiscalcode());
+        }
+
+        //interrogo ESSE3 per sapere chi degli iscritti alle attività si è realmente iscritto
+
+        $query="WITH ORDERED AS
+            (
+            SELECT
+                CFSTUDENTE,
+                COGNOME,
+                NOME,
+                NOMECDS,
+                CFUCERTIFICATI,
+                MEDIACERTIFICATA,
+                AAID,
+                ROW_NUMBER() OVER (PARTITION BY CFSTUDENTE ORDER BY AAID DESC) AS rn
+            FROM
+                V11_ERGO_STATO_CARRIERA
+            )
+            SELECT
+                CFSTUDENTE,
+                COGNOME,
+                NOME,
+                NOMECDS,
+                AAID,
+                CFUCERTIFICATI,
+                MEDIACERTIFICATA
+            FROM
+                ORDERED
+            WHERE
+                rn = 1 AND (";
+
+        foreach ($iscritti as $key) {
+            $append="lower(CFSTUDENTE)='";
+            $query=$query . $append . $key->getFiscalcode() . "' OR ";
+        }
+
+        $query = substr($query, 0, -3);
+        $query=$query.")";
+
+       $db="(DESCRIPTION=
+           (ADDRESS_LIST=
+           (ADDRESS=(PROTOCOL=TCP)
+               (HOST=oracle11.unicam.it)(PORT=1521)
+           )
+           )
+           (CONNECT_DATA=(SID=UGOVPROD))
+       )";
+       $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
+       $statement = oci_parse($conn,$query);
+       oci_execute($statement);
+
+       $esse3_data = [];     //studenti iscritti su ESSE3
+
+       //A questo punto su esse3_data ci sono tutti i dati delle persone iscritte alle attività e su esse3
+       while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
+           array_push($esse3_data,$row);
+       } 
+
+       //devo trovare gli iscritti alle attività che NON si sono immatricolati
+       $esse3_fc=[];            //codici fiscali presenti su esse3_data
+       foreach ($esse3_data as $iscrittoEsse3) {
+           array_push($esse3_fc,strtolower($iscrittoEsse3['CFSTUDENTE'])) ;
+       }
+
+       $nonIscrittiEsse3 = [];
+       foreach ($iscritti as $iscrittoForms) {
+            if(array_search(strtolower($iscrittoForms->getFiscalcode()),$esse3_fc)===False){
+                $reportNonIscritto = new reportNonIscritti();
+                $reportNonIscritto->CFSTUDENTE=($iscrittoForms->getFiscalcode());
+                $reportNonIscritto->nome=($iscrittoForms->getName());
+                $reportNonIscritto->cognome=($iscrittoForms->getSurname());
+                array_push($nonIscrittiEsse3,$reportNonIscritto);
+            }
+       }
+
+        return $this->render('A4UFormBundle:Forms:report.html.twig', array(
+            'query' => $query,
+            'esse3_data' => $esse3_data,
+            'esse3_fc'=>$esse3_fc,
+            'reportNonIscritti'=>$nonIscrittiEsse3,
+            'iscrittiForms'=> $iscritti));
+
+
+    }
 
 // ---------------------------------------MATCH ESSE3--------------------------------------------
     
@@ -433,3 +584,19 @@ class studente{
 
 }
 
+class reportIscritti{
+    public $CFSTUDENTE;
+    public $nome;
+    public $cognome;
+    public $corsoDiStudi;
+    public $anno;
+    public $CFUCERTIFICATI;
+    public $mediaCertificata;
+
+}
+
+class reportNonIscritti{
+    public $CFSTUDENTE;
+    public $nome;
+    public $cognome;
+}

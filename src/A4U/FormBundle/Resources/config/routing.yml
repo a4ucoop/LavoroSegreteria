@@ -64,3 +64,9 @@ a4u_show_student:
 a4u_form_provaHera:
     path:   /prova/showhera
     defaults:   { _controller: A4UFormBundle:Page:show_Hera }
+
+a4u_form_report:
+    path:   /admin/report
+    defaults:   { _controller: A4UFormBundle:Page:report }
+
+
