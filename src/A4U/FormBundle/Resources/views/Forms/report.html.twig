@@ -98,7 +98,7 @@
                         <td>{{studente.NOMECDS}}</td>
                         <td>{{studente.AAID}}</td> 
                         <td>{{studente.CFUCERTIFICATI}}</td>
-                        <td>{{studente.MEDIACERTIFICATA}}</td> 
+                        <td>{{studente.MEDIACERTIFICATA|slice(0, 5)}}</td> 
                     </tr>
                 {% endfor %}
             </tbody>
