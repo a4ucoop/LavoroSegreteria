@@ -1,0 +1,188 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}REPORT{% endblock %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+    <style>
+    .filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+    .fitler-table .quick:hover { text-decoration: underline; }
+    td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+    </style> <!-- or put the styling in your stylesheet -->
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" >
+            ISCRITTI
+          </a>
+        </div>        
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <div class="input-group" style="max-width:300px;">
+                <input type="text" class="form-control" id="input-filter" placeholder="cerca">
+                <span class="input-group-addon glyphicon glyphicon-search"> </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+{#
+    <div align="center"><h1>QUERY:</h1></div>
+
+    {{query}}
+
+    <div align="center"><h1>ISCRITTIFORMS:</h1></div>
+
+    <div style="overflow-y: auto; overflow-x: auto;">
+    
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><b>COD FIS</b></th>
+                    <th><b>Cognome</b></th>
+                    <th><b>Nome</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for studente in iscrittiForms %}
+                    <tr>
+                        <td>{{studente.Fiscalcode}}</td>
+                        <td>{{studente.Surname}}</td>
+                        <td>{{studente.Name}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div align="center"><h1>CF:</h1></div>
+    <ul>
+        {% for cf in esse3_fc %}
+            <li> {{cf}} </li>
+        {% endfor %}
+    </ul>
+
+#}
+
+    <div style="overflow-y: auto; overflow-x: auto;">
+    
+        <table id="tbliscritti" class="table table-hover">
+            <thead>
+                <tr>
+                    <th><b>COD FIS</b></th>
+                    <th><b>Cognome</b></th>
+                    <th><b>Nome</b></th>
+                    <th><b>CDS</b></th>
+                    <th><b>ANNO</b></th>
+                    <th><b>CFU</b></th>
+                    <th><b>MEDIA</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for studente in esse3_data %}
+                    <tr>
+                        <td>{{studente.CFSTUDENTE}}</td>
+                        <td>{{studente.COGNOME}}</td>
+                        <td>{{studente.NOME}}</td>
+                        <td>{{studente.NOMECDS}}</td>
+                        <td>{{studente.AAID}}</td> 
+                        <td>{{studente.CFUCERTIFICATI}}</td>
+                        <td>{{studente.MEDIACERTIFICATA}}</td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" >
+            NON ISCRITTI
+          </a>
+        </div>        
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <div class="input-group" style="max-width:300px;">
+                <input type="text" class="form-control" id="input-filter2" placeholder="cerca">
+                <span class="input-group-addon glyphicon glyphicon-search"> </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    <div style="overflow-y: auto; overflow-x: auto;">
+    
+        <table id="tblnoniscritti" class="table table-hover">
+            <thead>
+                <tr>
+                    <th><b>COD FIS</b></th>
+                    <th><b>Cognome</b></th>
+                    <th><b>Nome</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for studente in reportNonIscritti %}
+                    <tr>
+                        <td>{{studente.CFSTUDENTE}}</td>
+                        <td>{{studente.cognome}}</td>
+                        <td>{{studente.nome}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/searchTable/jquery.filtertable.js') }}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#tbliscritti').filterTable({ // apply filterTable to all tables on this page
+            inputSelector: '#input-filter' // use the existing input instead of creating a new one
+        });
+    });
+    </script>
+    
+    <script>
+    $(document).ready(function() {
+        $('#tblnoniscritti').filterTable({ // apply filterTable to all tables on this page
+            inputSelector: '#input-filter2' // use the existing input instead of creating a new one
+        });
+    });
+    </script>
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAE
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showPAE') }}");
+        })
+    </script>
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+    
+    </script>
+
+{% endblock %}
