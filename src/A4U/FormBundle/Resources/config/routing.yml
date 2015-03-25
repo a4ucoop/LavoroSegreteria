@@ -15,6 +15,10 @@ a4u_form_searchPAE:
     path: /admin/form/search_pae
     defaults: { _controller: A4UFormBundle:Form:searchPAE }
 
+a4u_form_reportPAE:
+    path: /admin/form/report_pae
+    defaults: { _controller: A4UFormBundle:Page:reportPAE }
+
 
 a4u_form_porteAperteInverno:
     path:     /form/porte_aperte_inverno
@@ -23,6 +27,10 @@ a4u_form_porteAperteInverno:
 a4u_form_showPAI:
     path: /admin/form/show_pai
     defaults: { _controller: A4UFormBundle:Page:showPAI }
+
+a4u_form_reportPAI:
+    path: /admin/form/report_pai
+    defaults: { _controller: A4UFormBundle:Page:reportPAI }
 
 a4u_form_searchPAI:
     path: /admin/form/search_pai
@@ -41,6 +49,9 @@ a4u_form_searchStage:
     path: /admin/form/search_stage
     defaults: { _controller: A4UFormBundle:Form:searchStage }
 
+a4u_form_reportStage:
+    path: /admin/form/report_stage
+    defaults: { _controller: A4UFormBundle:Page:reportStage }
 
 
 a4u_form_generico:
@@ -55,6 +66,9 @@ a4u_form_searchGenerico:
     path: /admin/form/search_generico
     defaults: { _controller: A4UFormBundle:Form:searchGenerico }
 
+a4u_form_reportGenerico:
+    path: /admin/form/report_generico
+    defaults: { _controller: A4UFormBundle:Page:reportGenerico }
 
 a4u_show_student:
     path: /admin/esse3/show_student/{fc}

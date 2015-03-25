@@ -84,17 +84,84 @@ class PageController extends Controller
         $Users = $this->getDoctrine()
         ->getRepository('A4UFormBundle:PorteAperteEstate')
         ->findAll();
+        if (!$Users)
+        {
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
+        }
+        return $this->render('A4UFormBundle:Forms:show_porte_aperte_estate.html.twig', array(
+        'users' => $Users));
+    }
+
+    public function reportPAEAction()
+    {
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteEstate')
+        ->findAll();
 
         if (!$Users)
         {
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
-        
-        $subscribed = $this->matchEsse3Action('A4UFormBundle:PorteAperteEstate');
+       
+       //ricavo il vettore degli iscritti a PAI che si sono immatricolati (array di oggetti!)
+       $subscribed = $this->matchEsse3Action('A4UFormBundle:PorteAperteEstate');
+       
+       //ricavo un vettore contenente solo i codici fiscali degli immatricolati per fare la ricerca
+       $fcsubscribed = [];
+       foreach ($subscribed as $key) {
+        array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+       }
 
-        return $this->render('A4UFormBundle:Forms:show_porte_aperte_estate.html.twig', array(
-            'users' => $Users,
-            'subscribed' => $subscribed));
+       //a questo punto devo confrontare tutti gli iscritti alle form con gli immatricolati (per codice fiscale)
+       //e ottenere info. diverse a seconda che siano immatricolati (media voti, CFU) o meno (solo info delle form)
+       $both_subscribed = [];
+       $form_subscribed = [];
+
+       foreach ($Users as $iscrittoForms) {
+           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           //studente iscritto sia sulle form che su esse3, mergiare i dati (ricavando quelli necessari)
+           if ($pos!==False) {
+                //dati da esse3, se viene trovata una corrispondenza, $pos DOVREBBE essere valorizzata con
+                //la posizione di tale corrispondenza, quindi dovrei essere in grado di accedere ai dati in questo modo:
+                //      vettoreEsse3[posizioneMatch][attributoCheCerco]
+                //  vero matte?
+                $dati_iscritto = new bothIscritti();
+                $dati_iscritto->CFSTUDENTE=$subscribed[$pos]['CFSTUDENTE'];
+                $dati_iscritto->nome=$subscribed[$pos]['NOME'];
+                $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
+                $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
+                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
+                $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
+                $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
+
+                //Prendo i dati necessari dalle form
+                $dati_iscritto->address=($iscrittoForms->getAddress());
+                $dati_iscritto->cap=($iscrittoForms->getCap());
+                $dati_iscritto->city=($iscrittoForms->getCity());
+                $dati_iscritto->email=($iscrittoForms->getEmail());
+                $dati_iscritto->phone=($iscrittoForms->getPhone());
+                $dati_iscritto->birthDate=($iscrittoForms->getBirthDate());
+                $dati_iscritto->birthPlace=($iscrittoForms->getBirthPlace());
+                $dati_iscritto->attendedSchool=($iscrittoForms->getAttendedSchool());
+                $dati_iscritto->hasAttendedToOtherActivities=($iscrittoForms->getHasAttendedToOtherActivities());
+                $dati_iscritto->activity=($iscrittoForms->getAddress());
+                $dati_iscritto->otherActivity=($iscrittoForms->getOtherActivity());
+                $dati_iscritto->reference=($iscrittoForms->getReference());
+                $dati_iscritto->otherReference=($iscrittoForms->getOtherReference());
+                $dati_iscritto->unicamCourse=($iscrittoForms->getUnicamCourse());
+                $dati_iscritto->submissionDate=($iscrittoForms->getSubmissionDate());
+                //metto tutto nell'array degli iscritti
+               array_push($both_subscribed, $dati_iscritto);
+           }
+           //altrimenti metto lo studente nel vettore degli iscritti solo alle form
+           else{
+            array_push($form_subscribed, $iscrittoForms);
+           }
+       }
+
+        return $this->render('A4UFormBundle:Forms:reportPAE.html.twig', array(
+            'both_subscribed' => $both_subscribed,
+            'form_subscribed' => $form_subscribed));
     }
 
 
@@ -149,17 +216,84 @@ class PageController extends Controller
         $Users = $this->getDoctrine()
         ->getRepository('A4UFormBundle:PorteAperteInverno')
         ->findAll();
+        if (!$Users)
+        {
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
+        }
+        return $this->render('A4UFormBundle:Forms:show_porte_aperte_inverno.html.twig', array(
+        'users' => $Users));
+    }
+
+    public function reportPAIAction()
+    {
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteInverno')
+        ->findAll();
 
         if (!$Users)
         {
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
-	
+	   
+       //ricavo il vettore degli iscritti a PAI che si sono immatricolati (array di oggetti!)
 	   $subscribed = $this->matchEsse3Action('A4UFormBundle:PorteAperteInverno');
+       
+       //ricavo un vettore contenente solo i codici fiscali degli immatricolati per fare la ricerca
+       $fcsubscribed = [];
+       foreach ($subscribed as $key) {
+        array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+       }
 
-        return $this->render('A4UFormBundle:Forms:show_porte_aperte_inverno.html.twig', array(
-            'users' => $Users,
-	        'subscribed' => $subscribed));
+       //a questo punto devo confrontare tutti gli iscritti alle form con gli immatricolati (per codice fiscale)
+       //e ottenere info. diverse a seconda che siano immatricolati (media voti, CFU) o meno (solo info delle form)
+       $both_subscribed = [];
+       $form_subscribed = [];
+
+       foreach ($Users as $iscrittoForms) {
+           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           //studente iscritto sia sulle form che su esse3, mergiare i dati (ricavando quelli necessari)
+           if ($pos!==False) {
+                //dati da esse3, se viene trovata una corrispondenza, $pos DOVREBBE essere valorizzata con
+                //la posizione di tale corrispondenza, quindi dovrei essere in grado di accedere ai dati in questo modo:
+                //      vettoreEsse3[posizioneMatch][attributoCheCerco]
+                //  vero matte?
+                $dati_iscritto = new bothIscritti();
+                $dati_iscritto->CFSTUDENTE=$subscribed[$pos]['CFSTUDENTE'];
+                $dati_iscritto->nome=$subscribed[$pos]['NOME'];
+                $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
+                $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
+                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
+                $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
+                $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
+
+                //Prendo i dati necessari dalle form
+                $dati_iscritto->address=($iscrittoForms->getAddress());
+                $dati_iscritto->cap=($iscrittoForms->getCap());
+                $dati_iscritto->city=($iscrittoForms->getCity());
+                $dati_iscritto->email=($iscrittoForms->getEmail());
+                $dati_iscritto->phone=($iscrittoForms->getPhone());
+                $dati_iscritto->birthDate=($iscrittoForms->getBirthDate());
+                $dati_iscritto->birthPlace=($iscrittoForms->getBirthPlace());
+                $dati_iscritto->attendedSchool=($iscrittoForms->getAttendedSchool());
+                $dati_iscritto->hasAttendedToOtherActivities=($iscrittoForms->getHasAttendedToOtherActivities());
+                $dati_iscritto->activity=($iscrittoForms->getAddress());
+                $dati_iscritto->otherActivity=($iscrittoForms->getOtherActivity());
+                $dati_iscritto->reference=($iscrittoForms->getReference());
+                $dati_iscritto->otherReference=($iscrittoForms->getOtherReference());
+                $dati_iscritto->unicamCourse=($iscrittoForms->getUnicamCourse());
+                $dati_iscritto->submissionDate=($iscrittoForms->getSubmissionDate());
+                //metto tutto nell'array degli iscritti
+               array_push($both_subscribed, $dati_iscritto);
+           }
+           //altrimenti metto lo studente nel vettore degli iscritti solo alle form
+           else{
+            array_push($form_subscribed, $iscrittoForms);
+           }
+       }
+
+        return $this->render('A4UFormBundle:Forms:reportPAI.html.twig', array(
+            'both_subscribed' => $both_subscribed,
+	        'form_subscribed' => $form_subscribed));
     }
 
 // ---------------------------------------STAGE--------------------------------------------
@@ -220,11 +354,84 @@ class PageController extends Controller
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
-        $subscribed = $this->matchEsse3Action('A4UFormBundle:Stage');
-
         return $this->render('A4UFormBundle:Forms:show_stage.html.twig', array(
-            'users' => $Users,
-            'subscribed' => $subscribed));
+            'users' => $Users));
+    }
+
+    public function reportStageAction()
+    {
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:Stage')
+        ->findAll();
+
+        if (!$Users)
+        {
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
+        }
+       
+       //ricavo il vettore degli iscritti a PAI che si sono immatricolati (array di oggetti!)
+       $subscribed = $this->matchEsse3Action('A4UFormBundle:Stage');
+       
+       //ricavo un vettore contenente solo i codici fiscali degli immatricolati per fare la ricerca
+       $fcsubscribed = [];
+       foreach ($subscribed as $key) {
+        array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+       }
+
+       //a questo punto devo confrontare tutti gli iscritti alle form con gli immatricolati (per codice fiscale)
+       //e ottenere info. diverse a seconda che siano immatricolati (media voti, CFU) o meno (solo info delle form)
+       $both_subscribed = [];
+       $form_subscribed = [];
+
+       foreach ($Users as $iscrittoForms) {
+           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           //studente iscritto sia sulle form che su esse3, mergiare i dati (ricavando quelli necessari)
+           if ($pos!==False) {
+                //dati da esse3, se viene trovata una corrispondenza, $pos DOVREBBE essere valorizzata con
+                //la posizione di tale corrispondenza, quindi dovrei essere in grado di accedere ai dati in questo modo:
+                //      vettoreEsse3[posizioneMatch][attributoCheCerco]
+                //  vero matte?
+                $dati_iscritto = new bothIscritti();
+                $dati_iscritto->CFSTUDENTE=$subscribed[$pos]['CFSTUDENTE'];
+                $dati_iscritto->nome=$subscribed[$pos]['NOME'];
+                $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
+                $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
+                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
+                $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
+                $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
+
+                //Prendo i dati necessari dalle form
+                $dati_iscritto->address=($iscrittoForms->getAddress());
+                $dati_iscritto->cap=($iscrittoForms->getCap());
+                $dati_iscritto->city=($iscrittoForms->getCity());
+                $dati_iscritto->email=($iscrittoForms->getEmail());
+                $dati_iscritto->phone=($iscrittoForms->getPhone());
+                $dati_iscritto->birthDate=($iscrittoForms->getBirthDate());
+                $dati_iscritto->birthPlace=($iscrittoForms->getBirthPlace());
+                $dati_iscritto->attendedSchool=($iscrittoForms->getAttendedSchool());
+
+                $dati_iscritto->schoolYear=($iscrittoForms->getSchoolYear());
+                $dati_iscritto->facebookContact=($iscrittoForms->getFacebookContact());
+                $dati_iscritto->stagePeriod=($iscrittoForms->getStagePeriod());
+                $dati_iscritto->firstStudyField=($iscrittoForms->getFirstStudyField());
+                $dati_iscritto->firstChoice=($iscrittoForms->getFirstChoice());
+                $dati_iscritto->secondStudyField=($iscrittoForms->getSecondStudyField());
+                $dati_iscritto->secondChoice=($iscrittoForms->getSecondChoice());
+                $dati_iscritto->moneyPayed=($iscrittoForms->getMoneyPayed());
+
+                $dati_iscritto->submissionDate=($iscrittoForms->getSubmissionDate());
+                //metto tutto nell'array degli iscritti
+               array_push($both_subscribed, $dati_iscritto);
+           }
+           //altrimenti metto lo studente nel vettore degli iscritti solo alle form
+           else{
+            array_push($form_subscribed, $iscrittoForms);
+           }
+       }
+
+        return $this->render('A4UFormBundle:Forms:report_stage.html.twig', array(
+            'both_subscribed' => $both_subscribed,
+            'form_subscribed' => $form_subscribed));
     }
 
 // ---------------------------------------GENERICO--------------------------------------------
@@ -285,11 +492,76 @@ class PageController extends Controller
             return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
         }
 
-        $subscribed = $this->matchEsse3Action('A4UFormBundle:Generico');
-
         return $this->render('A4UFormBundle:Forms:show_generico.html.twig', array(
-            'users' => $Users,
-            'subscribed' => $subscribed));
+            'users' => $Users));
+    }
+
+    public function reportGenericoAction()
+    {
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:Generico')
+        ->findAll();
+
+        if (!$Users)
+        {
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
+        }
+       
+       //ricavo il vettore degli iscritti a PAI che si sono immatricolati (array di oggetti!)
+       $subscribed = $this->matchEsse3Action('A4UFormBundle:Generico');
+       
+       //ricavo un vettore contenente solo i codici fiscali degli immatricolati per fare la ricerca
+       $fcsubscribed = [];
+       foreach ($subscribed as $key) {
+        array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+       }
+
+       //a questo punto devo confrontare tutti gli iscritti alle form con gli immatricolati (per codice fiscale)
+       //e ottenere info. diverse a seconda che siano immatricolati (media voti, CFU) o meno (solo info delle form)
+       $both_subscribed = [];
+       $form_subscribed = [];
+
+       foreach ($Users as $iscrittoForms) {
+           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           //studente iscritto sia sulle form che su esse3, mergiare i dati (ricavando quelli necessari)
+           if ($pos!==False) {
+                //dati da esse3, se viene trovata una corrispondenza, $pos DOVREBBE essere valorizzata con
+                //la posizione di tale corrispondenza, quindi dovrei essere in grado di accedere ai dati in questo modo:
+                //      vettoreEsse3[posizioneMatch][attributoCheCerco]
+                //  vero matte?
+                $dati_iscritto = new bothIscritti();
+                $dati_iscritto->CFSTUDENTE=$subscribed[$pos]['CFSTUDENTE'];
+                $dati_iscritto->nome=$subscribed[$pos]['NOME'];
+                $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
+                $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
+                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
+                $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
+                $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
+
+                //Prendo i dati necessari dalle form
+                $dati_iscritto->address=($iscrittoForms->getAddress());
+                $dati_iscritto->cap=($iscrittoForms->getCap());
+                $dati_iscritto->city=($iscrittoForms->getCity());
+                $dati_iscritto->email=($iscrittoForms->getEmail());
+                $dati_iscritto->phone=($iscrittoForms->getPhone());
+                $dati_iscritto->birthDate=($iscrittoForms->getBirthDate());
+                $dati_iscritto->birthPlace=($iscrittoForms->getBirthPlace());
+
+                $dati_iscritto->attendedActivity=($iscrittoForms->getAttendedActivity());
+
+                $dati_iscritto->submissionDate=($iscrittoForms->getSubmissionDate());
+                //metto tutto nell'array degli iscritti
+               array_push($both_subscribed, $dati_iscritto);
+           }
+           //altrimenti metto lo studente nel vettore degli iscritti solo alle form
+           else{
+            array_push($form_subscribed, $iscrittoForms);
+           }
+       }
+
+        return $this->render('A4UFormBundle:Forms:report_generico.html.twig', array(
+            'both_subscribed' => $both_subscribed,
+            'form_subscribed' => $form_subscribed));
     }
 
 
@@ -344,7 +616,7 @@ class PageController extends Controller
         //pusho tutti i dati sul vettore
         foreach ($pai as $item) {
             array_push($iscritti, $item);
-            array_push($fciscritti, $item->getFiscalcode());
+            array_push($fciscritti, strtolower($item->getFiscalcode()));
         }
 
         $repository = $this->getDoctrine()
@@ -357,7 +629,7 @@ class PageController extends Controller
         foreach ($pae as $item) {
             if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
                 array_push($iscritti,$item);
-                array_push($fciscritti, $item->getFiscalcode());
+                array_push($fciscritti, strtolower($item->getFiscalcode()));
         }
 
         $repository = $this->getDoctrine()
@@ -370,7 +642,7 @@ class PageController extends Controller
         foreach ($stage as $item) {
             if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
                 array_push($iscritti,$item);
-                array_push($fciscritti, $item->getFiscalcode());
+                array_push($fciscritti, strtolower($item->getFiscalcode()));
         }
 
         $repository = $this->getDoctrine()
@@ -383,7 +655,7 @@ class PageController extends Controller
         foreach ($generico as $item) {
             if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
                 array_push($iscritti,$item);
-                array_push($fciscritti, $item->getFiscalcode());
+                array_push($fciscritti, strtolower($item->getFiscalcode()));
         }
 
         //interrogo ESSE3 per sapere chi degli iscritti alle attività si è realmente iscritto
@@ -445,7 +717,7 @@ class PageController extends Controller
        //devo trovare gli iscritti alle attività che NON si sono immatricolati
        $esse3_fc=[];            //codici fiscali presenti su esse3_data
        foreach ($esse3_data as $iscrittoEsse3) {
-           array_push($esse3_fc,strtolower($iscrittoEsse3['CFSTUDENTE'])) ;
+           array_push($esse3_fc,strtolower($iscrittoEsse3['CFSTUDENTE']));
        }
 
        $nonIscrittiEsse3 = [];
@@ -473,45 +745,68 @@ class PageController extends Controller
     
     public function matchEsse3Action($repository)
     {
-
-        $db="(DESCRIPTION=
-            (ADDRESS_LIST=
-            (ADDRESS=(PROTOCOL=TCP)
-                (HOST=oracle11.unicam.it)(PORT=1521)
-            )
-            )
-            (CONNECT_DATA=(SID=UGOVPROD))
-        )";
-        $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
-        $statement = oci_parse($conn,"select COD_FIS from V_STAT_ANAGRAFICA");
-        oci_execute($statement);
-
+    
         $repository = $this->getDoctrine()
-                ->getRepository($repository)
-                ->createQueryBuilder('u')
-                ->getQuery();
-        $pai = $repository->getResult();
+        ->getRepository($repository)
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $iscritti = $repository->getResult();
 
+        $query="WITH ORDERED AS
+            (
+            SELECT
+                CFSTUDENTE,
+                COGNOME,
+                NOME,
+                NOMECDS,
+                CFUCERTIFICATI,
+                MEDIACERTIFICATA,
+                AAID,
+                ROW_NUMBER() OVER (PARTITION BY CFSTUDENTE ORDER BY AAID DESC) AS rn
+            FROM
+                V11_ERGO_STATO_CARRIERA
+            )
+            SELECT
+                CFSTUDENTE,
+                COGNOME,
+                NOME,
+                NOMECDS,
+                AAID,
+                CFUCERTIFICATI,
+                MEDIACERTIFICATA
+            FROM
+                ORDERED
+            WHERE
+                rn = 1 AND (";
 
-        $esse3_data = [];
-        $subscribed = [];
-        $not_subscribed = [];
-
-        while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
-            array_push($esse3_data,strtolower($row['COD_FIS']));
-        } 
-
-        foreach ($pai as $item) {
-
-            if(array_search(strtolower($item->getFiscalcode()),$esse3_data)!=False){
-                array_push($subscribed,$item->getFiscalcode());
-            } else {
-                array_push($not_subscribed,$item->getFiscalcode());
-            }
-
+        foreach ($iscritti as $key) {
+            $append="lower(CFSTUDENTE)='";
+            $query=$query . $append . strtolower($key->getFiscalcode()) . "' OR ";
         }
 
-        return $subscribed;
+        $query = substr($query, 0, -3);
+        $query=$query.")";
+
+       $db="(DESCRIPTION=
+           (ADDRESS_LIST=
+           (ADDRESS=(PROTOCOL=TCP)
+               (HOST=oracle11.unicam.it)(PORT=1521)
+           )
+           )
+           (CONNECT_DATA=(SID=UGOVPROD))
+       )";
+       $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
+       $statement = oci_parse($conn,$query);
+       oci_execute($statement);
+
+       $esse3_data = [];     //studenti iscritti su ESSE3
+
+       //A questo punto su esse3_data ci sono tutti i dati delle persone iscritte alle attività e su esse3
+       while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
+           array_push($esse3_data,$row);
+       } 
+
+       return $esse3_data;
     }
 
 // ---------------------------------------SHOW STUDENT ESSE3--------------------------------------------
@@ -528,7 +823,7 @@ class PageController extends Controller
             (CONNECT_DATA=(SID=UGOVPROD))
         )";
 
-        $query="select * from V_STAT_ANAGRAFICA where LOWER(COD_FIS)='".$fc."'";//"DMNMHL94A06I324Q"
+        $query="select * from V_STAT_ANAGRAFICA where LOWER(COD_FIS)='".strtolower($fc)."'";//"DMNMHL94A06I324Q"
 
         $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
         $statement = oci_parse($conn,$query);
@@ -584,6 +879,7 @@ class studente{
 
 }
 
+//contiene dati degli studenti immatricolati per la vista /admin/report
 class reportIscritti{
     public $CFSTUDENTE;
     public $nome;
@@ -594,9 +890,55 @@ class reportIscritti{
     public $mediaCertificata;
 
 }
-
+//contiene dati degli studenti NON immatricolati per la vista /admin/report
 class reportNonIscritti{
     public $CFSTUDENTE;
     public $nome;
     public $cognome;
 }
+
+
+//contiene dati degli studenti immatricolati per la vista /admin/form/show*
+class bothIscritti{
+    //roba ESSE3
+    public $CFSTUDENTE;
+    public $nome;
+    public $cognome;
+    public $corsoDiStudi;
+    public $anno;
+    public $CFUCERTIFICATI;
+    public $mediaCertificata;
+
+    //roba forms(PAI e PAE)
+    public $address;       
+    public $cap;      
+    public $city;          
+    public $email;         
+    public $phone;         
+    public $birthDate;     
+    public $birthPlace;    
+    public $attendedSchool;
+    public $hasAttendedToOtherActivities;  
+    public $activity;      
+    public $otherActivity; 
+    public $reference;     
+    public $otherReference;
+    public $unicamCourse;   
+    public $submissionDate;
+
+    //roba stage
+    public $schoolYear;
+    public $facebookContact;
+    public $stagePeriod;
+    public $firstStudyField;
+    public $firstChoice;
+    public $secondStudyField;
+    public $secondChoice;
+    public $moneyPayed;
+
+    //roba generico
+    public $attendedActivity;
+
+
+}
+
