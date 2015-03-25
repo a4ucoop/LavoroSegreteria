@@ -741,6 +741,145 @@ class PageController extends Controller
 
     }
 
+
+
+
+
+
+
+
+
+
+    public function reportCompletoAction()
+    {
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:Generico')
+        ->findAll();
+
+        if (!$Users)
+        {
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
+        }
+
+
+
+
+        //prendo i dati da una repository
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteInverno')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $pai = $repository->getResult();
+
+        //pusho tutti i dati sul vettore
+        foreach ($pai as $item) {
+            array_push($iscritti, $item);
+            array_push($fciscritti, strtolower($item->getFiscalcode()));
+        }
+
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:PorteAperteEstate')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $pae = $repository->getResult();
+
+        //le volte successive controllo che i codici che sto inserendo non siano gia presenti
+        foreach ($pae as $item) {
+            if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
+                array_push($iscritti,$item);
+                array_push($fciscritti, strtolower($item->getFiscalcode()));
+        }
+
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:Stage')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $stage = $repository->getResult();
+
+        //le volte successive controllo che i codici che sto inserendo non siano gia presenti
+        foreach ($stage as $item) {
+            if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
+                array_push($iscritti,$item);
+                array_push($fciscritti, strtolower($item->getFiscalcode()));
+        }
+
+        $repository = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:Generico')
+        ->createQueryBuilder('u')
+        ->getQuery();
+        $generico = $repository->getResult();
+
+        //le volte successive controllo che i codici che sto inserendo non siano gia presenti
+        foreach ($generico as $item) {
+            if(array_search(strtolower($item->getFiscalcode()),$fciscritti)===False) 
+                array_push($iscritti,$item);
+                array_push($fciscritti, strtolower($item->getFiscalcode()));
+        }
+
+
+
+
+
+
+       
+       //ricavo il vettore degli iscritti a PAI che si sono immatricolati (array di oggetti!)
+       $subscribed = $this->matchEsse3Action('A4UFormBundle:Generico');
+       
+       //ricavo un vettore contenente solo i codici fiscali degli immatricolati per fare la ricerca
+       $fcsubscribed = [];
+       foreach ($subscribed as $key) {
+        array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+       }
+
+       //a questo punto devo confrontare tutti gli iscritti alle form con gli immatricolati (per codice fiscale)
+       //e ottenere info. diverse a seconda che siano immatricolati (media voti, CFU) o meno (solo info delle form)
+       $both_subscribed = [];
+       $form_subscribed = [];
+
+       foreach ($Users as $iscrittoForms) {
+           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           //studente iscritto sia sulle form che su esse3, mergiare i dati (ricavando quelli necessari)
+           if ($pos!==False) {
+                //dati da esse3, se viene trovata una corrispondenza, $pos DOVREBBE essere valorizzata con
+                //la posizione di tale corrispondenza, quindi dovrei essere in grado di accedere ai dati in questo modo:
+                //      vettoreEsse3[posizioneMatch][attributoCheCerco]
+                //  vero matte?
+                $dati_iscritto = new bothIscritti();
+                $dati_iscritto->CFSTUDENTE=$subscribed[$pos]['CFSTUDENTE'];
+                $dati_iscritto->nome=$subscribed[$pos]['NOME'];
+                $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
+                $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
+                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
+                $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
+                $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
+
+                //Prendo i dati necessari dalle form
+                $dati_iscritto->address=($iscrittoForms->getAddress());
+                $dati_iscritto->cap=($iscrittoForms->getCap());
+                $dati_iscritto->city=($iscrittoForms->getCity());
+                $dati_iscritto->email=($iscrittoForms->getEmail());
+                $dati_iscritto->phone=($iscrittoForms->getPhone());
+                $dati_iscritto->birthDate=($iscrittoForms->getBirthDate());
+                $dati_iscritto->birthPlace=($iscrittoForms->getBirthPlace());
+
+                $dati_iscritto->attendedActivity=($iscrittoForms->getAttendedActivity());
+
+                $dati_iscritto->submissionDate=($iscrittoForms->getSubmissionDate());
+                //metto tutto nell'array degli iscritti
+               array_push($both_subscribed, $dati_iscritto);
+           }
+           //altrimenti metto lo studente nel vettore degli iscritti solo alle form
+           else{
+            array_push($form_subscribed, $iscrittoForms);
+           }
+       }
+
+        return $this->render('A4UFormBundle:Forms:report_generico.html.twig', array(
+            'both_subscribed' => $both_subscribed,
+            'form_subscribed' => $form_subscribed));
+    }
+
+
 // ---------------------------------------MATCH ESSE3--------------------------------------------
     
     public function matchEsse3Action($repository)

@@ -40,7 +40,8 @@ class AddDistrictFieldSubscriber implements EventSubscriberInterface
                 'property' => 'provincia',
                 'attr' => array(
                     'class' => 'form-control',
-                    )
+                    ),
+                'required' => false
             );
             $form->add($this->propertyPathToDistrict, 'entity', $formOptions);
         }
@@ -51,7 +52,8 @@ class AddDistrictFieldSubscriber implements EventSubscriberInterface
                'choices' => array("Scegli una provincia..."),
                'attr' => array(
                    'class' => 'form-control',
-                   )
+                   ),
+               'required' => false
             );
             $form->add($this->propertyPathToDistrict, 'choice', $formOptions);
         }

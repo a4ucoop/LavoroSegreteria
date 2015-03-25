@@ -40,7 +40,8 @@ class AddSchoolFieldSubscriber implements EventSubscriberInterface
                 #'property' => 'denominazione',
                 'attr' => array(
                     'class' => 'form-control',
-                    )
+                    ),
+                'required' => false
             );
             $form->add($this->propertyPathToSchool, 'entity', $formOptions);
         }
@@ -51,7 +52,8 @@ class AddSchoolFieldSubscriber implements EventSubscriberInterface
                'choices' => array("Scegli una scuola..."),
                'attr' => array(
                    'class' => 'form-control',
-                   )
+                   ),
+               'required' => false
             );
             $form->add($this->propertyPathToSchool, 'choice', $formOptions);
         }

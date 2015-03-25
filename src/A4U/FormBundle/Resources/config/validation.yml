@@ -87,6 +87,10 @@ A4U\FormBundle\Entity\PorteAperteInverno:
 
 
 A4U\FormBundle\Entity\Stage:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: fiscalcode
+            message: 'Il codice fiscale inserito è già presente nei nostri Database'
     properties:
         name:
             - NotBlank: ~
@@ -105,7 +109,6 @@ A4U\FormBundle\Entity\Stage:
         fiscalcode:
             - NotBlank: ~
         attendedSchool:
-            - NotBlank: ~
         schoolYear:
             - NotBlank: ~
             - Type:
@@ -122,9 +125,7 @@ A4U\FormBundle\Entity\Stage:
         secondStudyField:
             - NotBlank: ~
         firstChoice:
-            - NotBlank: ~
         secondChoice:
-            - NotBlank: ~
         moneyPayed:
             - NotBlank: ~
 

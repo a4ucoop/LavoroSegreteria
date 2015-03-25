@@ -138,14 +138,14 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="firstChoice", type="string", length=10)
+     * @ORM\Column(name="firstChoice", type="string", length=10, nullable=true)
      */
     private $firstChoice;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="secondChoice", type="string", length=10)
+     * @ORM\Column(name="secondChoice", type="string", length=10, nullable=true)
      */
     private $secondChoice;
 

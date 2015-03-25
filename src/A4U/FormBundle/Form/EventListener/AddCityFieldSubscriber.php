@@ -40,7 +40,8 @@ class AddCityFieldSubscriber implements EventSubscriberInterface
                 'property' => 'citta',
                 'attr' => array(
                     'class' => 'form-control',
-                    )
+                    ),
+                'required' => false
             );
             $form->add($this->propertyPathToCity, 'entity', $formOptions);
         }
@@ -51,7 +52,8 @@ class AddCityFieldSubscriber implements EventSubscriberInterface
                'choices' => array("Scegli una città..."),
                'attr' => array(
                    'class' => 'form-control',
-                   )
+                   ),
+               'required' => false
             );
             $form->add($this->propertyPathToCity, 'choice', $formOptions);
         }

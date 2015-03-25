@@ -40,7 +40,8 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
                 'property' => 'codStage',
                 'attr' => array(
                     'class' => 'form-control',
-                    )
+                    ),
+                'required' => false
             );
             $form->add($this->propertyPathToChoice, 'entity', $formOptions);
         }
@@ -51,7 +52,8 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
                'choices' => array("Prima scelta..."),
                'attr' => array(
                    'class' => 'form-control',
-                   )
+                   ),
+               'required' => false
             );
             $form->add($this->propertyPathToChoice, 'choice', $formOptions);
         }

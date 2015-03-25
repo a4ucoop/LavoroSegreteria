@@ -94,9 +94,17 @@
 	                        si
 	                    </td>
 						<td>{{user.firstStudyField}}</td>
-						<td>{{user.firstChoice}}</td>
+						<td>
+							{% if(user.firstChoice is null) %} N/A
+	                        {% else %}{{user.firstChoice}}
+	                        {% endif %}
+						</td>
 						<td>{{user.secondStudyField}}</td>
-						<td>{{user.secondChoice}}</td>
+						<td>
+							{% if(user.secondChoice is null) %} N/A
+	                        {% else %}{{user.secondChoice}}
+	                        {% endif %}
+						</td>
 	                    <td>{{user.corsoDiStudi}}</td>
 	                    <td>{{user.anno}}</td>
 	                    <td>
@@ -116,7 +124,11 @@
 						<td>{{user.phone}}</td> 
 						<td>{{user.birthDate|date('d-m-Y')}}</td> 
 						<td>{{user.birthPlace}}</td> 
-						<td>{{user.attendedSchool}}</td> 
+						<td>
+							{% if(user.attendedSchool is null) %} N/A
+	                        {% else %}{{user.attendedSchool}}
+	                        {% endif %}
+						</td> 
 						<td>{{user.schoolYear}}</td>
 						<td>{{user.facebookContact}}</td>
 						<td>{{user.stagePeriod}}</td>
@@ -132,9 +144,17 @@
 						<td>{{user.fiscalCode}}</td>
 						<td style="color:red" align="center" >no</td>
 						<td>{{user.firstStudyField}}</td>
-						<td>{{user.firstChoice}}</td>
+						<td>
+							{% if(user.firstChoice is null) %} N/A
+	                        {% else %}{{user.firstChoice}}
+	                        {% endif %}
+						</td>
 						<td>{{user.secondStudyField}}</td>
-						<td>{{user.secondChoice}}</td>
+						<td>
+							{% if(user.secondChoice is null) %} N/A
+	                        {% else %}{{user.secondChoice}}
+	                        {% endif %}
+						</td>
 						<td>N/A</td>
 						<td>N/A</td>
 						<td>N/A</td>

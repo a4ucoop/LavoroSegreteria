@@ -127,7 +127,8 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'
-                    )
+                    ),
+                'required' => false
                 ))
 
                ->addEventSubscriber(new AddDistrictFieldSubscriber('attendedSchoolDistrict'))
@@ -173,18 +174,40 @@ class StageType extends AbstractType
                 'required' => false
                 ))
 
-            ->add('select_firstStudyField', 'entity', array(
+        //    ->add('select_firstStudyField', 'entity', array(
+        //        'mapped' => false,
+        //        'label' => 'Campo di studi*',
+        //        'class' => 'A4UDataBundle:OpzioniStage',
+        //        'query_builder' => function(EntityRepository $er) {
+        //            return $er->createQueryBuilder('OS')
+        //                        ->where('OS.attivo=1');
+        //            },
+        //        //'property' => 'Descrizione',
+        //        'attr' => array(
+        //            'class' => 'form-control',
+        //            'placeholder' => 'Campo di studi'
+        //            )
+        //        ))
+
+
+            ->add('select_firstStudyField', 'choice', array(
                 'mapped' => false,
-                'label' => 'Campo di studi*',
-                'class' => 'A4UDataBundle:OpzioniStage',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('OS')
-                                ->where('OS.attivo=1');
-                    },
-                //'property' => 'Descrizione',
+                'label' => 'Campo di studi prima scelta*',
+                'choices'   => array(
+                    'Architettura e Design',
+                    'Bioscienze e Biotecnologie',
+                    'Giurisprudenza',
+                    'Scienze Geologiche, Naturali e Ambientali',
+                    'Scienze del Farmaco e dei Prodotti  della Salute',
+                    'Chimica',
+                    'Fisica',
+                    'Matematica',
+                    'Informatica',
+                    'Tecnologia e Diagnostica per la Conservazione e il Restauro',
+                    'Medicina Veterinaria'
+                    ),
                 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Campo di studi'
+                    'class' => 'form-control'
                     )
                 ))
 
@@ -201,21 +224,28 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'firstChoice'
-                    )
+                    ),
+                'required' => false
                 ))  
 
-            ->add('select_secondStudyField', 'entity', array(
+            ->add('select_secondStudyField', 'choice', array(
                 'mapped' => false,
-                'label' => 'Campo di studi*',
-                'class' => 'A4UDataBundle:OpzioniStage',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('OS')
-                                ->where('OS.attivo=1');
-                    },
-                //'property' => 'Descrizione',
+                'label' => 'Campo di studi seconda scelta*',
+                'choices'   => array(
+                    'Architettura e Design',
+                    'Bioscienze e Biotecnologie',
+                    'Giurisprudenza',
+                    'Scienze Geologiche, Naturali e Ambientali',
+                    'Scienze del Farmaco e dei Prodotti  della Salute',
+                    'Chimica',
+                    'Fisica',
+                    'Matematica',
+                    'Informatica',
+                    'Tecnologia e Diagnostica per la Conservazione e il Restauro',
+                    'Medicina Veterinaria'
+                    ),
                 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Campo di studi'
+                    'class' => 'form-control'
                     )
                 ))
 
@@ -232,7 +262,8 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'secondChoice'
-                    )
+                    ),
+                'required' => false
                 ))  
 
             ->add('moneyPayed', 'choice', array(

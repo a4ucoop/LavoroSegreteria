@@ -40,7 +40,8 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
                 'property' => 'codStage',
                 'attr' => array(
                     'class' => 'form-control',
-                    )
+                    ),
+                'required' => false
             );
             $form->add($this->propertyPathToChoice, 'entity', $formOptions);
         }
@@ -51,7 +52,8 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
                'choices' => array("Seconda scelta..."),
                'attr' => array(
                    'class' => 'form-control',
-                   )
+                   ),
+               'required' => false
             );
             $form->add($this->propertyPathToChoice, 'choice', $formOptions);
         }
