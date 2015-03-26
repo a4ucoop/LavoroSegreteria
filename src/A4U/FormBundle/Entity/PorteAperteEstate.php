@@ -573,6 +573,16 @@ class PorteAperteEstate
     }
 
     /**
+     * Get submissionDate
+     *
+     * @return \DateTime 
+     */
+    public function getSubmissionDateAsString()
+    {
+        return $this->submissionDate->format('m/d/Y');
+    }
+
+    /**
      * Set attendedSchool
      *
      * @param \A4U\DataBundle\Entity\StuAnagScuole $attendedSchool

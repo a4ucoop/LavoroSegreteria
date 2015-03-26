@@ -385,6 +385,16 @@ class Generico
     }
 
     /**
+     * Get submissionDate as String
+     *
+     * @return \String
+     */
+    public function getSubmissionDateAsString()
+    {
+        return $this->submissionDate->format('m/d/Y');
+    }
+
+    /**
      * Set attendedActivity
      *
      * @param string $attendedActivity

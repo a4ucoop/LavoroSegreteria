@@ -23,6 +23,9 @@ a4u_form_reportPAE:
     path: /admin/form/report_pae
     defaults: { _controller: A4UFormBundle:Page:reportPAE }
 
+a4u_form_csv_PAE:
+    path: /admin/form/csv_pae
+    defaults: { _controller: A4UFormBundle:Export:generateCsvPAE }
 
 a4u_form_porteAperteInverno:
     path:     /form/porte_aperte_inverno
@@ -40,6 +43,9 @@ a4u_form_showPAI:
 a4u_form_reportPAI:
     path: /admin/form/report_pai
     defaults: { _controller: A4UFormBundle:Page:reportPAI }
+a4u_form_csv_PAI:
+    path: /admin/form/csv_pai
+    defaults: { _controller: A4UFormBundle:Export:generateCsvPAI }
 
 a4u_form_searchPAI:
     path: /admin/form/search_pai
@@ -66,6 +72,9 @@ a4u_form_searchStage:
 a4u_form_reportStage:
     path: /admin/form/report_stage
     defaults: { _controller: A4UFormBundle:Page:reportStage }
+a4u_form_csv_Stage:
+    path: /admin/form/csv_stage
+    defaults: { _controller: A4UFormBundle:Export:generateCsvStage }
 
 
 a4u_form_generico:
@@ -88,6 +97,9 @@ a4u_form_searchGenerico:
 a4u_form_reportGenerico:
     path: /admin/form/report_generico
     defaults: { _controller: A4UFormBundle:Page:reportGenerico }
+a4u_form_csv_Generico:
+    path: /admin/form/csv_generico
+    defaults: { _controller: A4UFormBundle:Export:generateCsvGenerico }
 
 a4u_show_student:
     path: /admin/esse3/show_student/{fc}

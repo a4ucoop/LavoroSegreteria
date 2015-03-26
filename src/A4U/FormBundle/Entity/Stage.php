@@ -626,6 +626,16 @@ class Stage
     }
 
     /**
+     * Get submissiondate as String
+     *
+     * @return \String
+     */
+    public function getSubmissiondateAsString()
+    {
+        return $this->submissiondate->format('m/d/Y');
+    }
+
+    /**
      * Set attendedSchool
      *
      * @param \A4U\DataBundle\Entity\StuAnagScuole $attendedSchool
@@ -647,4 +657,5 @@ class Stage
     {
         return $this->attendedSchool;
     }
+
 }
