@@ -97,37 +97,25 @@ A4U\FormBundle\Entity\Stage:
         surname:
             - NotBlank: ~
         birthPlace:
-            - NotBlank: ~
         birthDate:
-            - NotBlank: ~
         address:
-            - NotBlank: ~
         cap:
-            - NotBlank: ~
         city:
-            - NotBlank: ~
         fiscalcode:
-            - NotBlank: ~
         attendedSchool:
         schoolYear:
-            - NotBlank: ~
             - Type:
                 type: integer
                 message: Il valore {{ value }} non è un {{ type }} valido.
         email:
-            - NotBlank: ~
         phone:
-            - NotBlank: ~
         facebookContact:
         stagePeriod:
         firstStudyField:
-            - NotBlank: ~
         secondStudyField:
-            - NotBlank: ~
         firstChoice:
         secondChoice:
         moneyPayed:
-            - NotBlank: ~
 
 
 

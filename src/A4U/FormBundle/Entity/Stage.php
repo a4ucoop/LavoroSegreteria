@@ -40,7 +40,7 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=128)
+     * @ORM\Column(name="address", type="string", length=128, nullable=true)
      */
     private $address;
  
@@ -48,62 +48,62 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="cap", type="string", length=128)
+     * @ORM\Column(name="cap", type="string", length=128, nullable=true)
      */
     private $cap;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=128)
+     * @ORM\Column(name="city", type="string", length=128, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=128)
+     * @ORM\Column(name="email", type="string", length=128, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=128)
+     * @ORM\Column(name="phone", type="string", length=128, nullable=true)
      */
     private $phone;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="datetimetz")
+     * @ORM\Column(name="birthDate", type="datetimetz", nullable=true)
      */
     private $birthDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="birthPlace", type="string", length=128)
+     * @ORM\Column(name="birthPlace", type="string", length=128, nullable=true)
      */
     private $birthPlace;
 
     /**
      * @ORM\ManyToOne(targetEntity="A4U\DataBundle\Entity\StuAnagScuole", inversedBy="stages")
-     * @ORM\JoinColumn(name="attendedSchool_id", referencedColumnName="idRecord")
+     * @ORM\JoinColumn(name="attendedSchool_id", referencedColumnName="idRecord", nullable=true)
      */
     protected $attendedSchool;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fiscalcode", type="string", length=128)
+     * @ORM\Column(name="fiscalcode", type="string", length=128, nullable=true)
      */
     private $fiscalcode;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="schoolYear", type="integer")
+     * @ORM\Column(name="schoolYear", type="integer", nullable=true)
      */
     private $schoolYear;
 
@@ -117,21 +117,21 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="stagePeriod", type="string", length=128, nullable=true)
+     * @ORM\Column(name="stagePeriod", type="string", length=128,  nullable=true)
      */
     private $stagePeriod;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstStudyField", type="string", length=128)
+     * @ORM\Column(name="firstStudyField", type="string", length=128, nullable=true)
      */
     private $firstStudyField;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="secondStudyField", type="string", length=128)
+     * @ORM\Column(name="secondStudyField", type="string", length=128, nullable=true)
      */
     private $secondStudyField;
 
@@ -152,14 +152,14 @@ class Stage
     /**
      * @var string
      *
-     * @ORM\Column(name="moneyPayed", type="string", length=128)
+     * @ORM\Column(name="moneyPayed", type="string", length=128, nullable=true)
      */
     private $moneyPayed;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="submissiondate", type="datetimetz")
+     * @ORM\Column(name="submissiondate", type="datetimetz", nullable=true)
      * @Gedmo\Timestampable(on="create")
      */
     private $submissiondate;

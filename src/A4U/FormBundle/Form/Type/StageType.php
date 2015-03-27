@@ -48,47 +48,52 @@ class StageType extends AbstractType
                 ))
 
             ->add('address', 'text', array(
-                'label' => 'Indirizzo*',
+                'label' => 'Indirizzo',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Indirizzo'
                     )
+                ,'required' => false
                 ))
 
             ->add('cap', 'text', array(
-                'label' => 'CAP*',
+                'label' => 'CAP',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Codice aviazione postale'
                     )
+                ,'required' => false
                 ))
 
             ->add('city', 'text', array(
-                'label' => 'Città*',
+                'label' => 'Città',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Città di residenza'
                     )
+                ,'required' => false
                 ))
 
             ->add('email', 'text', array(
-                'label' => 'Email*',
+                'label' => 'Email',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Email'
                     )
+                ,'required' => false
                 ))
 
             ->add('phone', 'text', array(
-                'label' => 'Telefono*',
+                'label' => 'Telefono',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Numero di telefono'
                     )
+                ,'required' => false
                 ))
 
             ->add('birthDate', 'collot_datetime', array( 
-                'label' => 'Data di nascita*',
+                'label' => 'Data di nascita',
                 'attr' => array(
                     'class' => 'form-control'),
                 'pickerOptions' => array(
@@ -97,18 +102,20 @@ class StageType extends AbstractType
                         'autoclose' => true,
                         'language' => 'it',
                     )
+                ,'required' => false
                 ))
 
             ->add('birthPlace', 'text', array(
-                'label' => 'Luogo di nascita*',
+                'label' => 'Luogo di nascita',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Luogo di nascita'
                     )
+                ,'required' => false
                 ))
             
             ->add('fiscalcode', 'text', array(
-                'label' => 'Codice fiscale*',
+                'label' => 'Codice fiscale',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Codice fiscale'
@@ -117,7 +124,7 @@ class StageType extends AbstractType
 
             ->add('attendedSchoolRegion', 'entity', array(
                 'mapped' => false,
-                'label' => 'Regione della scuola*',
+                'label' => 'Regione della scuola',
                 'empty_value'   => 'Scegli la regione....',
                 'class' => 'A4UDataBundle:StuAnagScuole',
                 'query_builder' => function(EntityRepository $er) {
@@ -142,6 +149,7 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'
                     )
+                ,'required' => false
                 ))
 
             ->add('facebookContact', 'text', array(
@@ -192,7 +200,7 @@ class StageType extends AbstractType
 
             ->add('select_firstStudyField', 'choice', array(
                 'mapped' => false,
-                'label' => 'Campo di studi prima scelta*',
+                'label' => 'Campo di studi prima scelta',
                 'choices'   => array(
                     'Architettura e Design',
                     'Bioscienze e Biotecnologie',
@@ -209,6 +217,7 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'
                     )
+                ,'required' => false
                 ))
 
             ->add('firstStudyField', 'text', array(
@@ -216,6 +225,7 @@ class StageType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'firstStudyField'
                     )
+                ,'required' => false
                 ))            
 
             ->addEventSubscriber(new AddFirstChoiceFieldSubscriber('select_firstChoice'))
@@ -230,7 +240,7 @@ class StageType extends AbstractType
 
             ->add('select_secondStudyField', 'choice', array(
                 'mapped' => false,
-                'label' => 'Campo di studi seconda scelta*',
+                'label' => 'Campo di studi seconda scelta',
                 'choices'   => array(
                     'Architettura e Design',
                     'Bioscienze e Biotecnologie',
@@ -247,6 +257,7 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'
                     )
+                ,'required' => false
                 ))
 
             ->add('secondStudyField', 'text', array(
@@ -254,6 +265,7 @@ class StageType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'secondStudyField'
                     )
+                ,'required' => false
                 ))  
 
             ->addEventSubscriber(new AddSecondChoiceFieldSubscriber('select_secondChoice'))
@@ -267,7 +279,7 @@ class StageType extends AbstractType
                 ))  
 
             ->add('moneyPayed', 'choice', array(
-                'label' => 'Quota versata*',
+                'label' => 'Quota versata',
                 'choices'   => array(
                     "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)" => "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)",
                     "€ 35 ( Iscrizione + 5 pasti )" => "€ 35 ( Iscrizione + 5 pasti )",
@@ -276,6 +288,7 @@ class StageType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'
                     )
+                ,'required' => false
                 ))
  
             ->add('save', 'submit', array(
