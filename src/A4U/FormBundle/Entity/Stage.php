@@ -369,7 +369,10 @@ class Stage
      */
     public function getBirthDateAsString()
     {
-        return $this->birthDate->format('m/d/Y');
+        if($this->birthDate !== null)
+            return $this->birthDate->format('m/d/Y');
+        else
+            return "N/A";
     }
 
     /**

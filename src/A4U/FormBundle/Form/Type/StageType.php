@@ -120,6 +120,7 @@ class StageType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Codice fiscale'
                     )
+                ,'required' => false
                 ))
 
             ->add('attendedSchoolRegion', 'entity', array(

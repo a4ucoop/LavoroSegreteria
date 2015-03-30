@@ -38,45 +38,50 @@ class ExportController extends Controller
         ->getRepository($repository)
         ->findAll();
         $subscribed = $this->matchEsse3Action($repository);
-        $fcsubscribed = [];
-        foreach ($subscribed as $key) {
-            array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
-        }
+       $fcsubscribed = [];
+       $ncsubscribed = [];
+       foreach ($subscribed as $key) {
+           array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+           array_push($ncsubscribed, strtolower(($key['NOME'] . $key['COGNOME'])));
+       }
 
         $handle = fopen('php://output', 'w+');
  
-        fputcsv($handle,$headers,';');
+        //fputcsv($handle,$headers,';');
+        fputcsv($handle,$headers);
 
         foreach ($Users as $iscrittoForms) {
-           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
-           if ($pos!==False) {
+           $posFC = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           $posNC = array_search(strtolower($iscrittoForms->getName() . $iscrittoForms->getSurname()),$ncsubscribed);
+           if ($posFC!==False || $posNC!==False) {
 
-                if($subscribed[$pos]['CFUCERTIFICATI'])
+                if($subscribed[($posFC!==False) ? $posFC : $posNC]['CFUCERTIFICATI'])
                     $CFU = 'N/A';
                 else
-                    $CFU = $subscribed[$pos]['CFUCERTIFICATI'];
-                if($subscribed[$pos]['CFUCERTIFICATI'])
+                    $CFU = $subscribed[($posFC!==False) ? $posFC : $posNC]['CFUCERTIFICATI'];
+                if($subscribed[($posFC!==False) ? $posFC : $posNC]['CFUCERTIFICATI'])
                     $MEDIA = 'N/A';
                 else
-                    $MEDIA = number_format($subscribed[$pos]['MEDIACERTIFICATA'],2,',','');
+                    $MEDIA = number_format($subscribed[($posFC!==False) ? $posFC : $posNC]['MEDIACERTIFICATA'],2,',','');
 
                 if($kind == "PAE" || $kind == "PAI")
-                    $values = array($subscribed[$pos]['NOME'],$subscribed[$pos]['COGNOME'],$subscribed[$pos]['CFSTUDENTE'],'Si',$iscrittoForms->getUnicamCourse(),$subscribed[$pos]['NOMECDS'],$subscribed[$pos]['AAID'],$CFU,$MEDIA,$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getHasAttendedToOtherActivitiesAsString(),$iscrittoForms->getActivity(),$iscrittoForms->getOtherActivity(),$iscrittoForms->getReference(),$iscrittoForms->getOtherReference(),$iscrittoForms->getSubmissionDateAsString(),';');
+                    $values = array($subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'],'Si',$iscrittoForms->getUnicamCourse(),$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'],$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'],$CFU,$MEDIA,$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getHasAttendedToOtherActivitiesAsString(),$iscrittoForms->getActivity(),$iscrittoForms->getOtherActivity(),$iscrittoForms->getReference(),$iscrittoForms->getOtherReference(),$iscrittoForms->getSubmissionDateAsString(),';');
                 else if($kind == "Stage")
-                    $values = array($subscribed[$pos]['NOME'],$subscribed[$pos]['COGNOME'],$subscribed[$pos]['CFSTUDENTE'],'Si',$iscrittoForms->getFirstStudyField(),$iscrittoForms->firstChoice(),$iscrittoForms->getSecondStudyField(),$iscrittoForms->secondChoice(),$subscribed[$pos]['NOMECDS'],$subscribed[$pos]['AAID'],$CFU,$MEDIA,$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getSchoolYear(),$iscrittoForms->getFacebookContact(),$iscrittoForms->getStagePeriod(),$iscrittoForms->getMoneyPayed(),$iscrittoForms->getSubmissionDateAsString(),';');
+                    #$values = array($subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'],'Si',$iscrittoForms->getFirstStudyField(),$iscrittoForms->getFirstChoice(),$iscrittoForms->getSecondStudyField(),$iscrittoForms->getSecondChoice(),$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'],$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'],$CFU,$MEDIA,$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getSchoolYear(),$iscrittoForms->getFacebookContact(),$iscrittoForms->getStagePeriod(),$iscrittoForms->getMoneyPayed(),$iscrittoForms->getSubmissionDateAsString(),';');
+                    $values = array($subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'],'Si',$iscrittoForms->getFirstStudyField(),$iscrittoForms->getFirstChoice(),$iscrittoForms->getSecondStudyField(),$iscrittoForms->getSecondChoice(),$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'],$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'],$CFU,$MEDIA,$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getSchoolYear(),$iscrittoForms->getFacebookContact(),$iscrittoForms->getStagePeriod(),$iscrittoForms->getMoneyPayed(),$iscrittoForms->getSubmissionDateAsString());
                 else if($kind == "Generico")
-                    $values = array($subscribed[$pos]['NOME'],$subscribed[$pos]['COGNOME'],$subscribed[$pos]['CFSTUDENTE'],'Si',$iscrittoForms->getAttendedActivity(),$subscribed[$pos]['NOMECDS'],$subscribed[$pos]['AAID'],$CFU,$MEDIA,$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getSubmissionDateAsString(),';');
+                    $values = array($subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'],'Si',$iscrittoForms->getAttendedActivity(),$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'],$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'],$CFU,$MEDIA,$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getSubmissionDateAsString(),';');
 
                 fputcsv($handle,$values);
            }
            else{
 
                 if($kind == "PAE" || $kind == "PAI")
-                    $values = array($subscribed[$pos]['NOME'],$subscribed[$pos]['COGNOME'],$subscribed[$pos]['CFSTUDENTE'],'No',$iscrittoForms->getUnicamCourse(),'N/A','N/A','N/A','N/A',$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getHasAttendedToOtherActivitiesAsString(),$iscrittoForms->getActivity(),$iscrittoForms->getOtherActivity(),$iscrittoForms->getReference(),$iscrittoForms->getOtherReference(),$iscrittoForms->getSubmissionDateAsString(),';');
+                    $values = array($subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'],'No',$iscrittoForms->getUnicamCourse(),'N/A','N/A','N/A','N/A',$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getHasAttendedToOtherActivitiesAsString(),$iscrittoForms->getActivity(),$iscrittoForms->getOtherActivity(),$iscrittoForms->getReference(),$iscrittoForms->getOtherReference(),$iscrittoForms->getSubmissionDateAsString(),';');
                 else if($kind == "Stage")
-                    $values = array($subscribed[$pos]['NOME'],$subscribed[$pos]['COGNOME'],$subscribed[$pos]['CFSTUDENTE'],'No',$iscrittoForms->getFirstStudyField(),$iscrittoForms->firstChoice(),$iscrittoForms->getSecondStudyField(),$iscrittoForms->secondChoice(),'N/A','N/A','N/A','N/A',$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getSchoolYear(),$iscrittoForms->getFacebookContact(),$iscrittoForms->getStagePeriod(),$iscrittoForms->getMoneyPayed(),$iscrittoForms->getSubmissionDateAsString(),';');
+                    $values = array($subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'],'No',$iscrittoForms->getFirstStudyField(),$iscrittoForms->getFirstChoice(),$iscrittoForms->getSecondStudyField(),$iscrittoForms->getSecondChoice(),'N/A','N/A','N/A','N/A',$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getAttendedSchool(),$iscrittoForms->getSchoolYear(),$iscrittoForms->getFacebookContact(),$iscrittoForms->getStagePeriod(),$iscrittoForms->getMoneyPayed(),$iscrittoForms->getSubmissionDateAsString(),';');
                 else if($kind == "Generico")
-                    $values = array($subscribed[$pos]['NOME'],$subscribed[$pos]['COGNOME'],$subscribed[$pos]['CFSTUDENTE'],'No',$iscrittoForms->getAttendedActivity(),'N/A','N/A','N/A','N/A',$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getSubmissionDateAsString(),';');
+                    $values = array($subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'],$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'],'No',$iscrittoForms->getAttendedActivity(),'N/A','N/A','N/A','N/A',$iscrittoForms->getAddress(),$iscrittoForms->getCap(),$iscrittoForms->getCity(),$iscrittoForms->getEmail(),$iscrittoForms->getPhone(),$iscrittoForms->getBirthDateAsString(),$iscrittoForms->getBirthPlace(),$iscrittoForms->getSubmissionDateAsString(),';');
 
                 fputcsv($handle,$values);
            }

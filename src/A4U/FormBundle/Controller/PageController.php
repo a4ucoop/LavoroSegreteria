@@ -538,8 +538,10 @@ class PageController extends Controller
        
        //ricavo un vettore contenente solo i codici fiscali degli immatricolati per fare la ricerca
        $fcsubscribed = [];
+       $ncsubscribed = [];
        foreach ($subscribed as $key) {
-        array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+           array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+           array_push($ncsubscribed, strtolower(($key['NOME'] . $key['COGNOME'])));
        }
 
        //a questo punto devo confrontare tutti gli iscritti alle form con gli immatricolati (per codice fiscale)
@@ -548,21 +550,22 @@ class PageController extends Controller
        $form_subscribed = [];
 
        foreach ($Users as $iscrittoForms) {
-           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           $posFC = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           $posNC = array_search(strtolower($iscrittoForms->getName() . $iscrittoForms->getSurname()),$ncsubscribed);
            //studente iscritto sia sulle form che su esse3, mergiare i dati (ricavando quelli necessari)
-           if ($pos!==False) {
+           if ($posFC!==False || $posNC!==False) {
                 //dati da esse3, se viene trovata una corrispondenza, $pos DOVREBBE essere valorizzata con
                 //la posizione di tale corrispondenza, quindi dovrei essere in grado di accedere ai dati in questo modo:
                 //      vettoreEsse3[posizioneMatch][attributoCheCerco]
                 //  vero matte?
                 $dati_iscritto = new bothIscritti();
-                $dati_iscritto->CFSTUDENTE=$subscribed[$pos]['CFSTUDENTE'];
-                $dati_iscritto->nome=$subscribed[$pos]['NOME'];
-                $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
-                $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
-                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
-                $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
-                $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
+                $dati_iscritto->CFSTUDENTE=$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'];
+                $dati_iscritto->nome=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'];
+                $dati_iscritto->cognome=$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'];
+                $dati_iscritto->corsoDiStudi=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'];
+                $dati_iscritto->anno=$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'];
+                $dati_iscritto->CFUCERTIFICATI=$subscribed[($posFC!==False) ? $posFC : $posNC]['CFUCERTIFICATI'];
+                $dati_iscritto->mediaCertificata=$subscribed[($posFC!==False) ? $posFC : $posNC]['MEDIACERTIFICATA'];
 
                 //Prendo i dati necessari dalle form
                 $dati_iscritto->address=($iscrittoForms->getAddress());
@@ -1041,8 +1044,10 @@ class PageController extends Controller
        
        //ricavo un vettore contenente solo i codici fiscali degli immatricolati per fare la ricerca
        $fcsubscribed = [];
+       $ncsubscribed = [];
        foreach ($subscribed as $key) {
-        array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+           array_push($fcsubscribed, strtolower($key['CFSTUDENTE']));
+           array_push($ncsubscribed, strtolower(($key['NOME'] . $key['COGNOME'])));
        }
 
        //a questo punto devo confrontare tutti gli iscritti alle form con gli immatricolati (per codice fiscale)
@@ -1051,21 +1056,22 @@ class PageController extends Controller
        $form_subscribed = [];
 
        foreach ($Users as $iscrittoForms) {
-           $pos = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           $posFC = array_search(strtolower($iscrittoForms->getFiscalcode()),$fcsubscribed);
+           $posNC = array_search(strtolower($iscrittoForms->getName() . $iscrittoForms->getSurname()),$ncsubscribed);
            //studente iscritto sia sulle form che su esse3, mergiare i dati (ricavando quelli necessari)
-           if ($pos!==False) {
+           if ($posFC!==False || $posNC!==False) {
                 //dati da esse3, se viene trovata una corrispondenza, $pos DOVREBBE essere valorizzata con
                 //la posizione di tale corrispondenza, quindi dovrei essere in grado di accedere ai dati in questo modo:
                 //      vettoreEsse3[posizioneMatch][attributoCheCerco]
                 //  vero matte?
                 $dati_iscritto = new bothIscritti();
-                $dati_iscritto->CFSTUDENTE=$subscribed[$pos]['CFSTUDENTE'];
-                $dati_iscritto->nome=$subscribed[$pos]['NOME'];
-                $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
-                $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
-                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
-                $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
-                $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
+                $dati_iscritto->CFSTUDENTE=$subscribed[($posFC!==False) ? $posFC : $posNC]['CFSTUDENTE'];
+                $dati_iscritto->nome=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'];
+                $dati_iscritto->cognome=$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'];
+                $dati_iscritto->corsoDiStudi=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'];
+                $dati_iscritto->anno=$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'];
+                $dati_iscritto->CFUCERTIFICATI=$subscribed[($posFC!==False) ? $posFC : $posNC]['CFUCERTIFICATI'];
+                $dati_iscritto->mediaCertificata=$subscribed[($posFC!==False) ? $posFC : $posNC]['MEDIACERTIFICATA'];
 
                 //Prendo i dati necessari dalle form
                 $dati_iscritto->address=($iscrittoForms->getAddress());
@@ -1105,6 +1111,16 @@ class PageController extends Controller
         ->getQuery();
         $iscritti = $repository->getResult();
 
+       $db="(DESCRIPTION=
+           (ADDRESS_LIST=
+           (ADDRESS=(PROTOCOL=TCP)
+               (HOST=oracle11.unicam.it)(PORT=1521)
+           )
+           )
+           (CONNECT_DATA=(SID=UGOVPROD))
+       )";
+       $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
+
         $query="WITH ORDERED AS
             (
             SELECT
@@ -1133,22 +1149,21 @@ class PageController extends Controller
                 rn = 1 AND (";
 
         foreach ($iscritti as $key) {
-            $append="lower(CFSTUDENTE)='";
-            $query=$query . $append . strtolower($key->getFiscalcode()) . "' OR ";
+            if($key->getFiscalcode() !== null){
+                $append="lower(CFSTUDENTE)='";
+                $query=$query . $append . str_replace("'", "''", strtolower($key->getFiscalcode())) . "' OR ";
+            } else {
+                $append="(lower(NOME)='";
+                $query=$query . $append . str_replace("'", "''", strtolower($key->getName())) . "' AND ";
+                $append="lower(COGNOME)='";
+                $query=$query . $append . str_replace("'", "''", strtolower($key->getSurname())) . "') OR ";
+            }
         }
 
         $query = substr($query, 0, -3);
         $query=$query.")";
 
-       $db="(DESCRIPTION=
-           (ADDRESS_LIST=
-           (ADDRESS=(PROTOCOL=TCP)
-               (HOST=oracle11.unicam.it)(PORT=1521)
-           )
-           )
-           (CONNECT_DATA=(SID=UGOVPROD))
-       )";
-       $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
+       echo($query);
        $statement = oci_parse($conn,$query);
        oci_execute($statement);
 
