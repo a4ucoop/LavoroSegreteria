@@ -47,6 +47,7 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th></th>
                     <th><b>Nome</b></th>
                     <th><b>Cognome</b></th>
                     <th><b>Indirizzo</b></th>
@@ -71,6 +72,7 @@
                 {% for user in users %}
                     <tr>
                         {% include 'A4UFormBundle::Forms/base_show_select.html.twig' %}
+                        <td><form style="display:inline;" action="{{ path('a4u_form_edit_porteAperteInverno', {'id': (loop.index) }) }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="modifica" /></form></td>
                         <td>{{user.name}}</td>
                         <td>{{user.surname}}</td>
                         <td>{{user.address}}</td>

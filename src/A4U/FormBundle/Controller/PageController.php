@@ -187,7 +187,6 @@ class PageController extends Controller
                 $dati_iscritto->nome=$subscribed[$pos]['NOME'];
                 $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
                 $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
-                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
                 $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
                 $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
 
@@ -376,7 +375,6 @@ class PageController extends Controller
                 $dati_iscritto->nome=$subscribed[$pos]['NOME'];
                 $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
                 $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
-                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
                 $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
                 $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
 
@@ -563,7 +561,6 @@ class PageController extends Controller
                 $dati_iscritto->nome=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'];
                 $dati_iscritto->cognome=$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'];
                 $dati_iscritto->corsoDiStudi=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'];
-                $dati_iscritto->anno=$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'];
                 $dati_iscritto->CFUCERTIFICATI=$subscribed[($posFC!==False) ? $posFC : $posNC]['CFUCERTIFICATI'];
                 $dati_iscritto->mediaCertificata=$subscribed[($posFC!==False) ? $posFC : $posNC]['MEDIACERTIFICATA'];
 
@@ -751,7 +748,6 @@ class PageController extends Controller
                 $dati_iscritto->nome=$subscribed[$pos]['NOME'];
                 $dati_iscritto->cognome=$subscribed[$pos]['COGNOME'];
                 $dati_iscritto->corsoDiStudi=$subscribed[$pos]['NOMECDS'];
-                $dati_iscritto->anno=$subscribed[$pos]['AAID'];
                 $dati_iscritto->CFUCERTIFICATI=$subscribed[$pos]['CFUCERTIFICATI'];
                 $dati_iscritto->mediaCertificata=$subscribed[$pos]['MEDIACERTIFICATA'];
 
@@ -1069,7 +1065,6 @@ class PageController extends Controller
                 $dati_iscritto->nome=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOME'];
                 $dati_iscritto->cognome=$subscribed[($posFC!==False) ? $posFC : $posNC]['COGNOME'];
                 $dati_iscritto->corsoDiStudi=$subscribed[($posFC!==False) ? $posFC : $posNC]['NOMECDS'];
-                $dati_iscritto->anno=$subscribed[($posFC!==False) ? $posFC : $posNC]['AAID'];
                 $dati_iscritto->CFUCERTIFICATI=$subscribed[($posFC!==False) ? $posFC : $posNC]['CFUCERTIFICATI'];
                 $dati_iscritto->mediaCertificata=$subscribed[($posFC!==False) ? $posFC : $posNC]['MEDIACERTIFICATA'];
 
@@ -1121,36 +1116,50 @@ class PageController extends Controller
        )";
        $conn = OCILogon("esse3_unicam_prod_read","r34d3ss33",$db);
 
-        $query="WITH ORDERED AS
-            (
-            SELECT
-                CFSTUDENTE,
-                COGNOME,
-                NOME,
-                NOMECDS,
-                CFUCERTIFICATI,
-                MEDIACERTIFICATA,
-                AAID,
-                ROW_NUMBER() OVER (PARTITION BY CFSTUDENTE ORDER BY AAID DESC) AS rn
-            FROM
-                V11_ERGO_STATO_CARRIERA
-            )
-            SELECT
-                CFSTUDENTE,
-                COGNOME,
-                NOME,
-                NOMECDS,
-                AAID,
-                CFUCERTIFICATI,
-                MEDIACERTIFICATA
-            FROM
-                ORDERED
-            WHERE
-                rn = 1 AND (";
+    //    $query="WITH ORDERED AS
+    //        (
+    //        SELECT
+    //            CFSTUDENTE,
+    //            COGNOME,
+    //            NOME,
+    //            NOMECDS,
+    //            CFUCERTIFICATI,
+    //            MEDIACERTIFICATA,
+    //            AAID,
+    //            ROW_NUMBER() OVER (PARTITION BY CFSTUDENTE ORDER BY AAID DESC) AS rn
+    //        FROM
+    //            V11_ERGO_STATO_CARRIERA
+    //        )
+    //        SELECT
+    //            CFSTUDENTE,
+    //            COGNOME,
+    //            NOME,
+    //            NOMECDS,
+    //            AAID,
+    //            CFUCERTIFICATI,
+    //            MEDIACERTIFICATA
+    //        FROM
+    //            ORDERED
+    //        WHERE
+    //            rn = 1 AND (";
+
+
+
+    $query="SELECT
+              NOME,
+              COGNOME,
+              COD_FIS AS CFSTUDENTE,
+              CDS_DESC AS NOMECDS,
+              SUM(VOTO)/COUNT(VOTO) AS MEDIACERTIFICATA,
+              SUM(CREDITI)AS CFUCERTIFICATI
+            FROM 
+              V11_STAT_ESAMI_SOSTENUTI
+            WHERE ";
+
 
         foreach ($iscritti as $key) {
             if($key->getFiscalcode() !== null){
-                $append="lower(CFSTUDENTE)='";
+                $append="lower(COD_FIS)='";
                 $query=$query . $append . str_replace("'", "''", strtolower($key->getFiscalcode())) . "' OR ";
             } else {
                 $append="(lower(NOME)='";
@@ -1161,7 +1170,13 @@ class PageController extends Controller
         }
 
         $query = substr($query, 0, -3);
-        $query=$query.")";
+
+        $append="GROUP BY 
+              NOME,
+              COGNOME,
+              COD_FIS,
+              CDS_DESC";
+        $query=$query . $append;
 
        echo($query);
        $statement = oci_parse($conn,$query);

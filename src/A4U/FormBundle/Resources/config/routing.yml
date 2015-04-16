@@ -80,7 +80,7 @@ a4u_form_csv_Stage:
 a4u_form_generico:
     path:   /form/generico
     defaults: { _controller: A4UFormBundle:Page:generico }
-a4u_generico_edit_stage:
+a4u_form_edit_generico:
     path:     /form/generico/{id}/edit
     defaults: { _controller: A4UFormBundle:Page:generico_edit }
     requirements:
