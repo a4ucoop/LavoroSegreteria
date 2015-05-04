@@ -38,43 +38,48 @@ class PorteAperteEstateType extends AbstractType
                     )
                 ))
             ->add('address', 'text', array(
-                'label' => 'Indirizzo*',
+                'label' => 'Indirizzo',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Indirizzo'
                     )
+                ,'required' => false
                 ))
             ->add('cap', 'text', array(
-                'label' => 'CAP*',
+                'label' => 'CAP',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Codice aviazione postale'
                     )
+                ,'required' => false
                 ))
             ->add('city', 'text', array(
-                'label' => 'Città*',
+                'label' => 'Città',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Città di residenza'
                     )
+                ,'required' => false
                 ))
             ->add('email', 'text', array(
-                'label' => 'Email*',
+                'label' => 'Email',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Email'
                     )
+                ,'required' => false
                 ))
             ->add('phone', 'text', array(
-                'label' => 'Telefono*',
+                'label' => 'Telefono',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Numero di telefono'
                     )
+                ,'required' => false
                 ))
 
             ->add('birthDate', 'collot_datetime', array( 
-                'label' => 'Data di nascita*',
+                'label' => 'Data di nascita',
                 'attr' => array(
                     'class' => 'form-control'),
                 'pickerOptions' => array(
@@ -83,18 +88,20 @@ class PorteAperteEstateType extends AbstractType
                         'autoclose' => true,
                         'language' => 'it',
                     )
+                ,'required' => false
                 ))
 
             ->add('birthPlace', 'text', array(
-                'label' => 'Luogo di nascita*',
+                'label' => 'Luogo di nascita',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Luogo di nascita'
                     )
+                ,'required' => false
                 ))
             ->add('attendedSchoolRegion', 'entity', array(
                 'mapped' => false,
-                'label' => 'Regione della scuola*',
+                'label' => 'Regione della scuola',
                 'empty_value' => 'Scegli una regione...',
                 'class' => 'A4UDataBundle:StuAnagScuole',
                 'query_builder' => function(EntityRepository $er) {
@@ -105,6 +112,7 @@ class PorteAperteEstateType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'
                     )
+                ,'required' => false
                 ))
                ->addEventSubscriber(new AddDistrictFieldSubscriber('attendedSchoolDistrict'))
 
@@ -117,6 +125,7 @@ class PorteAperteEstateType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'
                     )
+                ,'required' => false
                 ))
             ->add('activity', 'choice', array(
                 'required' => false,
@@ -138,6 +147,7 @@ class PorteAperteEstateType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'A quali altre attività di orientamento hai partecipato?'
                     )
+                ,'required' => false
                 ))
             ->add('otherActivity', 'text', array(
                 'required' => false,
@@ -146,6 +156,7 @@ class PorteAperteEstateType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Altro'
                     )
+                ,'required' => false
                 ))
             ->add('reference', 'choice', array(
                 'required' => false,
@@ -160,6 +171,7 @@ class PorteAperteEstateType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Come sei venuto a conoscenza di unicam?'
                     )
+                ,'required' => false
                 ))
             ->add('otherReference', 'text', array(
                 'required' => false,
@@ -168,20 +180,23 @@ class PorteAperteEstateType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Altro'
                     )
+                ,'required' => false
                 ))
             ->add('unicamCourse', 'text', array(
-                'label' => 'Corso di studi*',
+                'label' => 'Corso di studi',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'A quale corso di studi sei interessato/a?'
                     )
+                ,'required' => false
                 ))
             ->add('fiscalcode', 'text', array(
-                'label' => 'Codice fiscale*',
+                'label' => 'Codice fiscale',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Codice fiscale'
                     )
+                ,'required' => false
                 ))
 
             ->add('save', 'submit', array(

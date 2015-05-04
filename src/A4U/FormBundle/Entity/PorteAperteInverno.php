@@ -40,62 +40,62 @@ class PorteAperteInverno
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cap", type="string", length=32)
+     * @ORM\Column(name="cap", type="string", length=32, nullable=true)
      */
     private $cap;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=128)
+     * @ORM\Column(name="city", type="string", length=128, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=128)
+     * @ORM\Column(name="email", type="string", length=128, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=128)
+     * @ORM\Column(name="phone", type="string", length=128, nullable=true)
      */
     private $phone;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthdate", type="datetimetz")
+     * @ORM\Column(name="birthdate", type="datetimetz", nullable=true)
      */
     private $birthDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="birthplace", type="string", length=128)
+     * @ORM\Column(name="birthplace", type="string", length=128, nullable=true)
      */
     private $birthPlace;
 
     /**
      * @ORM\ManyToOne(targetEntity="A4U\DataBundle\Entity\StuAnagScuole", inversedBy="stages")
-     * @ORM\JoinColumn(name="attendedSchool_id", referencedColumnName="idRecord")
+     * @ORM\JoinColumn(name="attendedSchool_id", referencedColumnName="idRecord", nullable=true)
      */
     protected $attendedSchool;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="hasAttendedToOtherActivities", type="boolean")
+     * @ORM\Column(name="hasAttendedToOtherActivities", type="boolean", nullable=true)
      */
     private $hasAttendedToOtherActivities;
 
@@ -130,21 +130,21 @@ class PorteAperteInverno
     /**
      * @var string
      *
-     * @ORM\Column(name="unicamCourse", type="string", length=128)
+     * @ORM\Column(name="unicamCourse", type="string", length=128, nullable=true)
      */
     private $unicamCourse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fiscalcode", type="string", length=128)
+     * @ORM\Column(name="fiscalcode", type="string", length=128, nullable=true)
      */
     private $fiscalcode;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="submissiondate", type="datetimetz")
+     * @ORM\Column(name="submissiondate", type="datetimetz", nullable=true)
      * @Gedmo\Timestampable(on="create")
      */
     private $submissionDate;
@@ -353,7 +353,10 @@ class PorteAperteInverno
      */
     public function getBirthDateAsString()
     {
-        return $this->birthDate->format('m/d/Y');
+        if($this->birthDate !== null)
+            return $this->birthDate->format('m/d/Y');
+        else
+            return "N/A";
     }
 
     /**
