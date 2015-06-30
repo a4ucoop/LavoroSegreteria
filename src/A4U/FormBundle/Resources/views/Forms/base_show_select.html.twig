@@ -2,6 +2,7 @@
                          <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" >
                             <option value="" selected>Compila una form...</option>
                             <option value="{{ path('a4u_form_porteAperteEstate',  { 
+                                'plchlr': '',
                                 'name': user.name,
                                 'surname' : user.surname,
                                 'fiscal_code' : user.fiscalCode,
@@ -14,6 +15,7 @@
                                 'birth_place' : user.birthPlace,}) 
                             }}"> Porte Aperte Estate</option>
                             <option value="{{ path('a4u_form_porteAperteInverno',  { 
+                                'plchlr': '',
                                 'name': user.name,
                                 'surname' : user.surname,
                                 'fiscal_code' : user.fiscalCode,
@@ -26,6 +28,7 @@
                                 'birth_place' : user.birthPlace,}) 
                             }}"> Porte Aperte Inverno</option>
                             <option value="{{ path('a4u_form_stage',  { 
+                                'plchlr': '',
                                 'name': user.name,
                                 'surname' : user.surname,
                                 'fiscal_code' : user.fiscalCode,
@@ -38,6 +41,7 @@
                                 'birth_place' : user.birthPlace,}) 
                             }}"> Stage</option>
                             <option value="{{ path('a4u_form_generico',  { 
+                                'plchlr': '',
                                 'name': user.name,
                                 'surname' : user.surname,
                                 'fiscal_code' : user.fiscalCode,
