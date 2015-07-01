@@ -1,13 +1,5 @@
 
-<div class="container">
 
-    <div align="center">
-
-        <div align="left" class="form-container" >
-
-            {{ form_start(form) }}
-
-                {{ form_errors(form) }}
                 {% include 'A4UFormBundle::Forms/base_form_personal_records.html.twig'  %}
                 <div class="form-group">
                     {{ form_label(form.attendedSchoolRegion) }}
@@ -69,15 +61,5 @@
                     {{ form_widget(form.unicamCourse) }}
                 </div>
 
-                <div align="center" class="form-group">
-                    {{ form_widget(form.save) }}
-                </div>
 
-            {{ form_end(form) }}
-
-        </div>
-
-    </div>
-
-</div>
 

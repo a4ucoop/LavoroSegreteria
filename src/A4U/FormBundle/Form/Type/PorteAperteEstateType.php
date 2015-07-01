@@ -22,6 +22,15 @@ class PorteAperteEstateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        // date disponibili a Luglio
+        $julyStartDate = date("15-07-2015");
+        $julyEndDate = date("31-07-2015");
+
+        // date disponibili ad Agosto
+        $augustStartDate = date("24-08-2015");
+        $augustEndDate = date("18-09-2015");
+
         $builder
             ->add('name', 'text', array(
                 'label' => 'Nome*',
@@ -182,7 +191,62 @@ class PorteAperteEstateType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Codice fiscale'
                     )
+                ))            
+
+            ->add('julyDates', 'collot_datetime', array(
+                'pickerOptions' => array(
+                        'minView' => 'month',
+                        'format' => 'dd/mm/yyyy',
+                        'autoclose' => true,
+                        'language' => 'it',
+                        'startDate' => $julyStartDate,      // variabile creata all'inizio della form
+                        'endDate' => $julyEndDate,
+                        'daysOfWeekDisabled' => '0,6',
+                    ),
+                'required' => false,
+                'mapped' => false,
+                'label' => 'data prenotata*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'scegli una data in cui visitarci'
+                    )
                 ))
+
+            ->add('augustDates', 'collot_datetime', array(
+                'pickerOptions' => array(
+                        'minView' => 'month',
+                        'format' => 'dd/mm/yyyy',
+                        'autoclose' => true,
+                        'language' => 'it',
+                        'startDate' => $augustStartDate,      // variabile creata all'inizio della form
+                        'endDate' => $augustEndDate,
+                        'daysOfWeekDisabled' => '0,6',
+                    ),
+                'required' => false,
+                'mapped' => false,
+                'label' => 'data prenotata*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'scegli una data in cui visitarci'
+                    )
+                ))
+
+            ->add('reservationMonth', 'choice', array(
+                'required' => false,
+                'mapped' => false,
+                'label' => 'In quale mese vuoi venire?',
+                'choices' => array(
+                        'luglio' => 'luglio',
+                        'agosto' => 'agosto',
+                    ),
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'In quale mese vuoi venire?'
+                    )
+                ))
+
+            ->add('reservationDate', 'text')  
+
 
             ->add('save', 'submit', array(
                 'label' => 'Iscriviti',

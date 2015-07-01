@@ -62,6 +62,7 @@
 				<td><b>Altra referenza</b></td>
 				<td><b>Corso di laurea</b></td>
 				<td><b>Codice Fiscale</b></td>
+				<td><b>data visita</b></td>
 				<td><b>data sottoscrizione</b></td>
 			</tr>
 			{% for user in users %}
@@ -84,6 +85,7 @@
 					<td>{{user.otherReference}}</td> 
 					<td>{{user.unicamCourse}}</td> 
 					<td>{{user.fiscalCode}}</td>
+					<td>{{user.reservationDate|date('d-m-Y H:i:s')}}</td>
 					<td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
 				</tr>
 			{% endfor %}

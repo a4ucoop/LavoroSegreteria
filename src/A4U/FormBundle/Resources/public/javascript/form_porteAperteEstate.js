@@ -1,6 +1,12 @@
 //Ricordati di fare il clear dei valori delle selectbox quando sono nascoste!
 
 $(document).ready(function(){
+
+	// appena pronto nasconde i selettori delle date della visita
+	$('#porteAperteEstate_reservationDate').hide();
+	$('#porteAperteEstate_julyDiv').hide();
+	$('#porteAperteEstate_augustDiv').hide();
+
 	//Nascone i campi opzionali al caricamento della pagina
 	//Nasconde Attività di orientamento e Altra attività di orientamento
 	if ($("#porteAperteEstate_hasAttendedtoOtherActivities").val()==1){ 
@@ -51,4 +57,26 @@ $(document).ready(function(){
         }
 
 	})
+
+	// data visita: mostra il selettore data adeguato in base al mese scelto
+	$('#porteAperteEstate_reservationMonth').change(function(){
+		if ($('#porteAperteEstate_reservationMonth').val() == 'luglio') {
+			$('#porteAperteEstate_augustDiv').hide();
+			$('#porteAperteEstate_julyDiv').show();
+		};
+		if ($('#porteAperteEstate_reservationMonth').val() == 'agosto') {
+			$('#porteAperteEstate_julyDiv').hide();
+			$('#porteAperteEstate_augustDiv').show();
+		};
+	})
+
+	// valorizza l'input effettivo che verrà passato con la data scelta
+	$('#porteAperteEstate_augustDates').change(function(){
+		$('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_augustDates').val());
+	})
+
+	$('#porteAperteEstate_julyDates').change(function(){
+		$('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_julyDates').val());
+	})
+
 });

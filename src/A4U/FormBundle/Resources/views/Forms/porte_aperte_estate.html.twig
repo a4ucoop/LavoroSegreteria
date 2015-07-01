@@ -11,7 +11,54 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'A4UFormBundle::Forms/base_form.html.twig'  %}
+
+  <div class="container">
+
+    <div align="center">
+
+      <div align="left" class="form-container" >
+
+        {{ form_start(form) }}
+
+        {{ form_errors(form) }}
+
+        {% include 'A4UFormBundle::Forms/base_form.html.twig'  %}
+
+        <div class="form-group">
+            {{ form_label(form.reservationMonth) }}
+            {{ form_errors(form.reservationMonth) }}
+            {{ form_widget(form.reservationMonth) }}
+        </div>
+
+        <div id="porteAperteEstate_julyDiv" class="form-group">
+            {{ form_label(form.julyDates) }}
+            {{ form_errors(form.julyDates) }}
+            {{ form_widget(form.julyDates) }}
+        </div>
+        
+        <div id="porteAperteEstate_augustDiv" class="form-group">
+            {{ form_label(form.augustDates) }}
+            {{ form_errors(form.augustDates) }}
+            {{ form_widget(form.augustDates) }}
+        </div>
+
+        <div id="porteAperteEstate_reservationDate" class="form-group">
+            {{ form_label(form.reservationDate) }}
+            {{ form_errors(form.reservationDate) }}
+            {{ form_widget(form.reservationDate) }}
+        </div>
+
+
+        <div align="center" class="form-group">
+            {{ form_widget(form.save) }}
+        </div>
+
+        {{ form_end(form) }}
+      </div>
+
+    </div>
+
+  </div>
 {% endblock %}
 
 {% block javascripts %}

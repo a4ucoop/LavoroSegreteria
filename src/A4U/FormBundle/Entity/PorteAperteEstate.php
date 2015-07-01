@@ -149,6 +149,14 @@ class PorteAperteEstate
      */
     private $submissionDate;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="reservationdate", type="datetimetz")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $reservationDate;
+
 
 
     /**
@@ -550,6 +558,29 @@ class PorteAperteEstate
     public function getSubmissionDate()
     {
         return $this->submissionDate;
+    }    
+
+    /**
+     * Set reservationDate
+     *
+     * @param \DateTime $reservationDate
+     * @return PorteAperteEstate
+     */
+    public function setReservationDate($reservationDate)
+    {
+        $this->reservationDate = $reservationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get reservationDate
+     *
+     * @return \DateTime 
+     */
+    public function getReservationDate()
+    {
+        return $this->reservationDate;
     }
 
     /**
