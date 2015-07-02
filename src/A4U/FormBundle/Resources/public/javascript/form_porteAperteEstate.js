@@ -6,6 +6,7 @@ $(document).ready(function(){
 	$('#porteAperteEstate_reservationDiv').hide();
 	$('#porteAperteEstate_julyDiv').hide();
 	$('#porteAperteEstate_augustDiv').hide();
+	$('#porteAperteEstate_septemberDiv').hide();
 
 	//Nascone i campi opzionali al caricamento della pagina
 	//Nasconde Attività di orientamento e Altra attività di orientamento
@@ -63,10 +64,17 @@ $(document).ready(function(){
 		if ($('#porteAperteEstate_reservationMonth').val() == 'luglio') {
 			$('#porteAperteEstate_augustDiv').hide();
 			$('#porteAperteEstate_julyDiv').show();
+			$('#porteAperteEstate_septemberDiv').hide();
 		};
 		if ($('#porteAperteEstate_reservationMonth').val() == 'agosto') {
 			$('#porteAperteEstate_julyDiv').hide();
 			$('#porteAperteEstate_augustDiv').show();
+			$('#porteAperteEstate_septemberDiv').hide();
+		};
+		if ($('#porteAperteEstate_reservationMonth').val() == 'settembre') {
+			$('#porteAperteEstate_julyDiv').hide();
+			$('#porteAperteEstate_augustDiv').hide();
+			$('#porteAperteEstate_septemberDiv').show();
 		};
 	})
 

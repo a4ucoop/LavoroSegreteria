@@ -29,7 +29,11 @@ class PorteAperteEstateType extends AbstractType
 
         // date disponibili ad Agosto
         $augustStartDate = date("24-08-2015");
-        $augustEndDate = date("18-09-2015");
+        $augustEndDate = date("31-08-2015");
+
+        // date disponibili a Settembre
+        $septemberStartDate = date("01-09-2015");
+        $septemberEndDate = date("18-09-2015");
 
         $builder
             ->add('name', 'text', array(
@@ -205,7 +209,7 @@ class PorteAperteEstateType extends AbstractType
                     ),
                 'required' => false,
                 'mapped' => false,
-                'label' => 'data prenotata*',
+                'label' => 'Data prenotata*',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'scegli una data in cui visitarci'
@@ -224,7 +228,26 @@ class PorteAperteEstateType extends AbstractType
                     ),
                 'required' => false,
                 'mapped' => false,
-                'label' => 'data prenotata*',
+                'label' => 'Data prenotata*',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'scegli una data in cui visitarci'
+                    )
+                ))
+
+            ->add('septemberDates', 'collot_datetime', array(
+                'pickerOptions' => array(
+                        'minView' => 'month',
+                        'format' => 'dd/mm/yyyy',
+                        'autoclose' => true,
+                        'language' => 'it',
+                        'startDate' => $septemberStartDate,      // variabile creata all'inizio della form
+                        'endDate' => $septemberEndDate,
+                        'daysOfWeekDisabled' => '0,6',
+                    ),
+                'required' => false,
+                'mapped' => false,
+                'label' => 'Data prenotata*',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'scegli una data in cui visitarci'
@@ -238,6 +261,7 @@ class PorteAperteEstateType extends AbstractType
                 'choices' => array(
                         'luglio' => 'luglio',
                         'agosto' => 'agosto',
+                        'settembre' => 'settembre',
                     ),
                 'attr' => array(
                     'class' => 'form-control',

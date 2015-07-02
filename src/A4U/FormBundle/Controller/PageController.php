@@ -71,7 +71,7 @@ class PageController extends Controller
                 'notice', 'Utente registrato con successo!'
             );
 
-            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+            return $this->redirect("http://www.unicam.it/orientamento");
         }
 
         // Form non ancora inviato

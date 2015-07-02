@@ -42,6 +42,12 @@
             {{ form_widget(form.augustDates) }}
         </div>
 
+        <div id="porteaperteestate_septemberDiv" class="form-group">
+            {{ form_label(form.septemberDates) }}
+            {{ form_errors(form.septemberDates) }}
+            {{ form_widget(form.septemberDates) }}
+        </div>
+
         <div id="porteAperteEstate_reservationDiv" class="form-group">
             {{ form_label(form.reservationDate) }}
             {{ form_errors(form.reservationDate) }}
@@ -166,6 +172,12 @@
       var $form = $(this).closest('form');
       var data = {};
 	  $('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_julyDates').val());
+	});
+
+	$(document).on('change', '#porteAperteEstate_septemberDates', function(){
+      var $form = $(this).closest('form');
+      var data = {};
+	  $('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_septemberDates').val());
 	});
 
 	</script>
