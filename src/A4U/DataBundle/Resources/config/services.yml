@@ -1,0 +1,6 @@
+services:
+    my_entity_manager:
+        public: false
+        class: NomeACazzo\ORM\EntityManagerDecorator
+        decorates: doctrine.orm.default_entity_manager
+        arguments: ["@my_entity_manager.inner"]

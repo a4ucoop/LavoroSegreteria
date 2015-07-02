@@ -1,0 +1,106 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Form OpenDay{% endblock %}
+
+{% block body %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+{% endblock %}
+
+<div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" >
+            OpenDay
+          </a>
+        </div>
+        <form class="navbar-form navbar-left" role="search" action="{{ path('a4u_form_searchOpenDay') }}">
+          <div class="form-group">
+            <div class="input-group" style="max-width:300px;">
+                <!-- se è gia stata fatta una ricerca viene mostrata l'ultima keyword -->
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"{% if lastSearch is defined %} value="{{ lastSearch }}" {% endif %}>
+                <!-- se è gia stata fatta una ricerca viene mostrato il glyph elimina -->
+                {% if lastSearch is defined and lastSearch != "" %}
+                    <div id="removeLastSearch" style="display:inline-block; margin-left:-20px; cursor:pointer;">
+                        <span class=" glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                    </div>
+                {% endif %}
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> </button>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    <div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
+		<table class="table table-hover">
+			<thead>
+            <tr>
+                <td></td>
+				<th class="col-sm-1"><b>Nome</b></th>
+				<th class="col-sm-2"><b>Cognome</b></th>
+				<th class="col-sm-3"><b>Indirizzo</b></th>
+				<th class="col-sm-4"><b>CAP</b></th>
+				<th class="col-sm-5"><b>Città</b></th>
+				<th class="col-sm-6"><b>Email</b></th>
+				<th class="col-sm-7"><b>Tel.</b></th>
+				<th style="min-width: 100px;"><b>Data di nascita</b></th>
+				<th class="col-sm-8"><b>Luogo di nascita</b></th>
+                <th class="col-sm-9"><b>Attività frequentata</b></th>
+				<th class="col-sm-10"><b>Codice Fiscale</b></th>
+			</tr>
+            </thead>
+            <tbody>
+			{% for user in users %}
+				<tr>
+                    {% include 'A4UFormBundle::Forms/base_show_select.html.twig'  %}
+					<td>{{user.name}}</td>
+					<td>{{user.surname}}</td>
+					<td>{{user.address}}</td>
+					<td>{{user.cap}}</td>
+					<td>{{user.city}}</td> 
+					<td>{{user.email}}</td>
+					<td>{{user.phone}}</td> 
+					<td>{{user.birthDate|date('d-m-Y')}}</td> 
+					<td>{{user.birthPlace}}</td> 
+                    <td>{{user.attendedActivity}}</td> 
+					<td>{{user.fiscalCode}}</td>
+				</tr>
+			{% endfor %}
+            </tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAE
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showOpenDay') }}");
+        })
+    </script>
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+    
+    </script>
+
+{% endblock %}

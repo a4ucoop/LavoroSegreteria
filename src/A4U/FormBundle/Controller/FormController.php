@@ -185,4 +185,41 @@ class FormController extends Controller
 
         }
     }
+
+    public function searchOpenDayAction(Request $request)
+    {
+        if ($request->getMethod() == 'GET') {
+            // $gsrch -> generic search keyword presa dal form di ricerca
+            $gsrch = $request->get('srch-term');
+
+            $mydate = date('Y-m-d', strtotime($gsrch));
+
+            $repository = $this->getDoctrine()
+                ->getRepository('A4UFormBundle:OpenDay')->createQueryBuilder('u')
+                // LIKE restituisce tutto ciò che contiente il parametro dato come sottostringa
+                ->where('LOWER(u.name) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.surname) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.address) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.cap) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.city) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.email) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.birthDate) LIKE LOWER(:keyDate)')
+                ->orWhere('LOWER(u.birthPlace) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.fiscalcode) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.attendedActivity) LIKE LOWER(:keyword)')
+                ->orWhere('LOWER(u.submissionDate) LIKE LOWER(:keyDate)')
+                ->setParameters(array(
+                    'keyword' => ('%' . $gsrch . '%'),
+                    'keyDate' => ('%' . $mydate . '%')
+                ))
+                ->getQuery();
+
+            $users = $repository->getResult();
+            return $this->render('A4UFormBundle:Forms:show_openday.html.twig', array(
+                'users' => $users,
+                'lastSearch' => $gsrch
+            ));
+
+        }
+    }
 }

@@ -1,0 +1,108 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Form OpenDay{% endblock %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/form.css') }}" type="text/css" rel="stylesheet">
+	{{ form_stylesheet(form) }}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div align="center">
+
+        <div align="left" class="form-container" >
+
+            {{ form_start(form) }}
+
+                {{ form_errors(form) }}
+                {% include 'A4UFormBundle::Forms/base_form_personal_records.html.twig'  %}
+
+                <div class="form-group">
+                    {{ form_label(form.attendedSchool) }}
+                    {{ form_errors(form.attendedSchool) }}
+                    {{ form_widget(form.attendedSchool) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.attendedActivity) }}
+                    {{ form_errors(form.attendedActivity) }}
+                    {{ form_widget(form.attendedActivity) }}
+                </div>
+
+                <div align="center" class="form-group">
+                    {{ form_widget(form.save) }}
+                </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	
+	{{ parent() }}
+	{{ form_javascript(form) }}
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	
+	<script type="text/javascript">
+		var city=document.getElementById('openday_city');
+		var address=document.getElementById('openday_address');
+		var birthPlace=document.getElementById('openday_birthPlace');
+		var CAP=document.getElementById('openday_cap');
+
+		var autocompleteCity = new google.maps.places.Autocomplete(city);
+		var autocompleteAddress = new google.maps.places.Autocomplete(address);
+		var autocompleteBirthPlace = new google.maps.places.Autocomplete(birthPlace);
+		var autocompleteCAP = new google.maps.places.Autocomplete(CAP);
+
+        var july_15 = ["DISEGNO INDUSTRIALE E AMBIENTALE","SCIENZE DELL'ARCHITETTURA"];
+        var july_21 = ["TECNOLOGIE E DIAGNOSTICA PER LA CONSERVAZIONE E IL RESTAURO"]
+        var july_22 = ["BIOSCIENCES AND BIOTECHNOLOGY","SICUREZZA DELLE PRODUZIONI (ANIMALI) ZOOTECNICHE E VALORIZZAZIONE DELLE TIPICITÀ ALIMENTARI DI ORIGINE ANIMALE","MEDICINA VETERINARIA","SCIENZE SOCIALI PER GLI ENTI NON-PROFIT E LA COOPERAZIONE INTERNAZIONALE","GIURISPRUDENZA","INFORMAZIONE SCIENTIFICA SUL FARMACO E SCIENZE DEL FITNESS E DEI PRODOTTI DELLA SALUTE","FARMACIA","CHIMICA E TECNOLOGIA FARMACEUTICHE","CHIMICA","FISICA","INFORMATICA","MATEMATICA E APPLICAZIONI","SCIENZE GEOLOGICHE, NATURALI E AMBIENTALI"];
+        var july_23 =  ["BIOLOGIA DELLA NUTRIZIONE"];
+
+        $(document).ready(function(){
+            $('#openday_attendedActivity').empty();
+            $('#openday_attendedActivity').hide();
+            $('label[for="openday_attendedActivity"]').hide();
+        });
+
+        $(document).on('change', '#openday_attendedSchool', function() {
+
+            var selection = $.trim($('#openday_attendedSchool option:selected').text()).toUpperCase();
+
+            $('#openday_attendedActivity').empty();
+
+            if($.inArray(selection, july_15) > -1 && !$.inArray(selection, $('#openday_attendedActivity').options) > -1){
+                  $('#openday_attendedActivity').append(new Option ("15 luglio - Ascoli Piceno", "15 luglio - Ascoli Piceno"));
+                  $('#openday_attendedActivity').show('drop');
+                  $('label[for="openday_attendedActivity"]').show('drop');
+            }
+            if($.inArray(selection, july_21) > -1 ){
+                  $('#openday_attendedActivity').append(new Option ("21 luglio - Ascoli piceno","21 luglio - Ascoli piceno"));
+                  $('#openday_attendedActivity').show('drop');
+                  $('label[for="openday_attendedActivity"]').show('drop');
+            }
+            if($.inArray(selection, july_22) > -1 ){
+                  $('#openday_attendedActivity').append(new Option ("22 luglio Camerino - Matelica","22 luglio Camerino - Matelica"));
+                  $('#openday_attendedActivity').show('drop');
+                  $('label[for="openday_attendedActivity"]').show('drop');
+            }
+            if($.inArray(selection, july_23) > -1 ){
+                  $('#openday_attendedActivity').append(new Option ("23 luglio - San Benedetto del Tronto","23 luglio - San Benedetto del Tronto"));
+                  $('#openday_attendedActivity').show('drop');
+                  $('label[for="openday_attendedActivity"]').show('drop');
+            }
+        });
+
+	</script>
+{% endblock %}

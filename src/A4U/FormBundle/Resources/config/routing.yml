@@ -56,6 +56,17 @@ a4u_form_searchGenerico:
     defaults: { _controller: A4UFormBundle:Form:searchGenerico }
 
 
+a4u_form_openday:
+    path:   /form/openday
+    defaults: { _controller: A4UFormBundle:Page:openday }
+
+a4u_form_showOpenDay:
+    path:   /admin/form/show_openday
+    defaults: { _controller: A4UFormBundle:Page:showopenday }
+
+a4u_form_searchOpenDay:
+    path: /admin/form/search_openday
+    defaults: { _controller: A4UFormBundle:Form:searchOpenday }
 
 
 

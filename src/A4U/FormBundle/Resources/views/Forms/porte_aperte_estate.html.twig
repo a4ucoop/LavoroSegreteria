@@ -42,7 +42,7 @@
             {{ form_widget(form.augustDates) }}
         </div>
 
-        <div id="porteAperteEstate_reservationDate" class="form-group">
+        <div id="porteAperteEstate_reservationDiv" class="form-group">
             {{ form_label(form.reservationDate) }}
             {{ form_errors(form.reservationDate) }}
             {{ form_widget(form.reservationDate) }}
@@ -151,6 +151,23 @@
       var data = {};
       data[$school.attr('name')] = $('#porteAperteEstate_attendedSchool').val();
     });
+
+	var $augustDates = $('#porteAperteEstate_augustDates');
+	var $julyDates = $('#porteAperteEstate_julyDates');
+    var $reservationDate = $('#porteAperteEstate_reservationDate');
+
+	$(document).on('change', '#porteAperteEstate_augustDates', function(){
+      var $form = $(this).closest('form');
+      var data = {};
+	  $('input[id="porteAperteEstate_reservationDate"]').val($('#porteAperteEstate_augustDates').val());
+    });
+
+	$(document).on('change', '#porteAperteEstate_julyDates', function(){
+      var $form = $(this).closest('form');
+      var data = {};
+	  $('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_julyDates').val());
+	});
+
 	</script>
 
 {% endblock %}

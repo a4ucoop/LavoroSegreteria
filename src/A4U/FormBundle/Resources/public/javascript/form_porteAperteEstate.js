@@ -3,7 +3,7 @@
 $(document).ready(function(){
 
 	// appena pronto nasconde i selettori delle date della visita
-	$('#porteAperteEstate_reservationDate').hide();
+	$('#porteAperteEstate_reservationDiv').hide();
 	$('#porteAperteEstate_julyDiv').hide();
 	$('#porteAperteEstate_augustDiv').hide();
 
@@ -70,13 +70,13 @@ $(document).ready(function(){
 		};
 	})
 
-	// valorizza l'input effettivo che verrà passato con la data scelta
-	$('#porteAperteEstate_augustDates').change(function(){
-		$('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_augustDates').val());
-	})
+	//// valorizza l'input effettivo che verrà passato con la data scelta
+	//$('#porteAperteEstate_augustDates').change(function(){
+	//	$('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_augustDates').val());
+	//})
 
-	$('#porteAperteEstate_julyDates').change(function(){
-		$('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_julyDates').val());
-	})
+	//$('#porteAperteEstate_julyDates').change(function(){
+	//	$('#porteAperteEstate_reservationDate').val($('#porteAperteEstate_julyDates').val());
+	//})
 
 });

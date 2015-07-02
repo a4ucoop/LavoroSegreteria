@@ -19,6 +19,10 @@ services:
         tags:
             - { name: form.type, alias: generico }
 
+    A4U_Form.form.type.openday:
+        class: A4U\FormBundle\Form\Type\OpenDayType
+        tags:
+            - { name: form.type, alias: openday }
 #    a4_u_form.example:
 #        class: A4U\FormBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

@@ -245,7 +245,18 @@ class PorteAperteEstateType extends AbstractType
                     )
                 ))
 
-            ->add('reservationDate', 'text')  
+            ->add('reservationDate', 'collot_datetime', array( 
+                'label' => 'Prenotazione',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control'),
+                'pickerOptions' => array(
+                        'minView' => 'month',
+                        'format' => 'dd/mm/yyyy',
+                        'autoclose' => true,
+                        'language' => 'it',
+                    )
+                ))
 
 
             ->add('save', 'submit', array(

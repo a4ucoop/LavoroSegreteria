@@ -159,3 +159,32 @@ A4U\FormBundle\Entity\Generico:
         fiscalcode:
             - NotBlank: ~
 
+
+A4U\FormBundle\Entity\OpenDay:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: fiscalcode
+            message: 'Il codice fiscale inserito è già presente nei nostri Database'
+    properties:
+        name:
+            - NotBlank: ~
+        surname:
+            - NotBlank: ~
+        address:
+            - NotBlank: ~
+        cap:
+            - NotBlank: ~
+        city:
+            - NotBlank: ~
+        email:
+            - Email:
+                message: The email {{ value }} is not a valid email.
+                checkMX: true
+        birthDate:
+            - NotBlank: ~
+        birthPlace:
+            - NotBlank: ~
+        attendedActivity:
+            - NotBlank: ~
+        fiscalcode:
+            - NotBlank: ~

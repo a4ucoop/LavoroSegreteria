@@ -10,6 +10,7 @@ use A4U\FormBundle\Entity\PorteAperteEstate;
 use A4U\FormBundle\Entity\PorteAperteInverno;
 use A4U\FormBundle\Entity\Stage;
 use A4U\FormBundle\Entity\Generico;
+use A4U\FormBundle\Entity\OpenDay;
 
 use A4U\DataBundle\Entity\Attivita;
 use A4U\DataBundle\Entity\AttivitaDate;
@@ -22,6 +23,7 @@ use A4U\FormBundle\Form\Type\PorteAperteEstateType;
 use A4U\FormBundle\Form\Type\PorteAperteInvernoType;
 use A4U\FormBundle\Form\Type\StageType;
 use A4U\FormBundle\Form\Type\GenericoType;
+use A4U\FormBundle\Form\Type\OpenDayType;
 
 
 class PageController extends Controller
@@ -55,7 +57,7 @@ class PageController extends Controller
         $form = $this->createForm('porteAperteEstate', $PorteAperteEstate);
 
         $form->handleRequest($request);
-
+        
         //Form inviato, viene validato
         if ($form->isValid()) {
 
@@ -215,6 +217,68 @@ class PageController extends Controller
         }
 
         return $this->render('A4UFormBundle:Forms:show_stage.html.twig', array(
+            'users' => $Users));
+    }
+
+// ---------------------------------------OpenDay--------------------------------------------
+
+    public function opendayAction(Request $request)
+    {
+        $context = array(
+            'name' => $request->get('name',''),
+            'surname' => $request->get('surname',''),
+            'fiscal_code' => $request->get('fiscal_code',''),
+            'cap' => $request->get('cap',''),
+            'city' => $request->get('city',''),
+            'address' => $request->get('address',''),
+            'email' => $request->get('email',''),
+            'phone' => $request->get('phone',''),
+            'birth_date' => $request->get('birth_date',''),
+            'birth_place' => $request->get('birth_place',''),
+        );
+
+        $OpenDay = new OpenDay();
+
+        $form = $this->createForm('openday', $OpenDay);
+
+        $form->handleRequest($request);
+
+        //Form inviato, viene validato
+        if ($form->isValid()) {
+
+            //Salva il nuovo utente nella base dati
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($OpenDay);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente registrato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+        }
+
+        // Form non ancora inviato
+        return $this->render('A4UFormBundle:Forms:openday.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context,
+        )); 
+
+    }
+
+    public function showopendayAction()
+    {
+        $Users = $this->getDoctrine()
+        ->getRepository('A4UFormBundle:OpenDay')
+        ->findAll();
+
+        if (!$Users)
+        {
+            return $this->render('A4UFormBundle:Exceptions:no_users_exception.html.twig');
+        }
+
+        return $this->render('A4UFormBundle:Forms:show_openday.html.twig', array(
             'users' => $Users));
     }
 
