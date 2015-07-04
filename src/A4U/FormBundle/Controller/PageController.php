@@ -25,9 +25,15 @@ use A4U\FormBundle\Form\Type\StageType;
 use A4U\FormBundle\Form\Type\GenericoType;
 use A4U\FormBundle\Form\Type\OpenDayType;
 
+use \Swift_SmtpTransport,\Swift_Mailer,\Swift_Message;
+
 
 class PageController extends Controller
 {
+
+    const MAIL_TO = 'sara.buti@unicam.it';
+    const MAIL_TO_NAME = 'Sara Buti';
+
 	public function indexAction()
 	{
 		return $this->render('A4UFormBundle:Default:homepage.html.twig');
@@ -61,6 +67,8 @@ class PageController extends Controller
         //Form inviato, viene validato
         if ($form->isValid()) {
 
+            $data = $form->getData();
+
             //Salva il nuovo utente nella base dati
             $em = $this->getDoctrine()->getManager();
             $em->persist($PorteAperteEstate);
@@ -70,6 +78,16 @@ class PageController extends Controller
             $this->get('session')->getFlashBag()->add(
                 'notice', 'Utente registrato con successo!'
             );
+
+            $mailer = $this->get('swiftmailer.mailer');
+
+            $message = Swift_Message::newInstance('Nuova iscrizione a Porte Aperte Estate')
+              ->setFrom(array('a4ucooperativa@gmail.com' => 'A4U Cooperativa'))
+              ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME))
+              ->setBody('Nuova iscrizione a Porte Aperte Estate di ' . $data->getName() . ' ' . $data->getSurname() .  ' per la data ' . $data->getReservationDate()->format('d-m-Y') )
+            ;
+    
+            $result = $mailer->send($message);
 
             return $this->redirect("http://www.unicam.it/orientamento");
         }
@@ -246,6 +264,8 @@ class PageController extends Controller
         //Form inviato, viene validato
         if ($form->isValid()) {
 
+            $data = $form->getData();
+
             //Salva il nuovo utente nella base dati
             $em = $this->getDoctrine()->getManager();
             $em->persist($OpenDay);
@@ -255,6 +275,16 @@ class PageController extends Controller
             $this->get('session')->getFlashBag()->add(
                 'notice', 'Utente registrato con successo!'
             );
+
+            $mailer = $this->get('swiftmailer.mailer');
+
+            $message = Swift_Message::newInstance('Nuova iscrizione a Open Day')
+              ->setFrom(array('a4ucooperativa@gmail.com' => 'A4U Cooperativa'))
+              ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME))
+              ->setBody('Nuova iscrizione a Open Day di ' .  $data->getName() . ' ' . $data->getSurname() .  ' per la data ' . $data->getReservationDate()->format('d-m-Y') )
+            ;
+
+            $result = $mailer->send($message);
 
             return $this->redirect($this->generateUrl('a4u_form_homepage'));
         }
