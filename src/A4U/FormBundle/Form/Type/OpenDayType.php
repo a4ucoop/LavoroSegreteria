@@ -91,7 +91,6 @@ class OpenDayType extends AbstractType
                 ))
 
             ->add('attendedSchool', 'choice', array(
-                'mapped' => false,
                 'label' => 'Corso*',
                 'empty_value'   => 'Scegli il corso....',
                 'choices'   => array(

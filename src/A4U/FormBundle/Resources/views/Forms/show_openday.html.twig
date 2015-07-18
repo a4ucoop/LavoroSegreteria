@@ -54,7 +54,8 @@
 				<th class="col-sm-7"><b>Tel.</b></th>
 				<th style="min-width: 100px;"><b>Data di nascita</b></th>
 				<th class="col-sm-8"><b>Luogo di nascita</b></th>
-                <th class="col-sm-9"><b>Attività frequentata</b></th>
+                		<th class="col-sm-9"><b>Corso</b></th>
+                		<th class="col-sm-9"><b>Attività frequentata</b></th>
 				<th class="col-sm-10"><b>Codice Fiscale</b></th>
 			</tr>
             </thead>
@@ -71,7 +72,8 @@
 					<td>{{user.phone}}</td> 
 					<td>{{user.birthDate|date('d-m-Y')}}</td> 
 					<td>{{user.birthPlace}}</td> 
-                    <td>{{user.attendedActivity}}</td> 
+                    			<td>{{user.attendedSchool}}</td> 
+                    			<td>{{user.attendedActivity}}</td> 
 					<td>{{user.fiscalCode}}</td>
 				</tr>
 			{% endfor %}

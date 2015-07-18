@@ -96,6 +96,13 @@ class OpenDay
     /**
      * @var string
      *
+     * @ORM\Column(name="attendedschool", type="string", length=255)
+     */
+    private $attendedSchool;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="attendedactivity", type="string", length=255)
      */
     private $attendedActivity;
@@ -395,5 +402,28 @@ class OpenDay
     public function getAttendedActivity()
     {
         return $this->attendedActivity;
+    }
+
+    /**
+     * Get attendedSchool
+     *
+     * @return string 
+     */
+    public function getAttendedSchool()
+    {
+        return $this->attendedSchool;
+    }
+
+    /**
+     * Set attendedSchool
+     *
+     * @param string $attendedSchool
+     * @return OpenDay
+     */
+    public function setAttendedSchool($attendedSchool)
+    {
+        $this->attendedSchool = $attendedSchool;
+
+        return $this;
     }
 }

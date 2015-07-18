@@ -31,8 +31,8 @@ use \Swift_SmtpTransport,\Swift_Mailer,\Swift_Message;
 class PageController extends Controller
 {
 
-    const MAIL_TO = 'sara.buti@unicam.it';
-    const MAIL_TO_NAME = 'Sara Buti';
+    const MAIL_TO = 'emanuela.pascucci@unicam.it';
+    const MAIL_TO_NAME = 'Emanuela Pascucci';
 
 	public function indexAction()
 	{
@@ -44,6 +44,8 @@ class PageController extends Controller
 
 	public function porte_aperte_estateAction(Request $request)
 	{
+
+	#return new Response('<html><body text="red">Il termine per iscriversi è scaduto !</body></html>');
         $context = array(
             'name' => $request->get('name',''),
             'surname' => $request->get('surname',''),
@@ -82,8 +84,8 @@ class PageController extends Controller
             $mailer = $this->get('swiftmailer.mailer');
 
             $message = Swift_Message::newInstance('Nuova iscrizione a Porte Aperte Estate')
-              ->setFrom(array('a4ucooperativa@gmail.com' => 'A4U Cooperativa'))
-              ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME))
+              ->setFrom(array('matteo.micheletti@studenti.unicam.it' => 'A4U Cooperativa'))
+              ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME, "matteo.micheletti@studenti.unicam.it"))
               ->setBody('Nuova iscrizione a Porte Aperte Estate di ' . $data->getName() . ' ' . $data->getSurname() .  ' per la data ' . $data->getReservationDate()->format('d-m-Y') )
             ;
     
@@ -242,6 +244,8 @@ class PageController extends Controller
 
     public function opendayAction(Request $request)
     {
+
+	#return new Response('<html><body text="red">Il termine per iscriversi è scaduto !</body></html>');
         $context = array(
             'name' => $request->get('name',''),
             'surname' => $request->get('surname',''),
@@ -278,15 +282,17 @@ class PageController extends Controller
 
             $mailer = $this->get('swiftmailer.mailer');
 
-            $message = Swift_Message::newInstance('Nuova iscrizione a Open Day')
-              ->setFrom(array('a4ucooperativa@gmail.com' => 'A4U Cooperativa'))
-              ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME))
-              ->setBody('Nuova iscrizione a Open Day di ' .  $data->getName() . ' ' . $data->getSurname() .  ' per la data ' . $data->getReservationDate()->format('d-m-Y') )
-            ;
+            #$message = Swift_Message::newInstance('Nuova iscrizione a Open Day')
+            $message =$mailer->createMessage()
+              ->setSubject('Nuova iscrizione a Open Day') 
+              ->setFrom(array('matteo.micheletti@studenti.unicam.it' => 'A4U Cooperativa'))
+              ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME, "matteo.micheletti@studenti.unicam.it"))
+              ->setBody('Nuova iscrizione a Open Day di ' .  $data->getName() . ' ' . $data->getSurname() .  ' per la data ' . $data->getAttendedActivity());
 
-            $result = $mailer->send($message);
+            $result = $mailer->send($message, $failure);
 
-            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+
+            return $this->redirect("http://www.unicam.it/orientamento");
         }
 
         // Form non ancora inviato
