@@ -354,6 +354,19 @@ class PorteAperteEstate
     }
 
     /**
+     * Get birthDate as string
+     *
+     * @return string
+     */
+    public function getBirthDateAsString()
+    {
+        if($this->birthDate !== null)
+            return $this->birthDate->format('m/d/Y');
+        else
+            return "N/A";
+    }
+
+    /**
      * Set birthPlace
      *
      * @param string $birthPlace
@@ -397,6 +410,16 @@ class PorteAperteEstate
     public function getHasAttendedToOtherActivities()
     {
         return $this->hasAttendedToOtherActivities;
+    }
+
+    /**
+     * Get hasAttendedToOtherActivities
+     *
+     * @return string
+     */
+    public function getHasAttendedToOtherActivitiesAsString()
+    {
+        return var_export($this->hasAttendedToOtherActivities, True);
     }
 
     /**
@@ -558,7 +581,17 @@ class PorteAperteEstate
     public function getSubmissionDate()
     {
         return $this->submissionDate;
-    }    
+    }
+
+    /**
+     * Get submissionDate as string
+     *
+     * @return \DateTime
+     */
+    public function getSubmissionDateAsString()
+    {
+        return $this->submissionDate->format('m/d/Y');
+    }
 
     /**
      * Set reservationDate
@@ -581,6 +614,20 @@ class PorteAperteEstate
     public function getReservationDate()
     {
         return $this->reservationDate;
+    }
+
+    /**
+     * Get reservationDate as string
+     *
+     * @return string
+     */
+    public function getReservationDateAsString()
+    {
+        return ;
+        if($this->reservationDate !== null)
+            return $this->reservationDate->format('m/d/Y');
+        else
+            return "N/A";
     }
 
     /**

@@ -313,6 +313,19 @@ class OpenDay
     }
 
     /**
+     * Get birthDate as string
+     *
+     * @return string
+     */
+    public function getBirthDateAsString()
+    {
+        if($this->birthDate !== null)
+            return $this->birthDate->format('m/d/Y');
+        else
+            return "N/A";
+    }
+
+    /**
      * Set birthPlace
      *
      * @param string $birthPlace

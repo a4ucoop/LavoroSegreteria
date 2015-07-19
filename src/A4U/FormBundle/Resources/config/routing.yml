@@ -15,6 +15,10 @@ a4u_form_searchPAE:
     path: /admin/form/search_pae
     defaults: { _controller: A4UFormBundle:Form:searchPAE }
 
+a4u_form_csv_PAE:
+    path: /admin/form/csv_pae
+    defaults: { _controller: A4UFormBundle:Export:generateCsvPAE }
+
 
 a4u_form_porteAperteInverno:
     path:     /form/porte_aperte_inverno
@@ -68,6 +72,9 @@ a4u_form_searchOpenDay:
     path: /admin/form/search_openday
     defaults: { _controller: A4UFormBundle:Form:searchOpenday }
 
+a4u_form_csv_Openday:
+    path: /admin/form/csv_openday
+    defaults: { _controller: A4UFormBundle:Export:generateCsvOpenday }
 
 
 a4u_form_provaHera:
