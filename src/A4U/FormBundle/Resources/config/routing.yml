@@ -25,7 +25,7 @@ a4u_form_reportPAE:
     defaults: { _controller: A4UFormBundle:Page:reportPAE }
 a4u_form_report_PAE:
     path: /admin/form/csv_report_pae
-    defaults: { _controller: a4uformbundle:Export:generateCsvReportPAE }
+    defaults: { _controller: A4UFormBundle:Export:generateCsvReportPAE }
 
 
 a4u_form_porteAperteInverno:
@@ -50,7 +50,7 @@ a4u_form_reportPAI:
     defaults: { _controller: A4UFormBundle:Page:reportPAI }
 a4u_form_report_PAI:
     path: /admin/form/csv_report_pai
-    defaults: { _controller: a4uformbundle:Export:generateCsvReportPAI }
+    defaults: { _controller: A4UFormBundle:Export:generateCsvReportPAI }
 
 
 a4u_form_stage:
@@ -75,7 +75,7 @@ a4u_form_reportStage:
     defaults: { _controller: A4UFormBundle:Page:reportStage }
 a4u_form_report_Stage:
     path: /admin/form/csv_report_stage
-    defaults: { _controller: a4uformbundle:Export:generateCsvReportStage }
+    defaults: { _controller: A4UFormBundle:Export:generateCsvReportStage }
 
 
 a4u_form_generico:
@@ -100,7 +100,7 @@ a4u_form_reportGenerico:
     defaults: { _controller: A4UFormBundle:Page:reportGenerico }
 a4u_form_report_Generico:
     path: /admin/form/csv_report_generico
-    defaults: { _controller: a4uformbundle:Export:generateCsvReportGenerico }
+    defaults: { _controller: A4UFormBundle:Export:generateCsvReportGenerico }
 
 a4u_show_student:
     path: /admin/esse3/show_student/{fc}
@@ -128,7 +128,7 @@ a4u_form_reportOpenDay:
     defaults: { _controller: A4UFormBundle:Page:reportOpenDay }
 a4u_form_report_OpenDay:
     path: /admin/form/csv_report_openday
-    defaults: { _controller: a4uformbundle:Export:generateCsvOpendayReport }
+    defaults: { _controller: A4UFormBundle:Export:generateCsvOpendayReport }
 
 
 a4u_form_provaHera:
