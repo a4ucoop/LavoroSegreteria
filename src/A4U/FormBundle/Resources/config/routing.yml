@@ -124,7 +124,7 @@ a4u_form_csv_Openday:
     path: /admin/form/csv_openday
     defaults: { _controller: A4UFormBundle:Export:generateCsvOpenday }
 a4u_form_reportOpenDay:
-    path: /admin/form/report_generico
+    path: /admin/form/report_openday
     defaults: { _controller: A4UFormBundle:Page:reportOpenDay }
 a4u_form_report_OpenDay:
     path: /admin/form/csv_report_openday
