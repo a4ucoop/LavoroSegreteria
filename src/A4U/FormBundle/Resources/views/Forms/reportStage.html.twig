@@ -1,0 +1,210 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Stage{% endblock %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+
+	<style>
+	.filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+	.fitler-table .quick:hover { text-decoration: underline; }
+	td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+	</style> <!-- or put the styling in your stylesheet -->
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" >
+            Stage Unicam
+          </a>
+        </div>        
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <div class="input-group" style="max-width:300px;">
+                <input type="text" class="form-control" id="input-filter" placeholder="cerca">
+                <span class="input-group-addon glyphicon glyphicon-search"> </span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div>
+        <form class="navbar-form navbar-left" action="{{ path('a4u_form_report_Stage') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="Export" /></form>
+      </div>
+    </nav>
+
+{#    ISCRITTI:
+    {% for student in subscribed %}
+    {{student.CFSTUDENTE}}
+    {%endfor%}
+#}
+	<div style="overflow-y: auto; overflow-x: auto;">
+    
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><b>Nome</b></th>
+                    <th><b>Cognome</b></th>
+                    <th><b>Codice Fiscale</b></th>
+                    <th><b>Immatricolato</b></th>
+                    <th><b>Corso di laurea (form)</b></th>
+                    <th><b>Corso di laurea (ESSE3)</b></th>
+                    <th><b>ANNO</b></th>
+                    <th><b>CFU</b></th>
+                    <th><b>MEDIA</b></th>
+
+                    <th><b>Indirizzo</b></th>
+                    <th><b>CAP</b></th>
+                    <th><b>Città</b></th>
+                    <th><b>Email</b></th>
+                    <th><b>Tel.</b></th>
+                    <th><b>Data di nascita</b></th>
+                    <th><b>Luogo di nascita</b></th>
+                    <th><b>Scuola di provenienza</b></th>
+                    <th><b>Anno Scolastico</b></th>
+                    <th><b>Contatto Facebook</b></th>
+                    <th><b>Periodo di Stage</b></th>
+                    <th><b>Campo di Studio prima scelta</b></th>
+                    <th><b>Prima Scelta</b></th>
+                    <th><b>Campo di Studio seconda scelta</b></th>
+                    <th><b>Seconda Scelta</b></th>
+                    <th><b>Pagamento</b></th>
+                    <th><b>data sottoscrizione</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in both_subscribed %}
+                    <tr>
+                        <td>{{user.nome}}</td>
+                        <td>{{user.cognome}}</td>
+                        <td>{{user.CFSTUDENTE}}</td>
+                        <td style="color:green" align="center">
+{#  i glyph (simboli) sono piu fighi ma rompono il copia/incolla della tabella                          
+                            <div style="text-align: center;">
+                                <form action="{{ path('a4u_show_student', {'fc': user.CFSTUDENTE }) }}">
+                                    <button type="submit" class="btn btn-default" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-ok-circle" style="color:green" aria-hidden="true"></span> 
+                                    </button> 
+                                </form>
+                            </div>
+#}
+                            si
+                        </td>
+                        <td>{{user.unicamCourse}}</td> 
+                        <td>{{user.corsoDiStudi}}</td>
+                        <td>{{user.anno}}</td>
+                        <td>
+                            {% if(user.CFUCERTIFICATI is null) %} N/A
+                            {% else %}{{user.CFUCERTIFICATI}}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if(user.mediaCertificata is null) %} N/A
+                            {% else %}{{user.mediaCertificata|slice(0, 5)}}</td>
+                            {% endif %}
+                        </td>
+
+                        <td>{{user.address}}</td>
+                        <td>{{user.cap}}</td>
+                        <td>{{user.city}}</td> 
+                        <td>{{user.email}}</td>
+                        <td>{{user.phone}}</td> 
+                        <td>{{user.birthDate|date('d-m-Y')}}</td> 
+                        <td>{{user.birthPlace}}</td> 
+                        <td>{{user.attendedSchool}}</td> 
+                        <td>{{user.schoolyear}}</td> 
+                        <td>{{user.facebookcontact}}</td> 
+                        <td>{{user.stageperiod}}</td> 
+                        <td>{{user.firststudyfield}}</td> 
+                        <td>{{user.firstchoice}}</td> 
+                        <td>{{user.secondstudyfield}}</td> 
+                        <td>{{user.secondchoice}}</td> 
+                        <td>{{user.moneypayed}}</td> 
+                        <td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
+                    </tr>
+                {% endfor %}
+
+                {% for user in form_subscribed %}
+                    <tr>
+                        <td>{{user.name}}</td>
+                        <td>{{user.surname}}</td>
+                        <td>{{user.fiscalCode}}</td>
+                        <td style="color:red" align="center">
+{#  
+                            <div style="text-align: center;">
+                                <span class="glyphicon glyphicon-remove-circle" style="color:red" aria-hidden="true"></span>
+                            </div>
+#}
+                            no
+                        </td>
+                        <td>{{user.unicamCourse}}</td> 
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>{{user.address}}</td>
+                        <td>{{user.cap}}</td>
+                        <td>{{user.city}}</td> 
+                        <td>{{user.email}}</td>
+                        <td>{{user.phone}}</td> 
+                        <td>{{user.birthDate|date('d-m-Y')}}</td> 
+                        <td>{{user.birthPlace}}</td> 
+                        <td>{{user.attendedSchool}}</td> 
+                        <td>{{user.schoolyear}}</td> 
+                        <td>{{user.facebookcontact}}</td> 
+                        <td>{{user.stageperiod}}</td> 
+                        <td>{{user.firststudyfield}}</td> 
+                        <td>{{user.firstchoice}}</td> 
+                        <td>{{user.secondstudyfield}}</td> 
+                        <td>{{user.secondchoice}}</td> 
+                        <td>{{user.moneypayed}}</td> 
+                        <td>{{user.submissionDate|date('d-m-Y H:i:s')}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/searchTable/jquery.filtertable.js') }}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('table').filterTable({ // apply filterTable to all tables on this page
+            inputSelector: '#input-filter' // use the existing input instead of creating a new one
+        });
+    });
+    </script>
+
+
+    <script type="text/javascript">
+        // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAI
+        $(document).on('click', '#removeLastSearch' , function() {
+            window.location.replace("{{ path('a4u_form_showPAI') }}");
+        })
+    </script>
+
+    <script type="text/javascript">
+
+		jQuery(document).ready(function(){
+		    jQuery('.scrollbar-inner').scrollbar();
+		});
+    
+    </script>
+
+{% endblock %}

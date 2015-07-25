@@ -6,75 +6,129 @@ a4u_form_homepage:
 a4u_form_porteAperteEstate:
     path:     /form/porte_aperte_estate
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate }
-
-a4u_form_showPAE:
-    path: /admin/form/show_pae
-    defaults: { _controller: A4UFormBundle:Page:showPAE }
-
+a4u_form_edit_porteAperteEstate:
+    path:     /form/porte_aperte_estate/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate_edit }
+    requirements:
+        id: \d+
 a4u_form_searchPAE:
     path: /admin/form/search_pae
     defaults: { _controller: A4UFormBundle:Form:searchPAE }
-
+a4u_form_showPAE:
+    path: /admin/form/show_pae
+    defaults: { _controller: A4UFormBundle:Page:showPAE }
 a4u_form_csv_PAE:
     path: /admin/form/csv_pae
-    defaults: { _controller: A4UFormBundle:Export:generateCsvPAE }
+    defaults: { _controller: A4UFormBundle:Export:generatecsvpae }
+a4u_form_reportPAE:
+    path: /admin/form/report_pae
+    defaults: { _controller: A4UFormBundle:Page:reportPAE }
+a4u_form_report_PAE:
+    path: /admin/form/csv_report_pae
+    defaults: { _controller: a4uformbundle:Export:generateCsvReportPAE }
 
 
 a4u_form_porteAperteInverno:
     path:     /form/porte_aperte_inverno
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_inverno }
-
-a4u_form_showPAI:
-    path: /admin/form/show_pai
-    defaults: { _controller: A4UFormBundle:Page:showPAI }
-
+a4u_form_edit_porteAperteInverno:
+    path:     /form/porte_aperte_inverno/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_inverno_edit }
+    requirements:
+        id: \d+
 a4u_form_searchPAI:
     path: /admin/form/search_pai
     defaults: { _controller: A4UFormBundle:Form:searchPAI }
+a4u_form_showPAI:
+    path: /admin/form/show_pai
+    defaults: { _controller: A4UFormBundle:Page:showPAI }
+a4u_form_csv_PAI:
+    path: /admin/form/csv_pai
+    defaults: { _controller: A4UFormBundle:Export:generateCsvPAI }
+a4u_form_reportPAI:
+    path: /admin/form/report_pai
+    defaults: { _controller: A4UFormBundle:Page:reportPAI }
+a4u_form_report_PAI:
+    path: /admin/form/csv_report_pai
+    defaults: { _controller: a4uformbundle:Export:generateCsvReportPAI }
 
 
 a4u_form_stage:
     path:   /form/stage
     defaults: { _controller: A4UFormBundle:Page:stage }
-
-a4u_form_showStage:
-    path:   /admin/form/show_stage
-    defaults: { _controller: A4UFormBundle:Page:showstage }
-
+a4u_form_edit_stage:
+    path:     /form/stage/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:stage_edit }
+    requirements:
+        id: \d+
 a4u_form_searchStage:
     path: /admin/form/search_stage
     defaults: { _controller: A4UFormBundle:Form:searchStage }
-
+a4u_form_showStage:
+    path:   /admin/form/show_stage
+    defaults: { _controller: A4UFormBundle:Page:showstage }
+a4u_form_csv_Stage:
+    path: /admin/form/csv_stage
+    defaults: { _controller: A4UFormBundle:Export:generateCsvStage }
+a4u_form_reportStage:
+    path: /admin/form/report_stage
+    defaults: { _controller: A4UFormBundle:Page:reportStage }
+a4u_form_report_Stage:
+    path: /admin/form/csv_report_stage
+    defaults: { _controller: a4uformbundle:Export:generateCsvReportStage }
 
 
 a4u_form_generico:
     path:   /form/generico
     defaults: { _controller: A4UFormBundle:Page:generico }
-
-a4u_form_showGenerico:
-    path:   /admin/form/show_generico
-    defaults: { _controller: A4UFormBundle:Page:showgenerico }
-
+a4u_form_edit_generico:
+    path:     /form/generico/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:generico_edit }
+    requirements:
+        id: \d+
 a4u_form_searchGenerico:
     path: /admin/form/search_generico
     defaults: { _controller: A4UFormBundle:Form:searchGenerico }
+a4u_form_showGenerico:
+    path:   /admin/form/show_generico
+    defaults: { _controller: A4UFormBundle:Page:showgenerico }
+a4u_form_csv_Generico:
+    path: /admin/form/csv_generico
+    defaults: { _controller: A4UFormBundle:Export:generateCsvGenerico }
+a4u_form_reportGenerico:
+    path: /admin/form/report_generico
+    defaults: { _controller: A4UFormBundle:Page:reportGenerico }
+a4u_form_report_Generico:
+    path: /admin/form/csv_report_generico
+    defaults: { _controller: a4uformbundle:Export:generateCsvReportGenerico }
 
+a4u_show_student:
+    path: /admin/esse3/show_student/{fc}
+    defaults: { _controller: A4UFormBundle:Page:showStudent, fc: null }
 
 a4u_form_openday:
     path:   /form/openday
     defaults: { _controller: A4UFormBundle:Page:openday }
-
-a4u_form_showOpenDay:
-    path:   /admin/form/show_openday
-    defaults: { _controller: A4UFormBundle:Page:showopenday }
-
+a4u_form_edit_openday:
+    path:     /form/openday/{id}/edit
+    defaults: { _controller: A4UFormBundle:Page:openday_edit }
+    requirements:
+        id: \d+
 a4u_form_searchOpenDay:
     path: /admin/form/search_openday
     defaults: { _controller: A4UFormBundle:Form:searchOpenday }
-
+a4u_form_showOpenDay:
+    path:   /admin/form/show_openday
+    defaults: { _controller: A4UFormBundle:Page:showopenday }
 a4u_form_csv_Openday:
     path: /admin/form/csv_openday
     defaults: { _controller: A4UFormBundle:Export:generateCsvOpenday }
+a4u_form_reportOpenDay:
+    path: /admin/form/report_generico
+    defaults: { _controller: A4UFormBundle:Page:reportOpenDay }
+a4u_form_report_OpenDay:
+    path: /admin/form/csv_report_openday
+    defaults: { _controller: a4uformbundle:Export:generateCsvOpendayReport }
 
 
 a4u_form_provaHera:

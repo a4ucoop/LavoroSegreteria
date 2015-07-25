@@ -7,6 +7,12 @@
 	{{ parent() }}
 	<link href="{{ asset('bundles/a4uform/css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
 
+    <style>
+    .filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
+    .fitler-table .quick:hover { text-decoration: underline; }
+    td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+    </style> <!-- or put the styling in your stylesheet -->
+
 {% endblock %}
 
 {% block body %}
@@ -40,13 +46,19 @@
 		</form>
 	  </div>
       <div>
-        <form class="navbar-form navbar-left" action="{{ path('a4u_form_csv_PAE') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="CSV" /></form>
+        <form class="navbar-form navbar-left" action="{{ path('a4u_form_csv_PAE') }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="EXPORT" /></form>
       </div>
 	</nav>
 
+{#    ISCRITTI:
+    {% for student in subscribed %}
+    {{student.CFSTUDENTE}}
+    {%endfor%}
+#}
     <div class="scrollbar-inner" style="overflow-y: auto; overflow-x: auto;">
 		<table class="table table-hover">
 			<tr>
+                <td></td>
                 <td></td>
 				<td><b>Nome</b></td>
 				<td><b>Cognome</b></td>
@@ -71,6 +83,7 @@
 			{% for user in users %}
                 <tr>
                     {% include 'A4UFormBundle::Forms/base_show_select.html.twig'  %}
+                    <td><form style="display:inline;" action="{{ path('a4u_form_edit_porteAperteEstate', {'id': (loop.index) }) }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="modifica" /></form></td>
 					<td>{{user.name}}</td>
 					<td>{{user.surname}}</td>
 					<td>{{user.address}}</td>
@@ -102,6 +115,17 @@
     {{ parent() }}
 
     <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/jquery.scrollbar.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/a4uform/javascript/searchTable/jquery.filtertable.js') }}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('table').filterTable({ // apply filterTable to all tables on this page
+            inputSelector: '#input-filter' // use the existing input instead of creating a new one
+        });
+    });
+    </script>
+
 
     <script type="text/javascript">
         // Se viene clickato il pulsante per cancellare la keyword si viene rediretti a showPAE

@@ -1,0 +1,252 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Stage Unicam{% endblock %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+	<link href="{{ asset('bundles/a4uform/css/form.css') }}" type="text/css" rel="stylesheet">
+	{{ form_stylesheet(form) }}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div align="center">
+
+        <div align="left" class="form-container" >
+
+            {{ form_start(form) }}
+    		
+    			{{ form_errors(form) }}
+    			{% include 'A4UFormBundle::Forms/base_form_personal_records.html.twig'  %}
+                <div class="form-group">
+                    {{ form_label(form.attendedSchoolRegion) }}
+                    {{ form_errors(form.attendedSchoolRegion) }}
+                    {{ form_widget(form.attendedSchoolRegion) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.attendedSchoolDistrict) }}
+                    {{ form_errors(form.attendedSchoolDistrict) }}
+                    {{ form_widget(form.attendedSchoolDistrict) }}
+                </div>
+                 <div class="form-group">
+                    {{ form_label(form.attendedSchoolCity) }}
+                    {{ form_errors(form.attendedSchoolCity) }}
+                    {{ form_widget(form.attendedSchoolCity) }}
+                </div>
+                 <div class="form-group">
+                    {{ form_label(form.attendedSchool) }}
+                    {{ form_errors(form.attendedSchool) }}
+                    {{ form_widget(form.attendedSchool) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.schoolYear) }}
+                    {{ form_errors(form.schoolYear) }}
+                    {{ form_widget(form.schoolYear) }}
+                </div>
+                 <div class="form-group">
+                    {{ form_label(form.facebookContact) }}
+                    {{ form_errors(form.facebookContact) }}
+                    {{ form_widget(form.facebookContact) }}
+                </div>               
+                <div class="form-group">
+                    {{ form_label(form.stagePeriod) }}
+                    {{ form_errors(form.stagePeriod) }}
+                    {{ form_widget(form.stagePeriod) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.select_firstStudyField) }}
+                    {{ form_errors(form.select_firstStudyField) }}
+                    {{ form_widget(form.select_firstStudyField) }}
+                </div>
+                <div class="form-group" style="display: none;">
+                    {{ form_label(form.firstStudyField) }}
+                    {{ form_errors(form.firstStudyField) }}
+                    {{ form_widget(form.firstStudyField) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.select_firstChoice) }}
+                    {{ form_errors(form.select_firstChoice) }}
+                    {{ form_widget(form.select_firstChoice) }}
+                </div>
+                <div class="form-group" style="display: none;">
+                    {{ form_label(form.firstChoice) }}
+                    {{ form_errors(form.firstChoice) }}
+                    {{ form_widget(form.firstChoice) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.select_secondStudyField) }}
+                    {{ form_errors(form.select_secondStudyField) }}
+                    {{ form_widget(form.select_secondStudyField) }}
+                </div>
+                <div class="form-group" style="display: none;">
+                    {{ form_label(form.secondStudyField) }}
+                    {{ form_errors(form.secondStudyField) }}
+                    {{ form_widget(form.secondStudyField) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.select_secondChoice) }}
+                    {{ form_errors(form.select_secondChoice) }}
+                    {{ form_widget(form.select_secondChoice) }}
+                </div>
+                <div class="form-group" style="display: none;">
+                    {{ form_label(form.secondChoice) }}
+                    {{ form_errors(form.secondChoice) }}
+                    {{ form_widget(form.secondChoice) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.moneyPayed) }}
+                    {{ form_errors(form.moneyPayed) }}
+                    {{ form_widget(form.moneyPayed) }}
+                </div>
+
+                
+                <div align="center" class="form-group">
+                    {{ form_widget(form.save) }}
+                </div>
+
+
+    		{{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+    var $schoolRegion = $('#stage_attendedSchoolRegion');
+    $(document).on('change', '#stage_attendedSchoolRegion', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
+
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_attendedSchoolDistrict').replaceWith(
+            $(html).find('#stage_attendedSchoolDistrict')
+          );
+          $('#stage_attendedSchoolCity').replaceWith(
+            $(html).find('#stage_attendedSchoolCity')
+          );
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
+        }
+      });
+    });
+
+
+    var $schoolDistrict = $('#stage_attendedSchoolDistrict');
+    $(document).on('change', '#stage_attendedSchoolDistrict', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_attendedSchoolCity').replaceWith(
+            $(html).find('#stage_attendedSchoolCity')
+          );
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
+        }
+      });
+    });
+
+
+    var $schoolCity = $('#stage_attendedSchoolCity');
+    $(document).on('change', '#stage_attendedSchoolCity', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$schoolRegion.attr('name')] = $schoolRegion.val();
+      data[$schoolDistrict.attr('name')] = $('#stage_attendedSchoolDistrict').val();
+      data[$schoolCity.attr('name')] = $('#stage_attendedSchoolCity').val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_attendedSchool').replaceWith(
+            $(html).find('#stage_attendedSchool')
+          );
+        }
+      });
+    });
+
+    var $school = $('#stage_attendedSchool');
+    $(document).on('change', '#stage_attendedSchool', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$school.attr('name')] = $('#stage_attendedSchool').val();
+    });
+
+    var $firstStudyField = $('#stage_select_firstStudyField');
+    $(document).on('change', '#stage_select_firstStudyField', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_select_firstChoice').replaceWith(
+            $(html).find('#stage_select_firstChoice')
+          );
+        }
+      });
+    });
+        
+    var $secondStudyField = $('#stage_select_secondStudyField');
+    $(document).on('change', '#stage_select_secondStudyField', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      data[$secondStudyField.attr('name')] = $('#stage_select_secondStudyField').val();
+      $.ajax({
+        url : $form.attr('action'),
+        type: $form.attr('method'),
+        data : data,
+        success: function(html) {
+          $('#stage_select_secondChoice').replaceWith(
+            $(html).find('#stage_select_secondChoice')
+          );
+        }
+      });
+    });
+
+    $(document).on('change', '#stage_select_firstChoice', function() {
+      $('#stage_firstChoice').val($('#stage_select_firstChoice option:selected').text());
+    });
+    $(document).on('change', '#stage_select_secondChoice', function() {
+      $('#stage_secondChoice').val($('#stage_select_secondChoice option:selected').text());
+    });
+    $(document).on('change', '#stage_select_firstStudyField', function() {
+      $('#stage_firstStudyField').val($('#stage_select_firstStudyField option:selected').text());
+    });
+    $(document).on('change', '#stage_select_secondStudyField', function() {
+      $('#stage_secondStudyField').val($('#stage_select_secondStudyField option:selected').text());
+    });
+
+    </script>
+
+{% endblock %}

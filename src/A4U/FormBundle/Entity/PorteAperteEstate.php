@@ -413,7 +413,7 @@ class PorteAperteEstate
     }
 
     /**
-     * Get hasAttendedToOtherActivities
+     * Get hasAttendedToOtherActivities as string
      *
      * @return string
      */

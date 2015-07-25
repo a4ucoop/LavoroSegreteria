@@ -1,0 +1,83 @@
+
+<div class="container">
+
+    <div align="center">
+
+        <div align="left" class="form-container" >
+
+            {{ form_start(form) }}
+
+                {{ form_errors(form) }}
+                {% include 'A4UFormBundle::Forms/base_form_personal_records.html.twig'  %}
+                <div class="form-group">
+                    {{ form_label(form.attendedSchoolRegion) }}
+                    {{ form_errors(form.attendedSchoolRegion) }}
+                    {{ form_widget(form.attendedSchoolRegion) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.attendedSchoolDistrict) }}
+                    {{ form_errors(form.attendedSchoolDistrict) }}
+                    {{ form_widget(form.attendedSchoolDistrict) }}
+                </div>
+
+                 <div class="form-group">
+                    {{ form_label(form.attendedSchoolCity) }}
+                    {{ form_errors(form.attendedSchoolCity) }}
+                    {{ form_widget(form.attendedSchoolCity) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.attendedSchool) }}
+                    {{ form_errors(form.attendedSchool) }}
+                    {{ form_widget(form.attendedSchool, {'value' : context.attended_school }) }}
+                </div>
+
+                <div id="hasAttendedtoOtherActivities" class="form-group">
+                    {{ form_label(form.hasAttendedtoOtherActivities) }}
+                    {{ form_errors(form.hasAttendedtoOtherActivities) }}
+                    {{ form_widget(form.hasAttendedtoOtherActivities, {'value' : context.has_attended_to_other_activities }) }}
+                </div>
+
+                <div id="attendedActivity" class="form-group">
+                    {{ form_label(form.activity) }}
+                    {{ form_errors(form.activity) }}
+                    {{ form_widget(form.activity, {'value' : context.activity }) }}
+                </div>
+
+                <div id="otherAttendedActivity" class="form-group">
+                    {{ form_label(form.otherActivity) }}
+                    {{ form_errors(form.otherActivity) }}
+                    {{ form_widget(form.otherActivity, {'value' : context.other_activity }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.reference) }}
+                    {{ form_errors(form.reference) }}
+                    {{ form_widget(form.reference, {'value' : context.reference }) }}
+                </div>
+
+                <div id="otherReference" class="form-group">
+                    {{ form_label(form.otherReference) }}
+                    {{ form_errors(form.otherReference) }}
+                    {{ form_widget(form.otherReference, {'value' : context.other_reference }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.unicamCourse) }}
+                    {{ form_errors(form.unicamCourse) }}
+                    {{ form_widget(form.unicamCourse, {'value' : context.unicam_course }) }}
+                </div>
+
+                <div align="center" class="form-group">
+                    {{ form_widget(form.save) }}
+                </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+</div>
+

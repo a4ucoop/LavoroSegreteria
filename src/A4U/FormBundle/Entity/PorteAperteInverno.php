@@ -347,6 +347,19 @@ class PorteAperteInverno
     }
 
     /**
+     * Get birthDate as string
+     *
+     * @return string
+     */
+    public function getBirthDateAsString()
+    {
+        if($this->birthDate !== null)
+            return $this->birthDate->format('m/d/Y');
+        else
+            return "N/A";
+    }
+
+    /**
      * Set birthPlace
      *
      * @param string $birthPlace
@@ -390,6 +403,16 @@ class PorteAperteInverno
     public function getHasAttendedToOtherActivities()
     {
         return $this->hasAttendedToOtherActivities;
+    }
+
+    /**
+     * Get hasAttendedToOtherActivities as string
+     *
+     * @return string
+     */
+    public function getHasAttendedToOtherActivitiesAsString()
+    {
+        return var_export($this->hasAttendedToOtherActivities, True);
     }
 
     /**
@@ -551,6 +574,16 @@ class PorteAperteInverno
     public function getSubmissionDate()
     {
         return $this->submissionDate;
+    }
+
+    /**
+     * Get submissionDate as string
+     *
+     * @return \DateTime
+     */
+    public function getSubmissionDateAsString()
+    {
+        return $this->submissionDate->format('m/d/Y');
     }
 
     /**

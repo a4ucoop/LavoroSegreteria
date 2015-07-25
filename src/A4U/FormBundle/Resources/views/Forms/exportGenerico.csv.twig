@@ -1,0 +1,4 @@
+Nome	Cognome	"Codice Fiscale"	Indirizzo	CAP	Città	Email	Tel.	"Data di nascita"	"Luogo di nascita"	"Attività frequentata"
+    {% for row in data %}
+        "{{row.getName}}"	"{{row.getSurname}}"	"{{row.getFiscalcode}}"	"{{row.getAddress}}"	"{{row.getCap}}"	"{{row.getCity}}"	"{{row.getEmail}}"	"{{row.getPhone}}"	"{{row.getBirthDateAsString}}"	"{{row.getBirthPlace}}"	"{{row.getAttendedActivity}}"
+    {% endfor %} 

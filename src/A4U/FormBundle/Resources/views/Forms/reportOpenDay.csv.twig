@@ -1,0 +1,4 @@
+Nome	Cognome	"Codice Fiscale"	Immatricolato	"Corso di laurea (ESSE3)"	ANNO	CFU	MEDIA	Indirizzo	CAP	Città	Email	Tel.	"Data di nascita"	"Luogo di nascita"	"Corso"	"Attività frequentata"
+    {% for row in data %}
+        "{{nome}}"	"{{cognome}}"	"{{cfstudente}}"	"{{immatricolato}}"	"{{nome_cds}}"	"{{anno}}"	"{{cfu}}"	"{{media}}"	"{{row.getAddress}}"	"{{row.getCap}}"	"{{row.getCity}}"	"{{row.getEmail}}"	"{{row.getPhone}}"	"{{row.getBirthDateAsString}}"	"{{row.getBirthPlace}}"	"{{row.getAttendedSchool}}"	"{{row.getAttendedActivity}}"
+    {% endfor %} 
