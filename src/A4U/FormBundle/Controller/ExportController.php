@@ -26,7 +26,7 @@ class ExportController extends Controller
         return $this->generateCsvAction('A4UFormBundle:PorteAperteInverno','PAI');
     }
 
-    public function generateCsvPAIReportAction(){
+    public function generateCsvReportPAIAction(){
         return $this->generateCsvReportAction('A4UFormBundle:PorteAperteInverno','PAIreport');
     }
 
@@ -34,7 +34,7 @@ class ExportController extends Controller
         return $this->generateCsvAction('A4UFormBundle:Stage','Stage');
     }
 
-    public function generateCsvStageReportAction(){
+    public function generateCsvReportStageAction(){
         return $this->generateCsvReportAction('A4UFormBundle:Stage','StageReport');
     }
 
@@ -42,7 +42,7 @@ class ExportController extends Controller
         return $this->generateCsvAction('A4UFormBundle:Generico','Generico');
     }
 
-    public function generateCsvGenericoReportAction(){
+    public function generateCsvReportGenericoAction(){
         return $this->generateCsvReportAction('A4UFormBundle:Generico','GenericoReport');
     }
 
@@ -50,7 +50,7 @@ class ExportController extends Controller
         return $this->generateCsvAction('A4UFormBundle:OpenDay','OpenDay');
     }
 
-    public function generateCsvOpendayReportAction(){
+    public function generateCsvReportOpendayAction(){
         return $this->generateCsvReportAction('A4UFormBundle:OpenDay','OpenDayReport');
     }
 
