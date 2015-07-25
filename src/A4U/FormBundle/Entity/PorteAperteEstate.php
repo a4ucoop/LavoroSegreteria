@@ -413,7 +413,7 @@ class PorteAperteEstate
     }
 
     /**
-     * Get hasAttendedToOtherActivities
+     * Get hasAttendedToOtherActivities as string
      *
      * @return string
      */
@@ -623,7 +623,6 @@ class PorteAperteEstate
      */
     public function getReservationDateAsString()
     {
-        return ;
         if($this->reservationDate !== null)
             return $this->reservationDate->format('m/d/Y');
         else

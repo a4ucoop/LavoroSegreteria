@@ -363,6 +363,19 @@ class Stage
     }
 
     /**
+     * Get birthDate as string
+     *
+     * @return string
+     */
+    public function getBirthDateAsString()
+    {
+        if($this->birthDate !== null)
+            return $this->birthDate->format('m/d/Y');
+        else
+            return "N/A";
+    }
+
+    /**
      * Set birthPlace
      *
      * @param string $birthPlace
@@ -613,6 +626,16 @@ class Stage
     public function getSubmissiondate()
     {
         return $this->submissiondate;
+    }
+
+    /**
+     * Get submissionDate as string
+     *
+     * @return \DateTime
+     */
+    public function getSubmissionDateAsString()
+    {
+        return $this->submissionDate->format('m/d/Y');
     }
 
     /**

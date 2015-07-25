@@ -1,0 +1,4 @@
+Nome	Cognome "Codice Fiscale"	Immatricolato	"Campo di Studio prima scelta"	"Prima Scelta"	"Campo di Studio seconda scelta"	"Seconda Scelta"	"Corso di laurea (ESSE3)"	ANNO	CFU	MEDIA	Indirizzo	CAP	Città	Email	Tel.	"Data di nascita"	"Luogo di nascita"	"Scuola di provenienza"	"Anno Scolastico"	"Contatto Facebook"	"Periodo di Stage"	Pagamento	"data sottoscrizione"
+    {% for row in data %}
+        "{{nome}}"	"{{cognome}}"	"{{cfstudente}}"	"{{immatricolato}}"	"{{row.getFirstStudyField}}"	"{{row.getFirstChoice}}"	"{{row.getSecondStudyField}}"	"{{row.getSecondChoice}}"	"{{nome_cds}}"	"{{anno}}"	"{{cfu}}"	"{{media}}"	"{{row.getAddress}}"	"{{row.getCap}}"	"{{row.getCity}}"	"{{row.getEmail}}"	"{{row.getPhone}}"	"{{row.getBirthDateAsString}}"	"{{row.getBirthPlace}}"	"{{row.getAttendedSchool}}"	"{{row.getSchoolYear}}"	"{{row.getFacebookContact}}"	"{{row.getStagePeriod}}"	"{{row.getMoneyPayed}}"
+    {% endfor %} 
