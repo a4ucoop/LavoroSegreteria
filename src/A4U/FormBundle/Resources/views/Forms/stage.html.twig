@@ -201,11 +201,41 @@
     });
 
     var $firstStudyField = $('#stage_select_firstStudyField');
+    var $stagePeriod = $('#stage_stagePeriod');
     $(document).on('change', '#stage_select_firstStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
-      $.ajax({
+      //data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
+      //data[$stagePeriod.attr('name')] = $('#stage_stagePeriod').val();
+      //alert($('#stage_select_firstStudyField option:selected').text());
+      //alert($('#stage_stagePeriod option:selected').text());
+      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField option:selected').text();
+      data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
+      if ($('#stagePeriod option:selected').text().length != 0){
+        $.ajax({
+          url : $form.attr('action'),
+          type: $form.attr('method'),
+          data : data,
+          success: function(html) {
+            $('#stage_select_firstChoice').replaceWith(
+              $(html).find('#stage_select_firstChoice')
+            );
+          }
+        });
+      }
+    });
+
+    $(document).on('change', '#stage_stagePeriod', function() {
+      var $form = $(this).closest('form');
+      var data = {};
+      //data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
+      //data[$stagePeriod.attr('name')] = $('#stage_stagePeriod').val();
+      //alert("..." + $('#stage_select_firstStudyField option:selected').text().length + "....");
+      //alert($('#stage_stagePeriod option:selected').text());
+      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField option:selected').text();
+      data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
+      if ($('#stage_select_firstStudyField option:selected').text().length != 0){
+        $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
@@ -214,9 +244,10 @@
             $(html).find('#stage_select_firstChoice')
           );
         }
-      });
+       });
+      }
     });
-        
+
     var $secondStudyField = $('#stage_select_secondStudyField');
     $(document).on('change', '#stage_select_secondStudyField', function() {
       var $form = $(this).closest('form');
@@ -236,6 +267,7 @@
 
     $(document).on('change', '#stage_select_firstChoice', function() {
       $('#stage_firstChoice').val($('#stage_select_firstChoice option:selected').text());
+      alert($('#stage_firstChoice').val());
     });
     $(document).on('change', '#stage_select_secondChoice', function() {
       $('#stage_secondChoice').val($('#stage_select_secondChoice option:selected').text());

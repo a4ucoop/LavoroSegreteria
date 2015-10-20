@@ -26,18 +26,18 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         );
     }
 
-    private function addSchoolForm($form, $studyField)
+    private function addSchoolForm($form, $studyField, $stagePeriod)
     {
         if($studyField){
             $formOptions = array(
                 'mapped' => false,
-                'class'         => 'A4UDataBundle:OpzioniStageDett',
+                'class'         => 'A4UDataBundle:StageType',
                 'empty_value'   => 'Prima scelta ...',
                 'label'         => 'Prima scelta per lo stage*',
-                'query_builder' => function(EntityRepository $er) use($studyField) {
-                    return $er->getChoices($studyField);
+                'query_builder' => function(EntityRepository $er) use($studyField, $stagePeriod) {
+                    return $er->getChoices($studyField, $stagePeriod);
                     },
-                'property' => 'codStage',
+                'property' => 'nomeStage',
                 'attr' => array(
                     'class' => 'form-control',
                     )
@@ -60,10 +60,11 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
 
     public function preSetData(FormEvent $event)
     {
-        $data = $event->getForm()->get('select_firstStudyField')->getData();
+        $data1 = $event->getForm()->get('select_firstStudyField')->getData();
+        $data2 = $event->getForm()->get('stagePeriod')->getData();
         $form = $event->getForm();
 
-        $this->addSchoolForm($form, $data);
+        $this->addSchoolForm($form, $data1, $data2);
     }
 
     public function preSubmit(FormEvent $event)
@@ -72,8 +73,9 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
 
         $studyField = array_key_exists('select_firstStudyField', $data) ? $data['select_firstStudyField'] : null;
+        $stagePeriod = array_key_exists('stagePeriod', $data) ? $data['stagePeriod'] : null;
 
-        $this->addSchoolForm($form, $studyField);
+        $this->addSchoolForm($form, $studyField, $stagePeriod);
     }
 
 }

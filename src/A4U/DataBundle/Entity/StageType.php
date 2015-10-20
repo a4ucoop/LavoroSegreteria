@@ -1,6 +1,6 @@
 <?php
 
-namespace A4U\FormBundle\Entity;
+namespace A4U\DataBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="A4U\DataBundle\Entity\StageTypeRepository")
  */
 class StageType
 {

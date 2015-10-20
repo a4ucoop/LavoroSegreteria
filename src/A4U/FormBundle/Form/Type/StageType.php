@@ -160,15 +160,16 @@ class StageType extends AbstractType
             */
             ->add('stagePeriod', 'entity', array(
                 'label' => 'Periodo dello stage',
-                'class' => 'A4UDataBundle:AttivitaDate',
+                'class' => 'A4UDataBundle:StageType',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('AD')
-                                ->where('AD.attivo=1')
-                                ->andWhere('AD.idAttivita=37');
+                                ->groupBy('AD.dataInizioDataFine');
                     },
-                'property' => 'periodoDesc',
+                'property' => 'dataInizioDataFine',
                 'attr' => array(
-                    'class' => 'form-control'
+                    'value' => 'dataInizioDataFine',
+                    'class' => 'form-control',
+                    'placeholder' => 'Periodo dello stage'
                     ),
                 'required' => false
                 ))
@@ -176,12 +177,12 @@ class StageType extends AbstractType
             ->add('select_firstStudyField', 'entity', array(
                 'mapped' => false,
                 'label' => 'Campo di studi*',
-                'class' => 'A4UDataBundle:OpzioniStage',
+                'class' => 'A4UDataBundle:StageType',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('OS')
-                                ->where('OS.attivo=1');
+                                ->groupBy('OS.campoStudio');
                     },
-                //'property' => 'Descrizione',
+                'property' => 'campoStudio',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'
@@ -193,7 +194,7 @@ class StageType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'firstStudyField'
                     )
-                ))            
+                ))
 
             ->addEventSubscriber(new AddFirstChoiceFieldSubscriber('select_firstChoice'))
 
