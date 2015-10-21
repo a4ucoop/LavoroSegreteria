@@ -5,13 +5,13 @@ namespace A4U\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * StageType
+ * StageKind
  *
  * @ORM\Table()
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="A4U\DataBundle\Entity\StageTypeRepository")
+ * @ORM\Entity(repositoryClass="A4U\DataBundle\Entity\StageKindRepository")
  */
-class StageType
+class StageKind
 {
     /**
      * @var integer
@@ -87,7 +87,7 @@ class StageType
      *
      * @param string $nomeStage
      *
-     * @return StageType
+     * @return StageKind
      */
     public function setNomeStage($nomeStage)
     {
@@ -111,7 +111,7 @@ class StageType
      *
      * @param string $periodoStage
      *
-     * @return StageType
+     * @return StageKind
      */
     public function setPeriodoStage($periodoStage)
     {
@@ -135,7 +135,7 @@ class StageType
      *
      * @param string $dataInizio
      *
-     * @return StageType
+     * @return StageKind
      */
     public function setDataInizio($dataInizio)
     {
@@ -159,7 +159,7 @@ class StageType
      *
      * @param string $dataFine
      *
-     * @return StageType
+     * @return StageKind
      */
     public function setDataFine($dataFine)
     {
@@ -183,7 +183,7 @@ class StageType
      *
      * @param string $campoStudio
      *
-     * @return StageType
+     * @return StageKind
      */
     public function setCampoStudio($campoStudio)
     {
@@ -207,7 +207,7 @@ class StageType
      *
      * @param string $descrizione
      *
-     * @return StageType
+     * @return StageKind
      */
     public function setDescrizione($descrizione)
     {
@@ -231,7 +231,7 @@ class StageType
      *
      * @param string $dataInizioDataFine
      *
-     * @return StageType
+     * @return StageKind
      */
     public function setDataInizioDataFine($dataInizioDataFine)
     {
@@ -248,6 +248,16 @@ class StageType
     public function getDataInizioDataFine()
     {
         return $this->dataInizioDataFine;
+    }
+
+    /**
+     * __toString()
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->nomeStage;
     }
 }
 

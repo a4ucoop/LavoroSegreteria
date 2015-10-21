@@ -17,6 +17,7 @@ use A4U\DataBundle\Entity\AttivitaDate;
 use A4U\DataBundle\Entity\OpzioniStage;
 use A4U\DataBundle\Entity\OpzioniStageDett;
 use A4U\DataBundle\Entity\StuAnagScuole;
+use A4U\DataBundle\Entity\StageKind;
 
 use A4U\FormBundle\Form\EventListener\AddCityFieldSubscriber;
 use A4U\FormBundle\Form\EventListener\AddDistrictFieldSubscriber;
@@ -160,7 +161,7 @@ class StageType extends AbstractType
             */
             ->add('stagePeriod', 'entity', array(
                 'label' => 'Periodo dello stage',
-                'class' => 'A4UDataBundle:StageType',
+                'class' => 'A4UDataBundle:StageKind',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('AD')
                                 ->groupBy('AD.dataInizioDataFine');
@@ -177,7 +178,7 @@ class StageType extends AbstractType
             ->add('select_firstStudyField', 'entity', array(
                 'mapped' => false,
                 'label' => 'Campo di studi*',
-                'class' => 'A4UDataBundle:StageType',
+                'class' => 'A4UDataBundle:StageKind',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('OS')
                                 ->groupBy('OS.campoStudio');
@@ -208,7 +209,7 @@ class StageType extends AbstractType
             ->add('select_secondStudyField', 'entity', array(
                 'mapped' => false,
                 'label' => 'Campo di studi*',
-                'class' => 'A4UDataBundle:StageType',
+                'class' => 'A4UDataBundle:StageKind',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('OS')
                                 ->groupBy('OS.campoStudio');

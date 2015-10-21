@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Doctrine\ORM\EntityRepository;
-use A4U\DataBundle\Entity\StageType;
+use A4U\DataBundle\Entity\StageKind;
 
 class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
 {
@@ -31,7 +31,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         if($studyField){
             $formOptions = array(
                 'mapped' => false,
-                'class'         => 'A4UDataBundle:StageType',
+                'class'         => 'A4UDataBundle:StageKind',
                 'empty_value'   => 'Prima scelta ...',
                 'label'         => 'Prima scelta per lo stage*',
                 'query_builder' => function(EntityRepository $er) use($studyField, $stagePeriod) {

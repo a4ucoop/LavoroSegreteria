@@ -263,11 +263,11 @@
 
     $(document).on('change', '#stage_select_firstChoice', function() {
       $('#stage_firstChoice').val($('#stage_select_firstChoice option:selected').text());
-      //alert($('#stage_firstChoice').val());
+      alert($('#stage_select_firstChoice').val());
     });
     $(document).on('change', '#stage_select_secondChoice', function() {
       $('#stage_secondChoice').val($('#stage_select_secondChoice option:selected').text());
-      //alert($('#stage_secondChoice').val());
+      alert($('#stage_select_secondChoice').val());
     });
     $(document).on('change', '#stage_select_firstStudyField', function() {
       $('#stage_firstStudyField').val($('#stage_select_firstStudyField option:selected').text());

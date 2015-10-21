@@ -17,7 +17,7 @@ use A4U\DataBundle\Entity\AttivitaDate;
 use A4U\DataBundle\Entity\OpzioniStage;
 use A4U\DataBundle\Entity\OpzioniStageDett;
 use A4U\DataBundle\Entity\StuAnagScuole;
-
+use A4U\DataBundle\Entity\StageKind;
 
 use A4U\FormBundle\Form\Type\PorteAperteEstateType;
 use A4U\FormBundle\Form\Type\PorteAperteInvernoType;
