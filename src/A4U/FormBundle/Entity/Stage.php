@@ -141,6 +141,12 @@ class Stage
      * @ORM\Column(name="firstChoice", type="string", length=255)
      */
     private $firstChoice;
+
+    /**
+     * @var string
+     *
+     */
+    private $selectFirstChoice;
     
     /**
      * @var string
@@ -148,6 +154,12 @@ class Stage
      * @ORM\Column(name="secondChoice", type="string", length=255)
      */
     private $secondChoice;
+
+    /**
+     * @var string
+     *
+     */
+    private $selectSecondChoice;
 
     /**
      * @var string
@@ -547,6 +559,30 @@ class Stage
     }
 
     /**
+     * Set selectFirstChoice
+     *
+     * @param string $firstChoice
+     * @return Stage
+     */
+    public function setSelectFirstChoice($firstChoice)
+    {
+        $this->selectFirstChoice = $firstChoice;
+
+        return $this;
+    }
+
+    /**
+     * Get selectFirstChoice
+     *
+     * @return string 
+     */
+    public function getSelectFirstChoice()
+    {
+        return $this->selectFirstChoice;
+    }
+
+
+    /**
      * Set secondChoice
      *
      * @param string $secondChoice
@@ -567,6 +603,29 @@ class Stage
     public function getSecondChoice()
     {
         return $this->secondChoice;
+    }
+
+    /**
+     * Set selectSecondChoice
+     *
+     * @param string $secondChoice
+     * @return Stage
+     */
+    public function setSelectSecondChoice($secondChoice)
+    {
+        $this->selectSecondChoice = $secondChoice;
+
+        return $this;
+    }
+
+    /**
+     * Get selectSecondChoice
+     *
+     * @return string 
+     */
+    public function getSelectSecondChoice()
+    {
+        return $this->selectSecondChoice;
     }
 
     /**

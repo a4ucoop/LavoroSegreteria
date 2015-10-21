@@ -69,9 +69,9 @@
                 </div>
 
                 <div class="form-group">
-                    {{ form_label(form.select_firstChoice) }}
-                    {{ form_errors(form.select_firstChoice) }}
-                    {{ form_widget(form.select_firstChoice) }}
+                    {{ form_label(form.selectFirstChoice) }}
+                    {{ form_errors(form.selectFirstChoice) }}
+                    {{ form_widget(form.selectFirstChoice) }}
                 </div>
                 <div class="form-group" style="display: none;">
                     {{ form_label(form.firstChoice) }}
@@ -91,9 +91,9 @@
                 </div>
 
                 <div class="form-group">
-                    {{ form_label(form.select_secondChoice) }}
-                    {{ form_errors(form.select_secondChoice) }}
-                    {{ form_widget(form.select_secondChoice) }}
+                    {{ form_label(form.selectSecondChoice) }}
+                    {{ form_errors(form.selectSecondChoice) }}
+                    {{ form_widget(form.selectSecondChoice) }}
                 </div>
                 <div class="form-group" style="display: none;">
                     {{ form_label(form.secondChoice) }}
@@ -214,8 +214,8 @@
           type: $form.attr('method'),
           data : data,
           success: function(html) {
-            $('#stage_select_firstChoice').replaceWith(
-              $(html).find('#stage_select_firstChoice')
+            $('#stage_selectFirstChoice').replaceWith(
+              $(html).find('#stage_selectFirstChoice')
             );
           }
         });
@@ -233,8 +233,8 @@
         type: $form.attr('method'),
         data : data,
         success: function(html) {
-          $('#stage_select_firstChoice').replaceWith(
-            $(html).find('#stage_select_firstChoice')
+          $('#stage_selectFirstChoice').replaceWith(
+            $(html).find('#stage_selectFirstChoice')
           );
         }
        });
@@ -253,21 +253,21 @@
         type: $form.attr('method'),
         data : data,
         success: function(html) {
-          alert($(html).find('#stage_select_secondChoice').text());
-          $('#stage_select_secondChoice').replaceWith(
-            $(html).find('#stage_select_secondChoice')
+          alert($(html).find('#stage_selectSecondChoice').text());
+          $('#stage_selectSecondChoice').replaceWith(
+            $(html).find('#stage_selectSecondChoice')
           );
         }
       });
     });
 
-    $(document).on('change', '#stage_select_firstChoice', function() {
-      $('#stage_firstChoice').val($('#stage_select_firstChoice option:selected').text());
-      alert($('#stage_select_firstChoice').val());
+    $(document).on('change', '#stage_selectFirstChoice', function() {
+      $('#stageFirstChoice').val($('#stage_selectFirstChoice option:selected').text());
+      alert($('#stage_selectFirstChoice').val());
     });
-    $(document).on('change', '#stage_select_secondChoice', function() {
-      $('#stage_secondChoice').val($('#stage_select_secondChoice option:selected').text());
-      alert($('#stage_select_secondChoice').val());
+    $(document).on('change', '#stage_selectSecondChoice', function() {
+      $('#stageSecondChoice').val($('#stage_selectSecondChoice option:selected').text());
+      alert($('#stage_selectSecondChoice').val());
     });
     $(document).on('change', '#stage_select_firstStudyField', function() {
       $('#stage_firstStudyField').val($('#stage_select_firstStudyField option:selected').text());

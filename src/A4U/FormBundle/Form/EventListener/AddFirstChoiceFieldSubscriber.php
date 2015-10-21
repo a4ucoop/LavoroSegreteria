@@ -30,7 +30,6 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
     {
         if($studyField){
             $formOptions = array(
-                'mapped' => false,
                 'class'         => 'A4UDataBundle:StageKind',
                 'empty_value'   => 'Prima scelta ...',
                 'label'         => 'Prima scelta per lo stage*',
@@ -47,7 +46,6 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         }
         else {
             $formOptions = array(
-               'mapped' => false,
                'label'  => 'Prima scelta per lo stage*',
                'choices' => array("Prima scelta..."),
                'attr' => array(

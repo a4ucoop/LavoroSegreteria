@@ -123,6 +123,8 @@ A4U\FormBundle\Entity\Stage:
             - NotBlank: ~
         firstChoice:
             - NotBlank: ~
+        selectFirstChoice:
+        selectSecondChoice:
         secondChoice:
             - NotBlank: ~
         moneyPayed:

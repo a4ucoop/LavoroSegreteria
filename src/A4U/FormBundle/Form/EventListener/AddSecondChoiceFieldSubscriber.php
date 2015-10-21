@@ -30,7 +30,6 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
     {
         if($studyField){
             $formOptions = array(
-                'mapped' => false,
                 'class'         => 'A4UDataBundle:StageKind',
                 'empty_value'   => 'Seconda scelta ...',
                 'label'         => 'Seconda scelta per lo stage*',
@@ -47,7 +46,6 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
         }
         else {
             $formOptions = array(
-               'mapped' => false,
                'label'  => 'Seconda scelta per lo stage*',
                'choices' => array("Seconda scelta..."),
                'attr' => array(

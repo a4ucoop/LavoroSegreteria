@@ -197,7 +197,7 @@ class StageType extends AbstractType
                     )
                 ))
 
-            ->addEventSubscriber(new AddFirstChoiceFieldSubscriber('select_firstChoice'))
+            ->addEventSubscriber(new AddFirstChoiceFieldSubscriber('selectFirstChoice'))
 
             ->add('firstChoice', 'text', array(
                 'attr' => array(
@@ -228,7 +228,7 @@ class StageType extends AbstractType
                     )
                 ))  
 
-            ->addEventSubscriber(new AddSecondChoiceFieldSubscriber('select_secondChoice'))
+            ->addEventSubscriber(new AddSecondChoiceFieldSubscriber('selectSecondChoice'))
 
             ->add('secondChoice', 'text', array(
                 'attr' => array(
