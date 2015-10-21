@@ -202,16 +202,13 @@
 
     var $firstStudyField = $('#stage_select_firstStudyField');
     var $stagePeriod = $('#stage_stagePeriod');
+    
     $(document).on('change', '#stage_select_firstStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      //data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
-      //data[$stagePeriod.attr('name')] = $('#stage_stagePeriod').val();
-      //alert($('#stage_select_firstStudyField option:selected').text());
-      //alert($('#stage_stagePeriod option:selected').text());
       data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField option:selected').text();
       data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
-      if ($('#stagePeriod option:selected').text().length != 0){
+      if ($('#stage_stagePeriod option:selected').text().length != 0){
         $.ajax({
           url : $form.attr('action'),
           type: $form.attr('method'),
@@ -228,10 +225,6 @@
     $(document).on('change', '#stage_stagePeriod', function() {
       var $form = $(this).closest('form');
       var data = {};
-      //data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
-      //data[$stagePeriod.attr('name')] = $('#stage_stagePeriod').val();
-      //alert("..." + $('#stage_select_firstStudyField option:selected').text().length + "....");
-      //alert($('#stage_stagePeriod option:selected').text());
       data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField option:selected').text();
       data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
       if ($('#stage_select_firstStudyField option:selected').text().length != 0){
@@ -252,12 +245,15 @@
     $(document).on('change', '#stage_select_secondStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$secondStudyField.attr('name')] = $('#stage_select_secondStudyField').val();
+      data[$secondStudyField.attr('name')] = $('#stage_select_secondStudyField option:selected').text();
+      data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
+      alert(data[$secondStudyField.attr('name')] + "   " + data[$stagePeriod.attr('name')]);
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
         success: function(html) {
+          alert($(html).find('#stage_select_secondChoice').text());
           $('#stage_select_secondChoice').replaceWith(
             $(html).find('#stage_select_secondChoice')
           );
@@ -267,10 +263,11 @@
 
     $(document).on('change', '#stage_select_firstChoice', function() {
       $('#stage_firstChoice').val($('#stage_select_firstChoice option:selected').text());
-      alert($('#stage_firstChoice').val());
+      //alert($('#stage_firstChoice').val());
     });
     $(document).on('change', '#stage_select_secondChoice', function() {
       $('#stage_secondChoice').val($('#stage_select_secondChoice option:selected').text());
+      //alert($('#stage_secondChoice').val());
     });
     $(document).on('change', '#stage_select_firstStudyField', function() {
       $('#stage_firstStudyField').val($('#stage_select_firstStudyField option:selected').text());

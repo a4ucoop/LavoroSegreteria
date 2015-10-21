@@ -208,12 +208,12 @@ class StageType extends AbstractType
             ->add('select_secondStudyField', 'entity', array(
                 'mapped' => false,
                 'label' => 'Campo di studi*',
-                'class' => 'A4UDataBundle:OpzioniStage',
+                'class' => 'A4UDataBundle:StageType',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('OS')
-                                ->where('OS.attivo=1');
+                                ->groupBy('OS.campoStudio');
                     },
-                //'property' => 'Descrizione',
+                'property' => 'campoStudio',
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Campo di studi'

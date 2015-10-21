@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Doctrine\ORM\EntityRepository;
-use A4U\DataBundle\Entity\OpzioniStageDett;
+use A4U\DataBundle\Entity\StageType;
 
 class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
 {
@@ -40,7 +40,8 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
                 'property' => 'nomeStage',
                 'attr' => array(
                     'class' => 'form-control',
-                    )
+                    ),
+                'required' => false
             );
             $form->add($this->propertyPathToChoice, 'entity', $formOptions);
         }
@@ -51,7 +52,8 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
                'choices' => array("Prima scelta..."),
                'attr' => array(
                    'class' => 'form-control',
-                   )
+                   ),
+               'required' => false
             );
             $form->add($this->propertyPathToChoice, 'choice', $formOptions);
         }
