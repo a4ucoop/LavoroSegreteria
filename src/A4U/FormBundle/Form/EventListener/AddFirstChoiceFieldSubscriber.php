@@ -63,7 +63,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
     public function preSetData(FormEvent $event)
     {
         $data1 = $event->getForm()->get('select_firstStudyField')->getData();
-        $data2 = $event->getForm()->get('stagePeriod')->getData();
+        $data2 = $event->getForm()->get('select_stagePeriod')->getData();
         $form = $event->getForm();
 
         $this->addSchoolForm($form, $data1, $data2);
@@ -75,7 +75,7 @@ class AddFirstChoiceFieldSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
 
         $studyField = array_key_exists('select_firstStudyField', $data) ? $data['select_firstStudyField'] : null;
-        $stagePeriod = array_key_exists('stagePeriod', $data) ? $data['stagePeriod'] : null;
+        $stagePeriod = array_key_exists('select_stagePeriod', $data) ? $data['select_stagePeriod'] : null;
 
         $this->addSchoolForm($form, $studyField, $stagePeriod);
     }

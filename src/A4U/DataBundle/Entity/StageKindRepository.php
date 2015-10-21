@@ -14,12 +14,51 @@ class StageKindRepository extends EntityRepository
 {
 
     /**
+     * Get StudyField
+     * @param string|null
+     * @return string 
+     */
+    public function getStudyField($studyFieldId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $studyField = $qb->select('t.campoStudio')
+                        ->from('A4UDataBundle:StageKind', 't')
+                        ->where('t.id = :studyFieldId')
+                        ->setParameters(array(
+                            'studyFieldId' => ($studyFieldId)
+                            ));
+        return $qb->getQuery()->getArrayResult();
+
+    }
+
+    /**
+     * Get Period
+     * @param string|null
+     * @return string 
+     */
+    public function getPeriod($stagePeriodId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $stagePeriod = $qb->select('t.dataInizioDataFine')
+                        ->from('A4UDataBundle:StageKind', 't')
+                        ->where('t.id = :stagePeriodId')
+                        ->setParameters(array(
+                            'stagePeriodId' => ($stagePeriodId)
+                            ));
+        return $qb->getQuery()->getArrayResult();
+    }
+
+    /**
      * Get Choices
      * @param string|null
      * @return array 
      */
-    public function getChoices($studyField, $stagePeriod)
+    public function getChoices($studyFieldId, $stagePeriodId)
     {
+
+        $studyField = $this->getStudyField($studyFieldId);
+        $stagePeriod = $this->getPeriod($stagePeriodId);
+
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('s0')
         ->from('A4UDataBundle:StageKind', 's0')

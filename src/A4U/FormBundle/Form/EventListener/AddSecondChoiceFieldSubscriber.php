@@ -75,7 +75,7 @@ class AddSecondChoiceFieldSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
 
         $studyField = array_key_exists('select_secondStudyField', $data) ? $data['select_secondStudyField'] : null;
-        $stagePeriod = array_key_exists('stagePeriod', $data) ? $data['stagePeriod'] : null;
+        $stagePeriod = array_key_exists('select_stagePeriod', $data) ? $data['select_stagePeriod'] : null;
 
         $this->addSchoolForm($form, $studyField, $stagePeriod);
     }

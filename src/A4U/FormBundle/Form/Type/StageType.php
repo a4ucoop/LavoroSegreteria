@@ -159,9 +159,10 @@ class StageType extends AbstractType
 
                 poi tramite property seleziona solo la descrizione del periodo
             */
-            ->add('stagePeriod', 'entity', array(
+            ->add('select_stagePeriod', 'entity', array(
                 'label' => 'Periodo dello stage',
                 'class' => 'A4UDataBundle:StageKind',
+                'mapped' => false,
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('AD')
                                 ->groupBy('AD.dataInizioDataFine');
@@ -173,6 +174,12 @@ class StageType extends AbstractType
                     'placeholder' => 'Periodo dello stage'
                     ),
                 'required' => false
+                ))
+
+            ->add('stagePeriod', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                    )
                 ))
 
             ->add('select_firstStudyField', 'entity', array(

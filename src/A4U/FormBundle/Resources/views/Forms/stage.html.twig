@@ -53,6 +53,11 @@
                     {{ form_widget(form.facebookContact) }}
                 </div>               
                 <div class="form-group">
+                    {{ form_label(form.select_stagePeriod) }}
+                    {{ form_errors(form.select_stagePeriod) }}
+                    {{ form_widget(form.select_stagePeriod) }}
+                </div>
+                <div class="form-group" style="display: none;">
                     {{ form_label(form.stagePeriod) }}
                     {{ form_errors(form.stagePeriod) }}
                     {{ form_widget(form.stagePeriod) }}
@@ -201,14 +206,14 @@
     });
 
     var $firstStudyField = $('#stage_select_firstStudyField');
-    var $stagePeriod = $('#stage_stagePeriod');
+    var $select_stagePeriod = $('#stage_select_stagePeriod');
     
     $(document).on('change', '#stage_select_firstStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField option:selected').text();
-      data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
-      if ($('#stage_stagePeriod option:selected').text().length != 0){
+      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
+      data[$select_stagePeriod.attr('name')] = $('#stage_select_stagePeriod').val();
+      if ($('#stage_select_stagePeriod option:selected').text().length != 0){
         $.ajax({
           url : $form.attr('action'),
           type: $form.attr('method'),
@@ -222,11 +227,11 @@
       }
     });
 
-    $(document).on('change', '#stage_stagePeriod', function() {
+    $(document).on('change', '#stage_select_stagePeriod', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField option:selected').text();
-      data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
+      data[$firstStudyField.attr('name')] = $('#stage_select_firstStudyField').val();
+      data[$select_stagePeriod.attr('name')] = $('#stage_select_stagePeriod').val();
       if ($('#stage_select_firstStudyField option:selected').text().length != 0){
         $.ajax({
         url : $form.attr('action'),
@@ -245,15 +250,13 @@
     $(document).on('change', '#stage_select_secondStudyField', function() {
       var $form = $(this).closest('form');
       var data = {};
-      data[$secondStudyField.attr('name')] = $('#stage_select_secondStudyField option:selected').text();
-      data[$stagePeriod.attr('name')] = $('#stage_stagePeriod option:selected').text();
-      alert(data[$secondStudyField.attr('name')] + "   " + data[$stagePeriod.attr('name')]);
+      data[$secondStudyField.attr('name')] = $('#stage_select_secondStudyField').val();
+      data[$select_stagePeriod.attr('name')] = $('#stage_select_stagePeriod').val();
       $.ajax({
         url : $form.attr('action'),
         type: $form.attr('method'),
         data : data,
         success: function(html) {
-          alert($(html).find('#stage_select_secondChoice').text());
           $('#stage_select_secondChoice').replaceWith(
             $(html).find('#stage_select_secondChoice')
           );
@@ -261,13 +264,14 @@
       });
     });
 
+    $(document).on('change', '#stage_select_stagePeriod', function() {
+      $('#stage_stagePeriod').val($('#stage_select_stagePeriod option:selected').text());
+    });
     $(document).on('change', '#stage_select_firstChoice', function() {
       $('#stage_firstChoice').val($('#stage_select_firstChoice option:selected').text());
-      alert($('#stage_select_firstChoice').val());
     });
     $(document).on('change', '#stage_select_secondChoice', function() {
       $('#stage_secondChoice').val($('#stage_select_secondChoice option:selected').text());
-      alert($('#stage_select_secondChoice').val());
     });
     $(document).on('change', '#stage_select_firstStudyField', function() {
       $('#stage_firstStudyField').val($('#stage_select_firstStudyField option:selected').text());
