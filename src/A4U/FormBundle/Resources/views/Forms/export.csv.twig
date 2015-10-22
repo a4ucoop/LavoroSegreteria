@@ -1,10 +1,9 @@
-{{headers}}
 {% if kind == "PAE" or kind == "PAI" %}
     {% for row in data %}
-        "{{row.getName}}","{{row.getSurname}}","{{row.getAddress}}","{{row.getCap}}","{{row.getCity}}","{{row.getEmail}}","{{row.getPhone}}","{{row.getBirthDateAsString}}","{{row.getBirthPlace}}","{{row.getAttendedSchool}}","{{row.getHasAttendedToOtherActivitiesAsString}}","{{row.getActivity}}","{{row.getOtherActivity}}","{{row.getReference}}","{{row.getOtherReference}}","{{row.getUnicamCourse}}","{{row.getFiscalcode}}","{{row.getReservationDateAsString}}";
+        "{{row.getName}}"	"{{row.getSurname}}"	"{{row.getAddress}}"	"{{row.getCap}}"	"{{row.getCity}}"	"{{row.getEmail}}"	"{{row.getPhone}}"	"{{row.getBirthDateAsString}}"	"{{row.getBirthPlace}}"	"{{row.getAttendedSchool}}"	"{{row.getHasAttendedToOtherActivitiesAsString}}"	"{{row.getActivity}}"	"{{row.getOtherActivity}}"	"{{row.getReference}}"	"{{row.getOtherReference}}"	"{{row.getUnicamCourse}}"	"{{row.getFiscalcode}}"	"{{row.getReservationDateAsString}}";
     {% endfor %} 
 {% elseif kind == "OpenDay" %}
     {% for row in data %}
-        "{{row.getName}}","{{row.getSurname}}","{{row.getAddress}}","{{row.getCap}}","{{row.getCity}}","{{row.getEmail}}","{{row.getPhone}}","{{row.getBirthDateAsString}}","{{row.getBirthPlace}}","{{row.getAttendedSchool}}","{{row.getAttendedActivity}}","{{row.getFiscalcode}}";
+        "{{row.getName}}"	"{{row.getSurname}}"	"{{row.getAddress}}"	"{{row.getCap}}"	"{{row.getCity}}"	"{{row.getEmail}}"	"{{row.getPhone}}"	"{{row.getBirthDateAsString}}"	"{{row.getBirthPlace}}"	"{{row.getAttendedSchool}}"	"{{row.getAttendedActivity}}"	"{{row.getFiscalcode}}";
     {% endfor %} 
 {% endif %}

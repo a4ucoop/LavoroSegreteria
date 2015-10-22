@@ -247,7 +247,7 @@ class StageType extends AbstractType
             ->add('moneyPayed', 'choice', array(
                 'label' => 'Quota versata*',
                 'choices'   => array(
-                    "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)" => "€ 65 ( Iscrizione + 2 pernottamenti + 5 pasti)",
+                    "€ 70 ( Iscrizione + 2 pernottamenti + 5 pasti)" => "€ 70 ( Iscrizione + 2 pernottamenti + 5 pasti)",
                     "€ 35 ( Iscrizione + 5 pasti )" => "€ 35 ( Iscrizione + 5 pasti )",
                     "€ 25 ( Iscrizione + 3 pasti )" => "€ 25 ( Iscrizione + 3 pasti )",
                     "€ 10 Iscrizione" => "€ 10 Iscrizione"),

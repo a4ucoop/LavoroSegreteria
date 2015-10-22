@@ -32,8 +32,11 @@ class ExportController extends Controller
         $response = $this->render('A4UFormBundle:Forms:export.csv.twig',array('kind' => $kind, 'headers' => $headers, 'data' => $Users));
 
         $response->setStatusCode(200);
-        $response->headers->set('Content-type', 'application/force-download');
-        $response->headers->set('Content-Disposition','attachment; filename="export.ods"');
+        #$response->headers->set('Content-type', 'application/force-download');
+        #$response->headers->set('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        $response->headers->set('Content-type', 'application/application/vnd.ms-excel');
+        $response->headers->set('Content-Disposition','attachment; filename="export.xls"');
+
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->headers->set('Pragma', 'no-cache');
         $response->headers->set('Expires', '0');
