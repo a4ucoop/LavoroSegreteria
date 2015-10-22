@@ -204,6 +204,8 @@ class PageController extends Controller
         //Form inviato, viene validato
         if ($form->isValid()) {
 
+            $data = $form->getData();
+
             //Salva il nuovo utente nella base dati
             $em = $this->getDoctrine()->getManager();
             $em->persist($Stage);
@@ -213,6 +215,16 @@ class PageController extends Controller
             $this->get('session')->getFlashBag()->add(
                 'notice', 'Utente registrato con successo!'
             );
+
+            $mailer = $this->get('swiftmailer.mailer');
+
+            $message = Swift_Message::newInstance('Nuova iscrizione a Stage Unicam')
+              ->setFrom(array('matteo.micheletti@studenti.unicam.it' => 'A4U Cooperativa'))
+              ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME, "matteo.micheletti@studenti.unicam.it"))
+              ->setBody('Nuova iscrizione a Stage Unicam di ' . $data->getName() . ' ' . $data->getSurname() .  ' per il periodo ' . $data->getStagePeriod() . '. Prima scelta: ' . $data->getFirstChoice() . ' (' . $data->getFirstStudyField() . ') ' . '. Seconda scelta: ' . $data->getSecondChoice() . ' (' . $data->getSecondStudyField() . ') ')
+            ;
+    
+            $result = $mailer->send($message);
 
             return $this->redirect($this->generateUrl('a4u_form_homepage'));
         }
