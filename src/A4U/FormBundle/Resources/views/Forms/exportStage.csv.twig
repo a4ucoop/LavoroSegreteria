@@ -1,4 +1,6 @@
 Nome	Cognome	"Codice Fiscale"	"Campo di Studio prima scelta"	"Prima Scelta"	"Campo di Studio seconda scelta"	"Seconda Scelta"	"Indirizzo"	CAP	Città	Email	Tel.	"Data di nascita"	"Luogo di nascita"	"Scuola di provenienza"	"Anno Scolastico"	"Contatto Facebook"	"Periodo di Stage"	Pagamento
     {% for row in data %}
+	{% if row.getId() > 814 %}	
         "{{row.getName}}"	"{{row.getSurname}}"	"{{row.getFiscalcode}}"	"{{row.getFirstStudyField}}"	"{{row.getFirstChoice}}"	"{{row.getSecondStudyField}}"	"{{row.getSecondChoice}}"	"{{row.getAddress}}"	"{{row.getCap}}"	"{{row.getCity}}"	"{{row.getEmail}}"	"{{row.getPhone}}"	"{{row.getBirthDateAsString}}"	"{{row.getBirthPlace}}"	"{{row.getAttendedSchool}}"	"{{row.getSchoolYear}}"	"{{row.getFacebookContact}}"	"{{row.getStagePeriod}}"	"{{row.getMoneyPayed}}"
+	{% endif %}
     {% endfor %} 

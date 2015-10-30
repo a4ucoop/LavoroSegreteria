@@ -463,7 +463,7 @@ class PageController extends Controller
 
             // Aggiunge un messaggio di successo alla homepage
             $this->get('session')->getFlashBag()->add(
-                'notice', 'Utente registrato con successo!'
+                'notice', 'Utente registrato con successo! A breve riceverai una mail di notifica dell\'iscrizione'
             );
 
             $mailer = $this->get('swiftmailer.mailer');
@@ -472,6 +472,16 @@ class PageController extends Controller
               ->setFrom(array('matteo.micheletti@studenti.unicam.it' => 'A4U Cooperativa'))
               ->setTo(array(self::MAIL_TO => self::MAIL_TO_NAME, "matteo.micheletti@studenti.unicam.it"))
               ->setBody('Nuova iscrizione a Stage Unicam di ' . $data->getName() . ' ' . $data->getSurname() .  ' per il periodo ' . $data->getStagePeriod() . '. Prima scelta: ' . $data->getFirstChoice() . ' (' . $data->getFirstStudyField() . ') ' . '. Seconda scelta: ' . $data->getSecondChoice() . ' (' . $data->getSecondStudyField() . ') ')
+            ;
+    
+            $result = $mailer->send($message);
+
+            $mailer = $this->get('swiftmailer.mailer');
+
+            $message = Swift_Message::newInstance('Sei stato iscritto ad uno Stage Unicam')
+              ->setFrom(array('matteo.micheletti@studenti.unicam.it' => 'A4U Cooperativa'))
+              ->setTo(array($data->getEmail(), "matteo.micheletti@studenti.unicam.it"))
+              ->setBody('Ti sei iscritto/a con successo a Stage Unicam per il periodo ' . $data->getStagePeriod() . '. Prima scelta: ' . $data->getFirstChoice() . ' (' . $data->getFirstStudyField() . ') ' . '. Seconda scelta: ' . $data->getSecondChoice() . ' (' . $data->getSecondStudyField() . ') ')
             ;
     
             $result = $mailer->send($message);
