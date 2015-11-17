@@ -18,6 +18,9 @@ class FormController extends Controller
             // $gsrch -> generic search keyword presa dal form di ricerca
 	        $gsrch = $request->get('srch-term');
 
+            if(empty($gsrch))
+                $gsrch = $request->get('?srch-term');
+
             $mydate = date('Y-m-d', strtotime($gsrch));
 
 	        $repository = $this->getDoctrine()
@@ -62,6 +65,9 @@ class FormController extends Controller
             // $gsrch -> generic search keyword presa dal form di ricerca
             $gsrch = $request->get('srch-term');
 
+            if(empty($gsrch))
+                $gsrch = $request->get('?srch-term');
+
             $mydate = date('Y-m-d', strtotime($gsrch));
 
             $repository = $this->getDoctrine()
@@ -105,6 +111,9 @@ class FormController extends Controller
         if ($request->getMethod() == 'GET') {
             // $gsrch -> generic search keyword presa dal form di ricerca
             $gsrch = $request->get('srch-term');
+
+            if(empty($gsrch))
+                $gsrch = $request->get('?srch-term');
 
             $mydate = date('Y-m-d', strtotime($gsrch));
 
@@ -155,6 +164,9 @@ class FormController extends Controller
             // $gsrch -> generic search keyword presa dal form di ricerca
             $gsrch = $request->get('srch-term');
 
+            if(empty($gsrch))
+                $gsrch = $request->get('?srch-term');
+
             $mydate = date('Y-m-d', strtotime($gsrch));
 
             $repository = $this->getDoctrine()
@@ -191,6 +203,9 @@ class FormController extends Controller
         if ($request->getMethod() == 'GET') {
             // $gsrch -> generic search keyword presa dal form di ricerca
             $gsrch = $request->get('srch-term');
+
+            if(empty($gsrch))
+                $gsrch = $request->get('?srch-term');
 
             $mydate = date('Y-m-d', strtotime($gsrch));
 
