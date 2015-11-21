@@ -4,6 +4,14 @@
 
 {% block body %}
 
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div id="prova" class="alert alert-success" role="alert" style="margin-top: 10px;">
+        {{ flashMessage }}
+    </div>
+    {# bisogna rimetterci il flashMessage perchè la get lo elimina #}
+    {{ app.session.flashbag.add('notice', flashMessage) }}
+{% endfor %}
+
 {% block stylesheets %}
 
 	{{ parent() }}
@@ -48,6 +56,7 @@
 			<tr>
 				<td></td>
                 <td></td>
+                <td></td>
 				<td><b>Nome</b></td>
 				<td><b>Cognome</b></td>
 				<td><b>Indirizzo</b></td>
@@ -71,6 +80,7 @@
 				<tr>
                     {% include 'A4UFormBundle::Forms/base_show_select.html.twig'  %}
                     <td><form style="display:inline;" action="{{ path('a4u_form_edit_porteAperteInverno', {'id': (user.id) }) }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="modifica" /></form></td>
+                    <td><form style="display:inline;" action="{{ path('a4u_form_delete_porteAperteInverno', {'id': (user.id) }) }}"><input type="submit" class="btn btn-default" aria-label="Left Align" value="elimina" /></form></td>
 					<td>{{user.name}}</td>
 					<td>{{user.surname}}</td>
 					<td>{{user.address}}</td>

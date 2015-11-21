@@ -11,6 +11,11 @@ a4u_form_edit_porteAperteEstate:
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate_edit }
     requirements:
         id: \d+
+a4u_form_delete_porteAperteEstate:
+    path:     /form/porte_aperte_estate/{id}/delete
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_estate_delete }
+    requirements:
+        id: \d+
 a4u_form_searchPAE:
     path: /admin/form/search_pae
     defaults: { _controller: A4UFormBundle:Form:searchPAE }
@@ -34,6 +39,11 @@ a4u_form_porteAperteInverno:
 a4u_form_edit_porteAperteInverno:
     path:     /form/porte_aperte_inverno/{id}/edit
     defaults: { _controller: A4UFormBundle:Page:porte_aperte_inverno_edit }
+    requirements:
+        id: \d+
+a4u_form_delete_porteAperteInverno:
+    path:     /form/porte_aperte_inverno/{id}/delete
+    defaults: { _controller: A4UFormBundle:Page:porte_aperte_inverno_delete }
     requirements:
         id: \d+
 a4u_form_searchPAI:
@@ -61,6 +71,11 @@ a4u_form_edit_stage:
     defaults: { _controller: A4UFormBundle:Page:stage_edit }
     requirements:
         id: \d+
+a4u_form_delete_stage:
+    path:     /form/stage/{id}/delete
+    defaults: { _controller: A4UFormBundle:Page:stage_delete }
+    requirements:
+        id: \d+
 a4u_form_searchStage:
     path: /admin/form/search_stage
     defaults: { _controller: A4UFormBundle:Form:searchStage }
@@ -84,6 +99,11 @@ a4u_form_generico:
 a4u_form_edit_generico:
     path:     /form/generico/{id}/edit
     defaults: { _controller: A4UFormBundle:Page:generico_edit }
+    requirements:
+        id: \d+
+a4u_form_delete_generico:
+    path:     /form/generico/{id}/delete
+    defaults: { _controller: A4UFormBundle:Page:generico_delete }
     requirements:
         id: \d+
 a4u_form_searchGenerico:
@@ -112,6 +132,11 @@ a4u_form_openday:
 a4u_form_edit_openday:
     path:     /form/openday/{id}/edit
     defaults: { _controller: A4UFormBundle:Page:openday_edit }
+    requirements:
+        id: \d+
+a4u_form_delete_openday:
+    path:     /form/openday/{id}/delete
+    defaults: { _controller: A4UFormBundle:Page:openday_delete }
     requirements:
         id: \d+
 a4u_form_searchOpenDay:

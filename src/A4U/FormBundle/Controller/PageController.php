@@ -156,6 +156,30 @@ class PageController extends Controller
         ));
     }
 
+    public function porte_aperte_estate_deleteAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('A4UFormBundle:PorteAperteEstate')->find($id);
+        if (!$users) {
+          throw $this->createNotFoundException(
+                  'No user found for id ' . $id
+          );
+        } else {
+
+            //Delete user from db
+            $em->remove($users);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente eliminato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_showPAE'));
+        }
+
+    }
+
     public function showPAEAction()
     {
         $Users = $this->getDoctrine()
@@ -344,6 +368,30 @@ class PageController extends Controller
         ));
     }
 
+    public function porte_aperte_inverno_deleteAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('A4UFormBundle:PorteAperteInverno')->find($id);
+        if (!$users) {
+          throw $this->createNotFoundException(
+                  'No user found for id ' . $id
+          );
+        } else {
+
+            //Delete user from db
+            $em->remove($users);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente eliminato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_showPAI'));
+        }
+
+    }
+
     public function showPAIAction()
     {
         $Users = $this->getDoctrine()
@@ -497,7 +545,7 @@ class PageController extends Controller
 
     }
 
-    public function stage_editAction($id, Request $request) {
+    public function stage_deleteAction($id, Request $request) {
 
         $em = $this->getDoctrine()->getManager();
         $stages = $em->getRepository('A4UFormBundle:Stage')->find($id);
@@ -505,46 +553,20 @@ class PageController extends Controller
           throw $this->createNotFoundException(
                   'No stage found for id ' . $id
           );
-        }
+        } else {
 
-        $context = array(
-            'name' => $stages->getName(),
-            'surname' => $stages->getSurname(),
-            'fiscal_code' => $stages->getFiscalCode(),
-            'cap' => $stages->getCap(),
-            'city' => $stages->getCity(),
-            'address' => $stages->getAddress(),
-            'email' => $stages->getEmail(),
-            'phone' => $stages->getPhone(),
-            'birth_date' => $stages->getBirthDateAsString(),
-            'birth_place' => $stages->getBirthPlace(),
-        );
-    
-        $form = $this->createForm('stage', $stages);
-
-        $form->handleRequest($request);
-
-        //Form inviato, viene validato
-        if ($form->isValid()) {
-
-            //Salva il nuovo utente nella base dati
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($pais);
+            //Delete user from db
+            $em->remove($stages);
             $em->flush();
 
             // Aggiunge un messaggio di successo alla homepage
             $this->get('session')->getFlashBag()->add(
-                'notice', 'Utente modificato con successo!'
+                'notice', 'Utente eliminato con successo!'
             );
 
-            return $this->redirect($this->generateUrl('a4u_form_homepage'));
+            return $this->redirect($this->generateUrl('a4u_form_showStage'));
         }
 
-        // Form non ancora inviato
-        return $this->render('A4UFormBundle:Forms:stage_edit.html.twig', array(
-            'form' => $form->createView(),
-            'context' => $context,
-        ));
     }
 
     public function showstageAction()
@@ -823,7 +845,7 @@ class PageController extends Controller
 
             //Salva il nuovo utente nella base dati
             $em = $this->getDoctrine()->getManager();
-            $em->persist($pais);
+            $em->persist($stages);
             $em->flush();
 
             // Aggiunge un messaggio di successo alla homepage
@@ -838,6 +860,29 @@ class PageController extends Controller
             'form' => $form->createView(),
             'context' => $context,
         ));
+    }
+
+    public function openday_deleteAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('A4UFormBundle:OpenDay')->find($id);
+        if (!$users) {
+          throw $this->createNotFoundException(
+                  'No user found for id ' . $id
+          );
+        } else {
+
+            //Delete user from db
+            $em->remove($users);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente eliminato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_showOpenDay'));
+        }
     }
 
     public function reportOpenDayAction()
@@ -1014,6 +1059,34 @@ class PageController extends Controller
             );
 
             return $this->redirect($this->generateUrl('a4u_form_homepage'));
+        }
+        // Form non ancora inviato
+        return $this->render('A4UFormBundle:Forms:generico_edit.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context,
+        ));
+    }
+
+    public function generico_deleteAction($id, Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('A4UFormBundle:Generico')->find($id);
+        if (!$users) {
+          throw $this->createNotFoundException(
+                  'No user found for id ' . $id
+          );
+        } else {
+
+            //Delete user from db
+            $em->remove($users);
+            $em->flush();
+
+            // Aggiunge un messaggio di successo alla homepage
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Utente eliminato con successo!'
+            );
+
+            return $this->redirect($this->generateUrl('a4u_form_showGenerico'));
         }
         // Form non ancora inviato
         return $this->render('A4UFormBundle:Forms:generico_edit.html.twig', array(
@@ -1265,15 +1338,6 @@ class PageController extends Controller
 
 
     }
-
-
-
-
-
-
-
-
-
 
     public function reportCompletoAction()
     {
